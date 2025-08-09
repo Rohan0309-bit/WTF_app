@@ -8,8 +8,8 @@ export const Icons = {
     <Image
       src="https://i.ibb.co/rRJVjyPB/Whats-App-Image-2025-07-10-at-00-14-41.jpg"
       alt="WTF Logo"
-      width={props.width ? Number(props.width) : 32}
-      height={props.height ? Number(props.height) : 32}
+      width={props.width ? Number(props.width) : 80}
+      height={props.height ? Number(props.height) : 80}
       className={props.className}
       {...props}
     />
