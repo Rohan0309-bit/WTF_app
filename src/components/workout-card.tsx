@@ -2,7 +2,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Separator } from '@/components/ui/separator';
 import { parseWeeklyWorkoutPlan, type DailyWorkout } from '@/lib/workout-parser';
-import { Dumbbell, Repeat, Timer } from 'lucide-react';
+import { Dumbbell, Repeat, Timer, PlayCircle } from 'lucide-react';
+import { Button } from './ui/button';
 
 const emojiMap: { [key: string]: string } = {
   squats: '🦵',
@@ -85,6 +86,12 @@ export function WorkoutCard({ plan }: { plan: string }) {
                         {exIndex < day.exercises.length - 1 && <Separator className="mt-4" />}
                       </div>
                     ))}
+                     <div className="mt-6">
+                        <Button>
+                          <PlayCircle className="mr-2 h-4 w-4" />
+                          Start Workout
+                        </Button>
+                      </div>
                   </div>
                 ) : (
                    <div className="flex items-center gap-4 p-4">
