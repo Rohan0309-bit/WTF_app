@@ -41,7 +41,7 @@ const prompt = ai.definePrompt({
   Skill Level: {{{skillLevel}}}
   Workout Preference: {{{workoutPreference}}}
 
-  Generate a 7-day workout plan. For each day, provide a title (e.g., "Day 1: Upper Body Strength") and a list of 4-6 exercises. Include sets, reps, and rest time for each exercise. Ensure at least one rest day. Structure the output clearly with headings for each day.
+  Generate a 7-day workout plan. For each day, provide a title (e.g., "Day 1: Upper Body Strength") and a list of at least 7 exercises. Include sets, reps, and rest time for each exercise. Ensure there is exactly one rest day. Structure the output clearly with headings for each day.
   
   Example for one day:
   Day 1: Full Body Strength
