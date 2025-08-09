@@ -2,15 +2,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from '@/components/ui/separator';
 import { parseWorkoutPlan, type Exercise } from '@/lib/workout-parser';
 import { Dumbbell, Repeat, Timer } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const emojiMap: { [key: string]: string } = {
   squats: '🦵',
-  push-ups: '💪',
+  'push-ups': '💪',
   lunges: '🦵',
   plank: '🧘',
   deadlift: '🏋️',
   'bench press': '🏋️',
-  pull-ups: '💪',
+  'pull-ups': '💪',
   crunches: '🧘',
   burpees: '🥵',
   'jumping jacks': '🤸',

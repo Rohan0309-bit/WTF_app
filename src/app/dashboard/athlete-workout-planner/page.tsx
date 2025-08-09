@@ -11,7 +11,7 @@ import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_PREFERENCES } from '@/lib/consta
 import { getWorkoutPlan } from './actions';
 import { useToast } from '@/hooks/use-toast';
 import { WorkoutCard } from '@/components/workout-card';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Sparkles } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 function SubmitButton() {
