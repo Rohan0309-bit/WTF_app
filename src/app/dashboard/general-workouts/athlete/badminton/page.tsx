@@ -74,4 +74,11 @@ export default function BadmintonWorkoutPage() {
                 </CardHeader>
                 <CardContent>
                     <p>No workout plan found for the selected day.</p>
-                </Card
+                </CardContent>
+            </Card>
+        )}
+      </div>
+
+    </div>
+  );
+}
