@@ -57,4 +57,6 @@ export const NON_ATHLETE_WORKOUTS = [
   { name: 'Legs', href: '/dashboard/general-workouts/non-athlete/legs', hint: 'person squatting' },
   { name: 'Posture', href: '/dashboard/general-workouts/non-athlete/posture', hint: 'person stretching back' },
   { name: 'Sexual Wellness', href: '/dashboard/general-workouts/non-athlete/sexual-wellness', hint: 'couple yoga' },
+  { name: 'Facial', href: '/dashboard/general-workouts/non-athlete/facial', hint: 'face yoga' },
+  { name: 'Vocals', href: '/dashboard/general-workouts/non-athlete/vocals', hint: 'person singing' },
 ];
