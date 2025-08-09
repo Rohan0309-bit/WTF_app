@@ -4,11 +4,11 @@ import Image from 'next/image';
 
 const athleteCategories = [
   { name: 'Cricket', hint: 'cricket player' },
+  { name: 'Badminton', hint: 'badminton player' },
   { name: 'Football', hint: 'football player' },
   { name: 'Basketball', hint: 'basketball player' },
-  { name: 'Powerlifting', hint: 'powerlifter' },
-  { name: 'Sprinting', hint: 'sprinter running' },
-  { name: 'Swimming', hint: 'swimmer' },
+  { name: 'Volleyball', hint: 'volleyball player' },
+  { name: 'Table Tennis', hint: 'table tennis player' },
 ];
 
 export default function AthleteWorkoutsPage() {
