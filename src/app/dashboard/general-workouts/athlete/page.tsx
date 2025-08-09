@@ -4,12 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const athleteCategories = [
-  { name: 'Cricket', href: '/dashboard/general-workouts/athlete/cricket', hint: 'cricket player' },
-  { name: 'Badminton', href: '/dashboard/general-workouts/athlete/badminton', hint: 'badminton player' },
-  { name: 'Football', href: '/dashboard/general-workouts/athlete/football', hint: 'football player' },
-  { name: 'Basketball', href: '/dashboard/general-workouts/athlete/basketball', hint: 'basketball player' },
-  { name: 'Volleyball', href: '/dashboard/general-workouts/athlete/volleyball', hint: 'volleyball player' },
-  { name: 'Table Tennis', href: '/dashboard/general-workouts/athlete/table-tennis', hint: 'table tennis player' },
+  { name: 'Cricket', href: '/dashboard/general-workouts/athlete/cricket', image: 'https://i.ibb.co/4xmZ9xN/Whats-App-Image-2025-06-30-at-01-09-32.jpg' },
+  { name: 'Badminton', href: '/dashboard/general-workouts/athlete/badminton', image: 'https://i.ibb.co/j9mhkHHc/Whats-App-Image-2025-06-30-at-01-15-32.jpg' },
+  { name: 'Football', href: '/dashboard/general-workouts/athlete/football', image: 'https://i.ibb.co/8LJ5VD3f/Whats-App-Image-2025-06-30-at-01-09-35.jpg' },
+  { name: 'Basketball', href: '/dashboard/general-workouts/athlete/basketball', image: 'https://i.ibb.co/spj3dBqy/Whats-App-Image-2025-06-30-at-01-16-53.jpg' },
+  { name: 'Volleyball', href: '/dashboard/general-workouts/athlete/volleyball', image: 'https://i.ibb.co/TJzVLM4/Whats-App-Image-2025-06-30-at-01-37-53.jpg' },
+  { name: 'Table Tennis', href: '/dashboard/general-workouts/athlete/table-tennis', image: 'https://i.ibb.co/rfFLgQ1H/Whats-App-Image-2025-06-30-at-01-37-52.jpg' },
 ];
 
 export default function AthleteWorkoutsPage() {
@@ -23,12 +23,11 @@ export default function AthleteWorkoutsPage() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {athleteCategories.map((category) => (
-          <Link href={category.href} key={category.name} className={category.comingSoon ? "pointer-events-none" : ""}>
+          <Link href={category.href} key={category.name}>
             <Card className="overflow-hidden group h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
               <div className="relative">
                 <Image
-                  src={`https://placehold.co/400x300.png`}
-                  data-ai-hint={category.hint}
+                  src={category.image}
                   alt={category.name}
                   width={400}
                   height={300}
@@ -37,7 +36,6 @@ export default function AthleteWorkoutsPage() {
                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                  <div className="absolute bottom-0 p-4">
                     <h3 className="text-lg font-bold text-white">{category.name} Plan</h3>
-                    {category.comingSoon && <p className="text-sm text-white/80">Coming Soon</p>}
                  </div>
               </div>
             </Card>
