@@ -48,7 +48,7 @@ export const GOALS = [
 ];
 
 export const NON_ATHLETE_WORKOUTS = [
-  { name: 'Full Body', href: '/dashboard/general-workouts/non-athlete/full-body', description: 'A comprehensive workout targeting all major muscle groups.', image: "https://i.ibb.co/G3JtX79/Whats-App-Image-2025-06-30-at-23-20-36.jpg" },
+  { name: 'Full Body', href: '/dashboard/general-workouts/non-athlete/full-body', description: 'A comprehensive workout targeting all major muscle groups.', image: "https://i.ibb.co/G3JtX79Z/Whats-App-Image-2025-06-30-at-23-20-36.jpg" },
   { name: 'Chest', href: '/dashboard/general-workouts/non-athlete/chest', description: 'Focus on building a powerful and defined chest.', image: "https://i.ibb.co/xtN2StD7/Whats-App-Image-2025-06-30-at-23-59-47.jpg" },
   { name: 'Back', href: '/dashboard/general-workouts/non-athlete/back', description: 'Strengthen and widen your back for a V-taper physique.', image: "https://i.ibb.co/mZ74Hz9/Whats-App-Image-2025-07-01-at-00-11-00.jpg" },
   { name: 'Arms', href: '/dashboard/general-workouts/non-athlete/arms', description: 'Isolate and build your biceps, triceps, and forearms.', image: "https://i.ibb.co/N2Gz7Hk7/Whats-App-Image-2025-06-30-at-23-24-42.jpg" },

@@ -1,22 +1,23 @@
+
 'use client';
 
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Award, HeartPulse } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const workoutCategories = [
   {
     title: 'Athlete Workout Plans',
     description: 'High-intensity, sport-specific training programs designed to boost performance, strength, and agility for competitive athletes.',
     href: '/dashboard/general-workouts/athlete',
-    icon: <Award className="h-12 w-12 text-primary" />,
+    image: 'https://i.ibb.co/V0tJBw3L/Whats-App-Image-2025-06-29-at-01-07-42.jpg',
   },
   {
     title: 'Non-Athlete Workout Plans',
     description: 'Structured fitness routines for all levels, focusing on general health, muscle toning, weight loss, and building a consistent workout habit.',
     href: '/dashboard/general-workouts/non-athlete',
-    icon: <HeartPulse className="h-12 w-12 text-primary" />,
+    image: 'https://i.ibb.co/W4B3YwPx/Whats-App-Image-2025-06-29-at-01-01-13.jpg',
   },
 ];
 
@@ -37,15 +38,19 @@ export default function GeneralWorkoutsPage() {
               whileHover={{ rotateY: 5, rotateX: 2, scale: 1.02 }}
               className="w-full"
             >
-              <Card className="flex flex-col w-full h-full hover:border-primary transition-all duration-300 hover:shadow-lg group">
-                <CardHeader className="items-center text-center">
-                  <div className="p-4 bg-primary/10 rounded-full mb-4 group-hover:scale-110 transition-transform">
-                      {category.icon}
-                  </div>
-                  <CardTitle className="font-headline text-xl">{category.title}</CardTitle>
+              <Card className="flex flex-col w-full h-full hover:border-primary transition-all duration-300 hover:shadow-lg group overflow-hidden">
+                <CardHeader className="p-0">
+                    <Image 
+                        src={category.image}
+                        alt={category.title}
+                        width={600}
+                        height={400}
+                        className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                    />
                 </CardHeader>
-                <CardContent className="text-center flex-grow">
-                  <p className="text-muted-foreground">{category.description}</p>
+                <CardContent className="p-6 flex flex-col flex-grow">
+                  <CardTitle className="font-headline text-xl mb-2">{category.title}</CardTitle>
+                  <p className="text-muted-foreground flex-grow">{category.description}</p>
                 </CardContent>
               </Card>
             </motion.div>
