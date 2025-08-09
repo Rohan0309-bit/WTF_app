@@ -1,4 +1,5 @@
 
+
 export const SPORTS = [
   'Cricket',
   'Badminton',
@@ -48,15 +49,16 @@ export const GOALS = [
 ];
 
 export const NON_ATHLETE_WORKOUTS = [
-  { name: 'Full Body', href: '/dashboard/general-workouts/non-athlete/full-body', hint: 'gym workout' },
-  { name: 'Chest', href: '/dashboard/general-workouts/non-athlete/chest', hint: 'chest press' },
-  { name: 'Back', href: '/dashboard/general-workouts/non-athlete/back', hint: 'person doing pull-ups' },
-  { name: 'Arms', href: '/dashboard/general-workouts/non-athlete/arms', hint: 'bicep curl' },
-  { name: 'Abs', href: '/dashboard/general-workouts/non-athlete/abs', hint: 'person doing crunches' },
-  { name: 'Shoulder', href: '/dashboard/general-workouts/non-athlete/shoulder', hint: 'shoulder press' },
-  { name: 'Legs', href: '/dashboard/general-workouts/non-athlete/legs', hint: 'person squatting' },
-  { name: 'Posture', href: '/dashboard/general-workouts/non-athlete/posture', hint: 'person stretching back' },
-  { name: 'Sexual Wellness', href: '/dashboard/general-workouts/non-athlete/sexual-wellness', hint: 'couple yoga' },
-  { name: 'Facial', href: '/dashboard/general-workouts/non-athlete/facial', hint: 'face yoga' },
-  { name: 'Vocals', href: '/dashboard/general-workouts/non-athlete/vocals', hint: 'person singing' },
+  { name: 'Full Body', href: '/dashboard/general-workouts/non-athlete/full-body', description: 'A comprehensive workout targeting all major muscle groups.', image: "https://i.ibb.co/G3JtX79/Whats-App-Image-2025-06-30-at-23-20-36.jpg" },
+  { name: 'Chest', href: '/dashboard/general-workouts/non-athlete/chest', description: 'Focus on building a powerful and defined chest.', image: "https://i.ibb.co/xtN2StD7/Whats-App-Image-2025-06-30-at-23-59-47.jpg" },
+  { name: 'Back', href: '/dashboard/general-workouts/non-athlete/back', description: 'Strengthen and widen your back for a V-taper physique.', image: "https://i.ibb.co/mZ74Hz9/Whats-App-Image-2025-07-01-at-00-11-00.jpg" },
+  { name: 'Arms', href: '/dashboard/general-workouts/non-athlete/arms', description: 'Isolate and build your biceps, triceps, and forearms.', image: "https://i.ibb.co/N2Gz7Hk7/Whats-App-Image-2025-06-30-at-23-24-42.jpg" },
+  { name: 'Abs', href: '/dashboard/general-workouts/non-athlete/abs', description: 'Carve out a strong and defined core.', image: "https://i.ibb.co/sp41j3g0/Whats-App-Image-2025-07-01-at-00-41-30.jpg" },
+  { name: 'Shoulder', href: '/dashboard/general-workouts/non-athlete/shoulder', description: 'Develop broad, well-rounded shoulders.', image: "https://i.ibb.co/VYZ0r0GS/Whats-App-Image-2025-06-30-at-23-40-32.jpg" },
+  { name: 'Legs', href: '/dashboard/general-workouts/non-athlete/legs', description: 'Build strength and power in your lower body.', image: "https://i.ibb.co/XZfz0P6V/Whats-App-Image-2025-07-01-at-00-22-32.jpg" },
+  { name: 'Posture', href: '/dashboard/general-workouts/non-athlete/posture', description: 'Correct imbalances and improve your overall posture.', image: "https://i.ibb.co/WpgJQyrb/Whats-App-Image-2025-07-01-at-00-13-22.jpg" },
+  { name: 'Sexual Wellness', href: '/dashboard/general-workouts/non-athlete/sexual-wellness', description: 'Enhance stamina and performance.', image: "https://i.ibb.co/W4DHNgPX/Whats-App-Image-2025-07-01-at-00-05-57.jpg" },
+  { name: 'Facial', href: '/dashboard/general-workouts/non-athlete/facial', description: 'Exercises to tone and define facial muscles.', image: "https://i.ibb.co/dwdTz4k7/Whats-App-Image-2025-06-30-at-23-40-31.jpg" },
+  { name: 'Vocal', href: '/dashboard/general-workouts/non-athlete/vocals', description: 'Improve vocal strength, range, and clarity.', image: "https://i.ibb.co/GvXwFvFq/Whats-App-Image-2025-06-30-at-23-42-54.jpg" },
+  { name: 'Calisthenics', href: '#', description: 'Master your bodyweight with advanced calisthenics.', image: "https://i.ibb.co/3969w7K9/Whats-App-Image-2025-06-30-at-23-20-34.jpg", comingSoon: true },
 ];
