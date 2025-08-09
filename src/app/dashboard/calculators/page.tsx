@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ACTIVITY_LEVELS, GOALS } from '@/lib/constants';
 
 function BmiCalculator() {
@@ -283,28 +282,38 @@ function IdealWeightCalculator() {
     );
 }
 
+const calculators = [
+    { value: 'tdee', label: 'TDEE Calculator', component: <TdeeCalculator /> },
+    { value: 'bmi', label: 'BMI Calculator', component: <BmiCalculator /> },
+    { value: 'macros', label: 'Macro Split Calculator', component: <MacroCalculator /> },
+    { value: 'bodyfat', label: 'Body Fat % Estimator', component: <BodyFatCalculator /> },
+    { value: 'water', label: 'Water Intake Calculator', component: <WaterIntakeCalculator /> },
+    { value: 'ideal-weight', label: 'Ideal Weight Calculator', component: <IdealWeightCalculator /> },
+]
 
 export default function CalculatorsPage() {
+  const [selectedCalculator, setSelectedCalculator] = useState('tdee');
+
+  const renderCalculator = () => {
+    const calculator = calculators.find(c => c.value === selectedCalculator);
+    return calculator ? calculator.component : null;
+  }
+
   return (
-    <div>
-      <Tabs defaultValue="tdee" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-          <TabsTrigger value="tdee">TDEE</TabsTrigger>
-          <TabsTrigger value="bmi">BMI</TabsTrigger>
-          <TabsTrigger value="macros">Macros</TabsTrigger>
-          <TabsTrigger value="bodyfat">Body Fat %</TabsTrigger>
-          <TabsTrigger value="water">Water Intake</TabsTrigger>
-          <TabsTrigger value="ideal-weight" className="hidden lg:inline-flex">Ideal Weight</TabsTrigger>
-        </TabsList>
-        <TabsContent value="tdee" className="mt-4"><TdeeCalculator /></TabsContent>
-        <TabsContent value="bmi" className="mt-4"><BmiCalculator /></TabsContent>
-        <TabsContent value="macros" className="mt-4"><MacroCalculator /></TabsContent>
-        <TabsContent value="bodyfat" className="mt-4"><BodyFatCalculator /></TabsContent>
-        <TabsContent value="water" className="mt-4"><WaterIntakeCalculator /></TabsContent>
-        <TabsContent value="ideal-weight" className="mt-4"><IdealWeightCalculator /></TabsContent>
-      </Tabs>
+    <div className="space-y-6">
+      <div className="max-w-xs">
+         <Select value={selectedCalculator} onValueChange={setSelectedCalculator}>
+            <SelectTrigger><SelectValue placeholder="Select a calculator" /></SelectTrigger>
+            <SelectContent>
+                {calculators.map(c => (
+                    <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
+      </div>
+      <div>
+        {renderCalculator()}
+      </div>
     </div>
   );
 }
-
-    
