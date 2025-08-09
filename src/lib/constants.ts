@@ -1,3 +1,4 @@
+
 export const SPORTS = [
   'Cricket',
   'Badminton',
@@ -27,3 +28,11 @@ export const ACTIVITY_LEVELS = [
     { value: 1.725, label: 'Very active (hard exercise/sports 6-7 days a week)' },
     { value: 1.9, label: 'Super active (very hard exercise/sports & a physical job)' },
 ];
+
+export const GOALS = [
+    { value: 'cut', label: 'Cut (Weight Loss)' },
+    { value: 'maintain', label: 'Maintain' },
+    { value: 'bulk', label: 'Bulk (Weight Gain)' },
+];
+
+    
