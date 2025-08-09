@@ -2,38 +2,25 @@
 'use client';
 
 import { useState } from 'react';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import {
   GENERAL_MALE_GYM_WORKOUT_PLAN,
   GENERAL_MALE_HOME_WORKOUT_PLAN,
   GENERAL_FEMALE_GYM_WORKOUT_PLAN,
   GENERAL_FEMALE_HOME_WORKOUT_PLAN,
-  WorkoutSplit
+  WorkoutSplit,
+  DayWorkout
 } from '@/lib/workouts';
 import { WorkoutDisplay } from '@/components/workout-display';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 type Gender = 'male' | 'female';
 type Location = 'gym' | 'home';
 
-const FullWorkoutPlanDisplay = ({ plan }: { plan: WorkoutSplit }) => (
-  <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
-    {Object.entries(plan).map(([day, workout], index) => (
-      <AccordionItem value={`item-${index}`} key={day}>
-        <AccordionTrigger>{day}: {workout.focus}</AccordionTrigger>
-        <AccordionContent>
-          <WorkoutDisplay workout={workout} />
-        </AccordionContent>
-      </AccordionItem>
-    ))}
-  </Accordion>
-);
-
-
 export default function FullBodyWorkoutPage() {
   const [gender, setGender] = useState<Gender>('male');
   const [location, setLocation] = useState<Location>('gym');
+  const [selectedDay, setSelectedDay] = useState<string>('Monday');
 
   const getWorkoutPlan = (): WorkoutSplit => {
     if (gender === 'male' && location === 'gym') return GENERAL_MALE_GYM_WORKOUT_PLAN;
@@ -43,6 +30,8 @@ export default function FullBodyWorkoutPage() {
   };
 
   const workoutPlan = getWorkoutPlan();
+  const workoutForDay = workoutPlan[selectedDay];
+  const days = Object.keys(workoutPlan);
 
   return (
     <div className="container mx-auto p-4">
@@ -67,17 +56,30 @@ export default function FullBodyWorkoutPage() {
           </TabsList>
         </Tabs>
       </div>
+      
+       <div className="max-w-4xl mx-auto">
+         <Tabs value={selectedDay} onValueChange={setSelectedDay} className="mb-8">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-7 h-auto">
+             {days.map(day => (
+              <TabsTrigger key={day} value={day}>{day.substring(0,3)}</TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
 
-      <div className="max-w-4xl mx-auto">
-        <Card>
-            <CardHeader>
-                <CardTitle>Weekly Plan</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <FullWorkoutPlanDisplay plan={workoutPlan} />
-            </CardContent>
-        </Card>
+        {workoutForDay ? (
+            <WorkoutDisplay workout={workoutForDay} />
+        ) : (
+             <Card>
+                <CardHeader>
+                    <CardTitle>No workout</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p>No workout plan found for the selected day.</p>
+                </CardContent>
+            </Card>
+        )}
       </div>
+
     </div>
   );
 }
