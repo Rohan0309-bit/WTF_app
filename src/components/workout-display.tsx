@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Separator } from '@/components/ui/separator';
 import { Dumbbell, Repeat, Timer } from 'lucide-react';
 import type { DayWorkout, ExerciseDetails } from '@/lib/workouts';
+import Image from 'next/image';
 
 const emojiMap: { [key: string]: string } = {
   squats: '🦵',
@@ -64,7 +65,16 @@ export function WorkoutDisplay({ workout }: WorkoutDisplayProps) {
           {workout.exercises.map((exercise, exIndex) => (
             <div key={exIndex}>
               <div className="flex items-start gap-4">
-                <span className="text-2xl mt-1">{getEmojiForExercise(exercise.name)}</span>
+                 <div className="w-24 h-24 bg-muted rounded-md flex-shrink-0">
+                   <Image
+                      src={exercise.gifUrl || `https://placehold.co/100x100.png`}
+                      data-ai-hint={`${exercise.muscle} exercise`}
+                      alt={exercise.name}
+                      width={100}
+                      height={100}
+                      className="object-cover w-full h-full rounded-md"
+                    />
+                  </div>
                 <div className="flex-1">
                   <p className="font-semibold">{exercise.name}</p>
                    {exercise.sets && exercise.reps && exercise.rest && (
