@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -21,7 +22,7 @@ export default function SignupPage() {
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader className="text-center">
           <div className="flex justify-center items-center gap-2 mb-2">
-            <Icons.logo className="h-10 w-10 text-primary" />
+            <Icons.logo className="h-20 w-20 text-primary" />
             <h1 className="text-3xl font-headline font-bold text-primary">WTF</h1>
           </div>
           <CardTitle className="text-2xl font-headline">Join the Crew</CardTitle>
