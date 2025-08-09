@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -19,6 +20,7 @@ const pathToTitle: { [key: string]: string } = {
   '/dashboard': 'Dashboard',
   '/dashboard/athlete-workout-planner': 'AI Workout Planner',
   '/dashboard/general-workouts': 'General Workouts',
+  '/dashboard/exercise-library': 'Exercise Library',
   '/dashboard/calculators': 'Health Calculators',
   '/dashboard/nutrition': 'Nutrition Plans',
   '/dashboard/posing-tutorials': 'Posing Tutorials',
@@ -28,9 +30,19 @@ const pathToTitle: { [key: string]: string } = {
 export function Header() {
   const pathname = usePathname();
   const router = useRouter();
-  const title = pathToTitle[pathname] || 'Well Trained Freak';
 
-  const showBackButton = pathname.startsWith('/dashboard/') && pathname !== '/dashboard';
+  const getTitle = () => {
+    for (const path in pathToTitle) {
+      if (pathname.startsWith(path)) {
+        return pathToTitle[path];
+      }
+    }
+    return 'Well Trained Freak';
+  }
+  
+  const title = getTitle();
+
+  const showBackButton = pathname.split('/').length > 2;
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6">

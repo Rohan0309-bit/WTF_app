@@ -22,6 +22,7 @@ import {
   Sparkles,
   Settings,
   LogOut,
+  BookOpen,
 } from 'lucide-react';
 import { Icons } from './icons';
 import { Button } from './ui/button';
@@ -30,6 +31,7 @@ const menuItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/dashboard/athlete-workout-planner', label: 'AI Planner', icon: Sparkles },
   { href: '/dashboard/general-workouts', label: 'Workouts', icon: Dumbbell },
+  { href: '/dashboard/exercise-library', label: 'Exercise Library', icon: BookOpen },
   { href: '/dashboard/calculators', label: 'Calculators', icon: Calculator },
   { href: '/dashboard/nutrition', label: 'Nutrition', icon: UtensilsCrossed },
   { href: '/dashboard/posing-tutorials', label: 'Posing', icon: PersonStanding },
@@ -55,7 +57,7 @@ export function AppSidebar() {
             <SidebarMenuItem key={item.href}>
               <Link href={item.href}>
                 <SidebarMenuButton
-                  isActive={pathname === item.href}
+                  isActive={pathname.startsWith(item.href) && (item.href === '/dashboard' ? pathname === item.href : true)}
                   tooltip={item.label}
                 >
                   <item.icon className="h-5 w-5" />
