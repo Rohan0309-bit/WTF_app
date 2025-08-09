@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from './ui/button';
-import { User, Settings, LogOut } from 'lucide-react';
+import { User, Settings, LogOut, ArrowLeft } from 'lucide-react';
 
 const pathToTitle: { [key: string]: string } = {
   '/dashboard': 'Dashboard',
@@ -27,11 +27,20 @@ const pathToTitle: { [key: string]: string } = {
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const title = pathToTitle[pathname] || 'Well Trained Freak';
+
+  const showBackButton = pathname.startsWith('/dashboard/') && pathname !== '/dashboard';
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6">
       <SidebarTrigger className="md:hidden" />
+      {showBackButton && (
+        <Button variant="ghost" size="icon" onClick={() => router.back()} className="h-8 w-8">
+          <ArrowLeft className="h-5 w-5" />
+          <span className="sr-only">Back</span>
+        </Button>
+      )}
       <h1 className="text-lg font-semibold font-headline md:text-xl">
         {title}
       </h1>
