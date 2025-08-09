@@ -10,7 +10,6 @@ const athleteCategories = [
   { name: 'Basketball', href: '/dashboard/general-workouts/athlete/basketball', hint: 'basketball player' },
   { name: 'Volleyball', href: '/dashboard/general-workouts/athlete/volleyball', hint: 'volleyball player' },
   { name: 'Table Tennis', href: '/dashboard/general-workouts/athlete/table-tennis', hint: 'table tennis player' },
-  { name: 'Calisthenics', href: '#', hint: 'calisthenics workout', comingSoon: true },
 ];
 
 export default function AthleteWorkoutsPage() {

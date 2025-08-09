@@ -7,7 +7,6 @@ export const SPORTS = [
   'Volleyball',
   'Basketball',
   'Table Tennis',
-  'Calisthenics',
 ];
 
 export const WORKOUT_TYPES = [
