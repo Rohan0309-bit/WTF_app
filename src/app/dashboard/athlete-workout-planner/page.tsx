@@ -94,7 +94,7 @@ export default function AthleteWorkoutPlannerPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="workoutType">Workout Type</Label>
-                <Select name="workoutType" defaultValue="Full-Body" required>
+                <Select name="workoutType" required>
                   <SelectTrigger id="workoutType"><SelectValue placeholder="select body part to train" /></SelectTrigger>
                   <SelectContent>
                     {WORKOUT_TYPES.map((type) => (
