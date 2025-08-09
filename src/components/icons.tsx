@@ -1,4 +1,6 @@
+
 import type { SVGProps } from "react";
+import { CheckCircle2 } from "lucide-react";
 
 export const Icons = {
   logo: (props: SVGProps<SVGSVGElement>) => (
@@ -20,4 +22,5 @@ export const Icons = {
       <path d="M17 5h-2.5" />
     </svg>
   ),
+  checkCircle: CheckCircle2,
 };
