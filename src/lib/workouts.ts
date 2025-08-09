@@ -134,7 +134,6 @@ const MASTER_EXERCISE_DATA: { [key: string]: Partial<ExerciseDetails> } = {
   "Superwoman Hold": { type: "strength", muscle: "Back" },
   "Snow Angels": { type: "strength", muscle: "Back" },
   "Wall Angels": { type: "strength", muscle: "Shoulders" },
-  "Glute Bridges": { type: "strength", muscle: "Glutes" },
   "Arm Circles": { type: "warmup", muscle: "Shoulders" },
   "Forearm Plank": { type: "strength", muscle: "Core" },
   "Bent Over Dumbbell Reverse Flys": { type: "strength", muscle: "Shoulders" },
@@ -143,7 +142,73 @@ const MASTER_EXERCISE_DATA: { [key: string]: Partial<ExerciseDetails> } = {
   "Step-Ups": { type: "strength", muscle: "Legs" },
   "Donkey Kicks": { type: "strength", muscle: "Glutes" },
   "Bird Dog": { type: "strength", muscle: "Core" },
-  "Walk 20-30 mins": { type: "cardio", muscle: "Full Body" }
+  "Walk 20-30 mins": { type: "cardio", muscle: "Full Body" },
+  "Flat Barbell Bench Press": { type: "strength", muscle: "Chest" },
+  "Incline Dumbbell Press": { type: "strength", muscle: "Chest" },
+  "Decline Bench Press": { type: "strength", muscle: "Chest" },
+  "Cable Crossover": { type: "strength", muscle: "Chest" },
+  "Chest Press Machine": { type: "strength", muscle: "Chest" },
+  "Dumbbell Pullover": { type: "strength", muscle: "Chest" },
+  "Push-Up (Chest Focus)": { type: "strength", muscle: "Chest" },
+  "Decline Push-Ups": { type: "strength", muscle: "Chest" },
+  "Wide Arm Push-Ups": { type: "strength", muscle: "Chest" },
+  "Chest Dips (Chair)": { type: "strength", muscle: "Chest" },
+  "Explosive Push-Ups": { type: "plyometrics", muscle: "Chest" },
+  "Incline Chest Press (Machine or DB)": { type: "strength", muscle: "Chest" },
+  "Pec Deck Machine": { type: "strength", muscle: "Chest" },
+  "Flat Dumbbell Press": { type: "strength", muscle: "Chest" },
+  "Incline Cable Fly": { type: "strength", muscle: "Chest" },
+  "Incline Push-Ups (Bench/Chair)": { type: "strength", muscle: "Chest" },
+  "Dumbbell Floor Press (If available)": { type: "strength", muscle: "Chest" },
+  "Chest Squeeze (with Towel)": { type: "strength", muscle: "Chest" },
+};
+
+export const MALE_CHEST_GYM: DayWorkout = {
+  focus: "Chest (Gym)",
+  exercises: [
+    { ...defaultExerciseProps, name: "Flat Barbell Bench Press", sets: "4", reps: "8-10", rest: "60s", ...MASTER_EXERCISE_DATA["Flat Barbell Bench Press"] },
+    { ...defaultExerciseProps, name: "Incline Dumbbell Press", sets: "4", reps: "10", rest: "60s", ...MASTER_EXERCISE_DATA["Incline Dumbbell Press"] },
+    { ...defaultExerciseProps, name: "Decline Bench Press", sets: "3", reps: "10-12", rest: "60s", ...MASTER_EXERCISE_DATA["Decline Bench Press"] },
+    { ...defaultExerciseProps, name: "Cable Crossover", sets: "3", reps: "12-15", rest: "45s", ...MASTER_EXERCISE_DATA["Cable Crossover"] },
+    { ...defaultExerciseProps, name: "Chest Press Machine", sets: "3", reps: "10", rest: "60s", ...MASTER_EXERCISE_DATA["Chest Press Machine"] },
+    { ...defaultExerciseProps, name: "Dumbbell Pullover", sets: "3", reps: "12", rest: "60s", ...MASTER_EXERCISE_DATA["Dumbbell Pullover"] },
+  ]
+};
+
+export const MALE_CHEST_HOME: DayWorkout = {
+  focus: "Chest (Home)",
+  exercises: [
+    { ...defaultExerciseProps, name: "Push-Up (Chest Focus)", sets: "4", reps: "15-20", rest: "60s", ...MASTER_EXERCISE_DATA["Push-Up (Chest Focus)"] },
+    { ...defaultExerciseProps, name: "Incline Push-Ups", sets: "4", reps: "15", rest: "60s", ...MASTER_EXERCISE_DATA["Incline Push-Ups"] },
+    { ...defaultExerciseProps, name: "Decline Push-Ups", sets: "3", reps: "12-15", rest: "60s", ...MASTER_EXERCISE_DATA["Decline Push-Ups"] },
+    { ...defaultExerciseProps, name: "Wide Arm Push-Ups", sets: "3", reps: "15", rest: "60s", ...MASTER_EXERCISE_DATA["Wide Arm Push-Ups"] },
+    { ...defaultExerciseProps, name: "Chest Dips (Chair)", sets: "3", reps: "12", rest: "60s", ...MASTER_EXERCISE_DATA["Chest Dips (Chair)"] },
+    { ...defaultExerciseProps, name: "Explosive Push-Ups", sets: "2", reps: "10", rest: "60s", ...MASTER_EXERCISE_DATA["Explosive Push-Ups"] },
+  ]
+};
+
+export const FEMALE_CHEST_GYM: DayWorkout = {
+  focus: "Chest (Gym)",
+  exercises: [
+    { ...defaultExerciseProps, name: "Incline Chest Press (Machine or DB)", sets: "3", reps: "12", rest: "60s", ...MASTER_EXERCISE_DATA["Incline Chest Press (Machine or DB)"] },
+    { ...defaultExerciseProps, name: "Pec Deck Machine", sets: "3", reps: "12-15", rest: "45s", ...MASTER_EXERCISE_DATA["Pec Deck Machine"] },
+    { ...defaultExerciseProps, name: "Flat Dumbbell Press", sets: "3", reps: "10-12", rest: "60s", ...MASTER_EXERCISE_DATA["Flat Dumbbell Press"] },
+    { ...defaultExerciseProps, name: "Cable Fly", sets: "3", reps: "15", rest: "45s", ...MASTER_EXERCISE_DATA["Cable Fly"] },
+    { ...defaultExerciseProps, name: "Chest Press Machine", sets: "3", reps: "10", rest: "60s", ...MASTER_EXERCISE_DATA["Chest Press Machine"] },
+    { ...defaultExerciseProps, name: "Incline Cable Fly", sets: "3", reps: "12-15", rest: "45s", ...MASTER_EXERCISE_DATA["Incline Cable Fly"] },
+  ]
+};
+
+export const FEMALE_CHEST_HOME: DayWorkout = {
+  focus: "Chest (Home)",
+  exercises: [
+    { ...defaultExerciseProps, name: "Wall Push-Ups", sets: "3", reps: "20", rest: "45s", ...MASTER_EXERCISE_DATA["Wall Push-Ups"] },
+    { ...defaultExerciseProps, name: "Knee Push-Ups", sets: "3", reps: "15", rest: "60s", ...MASTER_EXERCISE_DATA["Knee Push-Ups"] },
+    { ...defaultExerciseProps, name: "Incline Push-Ups (Bench/Chair)", sets: "3", reps: "15", rest: "60s", ...MASTER_EXERCISE_DATA["Incline Push-Ups (Bench/Chair)"] },
+    { ...defaultExerciseProps, name: "Wide Grip Push-Ups", sets: "3", reps: "12-15", rest: "60s", ...MASTER_EXERCISE_DATA["Push-Ups"] },
+    { ...defaultExerciseProps, name: "Dumbbell Floor Press (If available)", sets: "3", reps: "12", rest: "60s", ...MASTER_EXERCISE_DATA["Dumbbell Floor Press (If available)"] },
+    { ...defaultExerciseProps, name: "Chest Squeeze (with Towel)", sets: "3", reps: "15", rest: "45s", ...MASTER_EXERCISE_DATA["Chest Squeeze (with Towel)"] },
+  ]
 };
 
 export const GENERAL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {

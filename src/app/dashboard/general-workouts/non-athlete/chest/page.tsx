@@ -4,10 +4,10 @@
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  GENERAL_MALE_GYM_WORKOUT_PLAN,
-  GENERAL_MALE_HOME_WORKOUT_PLAN,
-  GENERAL_FEMALE_GYM_WORKOUT_PLAN,
-  GENERAL_FEMALE_HOME_WORKOUT_PLAN,
+  MALE_CHEST_GYM,
+  MALE_CHEST_HOME,
+  FEMALE_CHEST_GYM,
+  FEMALE_CHEST_HOME,
 } from '@/lib/workouts';
 import { WorkoutDisplay } from '@/components/workout-display';
 
@@ -20,18 +20,18 @@ export default function ChestWorkoutPage() {
 
   const getWorkout = () => {
     if (gender === 'male' && location === 'gym') {
-      return GENERAL_MALE_GYM_WORKOUT_PLAN.Monday; // Monday is Chest & Triceps
+      return MALE_CHEST_GYM;
     }
     if (gender === 'male' && location === 'home') {
-      return GENERAL_MALE_HOME_WORKOUT_PLAN.Monday; // Monday is Chest & Triceps
+      return MALE_CHEST_HOME;
     }
     if (gender === 'female' && location === 'gym') {
-      return GENERAL_FEMALE_GYM_WORKOUT_PLAN.Monday; // Monday is Chest & Triceps
+      return FEMALE_CHEST_GYM;
     }
     if (gender === 'female' && location === 'home') {
-      return GENERAL_FEMALE_HOME_WORKOUT_PLAN.Monday; // Monday is Chest & Triceps
+      return FEMALE_CHEST_HOME;
     }
-    return GENERAL_MALE_GYM_WORKOUT_PLAN.Monday;
+    return MALE_CHEST_GYM;
   };
 
   const workout = getWorkout();
