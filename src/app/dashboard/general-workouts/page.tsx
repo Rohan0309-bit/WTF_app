@@ -45,7 +45,7 @@ export default function GeneralWorkoutsPage() {
                         alt={category.title}
                         width={600}
                         height={400}
-                        className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                        className="object-contain w-full h-48 transition-transform duration-300 group-hover:scale-105"
                     />
                 </CardHeader>
                 <CardContent className="p-6 flex flex-col flex-grow">
