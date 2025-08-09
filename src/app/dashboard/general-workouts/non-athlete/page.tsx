@@ -4,11 +4,14 @@ import Image from 'next/image';
 
 const nonAthleteCategories = [
   { name: 'Full Body', hint: 'gym workout' },
-  { name: 'Upper Body', hint: 'person lifting' },
-  { name: 'Lower Body', hint: 'person squatting' },
-  { name: 'HIIT', hint: 'high intensity' },
-  { name: 'Yoga', hint: 'yoga pose' },
-  { name: 'Home Workout', hint: 'home fitness' },
+  { name: 'Chest', hint: 'chest press' },
+  { name: 'Back', hint: 'person doing pull-ups' },
+  { name: 'Arms', hint: 'bicep curl' },
+  { name: 'Abs', hint: 'person doing crunches' },
+  { name: 'Shoulder', hint: 'shoulder press' },
+  { name: 'Legs', hint: 'person squatting' },
+  { name: 'Posture', hint: 'person stretching back' },
+  { name: 'Sexual Wellness', hint: 'couple yoga' },
 ];
 
 export default function NonAthleteWorkoutsPage() {
