@@ -47,4 +47,14 @@ export const GOALS = [
     { value: 'bulk', label: 'Bulk (Weight Gain)' },
 ];
 
-    
+export const NON_ATHLETE_WORKOUTS = [
+  { name: 'Full Body', href: '/dashboard/general-workouts/non-athlete/full-body', hint: 'gym workout' },
+  { name: 'Chest', href: '#', hint: 'chest press' },
+  { name: 'Back', href: '#', hint: 'person doing pull-ups' },
+  { name: 'Arms', href: '#', hint: 'bicep curl' },
+  { name: 'Abs', href: '#', hint: 'person doing crunches' },
+  { name: 'Shoulder', href: '#', hint: 'shoulder press' },
+  { name: 'Legs', href: '#', hint: 'person squatting' },
+  { name: 'Posture', href: '#', hint: 'person stretching back' },
+  { name: 'Sexual Wellness', href: '#', hint: 'couple yoga' },
+];
