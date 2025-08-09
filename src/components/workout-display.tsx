@@ -1,11 +1,14 @@
 
 'use client';
 
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Dumbbell, Repeat, Timer } from 'lucide-react';
+import { Dumbbell, Repeat, Timer, PlayCircle } from 'lucide-react';
 import type { DayWorkout, ExerciseDetails } from '@/lib/workouts';
 import Image from 'next/image';
+import { Button } from './ui/button';
+import { ActiveWorkoutDialog } from './active-workout-dialog';
 
 const emojiMap: { [key: string]: string } = {
   squats: '🦵',
@@ -37,6 +40,8 @@ interface WorkoutDisplayProps {
 }
 
 export function WorkoutDisplay({ workout }: WorkoutDisplayProps) {
+  const [isWorkoutDialogOpen, setWorkoutDialogOpen] = useState(false);
+  
   if (!workout || !workout.exercises || workout.exercises.length === 0) {
     return (
       <Card>
@@ -55,7 +60,8 @@ export function WorkoutDisplay({ workout }: WorkoutDisplayProps) {
     );
   }
   return (
-    <Card className="shadow-lg">
+    <>
+    <Card className="shadow-lg mb-24">
       <CardHeader>
         <CardTitle className="font-headline">{workout.focus}</CardTitle>
         <CardDescription>Follow this plan for an effective workout.</CardDescription>
@@ -104,5 +110,19 @@ export function WorkoutDisplay({ workout }: WorkoutDisplayProps) {
         </div>
       </CardContent>
     </Card>
+
+    <div className="fixed bottom-4 right-4 z-50">
+        <Button size="lg" className="rounded-full shadow-lg" onClick={() => setWorkoutDialogOpen(true)}>
+            <PlayCircle className="mr-2 h-5 w-5" />
+            Start Workout
+        </Button>
+    </div>
+
+    <ActiveWorkoutDialog 
+        isOpen={isWorkoutDialogOpen}
+        onOpenChange={setWorkoutDialogOpen}
+        workout={workout}
+    />
+    </>
   );
 }

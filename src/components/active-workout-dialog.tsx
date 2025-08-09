@@ -1,82 +1,165 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
-import { type DailyWorkout } from '@/lib/workout-parser';
-import { CheckCircle2, Circle, Dumbbell, Repeat, Timer } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { DayWorkout, ExerciseDetails } from '@/lib/workouts';
+import { Check, Flame, Repeat, Timer, X, Plus, Minus } from 'lucide-react';
 
 interface ActiveWorkoutDialogProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
-  workout: DailyWorkout | null;
+  workout: DayWorkout | null;
+}
+
+const parseRestTime = (rest: string): number => {
+    const match = rest.match(/(\d+)/);
+    return match ? parseInt(match[0], 10) : 60;
 }
 
 export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout }: ActiveWorkoutDialogProps) {
-  const [completedExercises, setCompletedExercises] = useState<Set<number>>(new Set());
+  const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
+  const [currentSet, setCurrentSet] = useState(1);
+  const [isResting, setIsResting] = useState(false);
+  const [restTime, setRestTime] = useState(60);
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    if (!workout || !isOpen) {
+      // Reset state when dialog is closed or workout changes
+      setCurrentExerciseIndex(0);
+      setCurrentSet(1);
+      setIsResting(false);
+      setTimer(0);
+      return;
+    }
+
+    if (isResting && timer > 0) {
+      const interval = setInterval(() => {
+        setTimer(t => t - 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    } else if (isResting && timer <= 0) {
+      setIsResting(false);
+      advanceToNext();
+    }
+  }, [isOpen, workout, isResting, timer]);
 
   if (!workout) return null;
 
-  const toggleExercise = (index: number) => {
-    setCompletedExercises(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(index)) {
-        newSet.delete(index);
+  const totalExercises = workout.exercises.length;
+  if (totalExercises === 0 || currentExerciseIndex >= totalExercises) {
+    // Workout finished or empty
+    return (
+       <Dialog open={isOpen} onOpenChange={onOpenChange}>
+        <DialogContent>
+            <DialogHeader>
+                <DialogTitle className="font-headline text-2xl text-primary">Workout Complete!</DialogTitle>
+                <DialogDescription>You crushed it! Well done, Freak.</DialogDescription>
+            </DialogHeader>
+            <div className="flex flex-col items-center justify-center p-8 text-center">
+                <Flame className="h-24 w-24 text-primary animate-pulse" />
+                <p className="mt-4 font-semibold">Ready for the next challenge?</p>
+            </div>
+            <DialogFooter>
+                <Button onClick={() => onOpenChange(false)}>Close</Button>
+            </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  const currentExercise = workout.exercises[currentExerciseIndex];
+  const totalSets = parseInt(currentExercise.sets || '1', 10);
+  const progress = ((currentExerciseIndex) / totalExercises) * 100;
+
+  const advanceToNext = () => {
+    if (currentSet < totalSets) {
+      setCurrentSet(s => s + 1);
+    } else {
+      if (currentExerciseIndex < totalExercises - 1) {
+        setCurrentExerciseIndex(i => i + 1);
+        setCurrentSet(1);
       } else {
-        newSet.add(index);
+        // Last exercise finished
+        setCurrentExerciseIndex(i => i + 1);
       }
-      return newSet;
-    });
+    }
   };
 
-  const isWorkoutComplete = completedExercises.size === workout.exercises.length;
+  const handleSetComplete = () => {
+    const nextRestTime = parseRestTime(currentExercise.rest || '60s');
+    setRestTime(nextRestTime);
+    setTimer(nextRestTime);
+    setIsResting(true);
+  };
+  
+  const handleSkipRest = () => {
+      setIsResting(false);
+      advanceToNext();
+  }
+
+  const adjustTime = (amount: number) => {
+      setRestTime(rt => Math.max(0, rt + amount));
+      setTimer(t => Math.max(0, t + amount));
+  }
+
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md">
-        <DialogHeader>
-          <DialogTitle className="font-headline">{workout.day}: {workout.title}</DialogTitle>
-          <DialogDescription>Focus on your form and crush this workout!</DialogDescription>
-        </DialogHeader>
-        <div className="space-y-4 py-4 max-h-[60vh] overflow-y-auto">
-          {workout.exercises.map((exercise, index) => {
-            const isCompleted = completedExercises.has(index);
-            return (
-              <div
-                key={index}
-                className="flex items-start gap-4 p-3 rounded-lg transition-colors data-[completed=true]:bg-green-900/20 data-[completed=true]:text-muted-foreground"
-                data-completed={isCompleted}
-              >
-                <Button variant="ghost" size="icon" className="h-8 w-8 mt-1" onClick={() => toggleExercise(index)}>
-                  {isCompleted ? <CheckCircle2 className="text-primary h-6 w-6" /> : <Circle className="h-6 w-6" />}
-                </Button>
-                <div className="flex-1">
-                  <p className="font-semibold">{exercise.name}</p>
-                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mt-1">
-                      <div className="flex items-center gap-1.5">
-                        <Dumbbell className="h-4 w-4" />
-                        <span>{exercise.sets} sets</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Repeat className="h-4 w-4" />
-                        <span>{exercise.reps} reps</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <Timer className="h-4 w-4" />
-                        <span>{exercise.rest}</span>
-                      </div>
-                    </div>
+        {!isResting ? (
+          <>
+            <DialogHeader>
+              <DialogTitle className="font-headline text-2xl">{currentExercise.name}</DialogTitle>
+              <DialogDescription>Set {currentSet} of {totalSets}</DialogDescription>
+            </DialogHeader>
+
+            <div className="py-4 text-center">
+              <div className="text-6xl font-bold text-primary mb-2">{currentExercise.reps}</div>
+              <div className="text-muted-foreground">Reps</div>
+            </div>
+
+             <div className="flex justify-around text-center text-sm">
+                <div>
+                    <div className="font-bold">{currentSet}/{totalSets}</div>
+                    <div className="text-muted-foreground">Set</div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-        <DialogFooter>
-          <Button onClick={() => onOpenChange(false)} variant={isWorkoutComplete ? 'default' : 'secondary'}>
-            {isWorkoutComplete ? 'Finish Workout 💪' : 'Close'}
-          </Button>
-        </DialogFooter>
+                <div>
+                    <div className="font-bold">{currentExercise.rest}</div>
+                    <div className="text-muted-foreground">Rest</div>
+                </div>
+            </div>
+
+            <DialogFooter className="mt-4 flex-col gap-2">
+                <Button onClick={handleSetComplete} size="lg" className="w-full">
+                    <Check className="mr-2 h-5 w-5" /> Mark Set as Complete
+                </Button>
+                 <Progress value={progress} className="w-full h-2" />
+                 <span className="text-xs text-center text-muted-foreground w-full">Exercise {currentExerciseIndex + 1} of {totalExercises}</span>
+            </DialogFooter>
+          </>
+        ) : (
+          <>
+            <DialogHeader>
+              <DialogTitle className="font-headline text-2xl text-center">Rest Time</DialogTitle>
+               <DialogDescription className="text-center">Next up: {currentSet < totalSets ? `${currentExercise.name} (Set ${currentSet+1})` : workout.exercises[currentExerciseIndex+1]?.name || 'Final Set!'}</DialogDescription>
+            </DialogHeader>
+
+            <div className="py-8 text-center">
+              <div className="text-7xl font-bold text-primary mb-2">{timer}</div>
+              <div className="text-muted-foreground">Seconds</div>
+            </div>
+
+            <div className="flex justify-center items-center gap-4">
+                <Button variant="outline" size="icon" onClick={() => adjustTime(-10)}><Minus/></Button>
+                <Button onClick={handleSkipRest} variant="secondary">Skip Rest</Button>
+                <Button variant="outline" size="icon" onClick={() => adjustTime(10)}><Plus/></Button>
+            </div>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   );
