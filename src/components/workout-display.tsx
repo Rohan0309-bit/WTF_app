@@ -111,8 +111,8 @@ export function WorkoutDisplay({ workout }: WorkoutDisplayProps) {
       </CardContent>
     </Card>
 
-    <div className="fixed bottom-4 right-4 z-50">
-        <Button size="lg" className="rounded-full shadow-lg" onClick={() => setWorkoutDialogOpen(true)}>
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-background/80 backdrop-blur-sm sm:bg-transparent sm:backdrop-blur-none sm:p-0 sm:right-4 sm:bottom-4 sm:left-auto sm:w-auto">
+        <Button size="lg" className="w-full sm:w-auto sm:rounded-full shadow-lg" onClick={() => setWorkoutDialogOpen(true)}>
             <PlayCircle className="mr-2 h-5 w-5" />
             Start Workout
         </Button>
