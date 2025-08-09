@@ -1,4 +1,8 @@
+
 "use server";
+
+// This file is no longer used for the static nutrition plans, 
+// but is kept in case AI generation is re-enabled in the future.
 
 import { generateNutritionPlan, GenerateNutritionPlanOutput } from '@/ai/flows/generate-nutrition-plan';
 
