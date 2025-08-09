@@ -4,10 +4,10 @@
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  GENERAL_MALE_GYM_WORKOUT_PLAN,
-  GENERAL_MALE_HOME_WORKOUT_PLAN,
-  GENERAL_FEMALE_GYM_WORKOUT_PLAN,
-  GENERAL_FEMALE_HOME_WORKOUT_PLAN,
+  MALE_ARMS_GYM,
+  MALE_ARMS_HOME,
+  FEMALE_ARMS_GYM,
+  FEMALE_ARMS_HOME,
   DayWorkout,
 } from '@/lib/workouts';
 import { WorkoutDisplay } from '@/components/workout-display';
@@ -20,19 +20,10 @@ export default function ArmsWorkoutPage() {
   const [location, setLocation] = useState<Location>('gym');
 
   const getWorkout = (): DayWorkout => {
-    let plan;
-    if (gender === 'male' && location === 'gym') plan = GENERAL_MALE_GYM_WORKOUT_PLAN;
-    else if (gender === 'male' && location === 'home') plan = GENERAL_MALE_HOME_WORKOUT_PLAN;
-    else if (gender === 'female' && location === 'gym') plan = GENERAL_FEMALE_GYM_WORKOUT_PLAN;
-    else plan = GENERAL_FEMALE_HOME_WORKOUT_PLAN;
-
-    const tricepsExercises = Object.values(plan).flatMap(day => day.exercises).filter(ex => ex.muscle === 'Triceps');
-    const bicepsExercises = Object.values(plan).flatMap(day => day.exercises).filter(ex => ex.muscle === 'Biceps');
-    
-    return {
-      focus: "Arms (Biceps & Triceps)",
-      exercises: [...bicepsExercises.slice(0,3), ...tricepsExercises.slice(0,3)]
-    };
+    if (gender === 'male' && location === 'gym') return MALE_ARMS_GYM;
+    if (gender === 'male' && location === 'home') return MALE_ARMS_HOME;
+    if (gender === 'female' && location === 'gym') return FEMALE_ARMS_GYM;
+    return FEMALE_ARMS_HOME;
   };
 
   const workout = getWorkout();

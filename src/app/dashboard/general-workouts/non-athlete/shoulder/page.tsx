@@ -4,10 +4,10 @@
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  GENERAL_MALE_GYM_WORKOUT_PLAN,
-  GENERAL_MALE_HOME_WORKOUT_PLAN,
-  GENERAL_FEMALE_GYM_WORKOUT_PLAN,
-  GENERAL_FEMALE_HOME_WORKOUT_PLAN,
+  MALE_SHOULDER_GYM_WORKOUT,
+  MALE_SHOULDER_HOME_WORKOUT,
+  FEMALE_SHOULDER_GYM_WORKOUT,
+  FEMALE_SHOULDER_HOME_WORKOUT,
   DayWorkout
 } from '@/lib/workouts';
 import { WorkoutDisplay } from '@/components/workout-display';
@@ -20,20 +20,10 @@ export default function ShoulderWorkoutPage() {
   const [location, setLocation] = useState<Location>('gym');
 
   const getWorkout = (): DayWorkout => {
-    let plan;
-    if (gender === 'male' && location === 'gym') plan = GENERAL_MALE_GYM_WORKOUT_PLAN;
-    else if (gender === 'male' && location === 'home') plan = GENERAL_MALE_HOME_WORKOUT_PLAN;
-    else if (gender === 'female' && location === 'gym') plan = GENERAL_FEMALE_GYM_WORKOUT_PLAN;
-    else plan = GENERAL_FEMALE_HOME_WORKOUT_PLAN;
-
-    const shoulderExercises = Object.values(plan)
-      .flatMap(day => day.exercises)
-      .filter(ex => ex.muscle === 'Shoulders' || ex.muscle === 'Traps');
-      
-    return {
-      focus: "Shoulders",
-      exercises: shoulderExercises.slice(0, 5)
-    };
+    if (gender === 'male' && location === 'gym') return MALE_SHOULDER_GYM_WORKOUT;
+    if (gender === 'male' && location === 'home') return MALE_SHOULDER_HOME_WORKOUT;
+    if (gender === 'female' && location === 'gym') return FEMALE_SHOULDER_GYM_WORKOUT;
+    return FEMALE_SHOULDER_HOME_WORKOUT;
   };
 
   const workout = getWorkout();

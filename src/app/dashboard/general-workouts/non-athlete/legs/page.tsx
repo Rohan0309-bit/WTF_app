@@ -4,10 +4,10 @@
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  GENERAL_MALE_GYM_WORKOUT_PLAN,
-  GENERAL_MALE_HOME_WORKOUT_PLAN,
-  GENERAL_FEMALE_GYM_WORKOUT_PLAN,
-  GENERAL_FEMALE_HOME_WORKOUT_PLAN,
+  MALE_LEG_GYM_WORKOUT,
+  MALE_LEG_HOME_WORKOUT,
+  FEMALE_LEG_GYM_WORKOUT,
+  FEMALE_LEG_HOME_WORKOUT,
 } from '@/lib/workouts';
 import { WorkoutDisplay } from '@/components/workout-display';
 
@@ -19,19 +19,10 @@ export default function LegsWorkoutPage() {
   const [location, setLocation] = useState<Location>('gym');
 
   const getWorkout = () => {
-    if (gender === 'male' && location === 'gym') {
-      return GENERAL_MALE_GYM_WORKOUT_PLAN.Wednesday; // Wednesday is Legs & Shoulder
-    }
-    if (gender === 'male' && location === 'home') {
-      return GENERAL_MALE_HOME_WORKOUT_PLAN.Wednesday; // Wednesday is Legs & Shoulders
-    }
-    if (gender === 'female' && location === 'gym') {
-      return GENERAL_FEMALE_GYM_WORKOUT_PLAN.Wednesday; // Wednesday is Legs & Shoulders
-    }
-    if (gender === 'female' && location === 'home') {
-      return GENERAL_FEMALE_HOME_WORKOUT_PLAN.Wednesday; // Wednesday is Legs & Shoulders
-    }
-    return GENERAL_MALE_GYM_WORKOUT_PLAN.Wednesday;
+    if (gender === 'male' && location === 'gym') return MALE_LEG_GYM_WORKOUT;
+    if (gender === 'male' && location === 'home') return MALE_LEG_HOME_WORKOUT;
+    if (gender === 'female' && location === 'gym') return FEMALE_LEG_GYM_WORKOUT;
+    return FEMALE_LEG_HOME_WORKOUT;
   };
 
   const workout = getWorkout();

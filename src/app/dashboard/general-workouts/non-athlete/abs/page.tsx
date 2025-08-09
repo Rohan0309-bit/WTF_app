@@ -4,10 +4,10 @@
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  GENERAL_MALE_GYM_WORKOUT_PLAN,
-  GENERAL_MALE_HOME_WORKOUT_PLAN,
-  GENERAL_FEMALE_GYM_WORKOUT_PLAN,
-  GENERAL_FEMALE_HOME_WORKOUT_PLAN,
+  MALE_ABS_GYM,
+  MALE_ABS_HOME,
+  FEMALE_ABS_GYM,
+  FEMALE_ABS_HOME,
   DayWorkout
 } from '@/lib/workouts';
 import { WorkoutDisplay } from '@/components/workout-display';
@@ -20,20 +20,10 @@ export default function AbsWorkoutPage() {
   const [location, setLocation] = useState<Location>('gym');
 
   const getWorkout = (): DayWorkout => {
-    let plan;
-    if (gender === 'male' && location === 'gym') plan = GENERAL_MALE_GYM_WORKOUT_PLAN;
-    else if (gender === 'male' && location === 'home') plan = GENERAL_MALE_HOME_WORKOUT_PLAN;
-    else if (gender === 'female' && location === 'gym') plan = GENERAL_FEMALE_GYM_WORKOUT_PLAN;
-    else plan = GENERAL_FEMALE_HOME_WORKOUT_PLAN;
-    
-    const coreExercises = Object.values(plan)
-      .flatMap(day => day.exercises)
-      .filter(ex => ex.muscle === 'Core');
-
-    return {
-      focus: "Abs & Core",
-      exercises: coreExercises.slice(0, 6) // Get up to 6 core exercises
-    };
+    if (gender === 'male' && location === 'gym') return MALE_ABS_GYM;
+    if (gender === 'male' && location === 'home') return MALE_ABS_HOME;
+    if (gender === 'female' && location === 'gym') return FEMALE_ABS_GYM;
+    return FEMALE_ABS_HOME;
   };
 
   const workout = getWorkout();
