@@ -19,7 +19,7 @@ function SubmitButton() {
   return (
     <Button type="submit" className="w-full" disabled={pending}>
       {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      {pending ? 'Generating...' : 'Generate Workout Plan'}
+      {pending ? 'Generating...' : 'Generate Weekly Workout'}
     </Button>
   );
 }
@@ -32,15 +32,18 @@ function LoadingSkeleton() {
                 <Skeleton className="h-4 w-1/2" />
             </CardHeader>
             <CardContent className="space-y-6">
-                {[...Array(5)].map((_, i) => (
-                    <div key={i} className="flex items-start gap-4">
-                        <Skeleton className="h-8 w-8 rounded-full" />
-                        <div className="flex-1 space-y-2">
-                            <Skeleton className="h-5 w-3/4" />
-                            <div className="flex gap-4">
-                               <Skeleton className="h-4 w-20" />
-                               <Skeleton className="h-4 w-20" />
-                               <Skeleton className="h-4 w-20" />
+                {[...Array(7)].map((_, i) => (
+                    <div key={i} className="space-y-2 py-2">
+                        <Skeleton className="h-6 w-1/2" />
+                        <div className="flex items-start gap-4 pl-4 pt-2">
+                            <Skeleton className="h-8 w-8 rounded-full" />
+                            <div className="flex-1 space-y-2">
+                                <Skeleton className="h-5 w-3/4" />
+                                <div className="flex gap-4">
+                                   <Skeleton className="h-4 w-20" />
+                                   <Skeleton className="h-4 w-20" />
+                                   <Skeleton className="h-4 w-20" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,8 +76,8 @@ export default function AthleteWorkoutPlannerPage() {
       <div className="lg:col-span-1">
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline">Create Your Plan</CardTitle>
-            <CardDescription>Tell us about yourself and we'll generate a custom workout plan for you.</CardDescription>
+            <CardTitle className="font-headline">Create Your Weekly Plan</CardTitle>
+            <CardDescription>Tell us about yourself and we'll generate a custom 7-day workout plan for you.</CardDescription>
           </CardHeader>
           <CardContent>
             <form action={formAction} className="space-y-6">
@@ -135,8 +138,8 @@ export default function AthleteWorkoutPlannerPage() {
         ) : (
           <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">
             <Sparkles className="h-16 w-16 text-muted-foreground mb-4" />
-            <h3 className="text-xl font-bold font-headline">Your workout plan will appear here</h3>
-            <p className="text-muted-foreground">Fill out the form to generate your personalized plan.</p>
+            <h3 className="text-xl font-bold font-headline">Your weekly workout plan will appear here</h3>
+            <p className="text-muted-foreground">Fill out the form to generate your personalized 7-day plan.</p>
           </Card>
         )}
       </div>

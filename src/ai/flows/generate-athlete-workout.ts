@@ -1,9 +1,9 @@
 'use server';
 
 /**
- * @fileOverview AI-powered workout plan generator for athletes.
+ * @fileOverview AI-powered weekly workout plan generator for athletes.
  *
- * - generateAthleteWorkout - A function that generates a tailored workout plan for athletes.
+ * - generateAthleteWorkout - A function that generates a tailored weekly workout plan for athletes.
  * - GenerateAthleteWorkoutInput - The input type for the generateAthleteWorkout function.
  * - GenerateAthleteWorkoutOutput - The return type for the generateAthleteWorkout function.
  */
@@ -21,7 +21,7 @@ const GenerateAthleteWorkoutInputSchema = z.object({
 export type GenerateAthleteWorkoutInput = z.infer<typeof GenerateAthleteWorkoutInputSchema>;
 
 const GenerateAthleteWorkoutOutputSchema = z.object({
-  workoutPlan: z.string().describe('A tailored workout plan for the athlete.'),
+  workoutPlan: z.string().describe('A tailored 7-day workout plan for the athlete.'),
 });
 
 export type GenerateAthleteWorkoutOutput = z.infer<typeof GenerateAthleteWorkoutOutputSchema>;
@@ -34,14 +34,21 @@ const prompt = ai.definePrompt({
   name: 'generateAthleteWorkoutPrompt',
   input: {schema: GenerateAthleteWorkoutInputSchema},
   output: {schema: GenerateAthleteWorkoutOutputSchema},
-  prompt: `You are an expert AI sports trainer. You are helping an athlete to generate a workout plan based on their sport, gender, skill level, and workout preference.
+  prompt: `You are an expert AI sports trainer. You are helping an athlete to generate a weekly workout plan based on their sport, gender, skill level, and workout preference.
 
   Sport: {{{sport}}}
   Gender: {{{gender}}}
   Skill Level: {{{skillLevel}}}
   Workout Preference: {{{workoutPreference}}}
 
-  Generate a simple workout plan with 6-7 exercises. Include sets, reps and rest time.
+  Generate a 7-day workout plan. For each day, provide a title (e.g., "Day 1: Upper Body Strength") and a list of 4-6 exercises. Include sets, reps, and rest time for each exercise. Ensure at least one rest day. Structure the output clearly with headings for each day.
+  
+  Example for one day:
+  Day 1: Full Body Strength
+  1. Squats: 3 sets of 10-12 reps (60s rest)
+  2. Push-ups: 3 sets of 15-20 reps (60s rest)
+  ...
+
   Workout plan:`,
 });
 
