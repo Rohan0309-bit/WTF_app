@@ -46,9 +46,11 @@ export function AppSidebar() {
       <SidebarHeader>
         <div className="flex items-center gap-2">
           <Icons.logo className="h-20 w-20 text-primary" />
-          <span className="text-xl font-bold font-headline text-primary group-data-[collapsible=icon]:hidden">
-            Well Trained Freak
-          </span>
+          <div className="text-xl font-bold font-headline text-primary group-data-[collapsible=icon]:hidden leading-tight">
+            <div>Well</div>
+            <div>Trained</div>
+            <div>Freak</div>
+          </div>
         </div>
       </SidebarHeader>
       <SidebarContent className="p-2">
