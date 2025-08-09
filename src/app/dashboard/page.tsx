@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
   Card,
   CardContent,
@@ -56,15 +59,21 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature) => (
           <Link href={feature.href} key={feature.title}>
-            <Card className="h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardHeader className="flex flex-row items-center gap-4">
-                {feature.icon}
-                <CardTitle className="font-headline">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="h-full"
+            >
+              <Card className="h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  {feature.icon}
+                  <CardTitle className="font-headline">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           </Link>
         ))}
       </div>

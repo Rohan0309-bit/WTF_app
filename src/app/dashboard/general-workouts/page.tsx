@@ -1,9 +1,9 @@
-
 'use client';
 
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Award, Dumbbell, HeartPulse } from 'lucide-react';
+import { Award, HeartPulse } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const workoutCategories = [
   {
@@ -33,17 +33,22 @@ export default function GeneralWorkoutsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         {workoutCategories.map((category) => (
           <Link href={category.href} key={category.title} className="flex">
-            <Card className="flex flex-col w-full hover:border-primary transition-all duration-300 hover:shadow-lg group">
-              <CardHeader className="items-center text-center">
-                <div className="p-4 bg-primary/10 rounded-full mb-4 group-hover:scale-110 transition-transform">
-                    {category.icon}
-                </div>
-                <CardTitle className="font-headline text-xl">{category.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center flex-grow">
-                <p className="text-muted-foreground">{category.description}</p>
-              </CardContent>
-            </Card>
+             <motion.div
+              whileHover={{ rotateY: 5, rotateX: 2, scale: 1.02 }}
+              className="w-full"
+            >
+              <Card className="flex flex-col w-full h-full hover:border-primary transition-all duration-300 hover:shadow-lg group">
+                <CardHeader className="items-center text-center">
+                  <div className="p-4 bg-primary/10 rounded-full mb-4 group-hover:scale-110 transition-transform">
+                      {category.icon}
+                  </div>
+                  <CardTitle className="font-headline text-xl">{category.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center flex-grow">
+                  <p className="text-muted-foreground">{category.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           </Link>
         ))}
       </div>
