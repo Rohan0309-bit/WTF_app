@@ -23,7 +23,7 @@ const features = [
   {
     title: 'General Workouts',
     description: 'Browse our library of pre-defined workout plans.',
-    href: '#',
+    href: '/dashboard/general-workouts',
     icon: <Dumbbell className="h-8 w-8 text-primary" />,
   },
   {

@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -28,6 +29,7 @@ import { Button } from './ui/button';
 const menuItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/dashboard/athlete-workout-planner', label: 'AI Planner', icon: Sparkles },
+  { href: '/dashboard/general-workouts', label: 'Workouts', icon: Dumbbell },
   { href: '/dashboard/calculators', label: 'Calculators', icon: Calculator },
   { href: '/dashboard/nutrition', label: 'Nutrition', icon: UtensilsCrossed },
   { href: '/dashboard/posing-tutorials', label: 'Posing', icon: PersonStanding },

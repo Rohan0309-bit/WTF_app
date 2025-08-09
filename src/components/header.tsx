@@ -18,6 +18,7 @@ import { User, Settings, LogOut } from 'lucide-react';
 const pathToTitle: { [key: string]: string } = {
   '/dashboard': 'Dashboard',
   '/dashboard/athlete-workout-planner': 'AI Workout Planner',
+  '/dashboard/general-workouts': 'General Workouts',
   '/dashboard/calculators': 'Health Calculators',
   '/dashboard/nutrition': 'Nutrition Plans',
   '/dashboard/posing-tutorials': 'Posing Tutorials',
