@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const athleteCategories = [
   { name: 'Cricket', href: '/dashboard/general-workouts/athlete/cricket', image: 'https://i.ibb.co/4xmZ9xN/Whats-App-Image-2025-06-30-at-01-09-32.jpg' },
-  { name: 'Badminton', href: '/dashboard/general-workouts/athlete/badminton', image: 'https://i.ibb.co/j9hkHHc/Whats-App-Image-2025-06-30-at-01-15-32.jpg' },
+  { name: 'Badminton', href: '/dashboard/general-workouts/athlete/badminton', image: 'https://i.ibb.co/j9mhkHHc/Whats-App-Image-2025-06-30-at-01-15-32.jpg' },
   { name: 'Football', href: '/dashboard/general-workouts/athlete/football', image: 'https://i.ibb.co/8LJ5VD3f/Whats-App-Image-2025-06-30-at-01-09-35.jpg' },
   { name: 'Basketball', href: '/dashboard/general-workouts/athlete/basketball', image: 'https://i.ibb.co/spj3dBqy/Whats-App-Image-2025-06-30-at-01-16-53.jpg' },
   { name: 'Volleyball', href: '/dashboard/general-workouts/athlete/volleyball', image: 'https://i.ibb.co/TJzVLM4/Whats-App-Image-2025-06-30-at-01-37-53.jpg' },
