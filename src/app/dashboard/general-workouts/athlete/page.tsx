@@ -6,10 +6,10 @@ import Link from 'next/link';
 const athleteCategories = [
   { name: 'Cricket', href: '/dashboard/general-workouts/athlete/cricket', hint: 'cricket player' },
   { name: 'Badminton', href: '/dashboard/general-workouts/athlete/badminton', hint: 'badminton player' },
-  { name: 'Football', href: '#', hint: 'football player', comingSoon: true },
-  { name: 'Basketball', href: '#', hint: 'basketball player', comingSoon: true },
-  { name: 'Volleyball', href: '#', hint: 'volleyball player', comingSoon: true },
-  { name: 'Table Tennis', href: '#', hint: 'table tennis player', comingSoon: true },
+  { name: 'Football', href: '/dashboard/general-workouts/athlete/football', hint: 'football player' },
+  { name: 'Basketball', href: '/dashboard/general-workouts/athlete/basketball', hint: 'basketball player' },
+  { name: 'Volleyball', href: '/dashboard/general-workouts/athlete/volleyball', hint: 'volleyball player' },
+  { name: 'Table Tennis', href: '/dashboard/general-workouts/athlete/table-tennis', hint: 'table tennis player' },
   { name: 'Calisthenics', href: '#', hint: 'calisthenics workout', comingSoon: true },
 ];
 
