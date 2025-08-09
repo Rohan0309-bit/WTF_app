@@ -23,9 +23,8 @@ export default function SignupPage() {
         <CardHeader className="text-center">
           <div className="flex justify-center items-center gap-2 mb-2">
             <Icons.logo className="h-20 w-20 text-primary" />
-            <h1 className="text-3xl font-headline font-bold text-primary">WTF</h1>
           </div>
-          <CardTitle className="text-2xl font-headline">Join the Crew</CardTitle>
+          <CardTitle className="text-2xl font-headline">Join Well Trained Freak</CardTitle>
           <CardDescription>Create your account to start training</CardDescription>
         </CardHeader>
         <CardContent>
