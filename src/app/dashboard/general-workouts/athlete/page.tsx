@@ -9,6 +9,7 @@ const athleteCategories = [
   { name: 'Basketball', hint: 'basketball player' },
   { name: 'Volleyball', hint: 'volleyball player' },
   { name: 'Table Tennis', hint: 'table tennis player' },
+  { name: 'Calisthenics', hint: 'calisthenics workout' },
 ];
 
 export default function AthleteWorkoutsPage() {
