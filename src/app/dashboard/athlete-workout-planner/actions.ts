@@ -4,10 +4,11 @@ import { generateAthleteWorkout, GenerateAthleteWorkoutInput } from '@/ai/flows/
 import { z } from 'zod';
 
 const formSchema = z.object({
-  sport: z.string().min(1, 'Sport is required.'),
+  sport: z.string().optional(),
   gender: z.enum(['male', 'female']),
   skillLevel: z.string().min(1, 'Skill level is required.'),
   workoutPreference: z.enum(['home', 'gym']),
+  workoutType: z.string().min(1, 'Workout type is required.'),
 });
 
 export type FormState = {
@@ -26,6 +27,7 @@ export async function getWorkoutPlan(
     gender: formData.get('gender'),
     skillLevel: formData.get('skillLevel'),
     workoutPreference: formData.get('workoutPreference'),
+    workoutType: formData.get('workoutType'),
   });
 
   if (!validatedFields.success) {

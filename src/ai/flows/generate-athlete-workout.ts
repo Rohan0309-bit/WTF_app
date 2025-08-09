@@ -12,10 +12,11 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GenerateAthleteWorkoutInputSchema = z.object({
-  sport: z.string().describe('The sport the athlete is training for.'),
+  sport: z.string().optional().describe('The sport the athlete is training for (if any).'),
   gender: z.enum(['male', 'female']).describe('The athlete’s gender.'),
   skillLevel: z.string().describe('The athlete’s skill level (e.g., beginner, intermediate, advanced).'),
   workoutPreference: z.enum(['home', 'gym']).describe('The athlete’s workout preference (home or gym).'),
+  workoutType: z.string().describe('The primary focus of the workout (e.g., Full-Body, Chest, Legs, Posture, Sexual Wellness).'),
 });
 
 export type GenerateAthleteWorkoutInput = z.infer<typeof GenerateAthleteWorkoutInputSchema>;
@@ -34,14 +35,19 @@ const prompt = ai.definePrompt({
   name: 'generateAthleteWorkoutPrompt',
   input: {schema: GenerateAthleteWorkoutInputSchema},
   output: {schema: GenerateAthleteWorkoutOutputSchema},
-  prompt: `You are an expert AI sports trainer. You are helping an athlete to generate a weekly workout plan based on their sport, gender, skill level, and workout preference.
+  prompt: `You are an expert AI sports trainer. You are helping a user generate a weekly workout plan based on their preferences.
 
-  Sport: {{{sport}}}
+  Workout Type Focus: {{{workoutType}}}
+  {{#if sport}}Sport: {{{sport}}}{{/if}}
   Gender: {{{gender}}}
   Skill Level: {{{skillLevel}}}
   Workout Preference: {{{workoutPreference}}}
 
-  Generate a 7-day workout plan. For each day, provide a title (e.g., "Day 1: Upper Body Strength") and a list of at least 7 exercises. Include sets, reps, and rest time for each exercise. Ensure there is exactly one rest day. Structure the output clearly with headings for each day.
+  Generate a 7-day workout plan focused on the specified 'Workout Type Focus'. If a sport is provided, tailor the exercises to benefit that sport as well.
+  
+  For each day, provide a title (e.g., "Day 1: Upper Body Strength"). 
+  Each workout day must include a list of at least 7 exercises. For each exercise, provide sets, reps, and rest time. 
+  Ensure there is exactly one rest day in the 7-day plan. Structure the output clearly with headings for each day.
   
   Example for one day:
   Day 1: Full Body Strength

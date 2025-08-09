@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_PREFERENCES } from '@/lib/constants';
+import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_PREFERENCES, WORKOUT_TYPES } from '@/lib/constants';
 import { getWorkoutPlan } from './actions';
 import { useToast } from '@/hooks/use-toast';
 import { WorkoutCard } from '@/components/workout-card';
@@ -82,12 +82,23 @@ export default function AthleteWorkoutPlannerPage() {
           <CardContent>
             <form action={formAction} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="sport">Sport</Label>
-                <Select name="sport" required>
+                <Label htmlFor="sport">Sport (Optional)</Label>
+                <Select name="sport">
                   <SelectTrigger id="sport"><SelectValue placeholder="Select your sport" /></SelectTrigger>
                   <SelectContent>
                     {SPORTS.map((sport) => (
                       <SelectItem key={sport} value={sport}>{sport}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="workoutType">Workout Type</Label>
+                <Select name="workoutType" defaultValue="Full-Body" required>
+                  <SelectTrigger id="workoutType"><SelectValue placeholder="Select workout type" /></SelectTrigger>
+                  <SelectContent>
+                    {WORKOUT_TYPES.map((type) => (
+                      <SelectItem key={type} value={type}>{type}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>

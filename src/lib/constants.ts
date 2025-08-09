@@ -9,6 +9,18 @@ export const SPORTS = [
   'Calisthenics',
 ];
 
+export const WORKOUT_TYPES = [
+    'Full-Body',
+    'Chest',
+    'Back',
+    'Arms',
+    'Abs',
+    'Shoulder',
+    'Legs',
+    'Posture',
+    'Sexual Wellness',
+];
+
 export const SKILL_LEVELS = ['Beginner', 'Intermediate', 'Advanced', 'Pro'];
 
 export const GENDERS = [
