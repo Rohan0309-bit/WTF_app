@@ -8,6 +8,7 @@ import {
   MALE_CHEST_HOME,
   FEMALE_CHEST_GYM,
   FEMALE_CHEST_HOME,
+  DayWorkout
 } from '@/lib/workouts';
 import { WorkoutDisplay } from '@/components/workout-display';
 
@@ -18,7 +19,7 @@ export default function ChestWorkoutPage() {
   const [gender, setGender] = useState<Gender>('male');
   const [location, setLocation] = useState<Location>('gym');
 
-  const getWorkout = () => {
+  const getWorkout = (): DayWorkout => {
     if (gender === 'male' && location === 'gym') {
       return MALE_CHEST_GYM;
     }
@@ -66,3 +67,4 @@ export default function ChestWorkoutPage() {
     </div>
   );
 }
+
