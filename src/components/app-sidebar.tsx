@@ -134,7 +134,7 @@ function SidebarNav() {
                         <span className="text-sm text-muted-foreground">Settings</span>
                     </motion.button>
                 </Link>
-                <Link href="/">
+                <Link href="/login">
                     <motion.button
                     whileHover={{ scale: 1.02 }}
                     className="w-full px-3 py-2 rounded-md text-sm flex items-center justify-center bg-secondary/50 hover:bg-secondary transition"
