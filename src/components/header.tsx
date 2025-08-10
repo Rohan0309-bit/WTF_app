@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -43,7 +42,7 @@ export function Header() {
   
   const title = getTitle();
 
-  const showBackButton = pathname.split('/').length > 2 && pathname !== '/dashboard';
+  const showBackButton = pathname.split('/').length > 3 && pathname !== '/dashboard';
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6">
@@ -88,7 +87,7 @@ export function Header() {
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>
-        <SidebarTrigger className="md:hidden" />
+        <SidebarTrigger />
       </div>
     </header>
   );
