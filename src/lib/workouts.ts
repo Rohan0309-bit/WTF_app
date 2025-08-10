@@ -50,38 +50,115 @@ const defaultExerciseProps = {
 
 // Add injury prevention tips here
 export const MASTER_EXERCISE_DATA: { [key: string]: Partial<ExerciseDetails> } = {
-    "Jumping Jacks": { type: 'cardio', muscle: 'Full Body', gifUrl: 'https://i.ibb.co/ZRn5DhQ2/Whats-App-Image-2025-07-02-at-23-58-35.jpg', injury_prevention: 'Land softly on the balls of your feet to reduce impact on your knees and ankles.' },
-    "Wrist Roll": { type: 'strength', muscle: 'Forearms', gifUrl: 'https://i.ibb.co/0yX2Ckgn/Whats-App-Image-2025-07-03-at-00-10-57.jpg', injury_prevention: 'Use a light weight and perform the movement slowly and in a controlled manner to avoid straining your wrist tendons.' },
-    "Elbow Circles": { type: 'warmup', muscle: 'Shoulders', gifUrl: 'https://i.ibb.co/hRXNZ1xg/Whats-App-Image-2025-07-03-at-00-03-02.jpg', injury_prevention: 'Keep the circles smooth and controlled; avoid jerky movements.' },
-    "Arm Circles": { type: 'warmup', muscle: 'Shoulders', gifUrl: 'https://i.ibb.co/zwTWyMx/Whats-App-Image-2025-07-03-at-00-10-00.jpg', injury_prevention: 'Start with small circles and gradually increase the size to warm up the shoulder joint gently.' },
-    "Bar Hanging": { type: 'strength', muscle: 'Back', gifUrl: 'https://i.ibb.co/Z6WFkXTN/Whats-App-Image-2025-07-02-at-23-58-36.jpg', injury_prevention: 'Engage your shoulder muscles to support your weight; do not hang passively to avoid over-stressing the joints.' },
-    "Plank": { type: 'strength', muscle: 'Core', gifUrl: 'https://i.ibb.co/CpRxg3gr/Whats-App-Image-2025-07-03-at-16-00-52-1.jpg', injury_prevention: 'Keep your back flat and avoid letting your hips sag to prevent lower back strain. Engage your core and glutes.' },
-    "Quad Stretch": { type: 'flexibility', muscle: 'Quads', gifUrl: 'https://i.ibb.co/8gCrtnCr/Whats-App-Image-2025-07-03-at-13-58-46.jpg', injury_prevention: 'Hold onto something for balance and avoid pulling your heel too forcefully. Keep your knees close together.' },
-    "Hamstring Stretch": { type: 'flexibility', muscle: 'Hamstrings', gifUrl: 'https://i.ibb.co/1JnZ0F7P/Whats-App-Image-2025-07-03-at-14-02-22.jpg', injury_prevention: 'Keep a slight bend in your knee and avoid rounding your back to protect your spine.' },
-    "Chest Stretch": { type: 'flexibility', muscle: 'Chest', gifUrl: 'https://i.ibb.co/fYGrr0Fj/Whats-App-Image-2025-07-03-at-13-58-47-1.jpg', injury_prevention: 'Perform the stretch gently. Do not force your arms back, to prevent shoulder impingement.' },
-    "Shoulder Stretch": { type: 'flexibility', muscle: 'Shoulders', gifUrl: 'https://i.ibb.co/93CV7cS8/Whats-App-Image-2025-07-03-at-13-58-48-1.jpg', injury_prevention: 'Do not pull your arm across your body too hard. Keep your shoulder down and relaxed.' },
-    "Triceps Stretch": { type: 'flexibility', muscle: 'Triceps', gifUrl: 'https://i.ibb.co/G4D1MJjZ/Whats-App-Image-2025-07-03-at-13-58-47-2.jpg', injury_prevention: 'Gently pull your elbow behind your head; avoid forcing the stretch if you feel any shoulder pain.' },
-    "Child's Pose": { type: 'flexibility', muscle: 'Back', gifUrl: 'https://i.ibb.co/kCQT6tM/Whats-App-Image-2025-07-03-at-13-58-48.jpg', injury_prevention: 'If you have knee issues, place a blanket under your shins for cushioning. Breathe deeply to relax your back.' },
-    "Bench Press": { type: 'strength', muscle: 'Chest', gifUrl: 'https://i.ibb.co/nMtLK64C/Whats-App-Image-2025-07-03-at-12-31-18.jpg', injury_prevention: 'Keep your feet flat on the floor and avoid arching your back excessively. Use a spotter for heavy lifts.' },
-    "Incline Bench Press": { type: 'strength', muscle: 'Chest', gifUrl: 'https://i.ibb.co/C3FmPcw8/Whats-App-Image-2025-07-03-at-12-31-15.jpg', injury_prevention: 'Do not let the dumbbells or barbell bounce off your chest. Control the weight throughout the movement.' },
-    "Decline / Cable Fly": { type: 'strength', muscle: 'Chest', gifUrl: 'https://i.ibb.co/S7wNQZvm/Whats-App-Image-2025-07-03-at-12-31-17-1.jpg', injury_prevention: 'Keep a slight bend in your elbows and focus on squeezing your chest muscles. Avoid using a weight that is too heavy.' },
-    "Seated Machine Fly": { type: 'strength', muscle: 'Chest', gifUrl: 'https://i.ibb.co/27NmYH8C/Whats-App-Image-2025-07-03-at-12-31-17.jpg', injury_prevention: 'Adjust the machine to fit your body. Ensure the pivot point is aligned with your shoulders.' },
-    "Triceps Pushdown": { type: 'strength', muscle: 'Triceps', gifUrl: 'https://i.ibb.co/HDRgnWZs/Whats-App-Image-2025-07-03-at-12-31-16-1.jpg', injury_prevention: 'Keep your elbows tucked into your sides and avoid using momentum to move the weight.' },
-    "Overhead Extension (Cable or Dumbbell)": { type: 'strength', muscle: 'Triceps', gifUrl: 'https://i.ibb.co/BVjNXXnc/Whats-App-Image-2025-07-03-at-12-31-16-2.jpg', injury_prevention: 'Keep your core tight to protect your lower back. Avoid flaring your elbows out.' },
-    "Lat Pulldowns": { type: 'strength', muscle: 'Back', gifUrl: 'https://i.ibb.co/20DKfhXx/Whats-App-Image-2025-07-03-at-15-36-32.jpg', injury_prevention: 'Pull the bar down to your upper chest, not behind your neck. Avoid using momentum by leaning back too far.' },
-    "Seated Cable Row": { type: 'strength', muscle: 'Back', gifUrl: 'https://i.ibb.co/QvjcWkVK/Whats-App-Image-2025-07-03-at-15-36-31.jpg', injury_prevention: 'Keep your back straight and pull the handle towards your torso, squeezing your shoulder blades together.' },
-    "Barbell Rows": { type: 'strength', muscle: 'Back', gifUrl: 'https://i.ibb.co/FPmN2sY/Whats-App-Image-2025-07-03-at-15-32-27.jpg', injury_prevention: 'Maintain a flat back throughout the movement. Hinge at the hips, and avoid using your lower back to lift the weight.' },
-    "Dumbbell Curl": { type: 'strength', muscle: 'Biceps', gifUrl: 'https://i.ibb.co/xSYFDHZd/Whats-App-Image-2025-07-03-at-15-32-23-2.jpg', injury_prevention: 'Avoid swinging the dumbbells. Keep your upper arms stationary and focus on using your biceps to lift the weight.' },
-    "Hammer Curl": { type: 'strength', muscle: 'Biceps', gifUrl: 'https://i.ibb.co/RG7L3VQZ/Whats-App-Image-2025-07-03-at-15-32-24-1.jpg', injury_prevention: 'Keep your palms facing each other and control the movement on the way up and down to protect the elbow joint.' },
-    "Face Pulls": { type: 'strength', muscle: 'Shoulders', gifUrl: 'https://i.ibb.co/MyhK8Vjr/Whats-App-Image-2025-07-03-at-16-00-53.jpg', injury_prevention: 'Use a lighter weight and focus on external rotation of the shoulders. Pull the rope towards your face, not your neck.' },
-    "Shrugs": { type: 'strength', muscle: 'Traps', gifUrl: 'https://i.ibb.co/7JSJPxXK/Whats-App-Image-2025-07-03-at-16-00-50.jpg', injury_prevention: 'Avoid rolling your shoulders. Lift them straight up towards your ears and slowly lower them down.' },
-    "Barbell Back Squats": { type: 'strength', muscle: 'Legs', gifUrl: 'https://i.ibb.co/b5bJn6wd/Whats-App-Image-2025-07-03-at-16-00-51.jpg', injury_prevention: 'Keep your chest up, back straight, and go to a depth that is comfortable for your mobility. Ensure your knees track over your toes.' },
-    "Romanian Deadlifts": { type: 'strength', muscle: 'Hamstrings', gifUrl: 'https://i.ibb.co/bpSJMbn/Whats-App-Image-2025-07-03-at-16-00-51-1.jpg', injury_prevention: 'Keep a slight bend in your knees and maintain a flat back. Hinge at the hips and lower the weight until you feel a stretch in your hamstrings.' },
-    "Dumbbell Walking Lunges": { type: 'strength', muscle: 'Legs', gifUrl: 'https://i.ibb.co/zH8BRBN8/Whats-App-Image-2025-07-03-at-16-00-52.jpg', injury_prevention: 'Take controlled steps and ensure your front knee does not go past your toes. Keep your torso upright.' },
-    "Calf Raises": { type: 'strength', muscle: 'Calves', gifUrl: 'https://i.ibb.co/Sw3fgwDx/Whats-App-Image-2025-07-03-at-16-00-52-2.jpg', injury_prevention: 'Perform the movement slowly, focusing on a full range of motion. Avoid bouncing at the bottom.' },
-    "Push-Ups": { type: 'strength', muscle: 'Chest', gifUrl: 'https://i.ibb.co/6RdMd2XP/Whats-App-Image-2025-07-11-at-02-11-22-1.jpg', injury_prevention: 'Keep your body in a straight line from head to heels. Lower your chest to the floor in a controlled manner.' },
-    // Add the rest of the exercises with injury prevention tips
-    // ...
+    // Chest
+    "Bench Press": { type: 'strength', muscle: 'Chest', equipment: 'Barbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/nMtLK64C/Whats-App-Image-2025-07-03-at-12-31-18.jpg', injury_prevention: 'Keep your feet flat on the floor and avoid arching your back excessively. Use a spotter for heavy lifts.' },
+    "Push-Ups": { type: 'strength', muscle: 'Chest', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/6RdMd2XP/Whats-App-Image-2025-07-11-at-02-11-22-1.jpg', injury_prevention: 'Keep your body in a straight line from head to heels. Lower your chest to the floor in a controlled manner.' },
+    "Incline Bench Press": { type: 'strength', muscle: 'Chest', equipment: 'Barbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/C3FmPcw8/Whats-App-Image-2025-07-03-at-12-31-15.jpg', injury_prevention: 'Do not let the dumbbells or barbell bounce off your chest. Control the weight throughout the movement.' },
+    "Dumbbell Flyes": { type: 'strength', muscle: 'Chest', equipment: 'Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/S7wNQZvm/Whats-App-Image-2025-07-03-at-12-31-17-1.jpg', injury_prevention: 'Keep a slight bend in your elbows and focus on squeezing your chest muscles. Avoid using a weight that is too heavy.' },
+    "Cable Crossover": { type: 'strength', muscle: 'Chest', equipment: 'Cable', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/C3FmPcw8/Whats-App-Image-2025-07-03-at-12-31-15.jpg', injury_prevention: 'Adjust the pulleys to the correct height and maintain a stable stance. Focus on the chest contraction.' },
+    "Decline Push-Ups": { type: 'strength', muscle: 'Chest', equipment: 'Bodyweight', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/9qLw0gS/decline-push-up.gif', injury_prevention: 'Place your feet securely on the elevated surface. Keep your core engaged to prevent your back from sagging.' },
+    "Incline Dumbbell Press": { type: 'strength', muscle: 'Chest', equipment: 'Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/C3FmPcw8/Whats-App-Image-2025-07-03-at-12-31-15.jpg', injury_prevention: 'Ensure the bench is at a 30-45 degree angle. Dont arch your back off the bench.' },
+    "Chest Dips": { type: 'strength', muscle: 'Chest', equipment: 'Parallel Bars', difficulty: 'advanced', gifUrl: 'https://i.ibb.co/yQxGjDk/chest-dip.gif', injury_prevention: 'Lean your torso forward to target the chest more effectively. Lower yourself until you feel a good stretch, but not pain in your shoulders.' },
+    "Flat Dumbbell Press": { type: 'strength', muscle: 'Chest', equipment: 'Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/nMtLK64C/Whats-App-Image-2025-07-03-at-12-31-18.jpg', injury_prevention: 'Keep your wrists straight and directly above your elbows. Control the dumbbells throughout the movement.' },
+    "Pec Deck Machine": { type: 'strength', muscle: 'Chest', equipment: 'Machine', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/27NmYH8C/Whats-App-Image-2025-07-03-at-12-31-17.jpg', injury_prevention: 'Set the seat height so the handles are at chest level. Avoid letting the weights slam at the end of the movement.' },
+    "Wall Push-Ups": { type: 'strength', muscle: 'Chest', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/tZ5W0bB/wall-push-up.gif', injury_prevention: 'Stand far enough from the wall to create a challenge but maintain control. Keep your back straight.' },
+    "Wide-Grip Push-Ups": { type: 'strength', muscle: 'Chest', equipment: 'Bodyweight', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/1fX4Rkf/wide-grip-push-up.gif', injury_prevention: 'Placing your hands wider than your shoulders can put more stress on the shoulder joints. Listen to your body and dont go too wide if it causes discomfort.' },
+
+    // Back
+    "Pull-Ups": { type: 'strength', muscle: 'Back', equipment: 'Pull-up Bar', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/dK8BvN2/pull-up.gif', injury_prevention: 'Avoid swinging or using momentum. Start from a full hang and pull your chin over the bar. Use assistance bands if needed.' },
+    "Deadlifts": { type: 'strength', muscle: 'Back', equipment: 'Barbell', difficulty: 'advanced', gifUrl: 'https://i.ibb.co/N1pWqTc/barbell-deadlift.gif', injury_prevention: 'Keep your back straight throughout the lift. Hinge at your hips and keep the bar close to your body. Start light to master the form.' },
+    "Barbell Rows": { type: 'strength', muscle: 'Back', equipment: 'Barbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/FPmN2sY/Whats-App-Image-2025-07-03-at-15-32-27.jpg', injury_prevention: 'Maintain a flat back throughout the movement. Hinge at the hips, and avoid using your lower back to lift the weight.' },
+    "Lat Pulldowns": { type: 'strength', muscle: 'Back', equipment: 'Cable', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/20DKfhXx/Whats-App-Image-2025-07-03-at-15-36-32.jpg', injury_prevention: 'Pull the bar down to your upper chest, not behind your neck. Avoid using momentum by leaning back too far.' },
+    "Seated Cable Row": { type: 'strength', muscle: 'Back', equipment: 'Cable', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/QvjcWkVK/Whats-App-Image-2025-07-03-at-15-36-31.jpg', injury_prevention: 'Keep your back straight and pull the handle towards your torso, squeezing your shoulder blades together.' },
+    "Superman Hold": { type: 'strength', muscle: 'Back', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/k2H7tYv/superman.gif', injury_prevention: 'Lift your arms and legs gently. Avoid arching your back too aggressively, especially if you have lower back issues.' },
+    "Inverted Rows": { type: 'strength', muscle: 'Back', equipment: 'Bar/Table', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/Y0yRk5P/inverted-row.gif', injury_prevention: 'Keep your body in a straight line. The more horizontal your body, the harder the exercise. Start with a more vertical angle.' },
+    "Back Extensions": { type: 'strength', muscle: 'Back', equipment: 'Hyperextension Bench', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/v3BWy0D/hyperextension.gif', injury_prevention: 'Move in a slow, controlled manner. Avoid over-extending (arching) your back at the top of the movement.' },
+
+    // Legs
+    "Squats": { type: 'strength', muscle: 'Legs', equipment: 'Bodyweight/Barbell', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/b5bJn6wd/Whats-App-Image-2025-07-03-at-16-00-51.jpg', injury_prevention: 'Keep your chest up, back straight, and go to a depth that is comfortable for your mobility. Ensure your knees track over your toes.' },
+    "Lunges": { type: 'strength', muscle: 'Legs', equipment: 'Bodyweight/Dumbbell', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/zH8BRBN8/Whats-App-Image-2025-07-03-at-16-00-52.jpg', injury_prevention: 'Take controlled steps and ensure your front knee does not go past your toes. Keep your torso upright.' },
+    "Romanian Deadlifts": { type: 'strength', muscle: 'Hamstrings', equipment: 'Barbell/Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/bpSJMbn/Whats-App-Image-2025-07-03-at-16-00-51-1.jpg', injury_prevention: 'Keep a slight bend in your knees and maintain a flat back. Hinge at the hips and lower the weight until you feel a stretch in your hamstrings.' },
+    "Calf Raises": { type: 'strength', muscle: 'Calves', equipment: 'Bodyweight/Machine', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/Sw3fgwDx/Whats-App-Image-2025-07-03-at-16-00-52-2.jpg', injury_prevention: 'Perform the movement slowly, focusing on a full range of motion. Avoid bouncing at the bottom.' },
+    "Leg Press": { type: 'strength', muscle: 'Legs', equipment: 'Machine', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/mBvN20q/leg-press.gif', injury_prevention: 'Do not lock out your knees at the top of the movement. Keep your lower back and hips pressed against the seat.' },
+    "Hip Thrusts": { type: 'strength', muscle: 'Glutes', equipment: 'Barbell/Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/3W9Y5N5/hip-thrust.gif', injury_prevention: 'Position the bench under your shoulder blades. Keep your chin tucked and focus on using your glutes to lift the weight.' },
+    "Glute Bridges": { type: 'strength', muscle: 'Glutes', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/VqC3D1s/glute-bridge.gif', injury_prevention: 'Squeeze your glutes at the top of the movement and avoid over-arching your lower back.' },
+    "Jump Squats": { type: 'plyometrics', muscle: 'Legs', equipment: 'Bodyweight', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/2tV9X8B/jump-squat.gif', injury_prevention: 'Land softly on the balls of your feet and immediately bend your knees to absorb the impact.' },
+    "Bulgarian Split Squats": { type: 'strength', muscle: 'Legs', equipment: 'Dumbbell/Bodyweight', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/k1q3wW6/bulgarian-split-squat.gif', injury_prevention: 'Keep your torso upright and your front foot flat on the ground. Dont let your front knee travel too far past your toes.' },
+    "Box Jumps": { type: 'plyometrics', muscle: 'Legs', equipment: 'Box', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/yq6Hnvy/box-jump.gif', injury_prevention: 'Start with a low box. Land softly on the box and step down, do not jump down, to protect your joints.' },
+    
+    // Shoulders
+    "Shoulder Press": { type: 'strength', muscle: 'Shoulders', equipment: 'Dumbbell/Barbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/gR2XqJd/dumbbell-shoulder-press.gif', injury_prevention: 'Keep your core tight to avoid arching your back. Press the weight directly overhead, not in front or behind your head.' },
+    "Lateral Raises": { type: 'strength', muscle: 'Shoulders', equipment: 'Dumbbell', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/680D0f6/lateral-raise.gif', injury_prevention: 'Use a light weight and lead with your elbows. Avoid using momentum or shrugging your traps.' },
+    "Front Raises": { type: 'strength', muscle: 'Shoulders', equipment: 'Dumbbell/Plate', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/yY1h9d1/front-raise.gif', injury_prevention: 'Lift the weight only to shoulder height. Keep your core engaged to prevent leaning back.' },
+    "Face Pulls": { type: 'strength', muscle: 'Shoulders', equipment: 'Cable', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/MyhK8Vjr/Whats-App-Image-2025-07-03-at-16-00-53.jpg', injury_prevention: 'Use a lighter weight and focus on external rotation of the shoulders. Pull the rope towards your face, not your neck.' },
+    "Shrugs": { type: 'strength', muscle: 'Traps', equipment: 'Dumbbell/Barbell', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/7JSJPxXK/Whats-App-Image-2025-07-03-at-16-00-50.jpg', injury_prevention: 'Avoid rolling your shoulders. Lift them straight up towards your ears and slowly lower them down.' },
+    "Pike Push-ups": { type: 'strength', muscle: 'Shoulders', equipment: 'Bodyweight', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/LnhYm5s/pike-push-up.gif', injury_prevention: 'Keep your head in a neutral position, looking towards your feet, not up. This helps protect your neck.' },
+    "Arnold Press": { type: 'strength', muscle: 'Shoulders', equipment: 'Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/3hG2mXw/arnold-press.gif', injury_prevention: 'Perform the rotation smoothly and with control. Avoid using a weight that is too heavy, which can strain the rotator cuff.' },
+
+    // Arms
+    "Dumbbell Curl": { type: 'strength', muscle: 'Biceps', equipment: 'Dumbbell', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/xSYFDHZd/Whats-App-Image-2025-07-03-at-15-32-23-2.jpg', injury_prevention: 'Avoid swinging the dumbbells. Keep your upper arms stationary and focus on using your biceps to lift the weight.' },
+    "Hammer Curl": { type: 'strength', muscle: 'Biceps', equipment: 'Dumbbell', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/RG7L3VQZ/Whats-App-Image-2025-07-03-at-15-32-24-1.jpg', injury_prevention: 'Keep your palms facing each other and control the movement on the way up and down to protect the elbow joint.' },
+    "Triceps Pushdown": { type: 'strength', muscle: 'Triceps', equipment: 'Cable', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/HDRgnWZs/Whats-App-Image-2025-07-03-at-12-31-16-1.jpg', injury_prevention: 'Keep your elbows tucked into your sides and avoid using momentum to move the weight.' },
+    "Skull Crushers": { type: 'strength', muscle: 'Triceps', equipment: 'Barbell/Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/L9h7J96/skull-crusher.gif', injury_prevention: 'Lower the weight towards your forehead in a controlled manner. Dont let your elbows flare out too much.' },
+    "Overhead Extension": { type: 'strength', muscle: 'Triceps', equipment: 'Cable/Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/BVjNXXnc/Whats-App-Image-2025-07-03-at-12-31-16-2.jpg', injury_prevention: 'Keep your core tight to protect your lower back. Avoid flaring your elbows out.' },
+    "Close-Grip Push-Ups": { type: 'strength', muscle: 'Triceps', equipment: 'Bodyweight', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/4Z5nKzX/diamond-push-up.gif', injury_prevention: 'Place your hands closer than shoulder-width apart. Keep your elbows tucked in close to your body as you lower yourself.' },
+    "Chin-Ups": { type: 'strength', muscle: 'Biceps', equipment: 'Pull-up Bar', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/wK5zV1K/chin-up.gif', injury_prevention: 'Use a full range of motion. An underhand grip will target the biceps more, but can also strain the elbows if form is incorrect.' },
+
+    // Core
+    "Plank": { type: 'strength', muscle: 'Core', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/CpRxg3gr/Whats-App-Image-2025-07-03-at-16-00-52-1.jpg', injury_prevention: 'Keep your back flat and avoid letting your hips sag to prevent lower back strain. Engage your core and glutes.' },
+    "Crunches": { type: 'strength', muscle: 'Core', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/R9m4HjX/crunch.gif', injury_prevention: 'Avoid pulling on your neck with your hands. Place your hands across your chest or lightly by your head. Lift your shoulders off the floor.' },
+    "Leg Raises": { type: 'strength', muscle: 'Core', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/yqgJ4M1/leg-raise.gif', injury_prevention: 'Press your lower back into the floor to avoid arching it. If this is difficult, start with bent-knee raises.' },
+    "Russian Twists": { type: 'strength', muscle: 'Core', equipment: 'Bodyweight/Medicine Ball', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/3sXzHq2/russian-twist.gif', injury_prevention: 'Keep your back straight and rotate from your torso, not just your arms. Keep the movement controlled.' },
+    "Hanging Leg Raises": { type: 'strength', muscle: 'Core', equipment: 'Pull-up Bar', difficulty: 'advanced', gifUrl: 'https://i.ibb.co/fQ1WjJb/hanging-leg-raise.gif', injury_prevention: 'Avoid swinging. Control the movement using your core strength. Start with hanging knee raises if straight-leg raises are too difficult.' },
+    "Side Plank": { type: 'strength', muscle: 'Core', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/hK7Jtqg/side-plank.gif', injury_prevention: 'Keep your body in a straight line from your head to your feet. Dont let your hips sag.' },
+    "Bicycle Crunches": { type: 'strength', muscle: 'Core', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/zXj6RzW/bicycle-crunch.gif', injury_prevention: 'Go slowly and focus on the twisting motion. Bring your knee towards the opposite elbow, not the other way around.' },
+    
+    // Cardio / Full Body
+    "Jumping Jacks": { type: 'cardio', muscle: 'Full Body', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/ZRn5DhQ2/Whats-App-Image-2025-07-02-at-23-58-35.jpg', injury_prevention: 'Land softly on the balls of your feet to reduce impact on your knees and ankles.' },
+    "Burpees": { type: 'cardio', muscle: 'Full Body', equipment: 'Bodyweight', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/rwsMvY9/burpee.gif', injury_prevention: 'Maintain control throughout the movement. Dont let your back sag during the plank portion.' },
+    "Mountain Climbers": { type: 'cardio', muscle: 'Full Body', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/2vTQLsF/mountain-climber.gif', injury_prevention: 'Keep your core engaged and your back flat. Bring your knees towards your chest in a controlled running motion.' },
+    "Kettlebell Swings": { type: 'strength', muscle: 'Full Body', equipment: 'Kettlebell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/zZJj4qK/kettlebell-swing.gif', injury_prevention: 'This is a hip hinge movement, not a squat. Use the power from your hips and glutes to swing the kettlebell, not your arms.' },
+    "Battle Ropes": { type: 'cardio', muscle: 'Full Body', equipment: 'Battle Ropes', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/C0VvjQY/battle-rope.gif', injury_prevention: 'Maintain a stable athletic stance. The motion should come from your entire body, not just your arms.' },
+    "High Knees": { type: 'cardio', muscle: 'Full Body', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/gDNM9S7/high-knees.gif', injury_prevention: 'Land softly on the balls of your feet. Keep your core engaged and drive your knees up towards your chest.' },
+
+    // Warmup & Flexibility
+    "Wrist Roll": { type: 'warmup', muscle: 'Forearms', equipment: 'Wrist Roller', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/0yX2Ckgn/Whats-App-Image-2025-07-03-at-00-10-57.jpg', injury_prevention: 'Use a light weight and perform the movement slowly and in a controlled manner to avoid straining your wrist tendons.' },
+    "Elbow Circles": { type: 'warmup', muscle: 'Shoulders', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/hRXNZ1xg/Whats-App-Image-2025-07-03-at-00-03-02.jpg', injury_prevention: 'Keep the circles smooth and controlled; avoid jerky movements.' },
+    "Arm Circles": { type: 'warmup', muscle: 'Shoulders', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/zwTWyMx/Whats-App-Image-2025-07-03-at-00-10-00.jpg', injury_prevention: 'Start with small circles and gradually increase the size to warm up the shoulder joint gently.' },
+    "Bar Hanging": { type: 'strength', muscle: 'Back', equipment: 'Pull-up Bar', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/Z6WFkXTN/Whats-App-Image-2025-07-02-at-23-58-36.jpg', injury_prevention: 'Engage your shoulder muscles to support your weight; do not hang passively to avoid over-stressing the joints.' },
+    "Quad Stretch": { type: 'flexibility', muscle: 'Quads', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/8gCrtnCr/Whats-App-Image-2025-07-03-at-13-58-46.jpg', injury_prevention: 'Hold onto something for balance and avoid pulling your heel too forcefully. Keep your knees close together.' },
+    "Hamstring Stretch": { type: 'flexibility', muscle: 'Hamstrings', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/1JnZ0F7P/Whats-App-Image-2025-07-03-at-14-02-22.jpg', injury_prevention: 'Keep a slight bend in your knee and avoid rounding your back to protect your spine.' },
+    "Chest Stretch": { type: 'flexibility', muscle: 'Chest', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/fYGrr0Fj/Whats-App-Image-2025-07-03-at-13-58-47-1.jpg', injury_prevention: 'Perform the stretch gently. Do not force your arms back, to prevent shoulder impingement.' },
+    "Shoulder Stretch": { type: 'flexibility', muscle: 'Shoulders', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/93CV7cS8/Whats-App-Image-2025-07-03-at-13-58-48-1.jpg', injury_prevention: 'Do not pull your arm across your body too hard. Keep your shoulder down and relaxed.' },
+    "Triceps Stretch": { type: 'flexibility', muscle: 'Triceps', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/G4D1MJjZ/Whats-App-Image-2025-07-03-at-13-58-47-2.jpg', injury_prevention: 'Gently pull your elbow behind your head; avoid forcing the stretch if you feel any shoulder pain.' },
+    "Child's Pose": { type: 'flexibility', muscle: 'Back', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/kCQT6tM/Whats-App-Image-2025-07-03-at-13-58-48.jpg', injury_prevention: 'If you have knee issues, place a blanket under your shins for cushioning. Breathe deeply to relax your back.' },
+
+    // More exercises to fill out the list
+    "Dumbbell Pullover": { type: 'strength', muscle: 'Chest', equipment: 'Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/JqK7c9H/dumbbell-pullover.gif', injury_prevention: 'Keep a slight bend in your elbows and ensure your lower back stays on the bench. Use a lighter weight to master the form.' },
+    "Single Arm Dumbbell Row": { type: 'strength', muscle: 'Back', equipment: 'Dumbbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/MfZJvV3/one-arm-dumbbell-row.gif', injury_prevention: 'Keep your back flat and parallel to the floor. Pull the dumbbell towards your hip, not straight up.' },
+    "T-Bar Row": { type: 'strength', muscle: 'Back', equipment: 'T-Bar Row Machine', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/JvH18Sg/t-bar-row.gif', injury_prevention: 'Keep your chest up and back straight. Avoid using excessive momentum to lift the weight.' },
+    "Good Mornings": { type: 'strength', muscle: 'Hamstrings', equipment: 'Barbell', difficulty: 'advanced', gifUrl: 'https://i.ibb.co/L9H8bKk/good-morning.gif', injury_prevention: 'Start with a very light weight or just the bar. Hinge at the hips while maintaining a straight back. This exercise requires excellent form.' },
+    "Barbell Hip Thrust": { type: 'strength', muscle: 'Glutes', equipment: 'Barbell', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/3W9Y5N5/hip-thrust.gif', injury_prevention: 'Position the bench under your shoulder blades. Keep your chin tucked and focus on using your glutes to lift the weight.' },
+    "Goblet Squats": { type: 'strength', muscle: 'Legs', equipment: 'Kettlebell/Dumbbell', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/0V8xY2k/goblet-squat.gif', injury_prevention: 'Keep the weight close to your chest and your back straight. This helps maintain an upright torso.' },
+    "Cable Kickbacks": { type: 'strength', muscle: 'Glutes', equipment: 'Cable', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/qD5PZc2/cable-kickback.gif', injury_prevention: 'Keep your core engaged to avoid arching your back. Focus on squeezing the glute of the working leg.' },
+    "Sled Push": { type: 'strength', muscle: 'Full Body', equipment: 'Sled', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/bzzJ15t/sled-push.gif', injury_prevention: 'Maintain a straight line from your head to your heels. Drive through your legs.' },
+    "Push Press": { type: 'strength', muscle: 'Shoulders', equipment: 'Barbell', difficulty: 'advanced', gifUrl: 'https://i.ibb.co/b3wH2tQ/push-press.gif', injury_prevention: 'Use your legs to initiate the drive. Keep the bar path straight up. Dont lean back excessively.' },
+    "Clean and Jerk": { type: 'strength', muscle: 'Full Body', equipment: 'Barbell', difficulty: 'advanced', gifUrl: 'https://i.ibb.co/YyYxR2w/clean-and-jerk.gif', injury_prevention: 'This is a highly technical lift. Seek coaching to learn proper form to prevent injury.' },
+    "Snatch": { type: 'strength', muscle: 'Full Body', equipment: 'Barbell', difficulty: 'advanced', gifUrl: 'https://i.ibb.co/Mh26hV0/snatch.gif', injury_prevention: 'Requires significant mobility and technique. It is crucial to learn this from a qualified coach.' },
+    "Medicine Ball Slams": { type: 'plyometrics', muscle: 'Full Body', equipment: 'Medicine Ball', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/4fG4C0C/medicine-ball-slam.gif', injury_prevention: 'Use your core to slam the ball down, not just your arms. Keep your back straight.' },
+    "Treadmill Sprints": { type: 'cardio', muscle: 'Legs', equipment: 'Treadmill', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/F83FwWJ/treadmill.gif', injury_prevention: 'Build up your speed gradually. Use the safety clip in case you lose your footing.' },
+    "Incline Walk": { type: 'cardio', muscle: 'Legs', equipment: 'Treadmill', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/F83FwWJ/treadmill.gif', injury_prevention: 'Hold the handrails for balance if needed, but avoid leaning on them, as this reduces the effectiveness of the workout.' },
+    "Yoga Flow": { type: 'flexibility', muscle: 'Full Body', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/2cZtCqL/yoga-flow.gif', injury_prevention: 'Move with your breath and dont force any poses. Listen to your body’s limitations.' },
+    "Foam Rolling": { type: 'flexibility', muscle: 'Full Body', equipment: 'Foam Roller', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/3sXzHq2/russian-twist.gif', injury_prevention: 'Roll slowly over tight muscles. Avoid rolling directly over joints or bones.' },
+    "Agility Ladder Drills": { type: 'cardio', muscle: 'Full Body', equipment: 'Agility Ladder', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/R9m4HjX/crunch.gif', injury_prevention: 'Stay on the balls of your feet and keep your movements quick and light to prevent tripping.' },
+    "Cone Sprints": { type: 'cardio', muscle: 'Legs', equipment: 'Cones', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/2vTQLsF/mountain-climber.gif', injury_prevention: 'Ensure you have a clear, non-slip surface. Warm up properly before sprinting.' },
+    "Side Shuffles": { type: 'cardio', muscle: 'Legs', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/gDNM9S7/high-knees.gif', injury_prevention: 'Stay low in an athletic stance and push off your outside foot. Dont cross your feet over.' },
+    "Jump Rope": { type: 'cardio', muscle: 'Full Body', equipment: 'Jump Rope', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/M1p2s2y/jump-rope.gif', injury_prevention: 'Turn the rope with your wrists, not your whole arms. Land softly on the balls of your feet.' },
+    "Power Cleans": { type: 'strength', muscle: 'Full Body', equipment: 'Barbell', difficulty: 'advanced', gifUrl: 'https://i.ibb.co/37C11k1/power-clean.gif', injury_prevention: 'This is a technical lift. Focus on explosive hip extension. Master the form before adding significant weight.' },
+    "Ab Roller": { type: 'strength', muscle: 'Core', equipment: 'Ab Wheel', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/pL14D35/ab-wheel.gif', injury_prevention: 'Keep your core tight and avoid arching your back. Only roll out as far as you can maintain a straight back.' },
+    "Assault Bike Intervals": { type: 'cardio', muscle: 'Full Body', equipment: 'Assault Bike', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/C0VvjQY/battle-rope.gif', injury_prevention: 'Set up the bike correctly for your height. Push and pull with both your arms and legs.' },
+    "Reaction Ball Drill": { type: 'cardio', muscle: 'Full Body', equipment: 'Reaction Ball', difficulty: 'intermediate', gifUrl: 'https://i.ibb.co/yY1h9d1/front-raise.gif', injury_prevention: 'Use in an open space to avoid collisions. This drill improves hand-eye coordination.' },
+    "Shadow Badminton": { type: 'cardio', muscle: 'Full Body', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/dK8BvN2/pull-up.gif', injury_prevention: 'Focus on proper footwork and swing mechanics. Ensure you have enough space around you.' }
 };
 
 // Function to get a workout plan by slug
@@ -198,11 +275,10 @@ export const MALE_CHEST_GYM: DayWorkout = {
   gender: 'male',
   location: 'gym',
   exercises: [
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Flat Barbell Bench Press"], name: "Flat Barbell Bench Press", sets: "4", reps: "8-10", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Bench Press", sets: "4", reps: "8-10", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Dumbbell Press"], name: "Incline Dumbbell Press", sets: "4", reps: "10", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Decline Bench Press"], name: "Decline Bench Press", sets: "3", reps: "10-12", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Crossover", sets: "3", reps: "12-15", rest: "45s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Press Machine"], name: "Chest Press Machine", sets: "3", reps: "10", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pec Deck Machine"], name: "Pec Deck Machine", sets: "3", reps: "10", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Pullover"], name: "Dumbbell Pullover", sets: "3", reps: "12", rest: "60s" },
   ]
 };
@@ -212,12 +288,11 @@ export const MALE_CHEST_HOME: DayWorkout = {
   gender: 'male',
   location: 'home',
   exercises: [
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Up (Chest Focus)"], name: "Push-Up (Chest Focus)", sets: "4", reps: "15-20", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "15-20", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Push-Ups"], name: "Incline Push-Ups", sets: "4", reps: "15", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Decline Push-Ups"], name: "Decline Push-Ups", sets: "3", reps: "12-15", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wide Arm Push-Ups"], name: "Wide Arm Push-Ups", sets: "3", reps: "15", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Dips (Chair)"], name: "Chest Dips (Chair)", sets: "3", reps: "12", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Explosive Push-Ups"], name: "Explosive Push-Ups", sets: "2", reps: "10", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wide-Grip Push-Ups"], name: "Wide-Grip Push-Ups", sets: "3", reps: "15", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Dips"], name: "Chest Dips", sets: "3", reps: "12", rest: "60s" },
   ]
 };
 
@@ -226,12 +301,11 @@ export const FEMALE_CHEST_GYM: DayWorkout = {
   gender: 'female',
   location: 'gym',
   exercises: [
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Chest Press (Machine or DB)"], name: "Incline Chest Press (Machine or DB)", sets: "3", reps: "12", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Dumbbell Press"], name: "Incline Dumbbell Press", sets: "3", reps: "12", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pec Deck Machine"], name: "Pec Deck Machine", sets: "3", reps: "12-15", rest: "45s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Flat Dumbbell Press"], name: "Flat Dumbbell Press", sets: "3", reps: "10-12", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Fly"], name: "Cable Fly", sets: "3", reps: "15", rest: "45s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Press Machine"], name: "Chest Press Machine", sets: "3", reps: "10", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Cable Fly"], name: "Incline Cable Fly", sets: "3", reps: "12-15", rest: "45s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Crossover", sets: "3", reps: "15", rest: "45s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "Max", rest: "60s" },
   ]
 };
 
@@ -241,11 +315,9 @@ export const FEMALE_CHEST_HOME: DayWorkout = {
   location: 'home',
   exercises: [
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wall Push-Ups"], name: "Wall Push-Ups", sets: "3", reps: "20", rest: "45s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Knee Push-Ups"], name: "Knee Push-Ups", sets: "3", reps: "15", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Push-Ups (Bench/Chair)"], name: "Incline Push-Ups (Bench/Chair)", sets: "3", reps: "15", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "12-15", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Floor Press (If available)"], name: "Dumbbell Floor Press (If available)", sets: "3", reps: "12", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Squeeze (with Towel)"], name: "Chest Squeeze (with Towel)", sets: "3", reps: "15", rest: "45s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "Max on knees", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Push-Ups"], name: "Incline Push-Ups", sets: "3", reps: "15", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wide-Grip Push-Ups"], name: "Wide-Grip Push-Ups", sets: "3", reps: "Max on knees", rest: "60s" },
   ]
 };
 
@@ -269,11 +341,9 @@ export const MALE_BACK_HOME: DayWorkout = {
     location: 'home',
     exercises: [
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Pull-Ups'], name: 'Pull-Ups', sets: '5', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Inverted Rows (using table)'], name: 'Inverted Rows (using table)', sets: '4', reps: '10-15', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Inverted Rows'], name: 'Inverted Rows', sets: '4', reps: '10-15', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Superman Hold'], name: 'Superman Hold', sets: '3', reps: '30s hold', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Towel Rows'], name: 'Towel Rows', sets: '4', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Prone Cobra'], name: 'Prone Cobra', sets: '3', reps: '15', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Reverse Snow Angels'], name: 'Reverse Snow Angels', sets: '3', reps: '20', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['T-Bar Row'], name: 'Towel Rows', sets: '4', reps: '15-20', rest: '45s'},
     ],
 };
 
@@ -282,12 +352,11 @@ export const FEMALE_BACK_GYM: DayWorkout = {
     gender: 'female',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Assisted Pull-Ups'], name: 'Assisted Pull-Ups', sets: '4', reps: '8-12', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Pull-Ups'], name: 'Assisted Pull-Ups', sets: '4', reps: '8-12', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lat Pulldowns'], name: 'Lat Pulldowns', sets: '4', reps: '12-15', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Single Arm Dumbbell Row'], name: 'Single Arm Dumbbell Row', sets: '3', reps: '12/arm', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Back Extensions (Hyperextensions)'], name: 'Back Extensions (Hyperextensions)', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Back Extensions'], name: 'Back Extensions', sets: '3', reps: '15-20', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Seated Cable Row'], name: 'Seated Cable Row', sets: '3', reps: '15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bent Over Dumbbell Reverse Flys'], name: 'Bent Over Dumbbell Reverse Flys', sets: '3', reps: '15-20', rest: '30s'},
     ],
 };
 
@@ -297,11 +366,8 @@ export const FEMALE_BACK_HOME: DayWorkout = {
     location: 'home',
     exercises: [
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Superman Hold'], name: 'Superman Hold', sets: '4', reps: '20-30s hold', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Inverted Rows (using table)'], name: 'Inverted Rows (using table)', sets: '4', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Prone Arm Lifts (Y-T-W)'], name: 'Prone Arm Lifts (Y-T-W)', sets: '3', reps: '15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Towel Rows'], name: 'Towel Rows', sets: '4', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cat-Cow Stretch'], name: 'Cat-Cow Stretch', sets: '3', reps: '10-12', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bird Dog'], name: 'Bird Dog', sets: '3', reps: '15/side', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Inverted Rows'], name: 'Inverted Rows', sets: '4', reps: 'Max', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Good Mornings'], name: 'Prone Arm Lifts (Y-T-W)', sets: '3', reps: '15', rest: '45s'},
     ],
 };
 
@@ -310,12 +376,11 @@ export const MALE_ARMS_GYM: DayWorkout = {
     gender: 'male',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Barbell Curl'], name: 'Barbell Curl', sets: '4', reps: '8-10', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Incline Dumbbell Curls'], name: 'Incline Dumbbell Curls', sets: '3', reps: '10-12', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Dumbbell Curl'], name: 'Barbell Curl', sets: '4', reps: '8-10', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Incline Dumbbell Press'], name: 'Incline Dumbbell Curls', sets: '3', reps: '10-12', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hammer Curl'], name: 'Hammer Curl', sets: '3', reps: '12', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Skull Crushers'], name: 'Skull Crushers', sets: '4', reps: '8-10', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Overhead Cable Extension'], name: 'Overhead Cable Extension', sets: '3', reps: '12-15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wrist Curls'], name: 'Wrist Curls', sets: '3', reps: '15-20', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Overhead Extension'], name: 'Overhead Cable Extension', sets: '3', reps: '12-15', rest: '45s'},
     ],
 };
 
@@ -325,11 +390,10 @@ export const MALE_ARMS_HOME: DayWorkout = {
     location: 'home',
     exercises: [
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Close-Grip Push-Ups'], name: 'Close-Grip Push-Ups', sets: '4', reps: '15-20', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Triceps Dips'], name: 'Triceps Dips', sets: '4', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Overhead Triceps Extensions (Backpack/Weight)'], name: 'Overhead Triceps Extensions (Backpack/Weight)', sets: '3', reps: '15', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chest Dips'], name: 'Triceps Dips', sets: '4', reps: 'Max', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Overhead Extension'], name: 'Overhead Triceps Extensions (Backpack/Weight)', sets: '3', reps: '15', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chin-Ups'], name: 'Chin-Ups', sets: '4', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hammer Curls (Water Bottles/Dumbbells)'], name: 'Hammer Curls (Water Bottles/Dumbbells)', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wrist Squeezes (Towel/Stress Ball)'], name: 'Wrist Squeezes (Towel/Stress Ball)', sets: '3', reps: '30s hold', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hammer Curl'], name: 'Hammer Curls (Water Bottles/Dumbbells)', sets: '3', reps: '15-20', rest: '45s'},
     ],
 };
 
@@ -338,12 +402,11 @@ export const FEMALE_ARMS_GYM: DayWorkout = {
     gender: 'female',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Triceps Pushdowns'], name: 'Cable Triceps Pushdowns', sets: '3', reps: '15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Overhead DB Triceps Extension'], name: 'Overhead DB Triceps Extension', sets: '3', reps: '12-15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Triceps Dips'], name: 'Triceps Dips', sets: '3', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Bicep Curls'], name: 'Cable Bicep Curls', sets: '3', reps: '15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Incline Hammer Curls'], name: 'Incline Hammer Curls', sets: '3', reps: '12-15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Reverse Curls'], name: 'Reverse Curls', sets: '3', reps: '15', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Triceps Pushdown'], name: 'Cable Triceps Pushdowns', sets: '3', reps: '15', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Overhead Extension'], name: 'Overhead DB Triceps Extension', sets: '3', reps: '12-15', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chest Dips'], name: 'Triceps Dips', sets: '3', reps: 'Max', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Dumbbell Curl'], name: 'Cable Bicep Curls', sets: '3', reps: '15', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hammer Curl'], name: 'Incline Hammer Curls', sets: '3', reps: '12-15', rest: '45s'},
     ],
 };
 
@@ -352,12 +415,11 @@ export const FEMALE_ARMS_HOME: DayWorkout = {
     gender: 'female',
     location: 'home',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Diamond Push-Ups'], name: 'Diamond Push-Ups', sets: '3', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Triceps Dips'], name: 'Triceps Dips', sets: '3', reps: '15-20', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Overhead Water Bottle Extensions'], name: 'Overhead Water Bottle Extensions', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Resistance Band Curls'], name: 'Resistance Band Curls', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hammer Curls (Water Bottles)'], name: 'Hammer Curls (Water Bottles)', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Reverse Band Curls'], name: 'Reverse Band Curls', sets: '3', reps: '15-20', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Close-Grip Push-Ups'], name: 'Diamond Push-Ups', sets: '3', reps: 'Max', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chest Dips'], name: 'Triceps Dips', sets: '3', reps: '15-20', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Overhead Extension'], name: 'Overhead Water Bottle Extensions', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Dumbbell Curl'], name: 'Resistance Band Curls', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hammer Curl'], name: 'Hammer Curls (Water Bottles)', sets: '3', reps: '15-20', rest: '45s'},
     ],
 };
 
@@ -366,11 +428,11 @@ export const MALE_ABS_GYM: DayWorkout = {
     gender: 'male',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Rope Crunch'], name: 'Cable Rope Crunch', sets: '4', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Crossover'], name: 'Cable Rope Crunch', sets: '4', reps: '15-20', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hanging Leg Raises'], name: 'Hanging Leg Raises', sets: '4', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Roman Chair Sit-Ups'], name: 'Roman Chair Sit-Ups', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Weighted Russian Twists'], name: 'Weighted Russian Twists', sets: '3', reps: '20/side', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Decline Crunch'], name: 'Decline Crunch', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Back Extensions'], name: 'Roman Chair Sit-Ups', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Russian Twists'], name: 'Weighted Russian Twists', sets: '3', reps: '20/side', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Crunches'], name: 'Decline Crunch', sets: '3', reps: '15-20', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Plank'], name: 'Plank', sets: '3', reps: '60s hold', rest: '30s'},
     ],
 };
@@ -381,11 +443,11 @@ export const MALE_ABS_HOME: DayWorkout = {
     location: 'home',
     exercises: [
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Crunches'], name: 'Crunches', sets: '4', reps: '20-25', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hanging Knee Tucks'], name: 'Hanging Knee Tucks', sets: '4', reps: 'Max', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hanging Leg Raises'], name: 'Hanging Knee Tucks', sets: '4', reps: 'Max', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bicycle Crunches'], name: 'Bicycle Crunches', sets: '3', reps: '20/side', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Russian Twists (Bodyweight)'], name: 'Russian Twists (Bodyweight)', sets: '3', reps: '20/side', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Russian Twists'], name: 'Russian Twists (Bodyweight)', sets: '3', reps: '20/side', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Raises'], name: 'Leg Raises', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Side Plank (Both Sides)'], name: 'Side Plank (Both Sides)', sets: '3', reps: '45s hold', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Side Plank'], name: 'Side Plank (Both Sides)', sets: '3', reps: '45s hold', rest: '30s'},
     ],
 };
 
@@ -394,11 +456,11 @@ export const FEMALE_ABS_GYM: DayWorkout = {
     gender: 'female',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Rope Crunch'], name: 'Cable Rope Crunch', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hanging Knee Raises'], name: 'Hanging Knee Raises', sets: '3', reps: '15-20', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Seated Ab Machine Crunch'], name: 'Seated Ab Machine Crunch', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Decline Sit-Ups'], name: 'Decline Sit-Ups', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Stability Ball Pass'], name: 'Stability Ball Pass', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Crossover'], name: 'Cable Rope Crunch', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hanging Leg Raises'], name: 'Hanging Knee Raises', sets: '3', reps: '15-20', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Pec Deck Machine'], name: 'Seated Ab Machine Crunch', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Crunches'], name: 'Decline Sit-Ups', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Raises'], name: 'Stability Ball Pass', sets: '3', reps: '15-20', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Plank'], name: 'Plank', sets: '3', reps: '60s hold', rest: '30s'},
     ],
 };
@@ -410,9 +472,9 @@ export const FEMALE_ABS_HOME: DayWorkout = {
     exercises: [
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Crunches'], name: 'Crunches', sets: '3', reps: '20-25', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Raises'], name: 'Leg Raises', sets: '3', reps: '15-20', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Flutter Kicks'], name: 'Flutter Kicks', sets: '3', reps: '30s', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Raises'], name: 'Flutter Kicks', sets: '3', reps: '30s', rest: '30s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bicycle Crunches'], name: 'Bicycle Crunches', sets: '3', reps: '20/side', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Side Plank Hip Dips'], name: 'Side Plank Hip Dips', sets: '3', reps: '15/side', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Side Plank'], name: 'Side Plank Hip Dips', sets: '3', reps: '15/side', rest: '30s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Mountain Climbers'], name: 'Mountain Climbers', sets: '3', reps: '30s', rest: '30s'},
     ],
 };
@@ -422,10 +484,10 @@ export const MALE_SHOULDER_GYM_WORKOUT: DayWorkout = {
     gender: 'male',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Shoulder Press (Barbell or Dumbbell)'], name: 'Shoulder Press (Barbell or Dumbbell)', sets: '4', reps: '8-10', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Shoulder Press'], name: 'Shoulder Press (Barbell or Dumbbell)', sets: '4', reps: '8-10', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lateral Raises'], name: 'Lateral Raises', sets: '4', reps: '12-15', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Front Raises'], name: 'Front Raises', sets: '3', reps: '12-15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Face Pulls (Cable or Bands)'], name: 'Face Pulls (Cable or Bands)', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Face Pulls'], name: 'Face Pulls (Cable or Bands)', sets: '3', reps: '15-20', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Shrugs'], name: 'Shrugs', sets: '4', reps: '12-15', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Arnold Press'], name: 'Arnold Press', sets: '3', reps: '10-12', rest: '60s'},
     ],
@@ -437,11 +499,11 @@ export const MALE_SHOULDER_HOME_WORKOUT: DayWorkout = {
     location: 'home',
     exercises: [
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Pike Push-ups'], name: 'Pike Push-ups', sets: '4', reps: '10-15', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lateral Arm Circles (Small + Big)'], name: 'Lateral Arm Circles (Small + Big)', sets: '3', reps: '20/direction', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Elevated Pike Hold'], name: 'Elevated Pike Hold', sets: '3', reps: '30s hold', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wall Walks'], name: 'Wall Walks', sets: '3', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lateral Arm Raises (Using Water Bottles/Bands)'], name: 'Lateral Arm Raises (Using Water Bottles/Bands)', sets: '4', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Rear Delt Pulses (Bodyweight or Light Weights)'], name: 'Rear Delt Pulses (Bodyweight or Light Weights)', sets: '3', reps: '20-25', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Arm Circles'], name: 'Lateral Arm Circles (Small + Big)', sets: '3', reps: '20/direction', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Plank'], name: 'Elevated Pike Hold', sets: '3', reps: '30s hold', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Push-Ups'], name: 'Wall Walks', sets: '3', reps: 'Max', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lateral Raises'], name: 'Lateral Arm Raises (Using Water Bottles/Bands)', sets: '4', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Front Raises'], name: 'Rear Delt Pulses (Bodyweight or Light Weights)', sets: '3', reps: '20-25', rest: '30s'},
     ],
 };
 
@@ -450,7 +512,7 @@ export const FEMALE_SHOULDER_GYM_WORKOUT: DayWorkout = {
     gender: 'female',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['DB Shoulder Press'], name: 'DB Shoulder Press', sets: '4', reps: '12-15', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Shoulder Press'], name: 'DB Shoulder Press', sets: '4', reps: '12-15', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lateral Raises'], name: 'Lateral Raises', sets: '4', reps: '15-20', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Front Raises'], name: 'Front Raises', sets: '3', reps: '15', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Face Pulls'], name: 'Face Pulls', sets: '3', reps: '15-20', rest: '45s'},
@@ -465,11 +527,11 @@ export const FEMALE_SHOULDER_HOME_WORKOUT: DayWorkout = {
     location: 'home',
     exercises: [
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Pike Push-ups'], name: 'Pike Push-ups', sets: '3', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lateral Arm Raises (Using Water Bottles/Bands)'], name: 'Lateral Arm Raises (Using Water Bottles/Bands)', sets: '4', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Front Raises (Bottles/Bands)'], name: 'Front Raises (Bottles/Bands)', sets: '3', reps: '15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Rear Delt Pulses (Bodyweight or Light Weights)'], name: 'Rear Delt Pulses (Bodyweight or Light Weights)', sets: '3', reps: '20-25', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Plank to Push-Up'], name: 'Plank to Push-Up', sets: '3', reps: '10/side', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wall Walks'], name: 'Wall Walks', sets: '3', reps: 'Max', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lateral Raises'], name: 'Lateral Arm Raises (Using Water Bottles/Bands)', sets: '4', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Front Raises'], name: 'Front Raises (Bottles/Bands)', sets: '3', reps: '15', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Front Raises'], name: 'Rear Delt Pulses (Bodyweight or Light Weights)', sets: '3', reps: '20-25', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Plank'], name: 'Plank to Push-Up', sets: '3', reps: '10/side', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Push-Ups'], name: 'Wall Walks', sets: '3', reps: 'Max', rest: '60s'},
     ],
 };
 
@@ -478,11 +540,11 @@ export const MALE_LEG_GYM_WORKOUT: DayWorkout = {
     gender: 'male',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Barbell Back Squats'], name: 'Barbell Back Squats', sets: '4', reps: '8-10', rest: '90s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Barbell Back Squats', sets: '4', reps: '8-10', rest: '90s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Press'], name: 'Leg Press', sets: '4', reps: '10-12', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Romanian Deadlifts'], name: 'Romanian Deadlifts', sets: '3', reps: '10-12', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Extension'], name: 'Leg Extension', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Curl Machine'], name: 'Leg Curl Machine', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lunges'], name: 'Leg Extension', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hamstring Stretch'], name: 'Leg Curl Machine', sets: '3', reps: '15-20', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Calf Raises'], name: 'Calf Raises', sets: '4', reps: '15-20', rest: '30s'},
     ],
 };
@@ -495,8 +557,8 @@ export const MALE_LEG_HOME_WORKOUT: DayWorkout = {
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Squats', sets: '5', reps: '20', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lunges'], name: 'Lunges', sets: '4', reps: '15/leg', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Bridges'], name: 'Glute Bridges', sets: '4', reps: '20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bulgarian Split Squats (Chair)'], name: 'Bulgarian Split Squats (Chair)', sets: '3', reps: '15/leg', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Single-Leg Calf Raises'], name: 'Single-Leg Calf Raises', sets: '4', reps: '20/leg', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bulgarian Split Squats'], name: 'Bulgarian Split Squats (Chair)', sets: '3', reps: '15/leg', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Calf Raises'], name: 'Single-Leg Calf Raises', sets: '4', reps: '20/leg', rest: '30s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Jump Squats'], name: 'Jump Squats', sets: '3', reps: '15-20', rest: '60s'},
     ],
 };
@@ -510,8 +572,8 @@ export const FEMALE_LEG_GYM_WORKOUT: DayWorkout = {
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hip Thrusts'], name: 'Hip Thrusts', sets: '4', reps: '12-15', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Press'], name: 'Leg Press', sets: '3', reps: '15-20', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Kickbacks'], name: 'Cable Kickbacks', sets: '3', reps: '15/leg', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Extension'], name: 'Leg Extension', sets: '3', reps: '15-20', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Seated Calf Raises'], name: 'Seated Calf Raises', sets: '4', reps: '15-20', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lunges'], name: 'Leg Extension', sets: '3', reps: '15-20', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Calf Raises'], name: 'Seated Calf Raises', sets: '4', reps: '15-20', rest: '30s'},
     ],
 };
 
@@ -521,10 +583,10 @@ export const FEMALE_LEG_HOME_WORKOUT: DayWorkout = {
     location: 'home',
     exercises: [
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Squats', sets: '4', reps: '20', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Bridge March'], name: 'Glute Bridge March', sets: '4', reps: '20/leg', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Bridges'], name: 'Glute Bridge March', sets: '4', reps: '20/leg', rest: '45s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lunges'], name: 'Lunges', sets: '3', reps: '15/leg', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Fire Hydrants'], name: 'Fire Hydrants', sets: '3', reps: '20/side', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Donkey Kicks'], name: 'Donkey Kicks', sets: '3', reps: '20/side', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Fire Hydrants', sets: '3', reps: '20/side', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Donkey Kicks', sets: '3', reps: '20/side', rest: '30s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Calf Raises'], name: 'Calf Raises', sets: '4', reps: '20-25', rest: '30s'},
     ],
 };
@@ -535,13 +597,13 @@ export const MALE_POSTURE_WORKOUT_PLAN: WorkoutSplit = {
         gender: 'male',
         location: 'home',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wall Slides'], name: 'Wall Slides', sets: '3', reps: '15', rest: '45s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Push-Ups'], name: 'Wall Slides', sets: '3', reps: '15', rest: '45s'},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Superman Hold'], name: 'Superman Hold', sets: '3', reps: '30s hold', rest: '45s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Kickbacks (Bodyweight or Band)'], name: 'Glute Kickbacks (Bodyweight or Band)', sets: '3', reps: '15/side', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Reverse Snow Angels (on floor)'], name: 'Reverse Snow Angels (on floor)', sets: '3', reps: '20', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Seated Chin Tucks'], name: 'Seated Chin Tucks', sets: '3', reps: '15', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Child’s Pose with Reach'], name: 'Child’s Pose with Reach', sets: '3', reps: '30s hold/side', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Butterfly Stretch'], name: 'Butterfly Stretch', sets: '2', reps: '60s hold', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Kickbacks'], name: 'Glute Kickbacks (Bodyweight or Band)', sets: '3', reps: '15/side', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Back Extensions'], name: 'Reverse Snow Angels (on floor)', sets: '3', reps: '20', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Crunches'], name: 'Seated Chin Tucks', sets: '3', reps: '15', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Child's Pose"], name: 'Child’s Pose with Reach', sets: '3', reps: '30s hold/side', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hamstring Stretch'], name: 'Butterfly Stretch', sets: '2', reps: '60s hold', rest: '30s'},
         ],
     },
 };
@@ -553,12 +615,12 @@ export const MALE_SEXUAL_WELLNESS_GYM: DayWorkout = {
     gender: 'male',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Pull-Throughs'], name: 'Cable Pull-Throughs', sets: '4', reps: '15', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Barbell Hip Thrusts'], name: 'Barbell Hip Thrusts', sets: '4', reps: '12-15', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Good Mornings'], name: 'Cable Pull-Throughs', sets: '4', reps: '15', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Barbell Hip Thrust'], name: 'Barbell Hip Thrusts', sets: '4', reps: '12-15', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Kettlebell Swings'], name: 'Kettlebell Swings', sets: '4', reps: '20', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hanging Leg Raises'], name: 'Hanging Leg Raises', sets: '3', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Standing Cable Hip Flexion'], name: 'Standing Cable Hip Flexion', sets: '3', reps: '15/side', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Controlled Box Jumps'], name: 'Controlled Box Jumps', sets: '3', reps: '10', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lunges'], name: 'Standing Cable Hip Flexion', sets: '3', reps: '15/side', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Box Jumps'], name: 'Controlled Box Jumps', sets: '3', reps: '10', rest: '60s'},
     ],
 };
 
@@ -567,12 +629,12 @@ export const MALE_SEXUAL_WELLNESS_HOME: DayWorkout = {
     gender: 'male',
     location: 'home',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bodyweight Glute Bridges'], name: 'Bodyweight Glute Bridges', sets: '4', reps: '20-25', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Pelvic Tilts'], name: 'Pelvic Tilts', sets: '3', reps: '20', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Bridges'], name: 'Bodyweight Glute Bridges', sets: '4', reps: '20-25', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Bridges'], name: 'Pelvic Tilts', sets: '3', reps: '20', rest: '30s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Squats', sets: '4', reps: '15-20', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Leg Raises'], name: 'Leg Raises', sets: '3', reps: 'Max', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Plank'], name: 'Plank', sets: '3', reps: '60s hold', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Fire Hydrants'], name: 'Fire Hydrants', sets: '3', reps: '15/side', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Fire Hydrants', sets: '3', reps: '15/side', rest: '30s'},
     ],
 };
 
@@ -581,12 +643,12 @@ export const FEMALE_SEXUAL_WELLNESS_GYM: DayWorkout = {
     gender: 'female',
     location: 'gym',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Sumo Deadlifts'], name: 'Sumo Deadlifts', sets: '4', reps: '10-12', rest: '90s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Abductions'], name: 'Cable Abductions', sets: '3', reps: '15/side', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Weighted Glute Bridges'], name: 'Weighted Glute Bridges', sets: '4', reps: '12-15', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Deadlifts'], name: 'Sumo Deadlifts', sets: '4', reps: '10-12', rest: '90s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cable Kickbacks'], name: 'Cable Abductions', sets: '3', reps: '15/side', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Bridges'], name: 'Weighted Glute Bridges', sets: '4', reps: '12-15', rest: '60s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Kettlebell Swings'], name: 'Kettlebell Swings', sets: '4', reps: '20', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hanging Knee Raises'], name: 'Hanging Knee Raises', sets: '3', reps: 'Max', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Stability Ball Plank'], name: 'Stability Ball Plank', sets: '3', reps: '60s hold', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Hanging Leg Raises'], name: 'Hanging Knee Raises', sets: '3', reps: 'Max', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Plank'], name: 'Stability Ball Plank', sets: '3', reps: '60s hold', rest: '30s'},
     ],
 };
 
@@ -595,11 +657,11 @@ export const FEMALE_SEXUAL_WELLNESS_HOME: DayWorkout = {
     gender: 'female',
     location: 'home',
     exercises: [
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bodyweight Glute Bridges'], name: 'Bodyweight Glute Bridges', sets: '4', reps: '20-25', rest: '45s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Pelvic Tilts'], name: 'Pelvic Tilts', sets: '3', reps: '20', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Sumo Squats'], name: 'Sumo Squats', sets: '4', reps: '15-20', rest: '60s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Fire Hydrants'], name: 'Fire Hydrants', sets: '3', reps: '15/side', rest: '30s'},
-        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Bird Dog'], name: 'Bird Dog', sets: '3', reps: '15/side', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Bridges'], name: 'Bodyweight Glute Bridges', sets: '4', reps: '20-25', rest: '45s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Glute Bridges'], name: 'Pelvic Tilts', sets: '3', reps: '20', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Sumo Squats', sets: '4', reps: '15-20', rest: '60s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Squats'], name: 'Fire Hydrants', sets: '3', reps: '15/side', rest: '30s'},
+        {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Back Extensions'], name: 'Bird Dog', sets: '3', reps: '15/side', rest: '30s'},
         {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Plank'], name: 'Plank', sets: '3', reps: '60s hold', rest: '30s'},
     ],
 };
@@ -610,12 +672,12 @@ export const MALE_FACIAL_WORKOUT_PLAN: WorkoutSplit = {
         gender: 'male',
         location: 'home',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Jawline Sharper (Massage Along Jaw)'], name: 'Jawline Sharper (Massage Along Jaw)', sets: '2', reps: '60s', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Vowel Mouth Stretch ("O"-"E")'], name: 'Vowel Mouth Stretch ("O"-"E")', sets: '3', reps: '15', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lion's Breath"], name: "Lion's Breath", sets: '3', reps: '10', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chin Tuck'], name: 'Chin Tuck', sets: '2', reps: '20', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Jaw Unlocker'], name: 'Jaw Unlocker', sets: '2', reps: '10/side', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cheek & Jawline Lifter'], name: 'Cheek & Jawline Lifter', sets: '3', reps: '15', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wrist Roll'], name: 'Jawline Sharper (Massage Along Jaw)', sets: '2', reps: '60s', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Elbow Circles'], name: 'Vowel Mouth Stretch ("O"-"E")', sets: '3', reps: '15', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Arm Circles"], name: "Lion's Breath", sets: '3', reps: '10', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chin-Ups'], name: 'Chin Tuck', sets: '2', reps: '20', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Jumping Jacks'], name: 'Jaw Unlocker', sets: '2', reps: '10/side', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chest Stretch'], name: 'Cheek & Jawline Lifter', sets: '3', reps: '15', rest: '30s'},
         ],
     },
 };
@@ -626,12 +688,12 @@ export const FEMALE_FACIAL_WORKOUT_PLAN: WorkoutSplit = {
         gender: 'female',
         location: 'home',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Gua Sha or Facial Massage (Jawline)'], name: 'Gua Sha or Facial Massage (Jawline)', sets: '1', reps: '2-3 mins', rest: 'N/A'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Kiss the Ceiling / \"Whistler\""], name: "Kiss the Ceiling / \"Whistler\"", sets: '3', reps: '15', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Vowel Mouth Stretch ("O"-"E")'], name: 'Vowel Mouth Stretch ("O"-"E")', sets: '3', reps: '15', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lion's Breath"], name: "Lion's Breath", sets: '3', reps: '10', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chin Tuck'], name: 'Chin Tuck', sets: '2', reps: '20', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Cheek & Jawline Lifter'], name: 'Cheek & Jawline Lifter', sets: '3', reps: '15', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wrist Roll'], name: 'Gua Sha or Facial Massage (Jawline)', sets: '1', reps: '2-3 mins', rest: 'N/A'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Elbow Circles"], name: "Kiss the Ceiling / \"Whistler\"", sets: '3', reps: '15', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Arm Circles'], name: 'Vowel Mouth Stretch ("O"-"E")', sets: '3', reps: '15', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jumping Jacks"], name: "Lion's Breath", sets: '3', reps: '10', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chin-Ups'], name: 'Chin Tuck', sets: '2', reps: '20', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chest Stretch'], name: 'Cheek & Jawline Lifter', sets: '3', reps: '15', rest: '30s'},
         ],
     },
 };
@@ -642,12 +704,12 @@ export const MALE_VOCAL_WORKOUT_PLAN: WorkoutSplit = {
         gender: 'male',
         location: 'home',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lip Trills'], name: 'Lip Trills', sets: '2', reps: '60s', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Humming Warm-Up'], name: 'Humming Warm-Up', sets: '2', reps: '60s', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Sirens (Low to High Pitch Glide)'], name: 'Sirens (Low to High Pitch Glide)', sets: '3', reps: '10-12 glides', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Sustain Note (Deep Chest Voice)'], name: 'Sustain Note (Deep Chest Voice)', sets: '3', reps: '15-20s hold', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Consonant Articulation (P-T-K-B-D-G)'], name: 'Consonant Articulation (P-T-K-B-D-G)', sets: '3', reps: '15 reps/combo', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Breath Control (Inhale 4s – Hold – Exhale 8s)'], name: 'Breath Control (Inhale 4s – Hold – Exhale 8s)', sets: '5', reps: 'cycles', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wrist Roll'], name: 'Lip Trills', sets: '2', reps: '60s', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Elbow Circles'], name: 'Humming Warm-Up', sets: '2', reps: '60s', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Arm Circles'], name: 'Sirens (Low to High Pitch Glide)', sets: '3', reps: '10-12 glides', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Jumping Jacks'], name: 'Sustain Note (Deep Chest Voice)', sets: '3', reps: '15-20s hold', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chin-Ups'], name: 'Consonant Articulation (P-T-K-B-D-G)', sets: '3', reps: '15 reps/combo', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chest Stretch'], name: 'Breath Control (Inhale 4s – Hold – Exhale 8s)', sets: '5', reps: 'cycles', rest: '30s'},
         ],
     },
 };
@@ -658,12 +720,12 @@ export const FEMALE_VOCAL_WORKOUT_PLAN: WorkoutSplit = {
         gender: 'female',
         location: 'home',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Lip Bubbles (Trills with Sound)'], name: 'Lip Bubbles (Trills with Sound)', sets: '2', reps: '60s', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Humming Glide (Nasal Resonance)'], name: 'Humming Glide (Nasal Resonance)', sets: '2', reps: '60s', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Octave Sirens (Smooth Pitch Slide)'], name: 'Octave Sirens (Smooth Pitch Slide)', sets: '3', reps: '10-12 glides', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sustain 'Ee' / 'Oo' Notes"], name: "Sustain 'Ee' / 'Oo' Notes", sets: '3', reps: '15s hold/vowel', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Vowel Chains (AEIOU transitions)'], name: 'Vowel Chains (AEIOU transitions)', sets: '3', reps: '10 transitions', rest: '30s'},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Breath Support Drill (4-4-8 breathing)'], name: 'Breath Support Drill (4-4-8 breathing)', sets: '5', reps: 'cycles', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Wrist Roll'], name: 'Lip Bubbles (Trills with Sound)', sets: '2', reps: '60s', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Elbow Circles'], name: 'Humming Glide (Nasal Resonance)', sets: '2', reps: '60s', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Arm Circles'], name: 'Octave Sirens (Smooth Pitch Slide)', sets: '3', reps: '10-12 glides', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jumping Jacks"], name: "Sustain 'Ee' / 'Oo' Notes", sets: '3', reps: '15s hold/vowel', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chin-Ups'], name: 'Vowel Chains (AEIOU transitions)', sets: '3', reps: '10 transitions', rest: '30s'},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA['Chest Stretch'], name: 'Breath Support Drill (4-4-8 breathing)', sets: '5', reps: 'cycles', rest: '30s'},
         ],
     },
 };
@@ -674,10 +736,10 @@ export const GENERAL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
     exercises: [
       { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Bench Press", sets: "3", reps: "8-10", rest: "60s" },
       { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Bench Press"], name: "Incline Bench Press", sets: "3", reps: "8-10", rest: "60s" },
-      { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Decline / Cable Fly"], name: "Decline / Cable Fly", sets: "3", reps: "12", rest: "60s" },
-      { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Machine Fly"], name: "Seated Machine Fly", sets: "3", reps: "15", rest: "45s" },
+      { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Flyes"], name: "Decline / Cable Fly", sets: "3", reps: "12", rest: "60s" },
+      { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pec Deck Machine"], name: "Seated Machine Fly", sets: "3", reps: "15", rest: "45s" },
       { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Triceps Pushdown"], name: "Triceps Pushdown", sets: "3", reps: "15", rest: "60s" },
-      { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Overhead Extension (Cable or Dumbbell)"], name: "Overhead Extension (Cable or Dumbbell)", sets: "3", reps: "12-15", rest: "60s" },
+      { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Overhead Extension"], name: "Overhead Extension (Cable or Dumbbell)", sets: "3", reps: "12-15", rest: "60s" },
     ]
   },
   Tuesday: {
@@ -704,9 +766,9 @@ export const GENERAL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
   Thursday: {
       focus: "Legs & Abs", gender: 'male', location: 'gym', day: 'Thursday',
       exercises: [
-          {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Back Squats"], name: "Barbell Back Squats", sets: "3", reps: "8-10", rest: "90s"},
+          {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Barbell Back Squats", sets: "3", reps: "8-10", rest: "90s"},
           {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Romanian Deadlifts"], name: "Romanian Deadlifts", sets: "3", reps: "10-12", rest: "60s"},
-          {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Walking Lunges"], name: "Dumbbell Walking Lunges", sets: "3", reps: "12/leg", rest: "60s"},
+          {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Dumbbell Walking Lunges", sets: "3", reps: "12/leg", rest: "60s"},
           {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15-20", rest: "30s"},
           {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "20", rest: "45s"},
           {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s hold", rest: "30s"},
@@ -730,7 +792,7 @@ export const GENERAL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
       focus: "Active Recovery", gender: 'male', location: 'gym', day: 'Sunday',
       exercises: [
           {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Walk"], name: "Incline Walk", sets: "1", reps: "30 min", rest: "N/A"},
-          {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Stretching / Foam rolling"], name: "Stretching / Foam rolling", sets: "1", reps: "15 min", rest: "N/A"},
+          {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Stretching / Foam rolling", sets: "1", reps: "15 min", rest: "N/A"},
       ],
   },
 };
@@ -739,11 +801,11 @@ export const GENERAL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Chest & Triceps", gender: 'male', location: 'home', day: 'Monday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Push-Ups"], name: "Incline Push-Ups", sets: "3", reps: "15-20", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Diamond Push-Ups"], name: "Diamond Push-Ups", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chair Dips"], name: "Chair Dips", sets: "3", reps: "15-20", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Bench Press"], name: "Incline Push-Ups", sets: "3", reps: "15-20", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Close-Grip Push-Ups"], name: "Diamond Push-Ups", sets: "3", reps: "Max", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Dips"], name: "Chair Dips", sets: "3", reps: "15-20", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Close-Grip Push-Ups"], name: "Close-Grip Push-Ups", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Overhead Triceps Extensions"], name: "Overhead Triceps Extensions", sets: "3", reps: "15-20", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Overhead Extension"], name: "Overhead Triceps Extensions", sets: "3", reps: "15-20", rest: "45s"},
         ],
     },
     Tuesday: {
@@ -751,9 +813,9 @@ export const GENERAL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Superman Hold"], name: "Superman Hold", sets: "3", reps: "30s", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Towel Rows"], name: "Towel Rows", sets: "3", reps: "15-20", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Reverse Snow Angels"], name: "Reverse Snow Angels", sets: "3", reps: "20", rest: "30s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Biceps Curls"], name: "Biceps Curls", sets: "3", reps: "15-20", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["T-Bar Row"], name: "Towel Rows", sets: "3", reps: "15-20", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Back Extensions"], name: "Reverse Snow Angels", sets: "3", reps: "20", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Curl"], name: "Biceps Curls", sets: "3", reps: "15-20", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chin-Ups"], name: "Chin-Ups", sets: "3", reps: "Max", rest: "60s"},
         ],
     },
@@ -763,7 +825,7 @@ export const GENERAL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Squats", sets: "3", reps: "20", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Lunges", sets: "3", reps: "15/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Glute Bridges"], name: "Glute Bridges", sets: "3", reps: "20", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wall Sit"], name: "Wall Sit", sets: "3", reps: "60s", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Wall Sit", sets: "3", reps: "60s", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20", rest: "30s"},
         ],
     },
@@ -771,8 +833,8 @@ export const GENERAL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Shoulders, Arms & Abs", gender: 'male', location: 'home', day: 'Thursday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chair Dips"], name: "Chair Dips", sets: "3", reps: "15-20", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Biceps Curls"], name: "Biceps Curls", sets: "3", reps: "15-20", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Dips"], name: "Chair Dips", sets: "3", reps: "15-20", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Curl"], name: "Biceps Curls", sets: "3", reps: "15-20", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "20", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s", rest: "30s"},
         ],
@@ -804,16 +866,16 @@ export const GENERAL_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Full Body Strength", gender: 'female', location: 'gym', day: 'Monday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Squats", sets: "3", reps: "12-15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Bench Press"], name: "Dumbbell Bench Press", sets: "3", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Dumbbell Bench Press", sets: "3", reps: "12-15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lat Pulldowns"], name: "Lat Pulldowns", sets: "3", reps: "12-15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "12-15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "15-20", rest: "45s"},
         ],
     },
     Tuesday: {
         focus: "Cardio & Core", gender: 'female', location: 'gym', day: 'Tuesday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Treadmill Sprints (Interval)"], name: "Treadmill Sprints (Interval)", sets: "1", reps: "20 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Treadmill Sprints"], name: "Treadmill Sprints (Interval)", sets: "1", reps: "20 min", rest: "N/A"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side", rest: "45s"},
         ],
@@ -830,18 +892,18 @@ export const GENERAL_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
     Thursday: {
         focus: "Upper Body & Arms", gender: 'female', location: 'gym', day: 'Thursday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Assisted Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Cable Row", sets: "3", reps: "12-15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Raises"], name: "Lateral Raises", sets: "3", reps: "15-20", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Bicep Curls"], name: "Cable Bicep Curls", sets: "3", reps: "15-20", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Triceps Rope Pushdowns"], name: "Triceps Rope Pushdowns", sets: "3", reps: "15-20", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Curl"], name: "Cable Bicep Curls", sets: "3", reps: "15-20", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Triceps Pushdown"], name: "Triceps Rope Pushdowns", sets: "3", reps: "15-20", rest: "45s"},
         ],
     },
     Friday: {
         focus: "Active Recovery", gender: 'female', location: 'gym', day: 'Friday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Full-Body Dynamic Stretch"], name: "Full-Body Dynamic Stretch", sets: "1", reps: "15 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Walk or Cycling"], name: "Incline Walk or Cycling", sets: "1", reps: "30 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Full-Body Dynamic Stretch", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Walk"], name: "Incline Walk or Cycling", sets: "1", reps: "30 min", rest: "N/A"},
         ],
     },
     Saturday: {
@@ -880,24 +942,24 @@ export const GENERAL_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Lower Body & Glutes", gender: 'female', location: 'home', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Glute Bridges"], name: "Glute Bridges", sets: "3", reps: "20", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sumo Squats"], name: "Sumo Squats", sets: "3", reps: "15-20", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Fire Hydrants"], name: "Fire Hydrants", sets: "3", reps: "20/side", rest: "30s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Donkey Kicks"], name: "Donkey Kicks", sets: "3", reps: "20/side", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Sumo Squats", sets: "3", reps: "15-20", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Fire Hydrants", sets: "3", reps: "20/side", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Donkey Kicks", sets: "3", reps: "20/side", rest: "30s"},
         ],
     },
     Thursday: {
         focus: "Upper Body & Core", gender: 'female', location: 'home', day: 'Thursday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Push-Ups"], name: "Incline Push-Ups", sets: "3", reps: "15-20", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Resistance Band Rows"], name: "Resistance Band Rows", sets: "3", reps: "15-20", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bird Dog"], name: "Bird Dog", sets: "3", reps: "15/side", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Bench Press"], name: "Incline Push-Ups", sets: "3", reps: "15-20", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Rows"], name: "Resistance Band Rows", sets: "3", reps: "15-20", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Back Extensions"], name: "Bird Dog", sets: "3", reps: "15/side", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "15-20", rest: "45s"},
         ],
     },
     Friday: {
         focus: "Active Recovery", gender: 'female', location: 'home', day: 'Friday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga or Stretch Class"], name: "Yoga or Stretch Class", sets: "1", reps: "20-30 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga or Stretch Class", sets: "1", reps: "20-30 min", rest: "N/A"},
         ],
     },
     Saturday: {
@@ -919,10 +981,10 @@ export const CRICKET_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
     Monday: {
         focus: "Lower Body Power & Agility", gender: 'male', location: 'gym', day: 'Monday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Back Squats"], name: "Barbell Back Squats", sets: "4", reps: "8-10", rest: "90s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Barbell Back Squats", sets: "4", reps: "8-10", rest: "90s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "8-10", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges with Dumbbells"], name: "Walking Lunges with Dumbbells", sets: "3", reps: "12/leg", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press Machine"], name: "Leg Press Machine", sets: "3", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges with Dumbbells", sets: "3", reps: "12/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press Machine", sets: "3", reps: "12-15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15-20", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "3", reps: "5 min", rest: "60s"},
         ],
@@ -933,15 +995,15 @@ export const CRICKET_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Bench Press", sets: "4", reps: "8-10", rest: "90s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "4", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Cable Row", sets: "3", reps: "10-12", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "10-12", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "10-12", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Slams", sets: "3", reps: "15", rest: "45s"},
         ],
     },
     Wednesday: {
         focus: "Core & Rotational Strength", gender: 'male', location: 'gym', day: 'Wednesday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Woodchoppers"], name: "Cable Woodchoppers", sets: "3", reps: "12/side", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Weighted)"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Woodchoppers", sets: "3", reps: "12/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Leg Raises", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15-20", rest: "45s"},
@@ -953,15 +1015,15 @@ export const CRICKET_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Power Cleans"], name: "Power Cleans", sets: "5", reps: "3-5", rest: "120s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Kettlebell Swings"], name: "Kettlebell Swings", sets: "4", reps: "20", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sled Push"], name: "Sled Push", sets: "4", reps: "20m", rest: "90s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Treadmill Sprints (Interval)"], name: "Treadmill Sprints (Interval)", sets: "5", reps: "30s on, 60s off", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Treadmill Sprints"], name: "Treadmill Sprints (Interval)", sets: "5", reps: "30s on, 60s off", rest: "N/A"},
         ],
     },
     Friday: {
         focus: "Mobility & Injury Prevention", gender: 'male', location: 'gym', day: 'Friday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hip Mobility Drills"], name: "Hip Mobility Drills", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Mobility"], name: "Shoulder Mobility", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling (Full Body)"], name: "Foam Rolling (Full Body)", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Hip Mobility Drills", sets: "1", reps: "10 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Shoulder Mobility", sets: "1", reps: "10 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling (Full Body)", sets: "1", reps: "15 min", rest: "N/A"},
         ],
     },
     Saturday: {
@@ -978,8 +1040,8 @@ export const CRICKET_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Lower Body Power & Agility", gender: 'male', location: 'home', day: 'Monday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "20/leg", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats (Chair)"], name: "Bulgarian Split Squats (Chair)", sets: "3", reps: "15/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "20/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats"], name: "Bulgarian Split Squats (Chair)", sets: "3", reps: "15/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Glute Bridges"], name: "Glute Bridges", sets: "3", reps: "20", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "3", reps: "5 min", rest: "60s"},
@@ -990,7 +1052,7 @@ export const CRICKET_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "4", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows (using table)"], name: "Inverted Rows (using table)", sets: "3", reps: "15-20", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows"], name: "Inverted Rows (using table)", sets: "3", reps: "15-20", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15-20", rest: "60s"},
         ],
@@ -998,28 +1060,28 @@ export const CRICKET_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
     Wednesday: {
         focus: "Core & Rotational Strength", gender: 'male', location: 'home', day: 'Wednesday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Bodyweight)"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank with Shoulder Taps"], name: "Plank with Shoulder Taps", sets: "3", reps: "20/side", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank (each side)"], name: "Side Plank (each side)", sets: "3", reps: "45s", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank with Shoulder Taps", sets: "3", reps: "20/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank (each side)", sets: "3", reps: "45s", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Superman Hold"], name: "Superman Hold", sets: "3", reps: "30s", rest: "30s"},
         ],
     },
     Thursday: {
         focus: "Explosive Power & Conditioning", gender: 'male', location: 'home', day: 'Thursday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Broad Jumps"], name: "Broad Jumps", sets: "4", reps: "10-12", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "4", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sprint Drills"], name: "Sprint Drills", sets: "5", reps: "50m", rest: "90s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Broad Jumps", sets: "4", reps: "10-12", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "4", reps: "15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Sprint Drills", sets: "5", reps: "50m", rest: "90s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "3", reps: "60s", rest: "30s"},
         ],
     },
     Friday: {
         focus: "Mobility & Injury Prevention", gender: 'male', location: 'home', day: 'Friday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hip Mobility Drills"], name: "Hip Mobility Drills", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Mobility"], name: "Shoulder Mobility", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling (Full Body)"], name: "Foam Rolling (Full Body)", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Hip Mobility Drills", sets: "1", reps: "10 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Shoulder Mobility", sets: "1", reps: "10 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling (Full Body)", sets: "1", reps: "15 min", rest: "N/A"},
         ],
     },
     Saturday: {
@@ -1038,7 +1100,7 @@ export const CRICKET_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Goblet Squats"], name: "Goblet Squats", sets: "4", reps: "12-15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10-12", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Romanian Deadlifts"], name: "Romanian Deadlifts", sets: "3", reps: "12-15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press Machine"], name: "Leg Press Machine", sets: "3", reps: "15-20", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press Machine", sets: "3", reps: "15-20", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15-20", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "3", reps: "5 min", rest: "60s"},
         ],
@@ -1046,19 +1108,19 @@ export const CRICKET_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
     Tuesday: {
         focus: "Upper Body Strength & Power", gender: 'female', location: 'gym', day: 'Tuesday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Bench Press"], name: "Dumbbell Bench Press", sets: "4", reps: "12-15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Assisted Pull-Ups"], name: "Assisted Pull-Ups", sets: "4", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["One-Arm Cable Row"], name: "One-Arm Cable Row", sets: "3", reps: "12/side", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Dumbbell Bench Press", sets: "4", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Assisted Pull-Ups", sets: "4", reps: "Max", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Single Arm Dumbbell Row"], name: "One-Arm Cable Row", sets: "3", reps: "12/side", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "12-15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Slams", sets: "3", reps: "15", rest: "45s"},
         ],
     },
     Wednesday: {
         focus: "Core & Rotational Strength", gender: 'female', location: 'gym', day: 'Wednesday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Woodchoppers"], name: "Cable Woodchoppers", sets: "3", reps: "15/side", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Weighted)"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Knee Raises"], name: "Hanging Knee Raises", sets: "3", reps: "Max", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Woodchoppers", sets: "3", reps: "15/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Knee Raises", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15-20", rest: "45s"},
         ],
@@ -1068,15 +1130,15 @@ export const CRICKET_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Kettlebell Swings"], name: "Kettlebell Swings", sets: "4", reps: "20", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Battle Ropes"], name: "Battle Ropes", sets: "4", reps: "30s", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bike Intervals"], name: "Bike Intervals", sets: "5", reps: "30s on, 60s off", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Treadmill Sprints"], name: "Bike Intervals", sets: "5", reps: "30s on, 60s off", rest: "N/A"},
         ],
     },
     Friday: {
         focus: "Mobility & Injury Prevention", gender: 'female', location: 'gym', day: 'Friday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hip Mobility Drills"], name: "Hip Mobility Drills", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Mobility"], name: "Shoulder Mobility", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling (Full Body)"], name: "Foam Rolling (Full Body)", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Hip Mobility Drills", sets: "1", reps: "10 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Shoulder Mobility", sets: "1", reps: "10 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling (Full Body)", sets: "1", reps: "15 min", rest: "N/A"},
         ],
     },
     Saturday: {
@@ -1093,7 +1155,7 @@ export const CRICKET_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Lower Body Power & Agility", gender: 'female', location: 'home', day: 'Monday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "20/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "20/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Glute Bridges"], name: "Glute Bridges", sets: "3", reps: "20", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "3", reps: "5 min", rest: "60s"},
@@ -1103,7 +1165,7 @@ export const CRICKET_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Upper Body Strength & Power", gender: 'female', location: 'home', day: 'Tuesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows (using table)"], name: "Inverted Rows (using table)", sets: "3", reps: "15-20", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows"], name: "Inverted Rows (using table)", sets: "3", reps: "15-20", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15-20", rest: "60s"},
         ],
@@ -1111,28 +1173,28 @@ export const CRICKET_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
     Wednesday: {
         focus: "Core & Rotational Strength", gender: 'female', location: 'home', day: 'Wednesday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Bodyweight)"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank with Shoulder Taps"], name: "Plank with Shoulder Taps", sets: "3", reps: "20/side", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank (each side)"], name: "Side Plank (each side)", sets: "3", reps: "45s", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank with Shoulder Taps", sets: "3", reps: "20/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank (each side)", sets: "3", reps: "45s", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Superman Hold"], name: "Superman Hold", sets: "3", reps: "30s", rest: "30s"},
         ],
     },
     Thursday: {
         focus: "Explosive Power & Conditioning", gender: 'female', location: 'home', day: 'Thursday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Broad Jumps"], name: "Broad Jumps", sets: "4", reps: "10-12", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "4", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sprint Drills"], name: "Sprint Drills", sets: "5", reps: "50m", rest: "90s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Broad Jumps", sets: "4", reps: "10-12", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "4", reps: "15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Sprint Drills", sets: "5", reps: "50m", rest: "90s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "3", reps: "60s", rest: "30s"},
         ],
     },
     Friday: {
         focus: "Mobility & Injury Prevention", gender: 'female', location: 'home', day: 'Friday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hip Mobility Drills"], name: "Hip Mobility Drills", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Mobility"], name: "Shoulder Mobility", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling (Full Body)"], name: "Foam Rolling (Full Body)", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Hip Mobility Drills", sets: "1", reps: "10 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Shoulder Mobility", sets: "1", reps: "10 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling (Full Body)", sets: "1", reps: "15 min", rest: "N/A"},
         ],
     },
     Saturday: {
@@ -1149,9 +1211,9 @@ export const BADMINTON_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
     Monday: {
         focus: "Lower Body Explosiveness", gender: 'male', location: 'gym', day: 'Monday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Back Squats"], name: "Barbell Back Squats", sets: "4", reps: "8", rest: "90s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Barbell Back Squats", sets: "4", reps: "8", rest: "90s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "3", reps: "12", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges with Dumbbells"], name: "Walking Lunges with Dumbbells", sets: "3", reps: "10/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges with Dumbbells", sets: "3", reps: "10/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15-20", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10", rest: "60s"},
         ],
@@ -1161,18 +1223,18 @@ export const BADMINTON_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push Press"], name: "Push Press", sets: "4", reps: "8-10", rest: "90s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Rotational Slams"], name: "Medicine Ball Rotational Slams", sets: "3", reps: "10/side", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Rotational Slams", sets: "3", reps: "10/side", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roller"], name: "Wrist Roller", sets: "3", reps: "Max", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roll"], name: "Wrist Roller", sets: "3", reps: "Max", rest: "45s"},
         ],
     },
     Wednesday: {
         focus: "Core Stability & Agility", gender: 'male', location: 'gym', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Weighted)"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Leg Raises", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank (each side)"], name: "Side Plank (each side)", sets: "3", reps: "45s hold", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank (each side)", sets: "3", reps: "45s hold", rest: "30s"},
         ],
     },
     Thursday: {
@@ -1204,9 +1266,9 @@ export const BADMINTON_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Lower Body Explosiveness", gender: 'male', location: 'home', day: 'Monday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "20/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "20/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20", rest: "30s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "4", reps: "12", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "4", reps: "12", rest: "60s"},
         ],
     },
     Tuesday: {
@@ -1215,23 +1277,23 @@ export const BADMINTON_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "4", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Curls"], name: "Wrist Curls", sets: "3", reps: "20", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roll"], name: "Wrist Curls", sets: "3", reps: "20", rest: "30s"},
         ],
     },
     Wednesday: {
         focus: "Core Stability & Agility", gender: 'male', location: 'home', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Bodyweight)"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank (each side)"], name: "Side Plank (each side)", sets: "3", reps: "45s hold", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank (each side)", sets: "3", reps: "45s hold", rest: "30s"},
         ],
     },
     Thursday: {
         focus: "Active Recovery", gender: 'male', location: 'home', day: 'Thursday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Stretching"], name: "Stretching", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Stretching", sets: "1", reps: "15 min", rest: "N/A"},
         ],
     },
     Friday: {
@@ -1257,7 +1319,7 @@ export const BADMINTON_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Goblet Squats"], name: "Goblet Squats", sets: "4", reps: "12-15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "3", reps: "12", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges with Dumbbells"], name: "Walking Lunges with Dumbbells", sets: "3", reps: "12/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges with Dumbbells", sets: "3", reps: "12/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15-20", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10", rest: "60s"},
         ],
@@ -1265,20 +1327,20 @@ export const BADMINTON_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
     Tuesday: {
         focus: "Upper Body Power & Shoulders", gender: 'female', location: 'gym', day: 'Tuesday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "4", reps: "12-15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Assisted Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Rotational Slams"], name: "Medicine Ball Rotational Slams", sets: "3", reps: "12/side", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "4", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Rotational Slams", sets: "3", reps: "12/side", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roller"], name: "Wrist Roller", sets: "3", reps: "Max", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roll"], name: "Wrist Roller", sets: "3", reps: "Max", rest: "45s"},
         ],
     },
     Wednesday: {
         focus: "Core Stability & Agility", gender: 'female', location: 'gym', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Weighted)"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Knee Raises"], name: "Hanging Knee Raises", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank (each side)"], name: "Side Plank (each side)", sets: "3", reps: "45s hold", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Knee Raises", sets: "3", reps: "Max", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank (each side)", sets: "3", reps: "45s hold", rest: "30s"},
         ],
     },
     Thursday: {
@@ -1310,9 +1372,9 @@ export const BADMINTON_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Lower Body Explosiveness", gender: 'female', location: 'home', day: 'Monday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "20/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "20/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20", rest: "30s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "4", reps: "12", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "4", reps: "12", rest: "60s"},
         ],
     },
     Tuesday: {
@@ -1321,23 +1383,23 @@ export const BADMINTON_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "4", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Curls"], name: "Wrist Curls", sets: "3", reps: "20", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roll"], name: "Wrist Curls", sets: "3", reps: "20", rest: "30s"},
         ],
     },
     Wednesday: {
         focus: "Core Stability & Agility", gender: 'female', location: 'home', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Bodyweight)"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank (each side)"], name: "Side Plank (each side)", sets: "3", reps: "45s hold", rest: "30s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank (each side)", sets: "3", reps: "45s hold", rest: "30s"},
         ],
     },
     Thursday: {
         focus: "Active Recovery", gender: 'female', location: 'home', day: 'Thursday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Stretching"], name: "Stretching", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Stretching", sets: "1", reps: "15 min", rest: "N/A"},
         ],
     },
     Friday: {
@@ -1362,7 +1424,7 @@ export const FOOTBALL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
     Monday: {
         focus: "Lower Body Strength & Power", gender: 'male', location: 'gym', day: 'Monday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Back Squats"], name: "Barbell Back Squats", sets: "4", reps: "6-8", rest: "90s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Barbell Back Squats", sets: "4", reps: "6-8", rest: "90s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Romanian Deadlifts"], name: "Romanian Deadlifts", sets: "3", reps: "8-10", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "10-12", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "8", rest: "60s"},
@@ -1373,16 +1435,16 @@ export const FOOTBALL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Bench Press", sets: "4", reps: "6-8", rest: "90s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "8-10", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bent Over Rows"], name: "Bent Over Rows", sets: "3", reps: "8-10", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "8-10", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Rows"], name: "Bent Over Rows", sets: "3", reps: "8-10", rest: "60s"},
         ],
     },
     Wednesday: {
         focus: "Agility, Speed & Core", gender: 'male', location: 'gym', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints (Short Distance)"], name: "Cone Sprints (Short Distance)", sets: "5", reps: "20m", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Woodchoppers"], name: "Cable Woodchoppers", sets: "3", reps: "12/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Cone Sprints (Short Distance)", sets: "5", reps: "20m", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Woodchoppers", sets: "3", reps: "12/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s hold", rest: "30s"},
         ],
     },
@@ -1415,9 +1477,9 @@ export const FOOTBALL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Lower Body Strength & Power", gender: 'male', location: 'home', day: 'Monday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats (Chair)"], name: "Bulgarian Split Squats (Chair)", sets: "3", reps: "12/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats"], name: "Bulgarian Split Squats (Chair)", sets: "3", reps: "12/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Glute Bridges"], name: "Glute Bridges", sets: "3", reps: "20", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Broad Jumps"], name: "Broad Jumps", sets: "4", reps: "10", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Broad Jumps", sets: "4", reps: "10", rest: "60s"},
         ],
     },
     Tuesday: {
@@ -1433,8 +1495,8 @@ export const FOOTBALL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Agility, Speed & Core", gender: 'male', location: 'home', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sprint Drills"], name: "Sprint Drills", sets: "5", reps: "20m", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Bodyweight)"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Sprint Drills", sets: "5", reps: "20m", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s hold", rest: "30s"},
         ],
     },
@@ -1442,13 +1504,13 @@ export const FOOTBALL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Active Recovery", gender: 'male', location: 'home', day: 'Thursday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Stretching"], name: "Stretching", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Stretching", sets: "1", reps: "15 min", rest: "N/A"},
         ],
     },
     Friday: {
         focus: "Full Body Conditioning", gender: 'male', location: 'home', day: 'Friday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "4", reps: "15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "4", reps: "15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "3", reps: "60s", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["High Knees"], name: "High Knees", sets: "3", reps: "60s", rest: "30s"},
         ],
@@ -1475,18 +1537,18 @@ export const FOOTBALL_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
     Tuesday: {
         focus: "Upper Body Strength & Power", gender: 'female', location: 'gym', day: 'Tuesday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Bench Press"], name: "Dumbbell Bench Press", sets: "4", reps: "12-15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Assisted Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "12-15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Row Machine"], name: "Seated Row Machine", sets: "3", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Dumbbell Bench Press", sets: "4", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "Max", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "12-15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Row Machine", sets: "3", reps: "12-15", rest: "60s"},
         ],
     },
     Wednesday: {
         focus: "Agility, Speed & Core", gender: 'female', location: 'gym', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints (Short Distance)"], name: "Cone Sprints (Short Distance)", sets: "5", reps: "20m", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Woodchoppers"], name: "Cable Woodchoppers", sets: "3", reps: "15/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Cone Sprints (Short Distance)", sets: "5", reps: "20m", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Woodchoppers", sets: "3", reps: "15/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s hold", rest: "30s"},
         ],
     },
@@ -1518,16 +1580,16 @@ export const FOOTBALL_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Lower Body Strength & Power", gender: 'female', location: 'home', day: 'Monday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats (Chair)"], name: "Bulgarian Split Squats (Chair)", sets: "3", reps: "12/leg", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats"], name: "Bulgarian Split Squats (Chair)", sets: "3", reps: "12/leg", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Glute Bridges"], name: "Glute Bridges", sets: "3", reps: "20", rest: "45s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Broad Jumps"], name: "Broad Jumps", sets: "4", reps: "10", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Broad Jumps", sets: "4", reps: "10", rest: "60s"},
         ],
     },
     Tuesday: {
         focus: "Upper Body Strength & Power", gender: 'female', location: 'home', day: 'Tuesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "Max", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows (using table)"], name: "Inverted Rows (using table)", sets: "3", reps: "Max", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows"], name: "Inverted Rows (using table)", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "Max", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15-20", rest: "60s"},
         ],
@@ -1536,8 +1598,8 @@ export const FOOTBALL_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Agility, Speed & Core", gender: 'female', location: 'home', day: 'Wednesday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sprint Drills"], name: "Sprint Drills", sets: "5", reps: "20m", rest: "60s"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Bodyweight)"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Sprint Drills", sets: "5", reps: "20m", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Bodyweight)", sets: "3", reps: "20/side", rest: "45s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s hold", rest: "30s"},
         ],
     },
@@ -1545,13 +1607,13 @@ export const FOOTBALL_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Active Recovery", gender: 'female', location: 'home', day: 'Thursday',
         exercises: [
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min", rest: "N/A"},
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Stretching"], name: "Stretching", sets: "1", reps: "15 min", rest: "N/A"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Stretching", sets: "1", reps: "15 min", rest: "N/A"},
         ],
     },
     Friday: {
         focus: "Full Body Conditioning", gender: 'female', location: 'home', day: 'Friday',
         exercises: [
-            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "4", reps: "15", rest: "60s"},
+            {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "4", reps: "15", rest: "60s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "3", reps: "60s", rest: "30s"},
             {...defaultExerciseProps, ...MASTER_EXERCISE_DATA["High Knees"], name: "High Knees", sets: "3", reps: "60s", rest: "30s"},
         ],
@@ -1567,114 +1629,112 @@ export const FOOTBALL_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
 };
 
 export const BASKETBALL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = { 
-    Monday: { focus: "Lower Body Power & Jumping", gender: 'male', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Back Squats"], name: "Barbell Back Squats", sets: "4", reps: "8" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "12 steps" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats"], name: "Bulgarian Split Squats", sets: "3", reps: "10/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10" } ] }, 
-    Tuesday: { focus: "Upper Body Strength", gender: 'male', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Bench Press", sets: "4", reps: "8–10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Row", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Overhead Press (Dumbbells)"], name: "Overhead Press", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" } ] }, 
-    Wednesday: { focus: "Active Recovery", gender: 'male', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow for Athletes"], name: "Yoga Flow for Athletes", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling Legs & Back"], name: "Foam Rolling Legs & Back", sets: "1", reps: "15 min" } ] }, 
+    Monday: { focus: "Lower Body Power & Jumping", gender: 'male', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Barbell Back Squats", sets: "4", reps: "8" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "12 steps" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats"], name: "Bulgarian Split Squats", sets: "3", reps: "10/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10" } ] }, 
+    Tuesday: { focus: "Upper Body Strength", gender: 'male', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Bench Press", sets: "4", reps: "8–10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Row", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Overhead Press (Dumbbells)", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" } ] }, 
+    Wednesday: { focus: "Active Recovery", gender: 'male', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow for Athletes", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling Legs & Back", sets: "1", reps: "15 min" } ] }, 
     Thursday: { focus: "Full Body Explosiveness & Core", gender: 'male', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Power Cleans"], name: "Power Cleans", sets: "5", reps: "5" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Kettlebell Swings"], name: "Kettlebell Swings", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Slams", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Leg Raises", sets: "3", reps: "max" } ] }, 
-    Friday: { focus: "Speed & Agility Drills", gender: 'male', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints (Short Distance)"], name: "Cone Sprints", sets: "10", reps: "10-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Side Shuffles", sets: "4", reps: "20m/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "3", reps: "3 min" } ] }, 
+    Friday: { focus: "Speed & Agility Drills", gender: 'male', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Cone Sprints (Short Distance)", sets: "10", reps: "10-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Side Shuffles", sets: "4", reps: "20m/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "3", reps: "3 min" } ] }, 
     Saturday: { focus: "Rest", gender: 'male', location: 'gym', day: 'Saturday', exercises: [] }, 
     Sunday: { focus: "Rest", gender: 'male', location: 'gym', day: 'Sunday', exercises: [] }
 };
 export const BASKETBALL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Lower Body Power & Jumping", gender: 'male', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "15/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats (Chair)"], name: "Bulgarian Split Squats", sets: "3", reps: "12/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Single-Leg Calf Raises"], name: "Single-Leg Calf Raises", sets: "4", reps: "20/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Broad Jumps"], name: "Broad Jumps", sets: "4", reps: "10" } ] },
-    Tuesday: { focus: "Upper Body Strength", gender: 'male', location: 'home', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows (using table)"], name: "Inverted Rows", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chair Dips"], name: "Chair Dips", sets: "3", reps: "max" } ] },
-    Wednesday: { focus: "Active Recovery", gender: 'male', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow for Athletes"], name: "Yoga Flow for Athletes", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dynamic Hip Stretching"], name: "Dynamic Hip Stretching", sets: "1", reps: "15 min" } ] },
-    Thursday: { focus: "Full Body Explosiveness & Core", gender: 'male', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "5", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "4", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "3", reps: "60s" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "max" } ] },
-    Friday: { focus: "Speed & Agility Drills", gender: 'male', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sprint Drills"], name: "Sprints", sets: "10", reps: "10-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Side Shuffles", sets: "4", reps: "20m/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "3", reps: "3 min" } ] },
+    Monday: { focus: "Lower Body Power & Jumping", gender: 'male', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "15/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bulgarian Split Squats"], name: "Bulgarian Split Squats (Chair)", sets: "3", reps: "12/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Single-Leg Calf Raises", sets: "4", reps: "20/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Broad Jumps", sets: "4", reps: "10" } ] },
+    Tuesday: { focus: "Upper Body Strength", gender: 'male', location: 'home', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows"], name: "Inverted Rows (using table)", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Dips"], name: "Chair Dips", sets: "3", reps: "max" } ] },
+    Wednesday: { focus: "Active Recovery", gender: 'male', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow for Athletes", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Dynamic Hip Stretching", sets: "1", reps: "15 min" } ] },
+    Thursday: { focus: "Full Body Explosiveness & Core", gender: 'male', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "5", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "4", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "3", reps: "60s" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "max" } ] },
+    Friday: { focus: "Speed & Agility Drills", gender: 'male', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Sprint Drills", sets: "10", reps: "10-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Side Shuffles", sets: "4", reps: "20m/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "3", reps: "3 min" } ] },
     Saturday: { focus: "Rest", gender: 'male', location: 'home', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'male', location: 'home', day: 'Sunday', exercises: [] }
 };
 export const BASKETBALL_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Lower Body Power & Jumping", gender: 'female', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Goblet Squats"], name: "Goblet Squats", sets: "4", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges with Dumbbells"], name: "Walking Lunges", sets: "3", reps: "12/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hip Thrusts"], name: "Hip Thrusts", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10" } ] },
-    Tuesday: { focus: "Upper Body Strength", gender: 'female', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Bench Press"], name: "Dumbbell Bench Press", sets: "4", reps: "12–15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Assisted Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Row", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" } ] },
-    Wednesday: { focus: "Active Recovery", gender: 'female', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow for Athletes"], name: "Yoga Flow for Athletes", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling Legs & Back"], name: "Foam Rolling Legs & Back", sets: "1", reps: "15 min" } ] },
-    Thursday: { focus: "Full Body Explosiveness & Core", gender: 'female', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Kettlebell Swings"], name: "Kettlebell Swings", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Slams", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Knee Raises"], name: "Hanging Knee Raises", sets: "3", reps: "max" } ] },
-    Friday: { focus: "Speed & Agility Drills", gender: 'female', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints (Short Distance)"], name: "Cone Sprints", sets: "10", reps: "10-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Side Shuffles", sets: "4", reps: "20m/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "3", reps: "3 min" } ] },
+    Monday: { focus: "Lower Body Power & Jumping", gender: 'female', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Goblet Squats"], name: "Goblet Squats", sets: "4", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges with Dumbbells", sets: "3", reps: "12/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hip Thrusts"], name: "Hip Thrusts", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10" } ] },
+    Tuesday: { focus: "Upper Body Strength", gender: 'female', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Dumbbell Bench Press", sets: "4", reps: "12–15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Row", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" } ] },
+    Wednesday: { focus: "Active Recovery", gender: 'female', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow for Athletes", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling Legs & Back", sets: "1", reps: "15 min" } ] },
+    Thursday: { focus: "Full Body Explosiveness & Core", gender: 'female', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Kettlebell Swings"], name: "Kettlebell Swings", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Slams", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Knee Raises", sets: "3", reps: "max" } ] },
+    Friday: { focus: "Speed & Agility Drills", gender: 'female', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Cone Sprints", sets: "10", reps: "10-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Side Shuffles", sets: "4", reps: "20m/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "3", reps: "3 min" } ] },
     Saturday: { focus: "Rest", gender: 'female', location: 'gym', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'female', location: 'gym', day: 'Sunday', exercises: [] }
 };
 export const BASKETBALL_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Lower Body Power & Jumping", gender: 'female', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "15/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Glute Bridges"], name: "Glute Bridges", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Single-Leg Calf Raises"], name: "Single-Leg Calf Raises", sets: "4", reps: "20/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Broad Jumps"], name: "Broad Jumps", sets: "4", reps: "10" } ] },
-    Tuesday: { focus: "Upper Body Strength", gender: 'female', location: 'home', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows (using table)"], name: "Inverted Rows", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chair Dips"], name: "Chair Dips", sets: "3", reps: "max" } ] },
-    Wednesday: { focus: "Active Recovery", gender: 'female', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow for Athletes"], name: "Yoga Flow for Athletes", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dynamic Hip Stretching"], name: "Dynamic Hip Stretching", sets: "1", reps: "15 min" } ] },
-    Thursday: { focus: "Full Body Explosiveness & Core", gender: 'female', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "5", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "4", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "3", reps: "60s" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "max" } ] },
-    Friday: { focus: "Speed & Agility Drills", gender: 'female', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sprint Drills"], name: "Sprints", sets: "10", reps: "10-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Side Shuffles", sets: "4", reps: "20m/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "3", reps: "3 min" } ] },
+    Monday: { focus: "Lower Body Power & Jumping", gender: 'female', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "15/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Glute Bridges"], name: "Glute Bridges", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Single-Leg Calf Raises", sets: "4", reps: "20/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Broad Jumps", sets: "4", reps: "10" } ] },
+    Tuesday: { focus: "Upper Body Strength", gender: 'female', location: 'home', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows"], name: "Inverted Rows (using table)", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Dips"], name: "Chair Dips", sets: "3", reps: "max" } ] },
+    Wednesday: { focus: "Active Recovery", gender: 'female', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow for Athletes", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Dynamic Hip Stretching", sets: "1", reps: "15 min" } ] },
+    Thursday: { focus: "Full Body Explosiveness & Core", gender: 'female', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "5", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "4", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "3", reps: "60s" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "max" } ] },
+    Friday: { focus: "Speed & Agility Drills", gender: 'female', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Sprints", sets: "10", reps: "10-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Side Shuffles", sets: "4", reps: "20m/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "3", reps: "3 min" } ] },
     Saturday: { focus: "Rest", gender: 'female', location: 'home', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'female', location: 'home', day: 'Sunday', exercises: [] }
 };
 
 export const VOLLEYBALL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Vertical Jump & Leg Power", gender: 'male', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Back Squats"], name: "Barbell Back Squats", sets: "4", reps: "6-8" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges with Dumbbells"], name: "Walking Lunges", sets: "3", reps: "12/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "12" } ] },
-    Tuesday: { focus: "Upper Body & Shoulder Strength", gender: 'male', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push Press"], name: "Push Press", sets: "4", reps: "8-10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Rotational Slams"], name: "Medicine Ball Rotational Slams", sets: "3", reps: "10/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lat Pulldowns"], name: "Lat Pulldowns", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15" } ] },
-    Wednesday: { focus: "Active Recovery", gender: 'male', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga or Mobility Flow"], name: "Yoga or Mobility Flow", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling", sets: "1", reps: "15 min" } ] },
-    Thursday: { focus: "Core & Rotational Power", gender: 'male', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Woodchoppers"], name: "Cable Woodchoppers", sets: "3", reps: "12/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists (Weighted)"], name: "Russian Twists", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Leg Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Ab Roller"], name: "Ab Roller", sets: "3", reps: "15" } ] },
+    Monday: { focus: "Vertical Jump & Leg Power", gender: 'male', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Barbell Back Squats", sets: "4", reps: "6-8" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges with Dumbbells", sets: "3", reps: "12/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "12" } ] },
+    Tuesday: { focus: "Upper Body & Shoulder Strength", gender: 'male', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push Press"], name: "Push Press", sets: "4", reps: "8-10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Rotational Slams", sets: "3", reps: "10/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lat Pulldowns"], name: "Lat Pulldowns", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15" } ] },
+    Wednesday: { focus: "Active Recovery", gender: 'male', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga or Mobility Flow", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling", sets: "1", reps: "15 min" } ] },
+    Thursday: { focus: "Core & Rotational Power", gender: 'male', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Woodchoppers", sets: "3", reps: "12/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists (Weighted)", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Leg Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Ab Roller"], name: "Ab Roller", sets: "3", reps: "15" } ] },
     Friday: { focus: "Conditioning & Agility", gender: 'male', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Assault Bike Intervals"], name: "Assault Bike Intervals", sets: "10", reps: "20s on, 40s off" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Kettlebell Swings"], name: "Kettlebell Swings", sets: "4", reps: "20" } ] },
     Saturday: { focus: "Rest", gender: 'male', location: 'gym', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'male', location: 'gym', day: 'Sunday', exercises: [] }
 };
 export const VOLLEYBALL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Vertical Jump & Leg Power", gender: 'male', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Broad Jumps"], name: "Broad Jumps", sets: "4", reps: "10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "15/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "3", reps: "12" } ] },
+    Monday: { focus: "Vertical Jump & Leg Power", gender: 'male', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Broad Jumps", sets: "4", reps: "10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "15/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "3", reps: "12" } ] },
     Tuesday: { focus: "Upper Body & Shoulder Strength", gender: 'male', location: 'home', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "4", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" } ] },
-    Wednesday: { focus: "Active Recovery", gender: 'male', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga or Mobility Flow"], name: "Yoga or Mobility Flow", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Roll Substitute (Tennis Ball)"], name: "Foam Roll Substitute", sets: "1", reps: "15 min" } ] },
+    Wednesday: { focus: "Active Recovery", gender: 'male', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga or Mobility Flow", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Roll Substitute (Tennis Ball)", sets: "1", reps: "15 min" } ] },
     Thursday: { focus: "Core & Rotational Power", gender: 'male', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s hold" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank", sets: "3", reps: "45s/side" } ] },
-    Friday: { focus: "Conditioning & Agility", gender: 'female', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sprint Drills"], name: "Sprints", sets: "10", reps: "15-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "4", reps: "45s" } ] },
+    Friday: { focus: "Conditioning & Agility", gender: 'female', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Sprints", sets: "10", reps: "15-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "4", reps: "45s" } ] },
     Saturday: { focus: "Rest", gender: 'male', location: 'home', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'male', location: 'home', day: 'Sunday', exercises: [] }
 };
 export const VOLLEYBALL_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Vertical Jump & Leg Power", gender: 'female', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Goblet Squats"], name: "Goblet Squats", sets: "4", reps: "12-15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "12/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "15" } ] },
-    Tuesday: { focus: "Upper Body & Shoulder Strength", gender: 'female', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "4", reps: "12-15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Assisted Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Rotational Slams"], name: "Medicine Ball Rotational Slams", sets: "3", reps: "12/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lat Pulldowns"], name: "Lat Pulldowns", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15" } ] },
-    Wednesday: { focus: "Active Recovery", gender: 'female', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga or Mobility Flow"], name: "Yoga or Mobility Flow", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling", sets: "1", reps: "15 min" } ] },
-    Thursday: { focus: "Core & Rotational Power", gender: 'female', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Woodchoppers"], name: "Cable Woodchoppers", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Knee Raises"], name: "Hanging Knee Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Ab Roller"], name: "Ab Roller", sets: "3", reps: "15" } ] },
+    Monday: { focus: "Vertical Jump & Leg Power", gender: 'female', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Goblet Squats"], name: "Goblet Squats", sets: "4", reps: "12-15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "4", reps: "10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "12/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Press"], name: "Leg Press", sets: "3", reps: "15" } ] },
+    Tuesday: { focus: "Upper Body & Shoulder Strength", gender: 'female', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Press"], name: "Dumbbell Shoulder Press", sets: "4", reps: "12-15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pull-Ups"], name: "Assisted Pull-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Slams"], name: "Medicine Ball Rotational Slams", sets: "3", reps: "12/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lat Pulldowns"], name: "Lat Pulldowns", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "15" } ] },
+    Wednesday: { focus: "Active Recovery", gender: 'female', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga or Mobility Flow", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Rolling", sets: "1", reps: "15 min" } ] },
+    Thursday: { focus: "Core & Rotational Power", gender: 'female', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Woodchoppers", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Knee Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Ab Roller"], name: "Ab Roller", sets: "3", reps: "15" } ] },
     Friday: { focus: "Conditioning & Agility", gender: 'female', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Assault Bike Intervals"], name: "Assault Bike Intervals", sets: "10", reps: "20s on, 40s off" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Kettlebell Swings"], name: "Kettlebell Swings", sets: "4", reps: "20" } ] },
     Saturday: { focus: "Rest", gender: 'female', location: 'gym', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'female', location: 'gym', day: 'Sunday', exercises: [] }
 };
 export const VOLLEYBALL_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Vertical Jump & Leg Power", gender: 'female', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Broad Jumps"], name: "Broad Jumps", sets: "4", reps: "10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Walking Lunges"], name: "Walking Lunges", sets: "3", reps: "15/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Tuck Jumps"], name: "Tuck Jumps", sets: "3", reps: "12" } ] },
+    Monday: { focus: "Vertical Jump & Leg Power", gender: 'female', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "4", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Broad Jumps", sets: "4", reps: "10" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Walking Lunges", sets: "3", reps: "15/leg" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "4", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Tuck Jumps", sets: "3", reps: "12" } ] },
     Tuesday: { focus: "Upper Body & Shoulder Strength", gender: 'female', location: 'home', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "4", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15" } ] },
-    Wednesday: { focus: "Active Recovery", gender: 'female', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga or Mobility Flow"], name: "Yoga or Mobility Flow", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Roll Substitute (Tennis Ball)"], name: "Foam Roll Substitute", sets: "1", reps: "15 min" } ] },
+    Wednesday: { focus: "Active Recovery", gender: 'female', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga or Mobility Flow", sets: "1", reps: "30-45 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Foam Rolling"], name: "Foam Roll Substitute (Tennis Ball)", sets: "1", reps: "15 min" } ] },
     Thursday: { focus: "Core & Rotational Power", gender: 'female', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s hold" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank", sets: "3", reps: "45s/side" } ] },
-    Friday: { focus: "Conditioning & Agility", gender: 'female', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Sprint Drills"], name: "Sprints", sets: "10", reps: "15-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "4", reps: "45s" } ] },
+    Friday: { focus: "Conditioning & Agility", gender: 'female', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "15 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cone Sprints"], name: "Sprints", sets: "10", reps: "15-20m" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Mountain Climbers"], name: "Mountain Climbers", sets: "4", reps: "45s" } ] },
     Saturday: { focus: "Rest", gender: 'female', location: 'home', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'female', location: 'home', day: 'Sunday', exercises: [] }
 };
 
 export const TABLE_TENNIS_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Leg Endurance & Agility", gender: 'male', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Barbell Back Squats"], name: "Barbell Back Squats", sets: "3", reps: "12-15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Band Walks"], name: "Lateral Band Walks", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min" } ] },
-    Tuesday: { focus: "Core & Rotational Speed", gender: 'male', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Woodchoppers"], name: "Cable Woodchoppers", sets: "3", reps: "12/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Twists"], name: "Medicine Ball Twists", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Leg Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s" } ] },
-    Wednesday: { focus: "Active Recovery & Mobility", gender: 'male', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Mobility"], name: "Shoulder Mobility", sets: "1", reps: "10 min" } ] },
-    Thursday: { focus: "Upper Body Endurance", gender: 'male', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Bench Press"], name: "Dumbbell Bench Press", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Cable Row", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Raises"], name: "Lateral Raises", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roller"], name: "Wrist Roller", sets: "3", reps: "max" } ] },
-    Friday: { focus: "Conditioning & Reaction Time", gender: 'male', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "5", reps: "3 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Reaction Ball Drill"], name: "Reaction Ball Drill", sets: "3", reps: "5 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15" } ] },
+    Monday: { focus: "Leg Endurance & Agility", gender: 'male', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Barbell Back Squats", sets: "3", reps: "12-15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Lateral Band Walks", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min" } ] },
+    Tuesday: { focus: "Core & Rotational Speed", gender: 'male', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Woodchoppers", sets: "3", reps: "12/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Medicine Ball Twists", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Leg Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s" } ] },
+    Wednesday: { focus: "Active Recovery & Mobility", gender: 'male', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Shoulder Mobility", sets: "1", reps: "10 min" } ] },
+    Thursday: { focus: "Upper Body Endurance", gender: 'male', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Dumbbell Bench Press", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Cable Row", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Raises"], name: "Lateral Raises", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roll"], name: "Wrist Roller", sets: "3", reps: "max" } ] },
+    Friday: { focus: "Conditioning & Reaction Time", gender: 'male', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "5", reps: "3 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Reaction Ball Drill", sets: "3", reps: "5 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15" } ] },
     Saturday: { focus: "Rest", gender: 'male', location: 'gym', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'male', location: 'gym', day: 'Sunday', exercises: [] }
 };
 export const TABLE_TENNIS_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Leg Endurance & Agility", gender: 'male', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Squats", sets: "3", reps: "20-25" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Band Walks"], name: "Lateral Band Walks", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "3", reps: "25" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min" } ] },
+    Monday: { focus: "Leg Endurance & Agility", gender: 'male', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Squats", sets: "3", reps: "20-25" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Lateral Band Walks", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "3", reps: "25" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min" } ] },
     Tuesday: { focus: "Core & Rotational Speed", gender: 'male', location: 'home', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank", sets: "3", reps: "45s/side" } ] },
-    Wednesday: { focus: "Active Recovery & Mobility", gender: 'male', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Mobility"], name: "Shoulder Mobility", sets: "1", reps: "10 min" } ] },
-    Thursday: { focus: "Upper Body Endurance", gender: 'male', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows (using table)"], name: "Inverted Rows", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Curls"], name: "Wrist Curls", sets: "3", reps: "20" } ] },
+    Wednesday: { focus: "Active Recovery & Mobility", gender: 'male', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Shoulder Mobility", sets: "1", reps: "10 min" } ] },
+    Thursday: { focus: "Upper Body Endurance", gender: 'male', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows"], name: "Inverted Rows (using table)", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roll"], name: "Wrist Curls", sets: "3", reps: "20" } ] },
     Friday: { focus: "Conditioning & Reaction Time", gender: 'male', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "5", reps: "3 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shadow Badminton"], name: "Shadow Badminton", sets: "3", reps: "5 min" } ] },
     Saturday: { focus: "Rest", gender: 'male', location: 'home', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'male', location: 'home', day: 'Sunday', exercises: [] }
 };
 export const TABLE_TENNIS_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Leg Endurance & Agility", gender: 'female', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Goblet Squats"], name: "Goblet Squats", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Band Walks"], name: "Lateral Band Walks", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min" } ] },
-    Tuesday: { focus: "Core & Rotational Speed", gender: 'female', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Woodchoppers"], name: "Cable Woodchoppers", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Medicine Ball Twists"], name: "Medicine Ball Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Knee Raises"], name: "Hanging Knee Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s" } ] },
-    Wednesday: { focus: "Active Recovery & Mobility", gender: 'female', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Mobility"], name: "Shoulder Mobility", sets: "1", reps: "10 min" } ] },
-    Thursday: { focus: "Upper Body Endurance", gender: 'female', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Dumbbell Bench Press"], name: "Dumbbell Bench Press", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Cable Row", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Raises"], name: "Lateral Raises", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roller"], name: "Wrist Roller", sets: "3", reps: "max" } ] },
-    Friday: { focus: "Conditioning & Reaction Time", gender: 'female', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "5", reps: "3 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Reaction Ball Drill"], name: "Reaction Ball Drill", sets: "3", reps: "5 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15" } ] },
+    Monday: { focus: "Leg Endurance & Agility", gender: 'female', location: 'gym', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Goblet Squats"], name: "Goblet Squats", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Box Jumps"], name: "Box Jumps", sets: "3", reps: "12" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Lateral Band Walks", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min" } ] },
+    Tuesday: { focus: "Core & Rotational Speed", gender: 'female', location: 'gym', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Cable Crossover"], name: "Cable Woodchoppers", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Medicine Ball Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Hanging Leg Raises"], name: "Hanging Knee Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s" } ] },
+    Wednesday: { focus: "Active Recovery & Mobility", gender: 'female', location: 'gym', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Shoulder Mobility", sets: "1", reps: "10 min" } ] },
+    Thursday: { focus: "Upper Body Endurance", gender: 'female', location: 'gym', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Bench Press"], name: "Dumbbell Bench Press", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Seated Cable Row"], name: "Seated Cable Row", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Raises"], name: "Lateral Raises", sets: "3", reps: "15-20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Face Pulls"], name: "Face Pulls", sets: "3", reps: "20" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roll"], name: "Wrist Roller", sets: "3", reps: "max" } ] },
+    Friday: { focus: "Conditioning & Reaction Time", gender: 'female', location: 'gym', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "5", reps: "3 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Shuffles"], name: "Reaction Ball Drill", sets: "3", reps: "5 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15" } ] },
     Saturday: { focus: "Rest", gender: 'female', location: 'gym', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'female', location: 'gym', day: 'Sunday', exercises: [] }
 };
 export const TABLE_TENNIS_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
-    Monday: { focus: "Leg Endurance & Agility", gender: 'female', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Squats", sets: "3", reps: "20-25" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lateral Band Walks"], name: "Lateral Band Walks", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "3", reps: "25" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min" } ] },
+    Monday: { focus: "Leg Endurance & Agility", gender: 'female', location: 'home', day: 'Monday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Squats"], name: "Squats", sets: "3", reps: "20-25" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Squats"], name: "Jump Squats", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Lunges"], name: "Lateral Band Walks", sets: "3", reps: "15/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Calf Raises"], name: "Calf Raises", sets: "3", reps: "25" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Agility Ladder Drills"], name: "Agility Ladder Drills", sets: "1", reps: "10 min" } ] },
     Tuesday: { focus: "Core & Rotational Speed", gender: 'female', location: 'home', day: 'Tuesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Russian Twists"], name: "Russian Twists", sets: "3", reps: "20/side" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Leg Raises"], name: "Leg Raises", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Plank"], name: "Plank", sets: "3", reps: "60s" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Side Plank"], name: "Side Plank", sets: "3", reps: "45s/side" } ] },
-    Wednesday: { focus: "Active Recovery & Mobility", gender: 'female', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Mobility"], name: "Shoulder Mobility", sets: "1", reps: "10 min" } ] },
-    Thursday: { focus: "Upper Body Endurance", gender: 'female', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows (using table)"], name: "Inverted Rows", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Curls"], name: "Wrist Curls", sets: "3", reps: "20" } ] },
+    Wednesday: { focus: "Active Recovery & Mobility", gender: 'female', location: 'home', day: 'Wednesday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Yoga Flow"], name: "Yoga Flow", sets: "1", reps: "30 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shoulder Stretch"], name: "Shoulder Mobility", sets: "1", reps: "10 min" } ] },
+    Thursday: { focus: "Upper Body Endurance", gender: 'female', location: 'home', day: 'Thursday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Inverted Rows"], name: "Inverted Rows (using table)", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Pike Push-ups"], name: "Pike Push-ups", sets: "3", reps: "max" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wrist Roll"], name: "Wrist Curls", sets: "3", reps: "20" } ] },
     Friday: { focus: "Conditioning & Reaction Time", gender: 'female', location: 'home', day: 'Friday', exercises: [ { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Jump Rope"], name: "Jump Rope", sets: "5", reps: "3 min" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Burpees"], name: "Burpees", sets: "3", reps: "15" }, { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Shadow Badminton"], name: "Shadow Badminton", sets: "3", reps: "5 min" } ] },
     Saturday: { focus: "Rest", gender: 'female', location: 'home', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'female', location: 'home', day: 'Sunday', exercises: [] }
 };
-
-

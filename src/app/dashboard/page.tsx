@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -8,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Dumbbell, Calculator, UtensilsCrossed, PersonStanding, TrendingUp, Sparkles } from 'lucide-react';
+import { Dumbbell, Calculator, UtensilsCrossed, PersonStanding, TrendingUp, Sparkles, ListPlus, BookOpen } from 'lucide-react';
 
 const features = [
   {
@@ -18,16 +19,28 @@ const features = [
     icon: <Sparkles className="h-8 w-8 text-primary" />,
   },
   {
-    title: 'Calculators',
-    description: 'Calculate your BMI and daily calorie needs.',
-    href: '/dashboard/calculators',
-    icon: <Calculator className="h-8 w-8 text-primary" />,
+    title: 'My Plans',
+    description: 'Create and manage your own custom workout plans.',
+    href: '/dashboard/my-plans',
+    icon: <ListPlus className="h-8 w-8 text-primary" />,
+  },
+   {
+    title: 'Exercise Library',
+    description: 'Browse hundreds of exercises with animated examples.',
+    href: '/dashboard/exercise-library',
+    icon: <BookOpen className="h-8 w-8 text-primary" />,
   },
   {
     title: 'General Workouts',
     description: 'Browse our library of pre-defined workout plans.',
     href: '/dashboard/general-workouts',
     icon: <Dumbbell className="h-8 w-8 text-primary" />,
+  },
+  {
+    title: 'Calculators',
+    description: 'Calculate your BMI and daily calorie needs.',
+    href: '/dashboard/calculators',
+    icon: <Calculator className="h-8 w-8 text-primary" />,
   },
   {
     title: 'Nutrition Plans',
