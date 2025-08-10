@@ -53,28 +53,43 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold font-headline">Welcome, Freak!</h1>
-        <p className="text-muted-foreground">Ready to crush your goals today?</p>
+        <motion.h1 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold font-headline">Welcome, Freak!</motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-muted-foreground">Ready to crush your goals today?</motion.p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {features.map((feature) => (
-          <Link href={feature.href} key={feature.title}>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="h-full"
-            >
-              <Card className="h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
-                <CardHeader className="flex flex-row items-center gap-4">
-                  {feature.icon}
-                  <CardTitle className="font-headline">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </Link>
+        {features.map((feature, i) => (
+          <motion.div
+            key={feature.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * i }}
+          >
+            <Link href={feature.href} >
+                <motion.div
+                whileHover={{ scale: 1.05, rotateY: 3 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="h-full"
+                >
+                <Card className="h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
+                    <CardHeader className="flex flex-row items-center gap-4">
+                    {feature.icon}
+                    <CardTitle className="font-headline">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                    </CardContent>
+                </Card>
+                </motion.div>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </div>

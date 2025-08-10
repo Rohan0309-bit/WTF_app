@@ -2,33 +2,34 @@
 
 import { AppSidebar } from '@/components/app-sidebar';
 import { Header } from '@/components/header';
-import { SidebarProvider } from '@/components/ui/sidebar';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+    const pathname = usePathname();
   return (
-    <SidebarProvider>
       <div className="min-h-screen w-full bg-background text-foreground flex">
         <AppSidebar />
         <div className="flex flex-col flex-1">
           <Header />
           <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              key={Math.random()} // Using a random key forces re-animation on route change
-            >
-              {children}
-            </motion.div>
+             <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                    key={pathname}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.28, ease: 'easeOut' }}
+                >
+                {children}
+                </motion.div>
+             </AnimatePresence>
           </main>
         </div>
       </div>
-    </SidebarProvider>
   );
 }
