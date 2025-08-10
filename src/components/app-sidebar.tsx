@@ -25,7 +25,8 @@ import {
 } from '@/components/ui/tooltip';
 import { Icons } from './icons';
 import Link from 'next/link';
-import { Sheet, SheetContent, useSidebar } from './ui/sidebar';
+import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
+import { useSidebar } from './ui/sidebar';
 
 const menu = [
   { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
@@ -154,6 +155,7 @@ export function AppSidebar() {
     return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile}>
             <SheetContent side="left" className="w-72 bg-card p-4 flex flex-col">
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <SidebarNav />
             </SheetContent>
         </Sheet>
