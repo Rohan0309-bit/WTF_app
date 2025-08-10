@@ -55,11 +55,10 @@ function LoadingSkeleton() {
 
 export default function AthleteWorkoutPlannerPage() {
   const { toast } = useToast();
-  const [state, formAction] = useActionState(getWorkoutPlan, {
+  const [state, formAction, isPending] = useActionState(getWorkoutPlan, {
     message: '',
     isSuccess: false,
   });
-  const { pending } = useFormStatus();
 
   useEffect(() => {
     if (state.message && !state.isSuccess) {
@@ -93,10 +92,11 @@ export default function AthleteWorkoutPlannerPage() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="workoutType">Workout Type</Label>
-                <Select name="workoutType" required>
-                  <SelectTrigger id="workoutType"><SelectValue placeholder="select body part to train" /></SelectTrigger>
+                <Label htmlFor="workoutType">Workout Type (Optional)</Label>
+                <Select name="workoutType">
+                  <SelectTrigger id="workoutType"><SelectValue placeholder="Select body part to train" /></SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="">Full-Body (Default)</SelectItem>
                     {WORKOUT_TYPES.map((type) => (
                       <SelectItem key={type} value={type}>{type}</SelectItem>
                     ))}
@@ -142,10 +142,10 @@ export default function AthleteWorkoutPlannerPage() {
         </Card>
       </div>
       <div className="lg:col-span-2">
-        {pending ? (
+        {isPending ? (
             <LoadingSkeleton />
         ) : state.isSuccess && state.workoutPlan ? (
-          <WorkoutCard plan={state.workoutPlan} />
+          <WorkoutCard plan={state.workoutPlan} showActions={true} />
         ) : (
           <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">
             <Sparkles className="h-16 w-16 text-muted-foreground mb-4" />

@@ -2,11 +2,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Separator } from '@/components/ui/separator';
 import { parseWeeklyWorkoutPlan, type DailyWorkout } from '@/lib/workout-parser';
-import { Dumbbell, Repeat, Timer, PlayCircle } from 'lucide-react';
+import { Dumbbell, Repeat, Timer, PlayCircle, Save, Trash2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { ActiveWorkoutDialog } from './active-workout-dialog';
 
@@ -35,7 +35,7 @@ function getEmojiForExercise(name: string): string {
   return '🔥';
 }
 
-export function WorkoutCard({ plan }: { plan: string }) {
+export function WorkoutCard({ plan, showActions = false }: { plan: string, showActions?: boolean }) {
   const [isWorkoutDialogOpen, setWorkoutDialogOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState<DailyWorkout | null>(null);
 
@@ -118,6 +118,18 @@ export function WorkoutCard({ plan }: { plan: string }) {
             ))}
           </Accordion>
         </CardContent>
+        {showActions && (
+          <CardFooter className="flex justify-end gap-2">
+            <Button variant="outline">
+              <Trash2 className="mr-2 h-4 w-4" />
+              Delete
+            </Button>
+            <Button>
+              <Save className="mr-2 h-4 w-4" />
+              Save Workout
+            </Button>
+          </CardFooter>
+        )}
       </Card>
       <ActiveWorkoutDialog 
         isOpen={isWorkoutDialogOpen}

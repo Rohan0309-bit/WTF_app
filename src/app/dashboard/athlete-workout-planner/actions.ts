@@ -8,7 +8,7 @@ const formSchema = z.object({
   gender: z.enum(['male', 'female']),
   skillLevel: z.string().min(1, 'Skill level is required.'),
   workoutPreference: z.enum(['home', 'gym']),
-  workoutType: z.string().min(1, 'Workout type is required.'),
+  workoutType: z.string().optional(),
 });
 
 export type FormState = {

@@ -16,7 +16,7 @@ const GenerateAthleteWorkoutInputSchema = z.object({
   gender: z.enum(['male', 'female']).describe('The athlete’s gender.'),
   skillLevel: z.string().describe('The athlete’s skill level (e.g., beginner, intermediate, advanced).'),
   workoutPreference: z.enum(['home', 'gym']).describe('The athlete’s workout preference (home or gym).'),
-  workoutType: z.string().describe('The primary focus of the workout (e.g., Full-Body, Chest, Legs, Posture, Sexual Wellness).'),
+  workoutType: z.string().optional().describe('The primary focus of the workout (e.g., Full-Body, Chest, Legs, Posture, Sexual Wellness).'),
 });
 
 export type GenerateAthleteWorkoutInput = z.infer<typeof GenerateAthleteWorkoutInputSchema>;
@@ -37,13 +37,13 @@ const prompt = ai.definePrompt({
   output: {schema: GenerateAthleteWorkoutOutputSchema},
   prompt: `You are an expert AI sports trainer. You are helping a user generate a weekly workout plan based on their preferences.
 
-  Workout Type Focus: {{{workoutType}}}
+  {{#if workoutType}}Workout Type Focus: {{{workoutType}}}{{else}}Workout Type Focus: Full-Body{{/if}}
   {{#if sport}}Sport: {{{sport}}}{{/if}}
   Gender: {{{gender}}}
   Skill Level: {{{skillLevel}}}
   Workout Preference: {{{workoutPreference}}}
 
-  Generate a 7-day workout plan focused on the specified 'Workout Type Focus'. If a sport is provided, tailor the exercises to benefit that sport as well.
+  Generate a 7-day workout plan focused on the specified 'Workout Type Focus'. If a 'Workout Type Focus' is not provided, create a well-rounded 'Full-Body' plan. If a sport is provided, tailor the exercises to benefit that sport as well.
   
   For each day, provide a title (e.g., "Day 1: Upper Body Strength"). 
   Each workout day must include a list of at least 7 exercises. For each exercise, provide sets, reps, and rest time. 
