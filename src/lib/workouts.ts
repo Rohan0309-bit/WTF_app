@@ -25,6 +25,19 @@ export interface WorkoutSplit {
   [day: string]: DayWorkout;
 }
 
+export interface CustomWorkoutPlan {
+  id: string;
+  name: string;
+  description: string;
+  days: Record<string, CustomExercise[]>;
+}
+
+export interface CustomExercise extends ExerciseDetails {
+  customSets: string;
+  customReps: string;
+  customRest: string;
+}
+
 const defaultExerciseProps = {
   type: "",
   muscle: "",
@@ -1663,4 +1676,5 @@ export const TABLE_TENNIS_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
     Saturday: { focus: "Rest", gender: 'female', location: 'home', day: 'Saturday', exercises: [] },
     Sunday: { focus: "Rest", gender: 'female', location: 'home', day: 'Sunday', exercises: [] }
 };
+
 
