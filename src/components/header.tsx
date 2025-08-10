@@ -43,11 +43,10 @@ export function Header() {
   
   const title = getTitle();
 
-  const showBackButton = pathname.split('/').length > 2;
+  const showBackButton = pathname.split('/').length > 2 && pathname !== '/dashboard';
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6">
-      <SidebarTrigger className="md:hidden" />
       {showBackButton && (
         <Button variant="ghost" size="icon" onClick={() => router.back()} className="h-8 w-8">
           <ArrowLeft className="h-5 w-5" />
@@ -57,7 +56,7 @@ export function Header() {
       <h1 className="text-lg font-semibold font-headline md:text-xl">
         {title}
       </h1>
-      <div className="ml-auto">
+      <div className="ml-auto flex items-center gap-2">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-10 w-10 rounded-full">
@@ -89,6 +88,7 @@ export function Header() {
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>
+        <SidebarTrigger className="md:hidden" />
       </div>
     </header>
   );
