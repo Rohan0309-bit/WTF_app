@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -6,8 +7,8 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Progress } from '@/components/ui/progress';
-import { DayWorkout, ExerciseDetails } from '@/lib/workouts';
-import { Check, Flame, Repeat, Timer, X, Plus, Minus, ShieldCheck } from 'lucide-react';
+import { DayWorkout, ExerciseDetails, WARMUP_EXERCISES, COOLDOWN_EXERCISES } from '@/lib/workouts';
+import { Check, Flame, Repeat, Timer, X, Plus, Minus, ShieldCheck, ChevronsRight, ChevronsLeft } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 
 interface ActiveWorkoutDialogProps {
@@ -17,20 +18,37 @@ interface ActiveWorkoutDialogProps {
   isPageView?: boolean;
 }
 
+type WorkoutPhase = 'warmup' | 'main' | 'cooldown' | 'complete';
+
 const parseRestTime = (rest: string): number => {
     const match = rest.match(/(\d+)/);
     return match ? parseInt(match[0], 10) : 60;
 }
 
 export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView = false }: ActiveWorkoutDialogProps) {
+  const [phase, setPhase] = useState<WorkoutPhase>('warmup');
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [currentSet, setCurrentSet] = useState(1);
   const [isResting, setIsResting] = useState(false);
   const [restTime, setRestTime] = useState(60);
   const [timer, setTimer] = useState(0);
+  
+  const getExercisesForPhase = (currentPhase: WorkoutPhase) => {
+    switch (currentPhase) {
+      case 'warmup':
+        return WARMUP_EXERCISES;
+      case 'main':
+        return workout?.exercises || [];
+      case 'cooldown':
+        return COOLDOWN_EXERCISES;
+      default:
+        return [];
+    }
+  };
 
   useEffect(() => {
     if (!workout || !isOpen) {
+      setPhase('warmup');
       setCurrentExerciseIndex(0);
       setCurrentSet(1);
       setIsResting(false);
@@ -51,8 +69,10 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
 
   if (!workout) return null;
 
-  const totalExercises = workout.exercises.length;
-  if (totalExercises === 0 || currentExerciseIndex >= totalExercises) {
+  const exercises = getExercisesForPhase(phase);
+  const totalExercises = exercises.length;
+
+  if (phase === 'complete') {
     const content = (
         <>
             <DialogHeader>
@@ -80,10 +100,25 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
     )
   }
 
-  const currentExercise = workout.exercises[currentExerciseIndex];
+  if (totalExercises === 0 || currentExerciseIndex >= totalExercises) {
+    if (phase === 'warmup') {
+      setPhase('main');
+      setCurrentExerciseIndex(0);
+      setCurrentSet(1);
+    } else if (phase === 'main') {
+      setPhase('cooldown');
+      setCurrentExerciseIndex(0);
+      setCurrentSet(1);
+    } else if (phase === 'cooldown') {
+      setPhase('complete');
+    }
+    return null; // Let the effect re-render
+  }
+  
+  const currentExercise = exercises[currentExerciseIndex];
   const totalSets = currentExercise.sets ? parseInt(currentExercise.sets, 10) : 1;
   const progress = ((currentExerciseIndex) / totalExercises) * 100;
-
+  
   const advanceToNext = () => {
     if (currentSet < totalSets) {
       setCurrentSet(s => s + 1);
@@ -92,11 +127,11 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
         setCurrentExerciseIndex(i => i + 1);
         setCurrentSet(1);
       } else {
-        setCurrentExerciseIndex(i => i + 1);
+        setCurrentExerciseIndex(i => i + 1); // This will trigger phase change effect
       }
     }
   };
-
+  
   const handleSetComplete = () => {
     const nextRestTime = parseRestTime(currentExercise.rest || '60s');
     setRestTime(nextRestTime);
@@ -109,15 +144,40 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
       advanceToNext();
   }
 
+  const handleSkipPhase = () => {
+      if(phase === 'warmup') {
+          setPhase('main');
+          setCurrentExerciseIndex(0);
+          setCurrentSet(1);
+      } else if (phase === 'cooldown') {
+          setPhase('complete');
+      }
+  }
+
   const adjustTime = (amount: number) => {
       setRestTime(rt => Math.max(0, rt + amount));
       setTimer(t => Math.max(0, t + amount));
+  }
+  
+  const phaseTitles: Record<WorkoutPhase, string> = {
+    warmup: 'Warm-Up',
+    main: 'Main Workout',
+    cooldown: 'Cool-Down',
+    complete: 'Complete'
   }
 
   const renderWorkoutContent = () => (
     !isResting ? (
       <>
         <DialogHeader>
+            <div className="flex justify-between items-center mb-2">
+                <div className="text-sm font-bold text-primary uppercase tracking-wider">{phaseTitles[phase]}</div>
+                 {(phase === 'warmup' || phase === 'cooldown') && (
+                    <Button variant="ghost" size="sm" onClick={handleSkipPhase}>
+                        Skip {phaseTitles[phase]} <ChevronsRight className="h-4 w-4 ml-1" />
+                    </Button>
+                )}
+            </div>
             <DialogTitle className="font-headline text-3xl md:text-4xl text-center">{currentExercise.name}</DialogTitle>
             <DialogDescription className="text-center text-lg">Set {currentSet} of {totalSets}</DialogDescription>
         </DialogHeader>
@@ -172,7 +232,7 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
           </div>
           <div>
             <Progress value={progress} className="w-full h-3" />
-            <span className="text-sm text-center text-muted-foreground w-full mt-2 block">Exercise {currentExerciseIndex + 1} of {totalExercises}</span>
+            <span className="text-sm text-center text-muted-foreground w-full mt-2 block">{phaseTitles[phase]} - Exercise {currentExerciseIndex + 1} of {totalExercises}</span>
           </div>
         </DialogFooter>
       </>
@@ -180,7 +240,7 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
       <>
         <DialogHeader>
           <DialogTitle className="font-headline text-4xl text-center">Rest Time</DialogTitle>
-           <DialogDescription className="text-center text-lg">Next up: {currentSet < totalSets ? `${currentExercise.name} (Set ${currentSet+1})` : workout.exercises[currentExerciseIndex+1]?.name || 'Final Set!'}</DialogDescription>
+           <DialogDescription className="text-center text-lg">Next up: {currentSet < totalSets ? `${currentExercise.name} (Set ${currentSet+1})` : exercises[currentExerciseIndex+1]?.name || 'Final Set!'}</DialogDescription>
         </DialogHeader>
 
         <div className="py-8 text-center my-8">

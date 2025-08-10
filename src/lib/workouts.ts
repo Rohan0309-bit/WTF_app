@@ -1,4 +1,5 @@
 
+
 export interface ExerciseDetails {
   name: string;
   type: string;
@@ -161,6 +162,24 @@ export const MASTER_EXERCISE_DATA: { [key: string]: Partial<ExerciseDetails> } =
     "Shadow Badminton": { type: 'cardio', muscle: 'Full Body', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://i.ibb.co/dK8BvN2/pull-up.gif', injury_prevention: 'Focus on proper footwork and swing mechanics. Ensure you have enough space around you.' }
 };
 
+export const WARMUP_EXERCISES: ExerciseDetails[] = [
+  { ...defaultExerciseProps, name: "Jumping Jacks", sets: "1", reps: "30 sec", rest: "20s", ...MASTER_EXERCISE_DATA["Jumping Jacks"] },
+  { ...defaultExerciseProps, name: "Wrist Roll", sets: "1", reps: "10 each side", rest: "20s", ...MASTER_EXERCISE_DATA["Wrist Roll"] },
+  { ...defaultExerciseProps, name: "Elbow Circles", sets: "1", reps: "10 each side", rest: "20s", ...MASTER_EXERCISE_DATA["Elbow Circles"] },
+  { ...defaultExerciseProps, name: "Arm Circles", sets: "1", reps: "10 each side", rest: "20s", ...MASTER_EXERCISE_DATA["Arm Circles"] },
+  { ...defaultExerciseProps, name: "Bar Hanging", sets: "1", reps: "10 sec", rest: "20s", ...MASTER_EXERCISE_DATA["Bar Hanging"] },
+  { ...defaultExerciseProps, name: "Plank", sets: "1", reps: "30 sec", rest: "0s", ...MASTER_EXERCISE_DATA["Plank"] }
+];
+
+export const COOLDOWN_EXERCISES: ExerciseDetails[] = [
+    { ...defaultExerciseProps, name: "Quad Stretch", sets: "1", reps: "30s each side", rest: "10s", ...MASTER_EXERCISE_DATA["Quad Stretch"] },
+    { ...defaultExerciseProps, name: "Hamstring Stretch", sets: "1", reps: "30s each side", rest: "10s", ...MASTER_EXERCISE_DATA["Hamstring Stretch"] },
+    { ...defaultExerciseProps, name: "Chest Stretch", sets: "1", reps: "30s", rest: "10s", ...MASTER_EXERCISE_DATA["Chest Stretch"] },
+    { ...defaultExerciseProps, name: "Shoulder Stretch", sets: "1", reps: "30s each side", rest: "10s", ...MASTER_EXERCISE_DATA["Shoulder Stretch"] },
+    { ...defaultExerciseProps, name: "Triceps Stretch", sets: "1", reps: "30s each side", rest: "10s", ...MASTER_EXERCISE_DATA["Triceps Stretch"] },
+    { ...defaultExerciseProps, name: "Child's Pose", sets: "1", reps: "60s", rest: "0s", ...MASTER_EXERCISE_DATA["Child's Pose"] }
+];
+
 // Function to get a workout plan by slug
 export const getWorkoutForSlug = (
   slug: string,
@@ -289,7 +308,7 @@ export const MALE_CHEST_HOME: DayWorkout = {
   location: 'home',
   exercises: [
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "4", reps: "15-20", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Push-Ups"], name: "Incline Push-Ups", sets: "4", reps: "15", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Dumbbell Press"], name: "Incline Push-Ups", sets: "4", reps: "15", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Decline Push-Ups"], name: "Decline Push-Ups", sets: "3", reps: "12-15", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wide-Grip Push-Ups"], name: "Wide-Grip Push-Ups", sets: "3", reps: "15", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Chest Dips"], name: "Chest Dips", sets: "3", reps: "12", rest: "60s" },
@@ -316,7 +335,7 @@ export const FEMALE_CHEST_HOME: DayWorkout = {
   exercises: [
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wall Push-Ups"], name: "Wall Push-Ups", sets: "3", reps: "20", rest: "45s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Push-Ups"], name: "Push-Ups", sets: "3", reps: "Max on knees", rest: "60s" },
-    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Push-Ups"], name: "Incline Push-Ups", sets: "3", reps: "15", rest: "60s" },
+    { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Incline Dumbbell Press"], name: "Incline Push-Ups", sets: "3", reps: "15", rest: "60s" },
     { ...defaultExerciseProps, ...MASTER_EXERCISE_DATA["Wide-Grip Push-Ups"], name: "Wide-Grip Push-Ups", sets: "3", reps: "Max on knees", rest: "60s" },
   ]
 };
