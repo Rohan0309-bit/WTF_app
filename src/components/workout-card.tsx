@@ -12,7 +12,6 @@ import { Button } from './ui/button';
 import { ActiveWorkoutDialog } from './active-workout-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
-import { useLocalStorage } from '@/hooks/use-local-storage';
 
 const emojiMap: { [key: string]: string } = {
   squats: '🦵',
@@ -43,13 +42,13 @@ interface WorkoutCardProps {
     plan: string;
     showActions?: boolean;
     onDelete?: () => void;
+    onSave?: () => void;
 }
 
-export function WorkoutCard({ plan, showActions = false, onDelete }: WorkoutCardProps) {
+export function WorkoutCard({ plan, showActions = false, onDelete, onSave }: WorkoutCardProps) {
   const [isWorkoutDialogOpen, setWorkoutDialogOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState<DailyWorkout | null>(null);
   const { toast } = useToast();
-  const [savedWorkouts, setSavedWorkouts] = useLocalStorage<any[]>('saved-ai-workouts', []);
 
   const weeklyPlan: DailyWorkout[] = parseWeeklyWorkoutPlan(plan);
 
@@ -57,29 +56,6 @@ export function WorkoutCard({ plan, showActions = false, onDelete }: WorkoutCard
     setSelectedWorkout(day);
     setWorkoutDialogOpen(true);
   };
-  
-  const handleSaveWorkout = () => {
-    const isAlreadySaved = savedWorkouts.some(workout => workout.plan === plan);
-    if(isAlreadySaved) {
-         toast({
-            variant: 'destructive',
-            title: 'Already Saved',
-            description: 'This workout plan is already in your saved list.',
-        });
-        return;
-    }
-
-    const newWorkout = {
-      id: new Date().toISOString(),
-      name: `Custom Workout - ${new Date().toLocaleDateString()}`,
-      plan: plan,
-    };
-    setSavedWorkouts([...savedWorkouts, newWorkout]);
-    toast({
-      title: 'Workout Saved!',
-      description: 'Your custom workout plan has been saved to your device.',
-    });
-  }
   
   const handleDeleteWorkout = () => {
     if (onDelete) {
@@ -91,7 +67,6 @@ export function WorkoutCard({ plan, showActions = false, onDelete }: WorkoutCard
         });
     }
   }
-
 
   if (weeklyPlan.length === 0) {
     return (
@@ -187,7 +162,7 @@ export function WorkoutCard({ plan, showActions = false, onDelete }: WorkoutCard
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
-            <Button onClick={handleSaveWorkout}>
+            <Button onClick={onSave}>
               <Save className="mr-2 h-4 w-4" />
               Save Workout
             </Button>

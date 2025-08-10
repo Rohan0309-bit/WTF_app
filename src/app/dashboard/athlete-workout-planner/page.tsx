@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_TYPES, WORKOUT_PREFERENCES } from '@/lib/constants';
-import { getWorkoutPlan } from './actions';
+import { getWorkoutPlan, FormState } from './actions';
 import { useToast } from '@/hooks/use-toast';
 import { WorkoutCard } from '@/components/workout-card';
 import { Loader2, Sparkles, Trash2, ListRestart } from 'lucide-react';
@@ -112,7 +112,7 @@ function SavedWorkouts({ workouts, onDelete }: { workouts: any[], onDelete: (id:
 
 export default function AthleteWorkoutPlannerPage() {
   const { toast } = useToast();
-  const [state, formAction, isPending] = useActionState(getWorkoutPlan, {
+  const [state, formAction, isPending] = useActionState<FormState, FormData>(getWorkoutPlan, {
     message: '',
     isSuccess: false,
   });
@@ -138,10 +138,49 @@ export default function AthleteWorkoutPlannerPage() {
   };
 
   const clearGeneratedWorkout = () => {
-    // A simple way to "clear" is to reset the form action state
-    // This is a bit of a hack. A better way might be to introduce a new state variable.
      window.location.reload();
   }
+
+  const handleSaveWorkout = () => {
+    if (!state.isSuccess || !state.workoutPlan || !state.workoutInputs) return;
+
+    const { sport, workoutType, skillLevel, gender, workoutPreference } = state.workoutInputs;
+    
+    const nameParts = [
+        sport,
+        workoutType,
+        skillLevel,
+        gender,
+        workoutPreference
+    ].filter(Boolean).map(s => s.charAt(0).toUpperCase() + s.slice(1));
+
+    let workoutName = nameParts.join(' - ');
+    if (!workoutName) {
+        workoutName = `Custom Workout - ${new Date().toLocaleDateString()}`
+    }
+
+
+    const isAlreadySaved = savedWorkouts.some(workout => workout.plan === state.workoutPlan);
+    if(isAlreadySaved) {
+         toast({
+            variant: 'destructive',
+            title: 'Already Saved',
+            description: 'This workout plan is already in your saved list.',
+        });
+        return;
+    }
+
+    const newWorkout = {
+      id: new Date().toISOString(),
+      name: workoutName,
+      plan: state.workoutPlan,
+    };
+    setSavedWorkouts([...savedWorkouts, newWorkout]);
+    toast({
+      title: 'Workout Saved!',
+      description: 'Your custom workout plan has been saved to your device.',
+    });
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -220,7 +259,8 @@ export default function AthleteWorkoutPlannerPage() {
           <WorkoutCard 
             plan={state.workoutPlan} 
             showActions={true} 
-            onDelete={clearGeneratedWorkout} 
+            onDelete={clearGeneratedWorkout}
+            onSave={handleSaveWorkout}
           />
         ) : (
           <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">

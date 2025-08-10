@@ -14,6 +14,7 @@ const formSchema = z.object({
 export type FormState = {
   message: string;
   workoutPlan?: string;
+  workoutInputs?: GenerateAthleteWorkoutInput;
   issues?: string[];
   isSuccess: boolean;
 };
@@ -43,6 +44,7 @@ export async function getWorkoutPlan(
     return {
       message: 'Workout plan generated successfully!',
       workoutPlan: result.workoutPlan,
+      workoutInputs: validatedFields.data,
       isSuccess: true,
     };
   } catch (error) {
