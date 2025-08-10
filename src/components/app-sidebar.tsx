@@ -1,7 +1,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -71,8 +71,7 @@ function SidebarNav() {
                         className={cn(
                         "relative w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 overflow-hidden",
                         "bg-transparent hover:bg-secondary",
-                        isActive ? "text-foreground" : "text-muted-foreground",
-                        isActive && "shadow-glow-active"
+                        isActive ? "text-foreground" : "text-muted-foreground"
                         )}
                     >
                         <span
@@ -82,12 +81,13 @@ function SidebarNav() {
                         )}
                         aria-hidden
                         />
-                        <motion.span
+                         <motion.span
                             className={cn(
-                                "absolute inset-0 rounded-lg pointer-events-none"
+                                "absolute inset-0 rounded-lg pointer-events-none",
+                                isActive ? "shadow-glow-active" : ""
                             )}
                             initial={{boxShadow: 'none'}}
-                            whileHover={{boxShadow: '0 0 12px hsl(var(--primary))'}}
+                            animate={{boxShadow: isActive ? '0 0 12px hsl(var(--primary-glow))' : 'none'}}
                             transition={{duration: 0.3}}
                             aria-hidden
                         />
@@ -142,6 +142,19 @@ function SidebarNav() {
 
 export function AppSidebar() {
   const { isMobile, openMobile, setOpenMobile } = useSidebar();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+        <aside className="w-72 min-h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
+            {/* Render a skeleton or empty state on the server */}
+        </aside>
+    );
+  }
   
   if (isMobile) {
     return (

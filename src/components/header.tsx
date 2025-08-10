@@ -14,11 +14,15 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from './ui/button';
-import { User, Settings, LogOut, ArrowLeft } from 'lucide-react';
+import { User, Settings, LogOut, ArrowLeft, MoreVertical } from 'lucide-react';
+import { useSidebar } from './ui/sidebar';
+import { useEffect, useState } from 'react';
 
 const pathToTitle: { [key: string]: string } = {
   '/dashboard': 'Dashboard',
   '/dashboard/athlete-workout-planner': 'AI Workout Planner',
+  '/dashboard/my-plans': 'My Plans',
+  '/dashboard/my-plans/create': 'Create Custom Plan',
   '/dashboard/general-workouts': 'General Workouts',
   '/dashboard/exercise-library': 'Exercise Library',
   '/dashboard/calculators': 'Health Calculators',
@@ -31,12 +35,24 @@ const pathToTitle: { [key: string]: string } = {
 export function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const getTitle = () => {
     for (const path in pathToTitle) {
       if (pathname.startsWith(path)) {
+        // Special case for workout session page
+        if (path.includes('[id]')) {
+            return 'Workout Session';
+        }
         return pathToTitle[path];
       }
+    }
+     if (pathname.includes('/dashboard/my-plans/workout-session')) {
+      return 'Workout Session';
     }
     return 'Well Trained Freak';
   }
@@ -88,7 +104,9 @@ export function Header() {
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>
-        <SidebarTrigger />
+        {isClient && <SidebarTrigger>
+          <MoreVertical />
+        </SidebarTrigger>}
       </div>
     </header>
   );
