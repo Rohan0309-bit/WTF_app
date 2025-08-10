@@ -9,6 +9,9 @@ import { parseWeeklyWorkoutPlan, type DailyWorkout } from '@/lib/workout-parser'
 import { Dumbbell, Repeat, Timer, PlayCircle, Save, Trash2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { ActiveWorkoutDialog } from './active-workout-dialog';
+import { useToast } from '@/hooks/use-toast';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from './ui/alert-dialog';
+import { useLocalStorage } from '@/hooks/use-local-storage';
 
 const emojiMap: { [key: string]: string } = {
   squats: '🦵',
@@ -38,6 +41,8 @@ function getEmojiForExercise(name: string): string {
 export function WorkoutCard({ plan, showActions = false }: { plan: string, showActions?: boolean }) {
   const [isWorkoutDialogOpen, setWorkoutDialogOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState<DailyWorkout | null>(null);
+  const { toast } = useToast();
+  const [savedWorkouts, setSavedWorkouts] = useLocalStorage<any[]>('saved-ai-workouts', []);
 
   const weeklyPlan: DailyWorkout[] = parseWeeklyWorkoutPlan(plan);
 
@@ -45,6 +50,31 @@ export function WorkoutCard({ plan, showActions = false }: { plan: string, showA
     setSelectedWorkout(day);
     setWorkoutDialogOpen(true);
   };
+  
+  const handleSaveWorkout = () => {
+    const newWorkout = {
+      id: new Date().toISOString(),
+      name: `Custom Workout - ${new Date().toLocaleDateString()}`,
+      plan: plan,
+    };
+    setSavedWorkouts([...savedWorkouts, newWorkout]);
+    toast({
+      title: 'Workout Saved!',
+      description: 'Your custom workout plan has been saved to your device.',
+    });
+  }
+  
+  const handleDeleteWorkout = () => {
+    // In this context, "delete" just means not saving it.
+    // If this card were representing a *saved* workout, this is where we'd remove it from local storage.
+     toast({
+        variant: 'destructive',
+        title: 'Workout Deleted',
+        description: 'The generated workout plan has been discarded.',
+    });
+    // Here you would typically clear the state that displays this card
+  }
+
 
   if (weeklyPlan.length === 0) {
     return (
@@ -120,11 +150,27 @@ export function WorkoutCard({ plan, showActions = false }: { plan: string, showA
         </CardContent>
         {showActions && (
           <CardFooter className="flex justify-end gap-2">
-            <Button variant="outline">
-              <Trash2 className="mr-2 h-4 w-4" />
-              Delete
-            </Button>
-            <Button>
+            <AlertDialog>
+                <AlertDialogTrigger asChild>
+                    <Button variant="outline">
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Delete
+                    </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                        This will discard the generated workout plan. This action cannot be undone.
+                    </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleDeleteWorkout}>Delete</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+            <Button onClick={handleSaveWorkout}>
               <Save className="mr-2 h-4 w-4" />
               Save Workout
             </Button>
