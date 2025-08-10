@@ -15,8 +15,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from './ui/button';
 import { User, Settings, LogOut, ArrowLeft, MoreVertical } from 'lucide-react';
-import { useSidebar } from './ui/sidebar';
 import { useEffect, useState } from 'react';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const pathToTitle: { [key: string]: string } = {
   '/dashboard': 'Dashboard',
@@ -36,15 +37,19 @@ export function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     setIsClient(true);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
   }, []);
 
   const getTitle = () => {
     for (const path in pathToTitle) {
       if (pathname.startsWith(path)) {
-        // Special case for workout session page
         if (path.includes('[id]')) {
             return 'Workout Session';
         }
@@ -60,6 +65,11 @@ export function Header() {
   const title = getTitle();
 
   const showBackButton = pathname.split('/').length > 3 && pathname !== '/dashboard';
+
+  const handleLogout = async () => {
+    await auth.signOut();
+    router.push('/login');
+  };
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6">
@@ -77,8 +87,8 @@ export function Header() {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-10 w-10 rounded-full">
               <Avatar className="h-10 w-10">
-                <AvatarImage src="https://placehold.co/100x100.png" alt="@user" data-ai-hint="user avatar" />
-                <AvatarFallback>U</AvatarFallback>
+                <AvatarImage src={user?.photoURL || "https://placehold.co/100x100.png"} alt={user?.displayName || "User"} data-ai-hint="user avatar" />
+                <AvatarFallback>{user?.displayName?.charAt(0) || 'U'}</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
@@ -87,7 +97,7 @@ export function Header() {
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
+              <span>{user?.displayName || 'Profile'}</span>
             </DropdownMenuItem>
             <Link href="/dashboard/settings">
               <DropdownMenuItem>
@@ -96,12 +106,10 @@ export function Header() {
               </DropdownMenuItem>
             </Link>
             <DropdownMenuSeparator />
-            <Link href="/login">
-              <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
-              </DropdownMenuItem>
-            </Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         {isClient && <SidebarTrigger>

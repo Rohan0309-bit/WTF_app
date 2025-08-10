@@ -26,24 +26,19 @@ import {
 } from '@/components/ui/tooltip';
 import { Icons } from './icons';
 import Link from 'next/link';
-import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { useSidebar } from './ui/sidebar';
+import { auth } from '@/lib/firebase';
 
-const menu = [
-  { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { name: 'AI Planner', icon: Sparkles, path: '/dashboard/athlete-workout-planner' },
-  { name: 'My Plans', icon: ListPlus, path: '/dashboard/my-plans'},
-  { name: 'Workouts', icon: Dumbbell, path: '/dashboard/general-workouts' },
-  { name: 'Exercise Library', icon: BookOpen, path: '/dashboard/exercise-library' },
-  { name: 'Calculators', icon: Calculator, path: '/dashboard/calculators' },
-  { name: 'Nutrition', icon: UtensilsCrossed, path: '/dashboard/nutrition' },
-  { name: 'Posing', icon: PersonStanding, path: '/dashboard/posing-tutorials' },
-  { name: 'Progress', icon: TrendingUp, path: '/dashboard/progress' },
-];
 
 function SidebarNav() {
     const pathname = usePathname();
     const router = useRouter();
+
+    const handleLogout = async () => {
+      await auth.signOut();
+      router.push('/login');
+    };
 
     return (
         <div className="flex flex-col h-full">
@@ -128,19 +123,30 @@ function SidebarNav() {
                         <span className="text-sm text-muted-foreground">Settings</span>
                     </motion.button>
                 </Link>
-                <Link href="/login">
-                    <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    className="w-full px-3 py-2 rounded-md text-sm flex items-center justify-center bg-secondary/50 hover:bg-secondary transition"
-                    >
-                    <LogOut className="w-4 h-4 mr-2 text-muted-foreground" />
-                    <span className="text-muted-foreground">Logout</span>
-                    </motion.button>
-                </Link>
+                <motion.button
+                  onClick={handleLogout}
+                  whileHover={{ scale: 1.02 }}
+                  className="w-full px-3 py-2 rounded-md text-sm flex items-center justify-center bg-secondary/50 hover:bg-secondary transition"
+                >
+                  <LogOut className="w-4 h-4 mr-2 text-muted-foreground" />
+                  <span className="text-muted-foreground">Logout</span>
+                </motion.button>
             </div>
         </div>
     )
 }
+
+const menu = [
+  { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
+  { name: 'AI Planner', icon: Sparkles, path: '/dashboard/athlete-workout-planner' },
+  { name: 'My Plans', icon: ListPlus, path: '/dashboard/my-plans'},
+  { name: 'Workouts', icon: Dumbbell, path: '/dashboard/general-workouts' },
+  { name: 'Exercise Library', icon: BookOpen, path: '/dashboard/exercise-library' },
+  { name: 'Calculators', icon: Calculator, path: '/dashboard/calculators' },
+  { name: 'Nutrition', icon: UtensilsCrossed, path: '/dashboard/nutrition' },
+  { name: 'Posing', icon: PersonStanding, path: '/dashboard/posing-tutorials' },
+  { name: 'Progress', icon: TrendingUp, path: '/dashboard/progress' },
+];
 
 export function AppSidebar() {
   const { isMobile, openMobile, setOpenMobile } = useSidebar();
