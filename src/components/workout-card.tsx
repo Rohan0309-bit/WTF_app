@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Separator } from '@/components/ui/separator';
 import { parseWeeklyWorkoutPlan, type DailyWorkout } from '@/lib/workout-parser';
-import { Dumbbell, Repeat, Timer, PlayCircle, Save, Trash2 } from 'lucide-react';
+import { Dumbbell, Repeat, Timer, PlayCircle, Save, Trash2, ListRestart } from 'lucide-react';
 import { Button } from './ui/button';
 import { ActiveWorkoutDialog } from './active-workout-dialog';
 import { useToast } from '@/hooks/use-toast';
@@ -145,20 +145,20 @@ export function WorkoutCard({ plan, showActions = false, onDelete, onSave }: Wor
             <AlertDialog>
                 <AlertDialogTrigger asChild>
                     <Button variant="outline">
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        Discard
+                        <ListRestart className="mr-2 h-4 w-4" />
+                        Reset
                     </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
                     <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This will discard the generated workout plan. This action cannot be undone.
+                        This will discard the generated workout plan and reset the form. This action cannot be undone.
                     </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleDeleteWorkout}>Discard</AlertDialogAction>
+                    <AlertDialogAction onClick={handleDeleteWorkout}>Reset</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>

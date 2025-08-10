@@ -157,7 +157,7 @@ export default function AthleteWorkoutPlannerPage() {
         skillLevel,
         gender,
         workoutPreference
-    ].filter(Boolean).map(s => s.charAt(0).toUpperCase() + s.slice(1));
+    ].filter(Boolean).map(s => s!.charAt(0).toUpperCase() + s!.slice(1));
 
     let workoutName = nameParts.join(' - ');
     if (!workoutName) {
