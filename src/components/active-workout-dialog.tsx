@@ -125,6 +125,7 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
             <div className="w-full h-auto aspect-square bg-muted rounded-lg overflow-hidden">
                  <Image
                     src={currentExercise.gifUrl || `https://placehold.co/400x400.png`}
+                    data-ai-hint={`${currentExercise.muscle} exercise`}
                     alt={currentExercise.name}
                     width={400}
                     height={400}

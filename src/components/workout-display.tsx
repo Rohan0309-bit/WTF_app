@@ -2,14 +2,14 @@
 'use client';
 
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Dumbbell, Repeat, Timer, PlayCircle } from 'lucide-react';
-import type { DayWorkout, ExerciseDetails } from '@/lib/workouts';
+import type { DayWorkout } from '@/lib/workouts';
 import Image from 'next/image';
 import { Button } from './ui/button';
-import Link from 'next/link';
+import { ActiveWorkoutDialog } from './active-workout-dialog';
+
 
 const emojiMap: { [key: string]: string } = {
   squats: '🦵',
@@ -41,22 +41,8 @@ interface WorkoutDisplayProps {
 }
 
 export function WorkoutDisplay({ workout }: WorkoutDisplayProps) {
-  const pathname = usePathname();
+  const [isWorkoutDialogOpen, setWorkoutDialogOpen] = useState(false);
 
-  const getWorkoutParams = () => {
-    const parts = pathname.split('/').filter(p => p);
-    const slug = parts.slice(2).join('/');
-    const gender = workout.gender || 'male'; // Fallback
-    const location = workout.location || 'gym'; // Fallback
-    const day = workout.day;
-
-    let url = `/dashboard/workout-session/start?slug=${slug}&gender=${gender}&location=${location}`;
-    if(day) {
-      url += `&day=${day}`;
-    }
-    return url;
-  };
-  
   if (!workout || !workout.exercises || workout.exercises.length === 0) {
     return (
       <Card>
@@ -74,6 +60,7 @@ export function WorkoutDisplay({ workout }: WorkoutDisplayProps) {
       </Card>
     );
   }
+  
   return (
     <>
     <Card className="shadow-lg mb-24">
@@ -127,13 +114,16 @@ export function WorkoutDisplay({ workout }: WorkoutDisplayProps) {
     </Card>
 
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-background/80 backdrop-blur-sm border-t">
-       <Link href={getWorkoutParams()} target="_blank" rel="noopener noreferrer" className="w-full">
-            <Button size="lg" className="w-full shadow-lg h-12">
-                <PlayCircle className="mr-2 h-5 w-5" />
-                Start Workout
-            </Button>
-       </Link>
+       <Button size="lg" className="w-full shadow-lg h-12" onClick={() => setWorkoutDialogOpen(true)}>
+          <PlayCircle className="mr-2 h-5 w-5" />
+          Start Workout
+      </Button>
     </div>
+    <ActiveWorkoutDialog
+        isOpen={isWorkoutDialogOpen}
+        onOpenChange={setWorkoutDialogOpen}
+        workout={workout}
+    />
     </>
   );
 }
