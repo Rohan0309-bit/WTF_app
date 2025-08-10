@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useActionState, useEffect } from 'react';
@@ -94,9 +95,8 @@ export default function AthleteWorkoutPlannerPage() {
               <div className="space-y-2">
                 <Label htmlFor="workoutType">Workout Type (Optional)</Label>
                 <Select name="workoutType">
-                  <SelectTrigger id="workoutType"><SelectValue placeholder="Select body part to train" /></SelectTrigger>
+                  <SelectTrigger id="workoutType"><SelectValue placeholder="Full-Body (Default)" /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Full-Body (Default)</SelectItem>
                     {WORKOUT_TYPES.map((type) => (
                       <SelectItem key={type} value={type}>{type}</SelectItem>
                     ))}
