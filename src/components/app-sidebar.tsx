@@ -71,7 +71,8 @@ function SidebarNav() {
                         className={cn(
                         "relative w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 overflow-hidden",
                         "bg-transparent hover:bg-secondary",
-                        isActive ? "text-foreground" : "text-muted-foreground"
+                        isActive ? "text-foreground" : "text-muted-foreground",
+                        isActive && "shadow-glow-active"
                         )}
                     >
                         <span
@@ -81,14 +82,14 @@ function SidebarNav() {
                         )}
                         aria-hidden
                         />
-                        <span
-                        className={cn(
-                            "absolute inset-0 rounded-lg pointer-events-none",
-                            isActive
-                            ? "shadow-glow-active"
-                            : "opacity-0"
-                        )}
-                        aria-hidden
+                        <motion.span
+                            className={cn(
+                                "absolute inset-0 rounded-lg pointer-events-none"
+                            )}
+                            initial={{boxShadow: 'none'}}
+                            whileHover={{boxShadow: '0 0 12px hsl(var(--primary))'}}
+                            transition={{duration: 0.3}}
+                            aria-hidden
                         />
                         <span
                         className={cn(
@@ -106,17 +107,6 @@ function SidebarNav() {
                         <span className="relative z-10 text-left text-sm font-medium">
                         {item.name}
                         </span>
-                        <motion.span
-                        aria-hidden
-                        className="absolute -inset-1 rounded-lg pointer-events-none"
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                        transition={{ duration: 0.35 }}
-                        style={{
-                            boxShadow:
-                            "0 6px 30px rgba(239, 68, 68, 0.06), 0 0 40px rgba(249, 115, 22, 0.04)",
-                        }}
-                        />
                     </motion.button>
                     </TooltipTrigger>
                     <TooltipContent side="right" align="center">
