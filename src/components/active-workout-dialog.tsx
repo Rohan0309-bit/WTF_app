@@ -161,11 +161,19 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
             </div>
         </div>
         <DialogFooter className="mt-4 flex-col gap-4">
-            <Button onClick={handleSetComplete} size="lg" className="w-full h-14 text-lg">
+          <div className="flex flex-col sm:flex-row gap-2">
+            <Button onClick={() => onOpenChange(false)} variant="destructive" className="w-full sm:w-auto">
+                <X className="mr-2 h-4 w-4" />
+                Cancel Workout
+            </Button>
+            <Button onClick={handleSetComplete} size="lg" className="w-full h-14 text-lg flex-1">
                 <Check className="mr-2 h-6 w-6" /> Mark Set as Complete
             </Button>
+          </div>
+          <div>
             <Progress value={progress} className="w-full h-3" />
-            <span className="text-sm text-center text-muted-foreground w-full">Exercise {currentExerciseIndex + 1} of {totalExercises}</span>
+            <span className="text-sm text-center text-muted-foreground w-full mt-2 block">Exercise {currentExerciseIndex + 1} of {totalExercises}</span>
+          </div>
         </DialogFooter>
       </>
     ) : (
@@ -179,12 +187,17 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
           <div className="text-8xl font-bold text-primary mb-2">{timer}</div>
           <div className="text-muted-foreground text-xl">Seconds</div>
         </div>
-
-        <div className="flex justify-center items-center gap-4">
-            <Button variant="outline" size="lg" onClick={() => adjustTime(-10)}><Minus/></Button>
-            <Button onClick={handleSkipRest} variant="secondary" size="lg">Skip Rest</Button>
-            <Button variant="outline" size="lg" onClick={() => adjustTime(10)}><Plus/></Button>
-        </div>
+        <DialogFooter className="flex-col gap-4">
+            <div className="flex justify-center items-center gap-4">
+                <Button variant="outline" size="lg" onClick={() => adjustTime(-10)}><Minus/></Button>
+                <Button onClick={handleSkipRest} variant="secondary" size="lg">Skip Rest</Button>
+                <Button variant="outline" size="lg" onClick={() => adjustTime(10)}><Plus/></Button>
+            </div>
+             <Button onClick={() => onOpenChange(false)} variant="destructive" className="w-full sm:w-auto mx-auto">
+                <X className="mr-2 h-4 w-4" />
+                Cancel Workout
+            </Button>
+        </DialogFooter>
       </>
     )
   );
