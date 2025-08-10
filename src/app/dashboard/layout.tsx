@@ -2,6 +2,7 @@
 
 import { AppSidebar } from '@/components/app-sidebar';
 import { Header } from '@/components/header';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
@@ -12,6 +13,7 @@ export default function DashboardLayout({
 }) {
     const pathname = usePathname();
   return (
+    <SidebarProvider>
       <div className="min-h-screen w-full bg-background text-foreground flex">
         <AppSidebar />
         <div className="flex flex-col flex-1">
@@ -31,5 +33,6 @@ export default function DashboardLayout({
           </main>
         </div>
       </div>
+    </SidebarProvider>
   );
 }
