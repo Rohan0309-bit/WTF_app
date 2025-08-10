@@ -150,15 +150,7 @@ export function AppSidebar() {
     setIsClient(true);
   }, []);
 
-  if (!isClient) {
-    return (
-        <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
-            {/* Render a skeleton or empty state on the server */}
-        </aside>
-    );
-  }
-  
-  if (isMobile) {
+  if (isMobile && isClient) {
     return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile}>
             <SheetContent side="left" className="w-72 bg-card p-4 flex flex-col">
@@ -171,8 +163,17 @@ export function AppSidebar() {
 
   return (
     <TooltipProvider>
-      <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
-        <SidebarNav />
+      <aside className="w-72 min-h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
+        {isClient ? <SidebarNav /> :  (
+             <>
+                <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
+                    <Icons.logo className="h-12 w-12 text-primary" />
+                </div>
+                <div className="flex-1 space-y-2">
+                    {/* Skeleton loader can go here */}
+                </div>
+            </>
+        )}
       </aside>
     </TooltipProvider>
   );
