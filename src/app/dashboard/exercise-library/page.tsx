@@ -17,7 +17,7 @@ const allExercises: ExerciseDetails[] = Object.entries(MASTER_EXERCISE_DATA).map
   difficulty: details.difficulty || 'N/A',
   instructions: details.instructions || 'No instructions available.',
   gifUrl: details.gifUrl || `https://placehold.co/400x300.png`,
-}));
+})).sort((a, b) => a.name.localeCompare(b.name));
 
 export default function ExerciseLibraryPage() {
   const [searchTerm, setSearchTerm] = useState('');
