@@ -2,19 +2,31 @@
 
 'use client';
 
-import { useActionState, useEffect } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_PREFERENCES, WORKOUT_TYPES } from '@/lib/constants';
+import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_TYPES } from '@/lib/constants';
 import { getWorkoutPlan } from './actions';
 import { useToast } from '@/hooks/use-toast';
 import { WorkoutCard } from '@/components/workout-card';
-import { Loader2, Sparkles } from 'lucide-react';
+import { Loader2, Sparkles, Trash2, ListRestart } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useLocalStorage } from '@/hooks/use-local-storage';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -55,22 +67,81 @@ function LoadingSkeleton() {
     )
 }
 
+function SavedWorkouts({ workouts, onDelete }: { workouts: any[], onDelete: (id: string) => void }) {
+    if (workouts.length === 0) return null;
+
+    return (
+        <div className="lg:col-span-3 mt-8">
+            <Card>
+                <CardHeader>
+                    <CardTitle className="font-headline">Saved Workouts</CardTitle>
+                    <CardDescription>Your saved AI-generated workout plans.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    {workouts.map(workout => (
+                        <div key={workout.id} className="border p-4 rounded-lg">
+                            <h4 className="font-bold mb-2">{workout.name}</h4>
+                            <WorkoutCard plan={workout.plan} />
+                             <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                    <Button variant="destructive" className="mt-4">
+                                        <Trash2 className="mr-2 h-4 w-4" />
+                                        Delete Saved Workout
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        This will permanently delete this saved workout. This action cannot be undone.
+                                    </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                    <AlertDialogAction onClick={() => onDelete(workout.id)}>Delete</AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                        </div>
+                    ))}
+                </CardContent>
+            </Card>
+        </div>
+    );
+}
+
 export default function AthleteWorkoutPlannerPage() {
   const { toast } = useToast();
   const [state, formAction, isPending] = useActionState(getWorkoutPlan, {
     message: '',
     isSuccess: false,
   });
+  const [savedWorkouts, setSavedWorkouts] = useLocalStorage<any[]>('saved-ai-workouts', []);
 
   useEffect(() => {
-    if (state.message && !state.isSuccess) {
+    if (state.message && !state.isSuccess && !isPending) {
       toast({
         variant: 'destructive',
         title: 'Error',
         description: state.message,
       });
     }
-  }, [state, toast]);
+  }, [state, toast, isPending]);
+
+  const handleDeleteSavedWorkout = (id: string) => {
+    setSavedWorkouts(savedWorkouts.filter(w => w.id !== id));
+    toast({
+      variant: 'destructive',
+      title: 'Workout Deleted',
+      description: 'The saved workout has been removed from your device.',
+    });
+  };
+
+  const clearGeneratedWorkout = () => {
+    // A simple way to "clear" is to reset the form action state
+    // This is a bit of a hack. A better way might be to introduce a new state variable.
+     window.location.reload();
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -146,7 +217,11 @@ export default function AthleteWorkoutPlannerPage() {
         {isPending ? (
             <LoadingSkeleton />
         ) : state.isSuccess && state.workoutPlan ? (
-          <WorkoutCard plan={state.workoutPlan} showActions={true} />
+          <WorkoutCard 
+            plan={state.workoutPlan} 
+            showActions={true} 
+            onDelete={clearGeneratedWorkout} 
+          />
         ) : (
           <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">
             <Sparkles className="h-16 w-16 text-muted-foreground mb-4" />
@@ -155,6 +230,9 @@ export default function AthleteWorkoutPlannerPage() {
           </Card>
         )}
       </div>
+
+      <SavedWorkouts workouts={savedWorkouts} onDelete={handleDeleteSavedWorkout} />
+
     </div>
   );
 }

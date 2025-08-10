@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState } from 'react';
@@ -38,7 +39,13 @@ function getEmojiForExercise(name: string): string {
   return '🔥';
 }
 
-export function WorkoutCard({ plan, showActions = false }: { plan: string, showActions?: boolean }) {
+interface WorkoutCardProps {
+    plan: string;
+    showActions?: boolean;
+    onDelete?: () => void;
+}
+
+export function WorkoutCard({ plan, showActions = false, onDelete }: WorkoutCardProps) {
   const [isWorkoutDialogOpen, setWorkoutDialogOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState<DailyWorkout | null>(null);
   const { toast } = useToast();
@@ -52,6 +59,16 @@ export function WorkoutCard({ plan, showActions = false }: { plan: string, showA
   };
   
   const handleSaveWorkout = () => {
+    const isAlreadySaved = savedWorkouts.some(workout => workout.plan === plan);
+    if(isAlreadySaved) {
+         toast({
+            variant: 'destructive',
+            title: 'Already Saved',
+            description: 'This workout plan is already in your saved list.',
+        });
+        return;
+    }
+
     const newWorkout = {
       id: new Date().toISOString(),
       name: `Custom Workout - ${new Date().toLocaleDateString()}`,
@@ -65,14 +82,14 @@ export function WorkoutCard({ plan, showActions = false }: { plan: string, showA
   }
   
   const handleDeleteWorkout = () => {
-    // In this context, "delete" just means not saving it.
-    // If this card were representing a *saved* workout, this is where we'd remove it from local storage.
-     toast({
-        variant: 'destructive',
-        title: 'Workout Deleted',
-        description: 'The generated workout plan has been discarded.',
-    });
-    // Here you would typically clear the state that displays this card
+    if (onDelete) {
+        onDelete();
+        toast({
+            variant: 'destructive',
+            title: 'Workout Discarded',
+            description: 'The generated workout plan has been discarded.',
+        });
+    }
   }
 
 
@@ -154,7 +171,7 @@ export function WorkoutCard({ plan, showActions = false }: { plan: string, showA
                 <AlertDialogTrigger asChild>
                     <Button variant="outline">
                         <Trash2 className="mr-2 h-4 w-4" />
-                        Delete
+                        Discard
                     </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
@@ -166,7 +183,7 @@ export function WorkoutCard({ plan, showActions = false }: { plan: string, showA
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleDeleteWorkout}>Delete</AlertDialogAction>
+                    <AlertDialogAction onClick={handleDeleteWorkout}>Discard</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
