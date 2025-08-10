@@ -25,6 +25,7 @@ const pathToTitle: { [key: string]: string } = {
   '/dashboard/nutrition': 'Nutrition Plans',
   '/dashboard/posing-tutorials': 'Posing Tutorials',
   '/dashboard/progress': 'Progress Tracker',
+  '/dashboard/settings': 'Settings',
 };
 
 export function Header() {
@@ -73,10 +74,12 @@ export function Header() {
               <User className="mr-2 h-4 w-4" />
               <span>Profile</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
-            </DropdownMenuItem>
+            <Link href="/dashboard/settings">
+              <DropdownMenuItem>
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Settings</span>
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuSeparator />
             <Link href="/">
               <DropdownMenuItem>
