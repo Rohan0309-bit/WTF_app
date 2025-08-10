@@ -46,7 +46,7 @@ function SidebarNav() {
     const router = useRouter();
 
     return (
-        <>
+        <div className="flex flex-col h-full">
             <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
                 <Link href="/dashboard" className="flex items-center gap-3">
                     <Icons.logo className="h-12 w-12 text-primary" />
@@ -138,7 +138,7 @@ function SidebarNav() {
                     </motion.button>
                 </Link>
             </div>
-        </>
+        </div>
     )
 }
 
@@ -150,7 +150,17 @@ export function AppSidebar() {
     setIsClient(true);
   }, []);
 
-  if (isMobile && isClient) {
+  if (!isClient) {
+    return (
+        <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
+             <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
+                <Icons.logo className="h-12 w-12 text-primary" />
+            </div>
+        </aside>
+    );
+  }
+  
+  if (isMobile) {
     return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile}>
             <SheetContent side="left" className="w-72 bg-card p-4 flex flex-col">
@@ -163,17 +173,8 @@ export function AppSidebar() {
 
   return (
     <TooltipProvider>
-      <aside className="w-72 min-h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
-        {isClient ? <SidebarNav /> :  (
-             <>
-                <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
-                    <Icons.logo className="h-12 w-12 text-primary" />
-                </div>
-                <div className="flex-1 space-y-2">
-                    {/* Skeleton loader can go here */}
-                </div>
-            </>
-        )}
+      <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
+        <SidebarNav />
       </aside>
     </TooltipProvider>
   );
