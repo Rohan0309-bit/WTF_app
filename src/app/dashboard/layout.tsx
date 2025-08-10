@@ -1,3 +1,4 @@
+
 'use client';
 
 import { AppSidebar } from '@/components/app-sidebar';
@@ -16,7 +17,7 @@ export default function DashboardLayout({
     <SidebarProvider>
       <div className="min-h-screen w-full bg-background text-foreground flex">
         <AppSidebar />
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 h-screen">
           <Header />
           <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto">
              <AnimatePresence mode="wait" initial={false}>

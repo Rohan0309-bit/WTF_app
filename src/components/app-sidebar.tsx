@@ -47,15 +47,17 @@ function SidebarNav() {
 
     return (
         <>
-            <Link href="/dashboard" className="flex items-center gap-3 px-2 mb-6">
-                <Icons.logo className="h-12 w-12 text-primary" />
-                <div>
-                <div className="text-primary font-extrabold">Well</div>
-                <div className="text-foreground font-bold">Trained Freak</div>
-                </div>
-            </Link>
+            <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
+                <Link href="/dashboard" className="flex items-center gap-3">
+                    <Icons.logo className="h-12 w-12 text-primary" />
+                    <div>
+                    <div className="text-primary font-extrabold">Well</div>
+                    <div className="text-foreground font-bold">Trained Freak</div>
+                    </div>
+                </Link>
+            </div>
 
-            <nav className="flex-1 space-y-2">
+            <nav className="flex-1 space-y-2 overflow-y-auto">
             {menu.map((item) => {
                 const isActive = pathname.startsWith(item.path) && (item.path === '/dashboard' ? pathname === item.path : true);
                 const Icon = item.icon;
@@ -116,7 +118,7 @@ function SidebarNav() {
                 );
             })}
             </nav>
-             <div className="mt-6 px-2 space-y-2">
+             <div className="mt-6 px-2 space-y-2 flex-shrink-0">
                 <Link href="/dashboard/settings">
                     <motion.button
                         whileHover={{ scale: 1.04 }}
@@ -150,7 +152,7 @@ export function AppSidebar() {
 
   if (!isClient) {
     return (
-        <aside className="w-72 min-h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
+        <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
             {/* Render a skeleton or empty state on the server */}
         </aside>
     );
@@ -169,7 +171,7 @@ export function AppSidebar() {
 
   return (
     <TooltipProvider>
-      <aside className="w-72 min-h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
+      <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
         <SidebarNav />
       </aside>
     </TooltipProvider>
