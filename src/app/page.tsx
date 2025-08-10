@@ -32,7 +32,7 @@ export default function IntroPage() {
         playsInline
         onEnded={handleVideoEnd}
       >
-        <source src="https://i.imgur.com/8oNAX84.mp4" type="video/mp4" />
+        <source src="https://github.com/Rohan0309-bit/intro-2/raw/refs/heads/main/WhatsApp%20Video%202025-07-13%20at%2022.49.00.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
