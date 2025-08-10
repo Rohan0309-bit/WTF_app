@@ -117,6 +117,11 @@ export default function AthleteWorkoutPlannerPage() {
     isSuccess: false,
   });
   const [savedWorkouts, setSavedWorkouts] = useLocalStorage<any[]>('saved-ai-workouts', []);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (state.message && !state.isSuccess && !isPending) {
@@ -271,7 +276,7 @@ export default function AthleteWorkoutPlannerPage() {
         )}
       </div>
 
-      <SavedWorkouts workouts={savedWorkouts} onDelete={handleDeleteSavedWorkout} />
+      {isClient && <SavedWorkouts workouts={savedWorkouts} onDelete={handleDeleteSavedWorkout} />}
 
     </div>
   );
