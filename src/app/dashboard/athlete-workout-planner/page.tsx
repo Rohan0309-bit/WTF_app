@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_TYPES } from '@/lib/constants';
+import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_TYPES, WORKOUT_PREFERENCES } from '@/lib/constants';
 import { getWorkoutPlan } from './actions';
 import { useToast } from '@/hooks/use-toast';
 import { WorkoutCard } from '@/components/workout-card';
