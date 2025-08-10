@@ -26,7 +26,8 @@ const parseRestTime = (rest: string): number => {
 }
 
 export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView = false }: ActiveWorkoutDialogProps) {
-  const [phase, setPhase] = useState<WorkoutPhase>('warmup');
+  const isSpecialtyWorkout = workout?.focus?.includes('Facial') || workout?.focus?.includes('Vocal');
+  const [phase, setPhase] = useState<WorkoutPhase>(isSpecialtyWorkout ? 'main' : 'warmup');
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [currentSet, setCurrentSet] = useState(1);
   const [isResting, setIsResting] = useState(false);
@@ -48,7 +49,7 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
 
   useEffect(() => {
     if (!workout || !isOpen) {
-      setPhase('warmup');
+      setPhase(isSpecialtyWorkout ? 'main' : 'warmup');
       setCurrentExerciseIndex(0);
       setCurrentSet(1);
       setIsResting(false);
@@ -65,7 +66,7 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
       setIsResting(false);
       advanceToNext();
     }
-  }, [isOpen, workout, isResting, timer]);
+  }, [isOpen, workout, isResting, timer, isSpecialtyWorkout]);
 
   if (!workout) return null;
 
@@ -106,7 +107,11 @@ export function ActiveWorkoutDialog({ isOpen, onOpenChange, workout, isPageView 
       setCurrentExerciseIndex(0);
       setCurrentSet(1);
     } else if (phase === 'main') {
-      setPhase('cooldown');
+       if (isSpecialtyWorkout) {
+        setPhase('complete');
+      } else {
+        setPhase('cooldown');
+      }
       setCurrentExerciseIndex(0);
       setCurrentSet(1);
     } else if (phase === 'cooldown') {
