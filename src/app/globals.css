@@ -12,6 +12,7 @@
     --popover-foreground: 0 0% 98%;
     --primary: 0 84% 60%; /* Red */
     --primary-foreground: 0 0% 98%;
+    --primary-glow: 0 84% 60%;
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 15%;
@@ -48,6 +49,7 @@
     --popover-foreground: 0 0% 98%;
     --primary: 0 84% 60%;
     --primary-foreground: 0 0% 98%;
+    --primary-glow: 0 84% 60%;
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 15%;

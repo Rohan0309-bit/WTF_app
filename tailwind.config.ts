@@ -14,6 +14,10 @@ export default {
         headline: ['Poppins', 'sans-serif'],
         code: ['monospace'],
       },
+       boxShadow: {
+        glow: '0 0 10px rgba(var(--primary-glow), 0.8)',
+        'glow-active': '0 0 15px rgba(var(--primary-glow), 0.9)',
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
