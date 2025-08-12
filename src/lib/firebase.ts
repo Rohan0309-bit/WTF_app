@@ -51,3 +51,5 @@ export const registerWithEmailPassword = (email: string, password: string) => {
 export const getSignInMethods = (email: string) => {
     return fetchSignInMethodsForEmail(auth, email);
 }
+
+export { signOut };
