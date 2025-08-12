@@ -106,14 +106,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 p-4">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900 p-4">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="w-full max-w-md"
       >
-        <Card className="bg-white/10 backdrop-blur-xl shadow-2xl border border-white/20 rounded-2xl overflow-hidden">
+        <Card className="bg-black/40 backdrop-blur-lg shadow-2xl border border-gray-800 rounded-2xl overflow-hidden">
           <CardHeader className="text-center">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -124,7 +124,7 @@ export default function LoginPage() {
               <Icons.logo className="h-20 w-20 text-primary" />
             </motion.div>
             <CardTitle className="text-3xl font-bold text-white">Welcome Back</CardTitle>
-            <CardDescription className="text-gray-300">Sign in to continue your journey</CardDescription>
+            <CardDescription className="text-gray-400">Sign in to continue your journey</CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
@@ -139,7 +139,7 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={loading}
-                  className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                  className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:ring-red-500"
                 />
               </div>
               <div>
@@ -153,7 +153,7 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     disabled={loading}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                    className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:ring-red-500"
                   />
                   <Button
                     type="button"
@@ -168,26 +168,26 @@ export default function LoginPage() {
               </div>
               <Button
                 type="submit"
-                className="w-full bg-primary hover:bg-primary/90 text-white"
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold"
                 disabled={loading}
               >
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Sign in with Email
+                Sign In
               </Button>
             </form>
 
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-white/20" />
+                <span className="w-full border-t border-gray-700" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-black/40 px-2 text-gray-400">Or continue with</span>
+                <span className="bg-card px-2 text-gray-400">Or continue with</span>
               </div>
             </div>
 
             <Button
               variant="outline"
-              className="w-full bg-white/10 hover:bg-white/20 text-white border-white/20"
+              className="w-full bg-gray-800 hover:bg-gray-700 text-white border-gray-700"
               onClick={handleGoogleLogin}
               disabled={loading}
             >
@@ -208,7 +208,7 @@ export default function LoginPage() {
 
           <CardFooter className="justify-center text-sm text-gray-400">
             Don’t have an account?{' '}
-            <Link href="/signup" className="ml-1 font-semibold text-primary hover:underline">
+            <Link href="/signup" className="ml-1 font-semibold text-red-500 hover:underline">
               Sign up
             </Link>
           </CardFooter>
