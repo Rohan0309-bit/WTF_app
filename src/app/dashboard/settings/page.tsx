@@ -12,8 +12,23 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { auth, db } from '@/lib/firebase';
 import { doc, getDoc, updateDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight } from 'lucide-react';
 import type { User } from 'firebase/auth';
+import Link from 'next/link';
+
+const settingsItems = [
+    { id: 'profile', icon: UserIcon, title: 'Profile', description: 'Update your personal details.' },
+    { id: 'appearance', icon: Palette, title: 'Appearance', description: 'Customize the look and feel.' },
+    { id: 'language', icon: Languages, title: 'Language', description: 'Choose your preferred language.' },
+];
+
+const supportItems = [
+    { id: 'rate', icon: Star, title: 'Rate Us', href: '#' },
+    { id: 'feedback', icon: MessageSquare, title: 'Feedback', href: '#' },
+    { id: 'privacy', icon: Shield, title: 'Privacy Policy', href: '#' },
+    { id: 'more', icon: AppWindow, title: 'More Apps', href: '#' },
+];
+
 
 export default function SettingsPage() {
     const { toast } = useToast();
@@ -39,7 +54,6 @@ export default function SettingsPage() {
                     if (userDoc.exists()) {
                         setFormData(userDoc.data() as any);
                     } else {
-                        // Pre-fill from auth if available
                         setFormData(prev => ({ ...prev, name: currentUser.displayName || '', email: currentUser.email || ''}));
                     }
                 } catch (error) {
@@ -79,7 +93,6 @@ export default function SettingsPage() {
         setSaving(true);
         try {
             const userDocRef = doc(db, 'users', user.uid);
-            // Use setDoc with merge:true to create or update
             await setDoc(userDocRef, { ...formData, updatedAt: serverTimestamp() }, { merge: true });
             toast({ title: 'Profile Updated!', description: 'Your profile has been successfully updated.' });
         } catch (error) {
@@ -91,21 +104,12 @@ export default function SettingsPage() {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-8">
             <div>
                 <h1 className="text-3xl font-bold font-headline">Settings</h1>
                 <p className="text-muted-foreground">Manage your application preferences and profile.</p>
             </div>
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">Appearance</CardTitle>
-                    <CardDescription>Customize the look and feel of the app.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <ThemeToggle />
-                </CardContent>
-            </Card>
-
+            
             <Card>
                 <CardHeader>
                     <CardTitle className="font-headline">Profile Information</CardTitle>
@@ -150,6 +154,55 @@ export default function SettingsPage() {
                             </Button>
                         </form>
                     )}
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle className="font-headline">Appearance</CardTitle>
+                    <CardDescription>Customize the look and feel of the app.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <ThemeToggle />
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle className="font-headline">Language</CardTitle>
+                    <CardDescription>Choose your preferred language.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                     <div className="max-w-xs">
+                        <Select defaultValue="en">
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select language" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="en">English</SelectItem>
+                                <SelectItem value="es">Español (Coming Soon)</SelectItem>
+                                <SelectItem value="fr">Français (Coming Soon)</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </CardContent>
+            </Card>
+
+             <Card>
+                <CardHeader>
+                    <CardTitle className="font-headline">Community & Support</CardTitle>
+                    <CardDescription>Give feedback, read our policies, and explore more.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-1 p-0">
+                    {supportItems.map(item => (
+                        <Link href={item.href} key={item.id} target="_blank" rel="noopener noreferrer">
+                            <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg">
+                                <item.icon className="h-5 w-5 text-muted-foreground mr-4"/>
+                                <span className="flex-1 font-medium">{item.title}</span>
+                                <ChevronRight className="h-5 w-5 text-muted-foreground"/>
+                            </div>
+                        </Link>
+                    ))}
                 </CardContent>
             </Card>
         </div>
