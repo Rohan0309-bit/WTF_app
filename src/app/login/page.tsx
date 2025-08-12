@@ -60,22 +60,25 @@ export default function LoginPage() {
     try {
       const methods = await getSignInMethods(email.trim());
 
+      if (methods.length === 0) {
+        toast({
+            variant: 'destructive',
+            title: 'No Account Found',
+            description: 'No account found with this email. Please sign up first.',
+            action: <Button variant="secondary" onClick={() => router.push('/signup')}>Sign Up</Button>
+        });
+        setLoading(false);
+        return;
+      }
+      
       if (!methods.includes('password')) {
-         if (methods.length > 0) {
-            toast({
-                variant: 'destructive',
-                title: 'Sign-in Method Mismatch',
-                description: `This email is registered with ${methods.join(', ')}. Please use that method to sign in.`,
-            });
-         } else {
-             toast({
-                variant: 'destructive',
-                title: 'No Account Found',
-                description: 'No account found with this email. Please sign up first.',
-            });
-         }
-         setLoading(false);
-         return;
+        toast({
+            variant: 'destructive',
+            title: 'Sign-in Method Mismatch',
+            description: `This email is registered with ${methods.join(', ')}. Please use that method to sign in.`,
+        });
+        setLoading(false);
+        return;
       }
       
       const result = await loginWithEmailPassword(email.trim(), password);
@@ -83,12 +86,8 @@ export default function LoginPage() {
 
     } catch (error: any) {
         const errorMap: Record<string, string> = {
-            "auth/invalid-email": "Invalid email address format.",
-            "auth/user-disabled": "This account has been disabled.",
-            "auth/user-not-found": "No account found with this email.",
             "auth/wrong-password": "Incorrect password. Please try again.",
-            "auth/invalid-credential": "Invalid email or password.",
-            "auth/network-request-failed": "Network error. Please check your connection.",
+            "auth/invalid-credential": "Incorrect password. Please try again.",
             "auth/too-many-requests": "Too many attempts. Try again later.",
         };
         const description = errorMap[error.code] || "An unexpected error occurred. Please try again.";
