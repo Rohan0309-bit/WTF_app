@@ -7,13 +7,12 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, registerWithEmailPassword, auth, db, getSignInMethods } from '@/lib/firebase';
+import { signInWithGoogle, registerWithEmailPassword, auth, db, getSignInMethods, signOut } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
-import { signOut } from 'firebase/auth';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -69,9 +68,10 @@ export default function SignupPage() {
     setLoading(true);
 
      try {
-        // Optional: Force signout to clear any lingering state
+        // Always start fresh
         await signOut(auth);
         
+        // Check if email is already registered with any provider
         const methods = await getSignInMethods(email.trim());
         if (methods.length > 0) {
             toast({
@@ -84,8 +84,10 @@ export default function SignupPage() {
             return;
         }
 
+      // Create new account
       const result = await registerWithEmailPassword(email, password);
       await checkUserProfile(result.user);
+
     } catch (error: any) {
         const errorMap: Record<string, string> = {
             "auth/weak-password": "The password is too weak. Please choose a stronger password.",
