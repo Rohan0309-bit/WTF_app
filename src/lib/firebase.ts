@@ -22,7 +22,7 @@ export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
 // In a development environment, you might want to connect to the emulators
-if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
     // Point to the emulators running on your local machine
     try {
         connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
@@ -38,16 +38,16 @@ export const signInWithGoogle = async () => {
 };
 
 // Email/Password Sign-In
-export const loginWithEmailPassword = (email, password) => {
+export const loginWithEmailPassword = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
 // Email/Password Sign-Up
-export const registerWithEmailPassword = (email, password) => {
+export const registerWithEmailPassword = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
 // Fetch sign-in methods for an email
-export const getSignInMethodsForEmail = (email) => {
+export const getSignInMethods = (email: string) => {
     return fetchSignInMethodsForEmail(auth, email);
 }
