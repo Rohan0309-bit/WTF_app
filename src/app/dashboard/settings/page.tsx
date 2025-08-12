@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { auth, db } from '@/lib/firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 import type { User } from 'firebase/auth';
@@ -36,9 +36,11 @@ export default function SettingsPage() {
                 const userDoc = await getDoc(userDocRef);
                 if (userDoc.exists()) {
                     setFormData(userDoc.data() as any);
+                } else {
+                    // Pre-fill from auth if available
+                    setFormData(prev => ({ ...prev, name: currentUser.displayName || '', email: currentUser.email || ''}));
                 }
             } else {
-                // Handle user not logged in
                 setUser(null);
             }
             setLoading(false);
@@ -64,13 +66,17 @@ export default function SettingsPage() {
             toast({ variant: 'destructive', title: 'Error', description: 'You must be logged in.' });
             return;
         }
+        setLoading(true);
         try {
             const userDocRef = doc(db, 'users', user.uid);
-            await updateDoc(userDocRef, formData);
+            // Use setDoc with merge:true to create or update
+            await setDoc(userDocRef, { ...formData, updatedAt: serverTimestamp() }, { merge: true });
             toast({ title: 'Profile Updated!', description: 'Your profile has been successfully updated.' });
         } catch (error) {
             console.error("Failed to update profile", error);
             toast({ variant: 'destructive', title: 'Error', description: 'Failed to update your profile.' });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -133,7 +139,10 @@ export default function SettingsPage() {
                                 <div className="space-y-2"><Label htmlFor="weight">Weight (kg)</Label><Input id="weight" name="weight" type="number" value={formData.weight} onChange={handleChange} required /></div>
                                 <div className="space-y-2"><Label htmlFor="height">Height (cm)</Label><Input id="height" name="height" type="number" value={formData.height} onChange={handleChange} required /></div>
                             </div>
-                            <Button type="submit" className="w-full font-bold">Save Changes</Button>
+                            <Button type="submit" className="w-full font-bold" disabled={loading}>
+                                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                Save Changes
+                            </Button>
                         </form>
                     )}
                 </CardContent>
@@ -141,3 +150,4 @@ export default function SettingsPage() {
         </div>
     );
 }
+
