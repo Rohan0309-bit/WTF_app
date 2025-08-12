@@ -138,16 +138,16 @@ export default function SignupPage() {
            <form onSubmit={handleEmailSignup} className="space-y-4">
                 <div className="space-y-1">
                     <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" placeholder="Rohan" value={name} onChange={(e) => setName(e.target.value)} required disabled={loading}/>
+                    <Input id="name" placeholder="Eg.Rohan" value={name} onChange={(e) => setName(e.target.value)} required disabled={loading}/>
                 </div>
                  <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
                         <Label htmlFor="age">Age</Label>
-                        <Input id="age" type="number" placeholder="20" value={age} onChange={(e) => setAge(e.target.value)} required disabled={loading}/>
+                        <Input id="age" type="number" placeholder="Eg. 20" value={age} onChange={(e) => setAge(e.target.value)} required disabled={loading}/>
                     </div>
                     <div className="space-y-1">
                         <Label htmlFor="height">Height (cm)</Label>
-                        <Input id="height" type="number" placeholder="172" value={height} onChange={(e) => setHeight(e.target.value)} required disabled={loading}/>
+                        <Input id="height" type="number" placeholder="Eg. 172" value={height} onChange={(e) => setHeight(e.target.value)} required disabled={loading}/>
                     </div>
                  </div>
                  <div className="space-y-1">
