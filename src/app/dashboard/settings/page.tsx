@@ -12,17 +12,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { auth, db } from '@/lib/firebase';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight } from 'lucide-react';
+import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight, Check } from 'lucide-react';
 import type { User } from 'firebase/auth';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-
-const settingsItems = [
-    { id: 'profile', icon: UserIcon, title: 'Profile', description: 'Update your personal details.' },
-    { id: 'appearance', icon: Palette, title: 'Appearance', description: 'Customize the look and feel.' },
-    { id: 'language', icon: Languages, title: 'Language', description: 'Choose your preferred language.' },
-];
 
 const supportItems = [
     { id: 'rate', icon: Star, title: 'Rate Us', href: '#' },
@@ -31,10 +25,19 @@ const supportItems = [
     { id: 'more', icon: AppWindow, title: 'More Apps', href: '#' },
 ];
 
+type FormData = {
+    userType: string;
+    name: string;
+    age: string;
+    gender: string;
+    weight: string;
+    height: string;
+}
+
 export default function SettingsPage() {
     const { toast } = useToast();
     const [user, setUser] = useState<User | null>(null);
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormData>({
         userType: 'general',
         name: '',
         age: '',
@@ -42,8 +45,10 @@ export default function SettingsPage() {
         weight: '',
         height: '',
     });
+    const [initialData, setInitialData] = useState<FormData | null>(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [saveSuccess, setSaveSuccess] = useState(false);
     const [selectedSection, setSelectedSection] = useState<'profile' | null>(null);
 
     useEffect(() => {
@@ -54,15 +59,24 @@ export default function SettingsPage() {
                 try {
                     const userDoc = await getDoc(userDocRef);
                     if (userDoc.exists()) {
-                        setFormData(userDoc.data() as any);
+                        const data = userDoc.data() as FormData;
+                        setFormData(data);
+                        setInitialData(data); // Store initial data for revert
                     } else {
-                        // Pre-fill with any auth data if available
-                        setFormData(prev => ({ ...prev, name: currentUser.displayName || '', email: currentUser.email || ''}));
+                        const initial = {
+                            userType: 'general',
+                            name: currentUser.displayName || '',
+                            age: '',
+                            gender: '',
+                            weight: '',
+                            height: '',
+                        };
+                        setFormData(initial);
+                        setInitialData(initial);
                     }
                 } catch (error) {
                     console.error("Error fetching user document:", error);
-                     if ((error as any).code.includes('offline')) {
-                        // This is fine, we can proceed with cached data if available or empty form
+                     if ((error as any).code?.includes('offline')) {
                         console.warn('Client is offline, using cached/default data.');
                     } else {
                         toast({
@@ -94,19 +108,31 @@ export default function SettingsPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!user) {
-            toast({ variant: 'destructive', title: 'Error', description: 'You must be logged in.' });
+        if (!user || saving) {
             return;
         }
+
+        const originalData = { ...initialData! };
+        const updatedData = { ...formData };
+        
+        // Optimistic UI update
         setSaving(true);
+        setFormData(updatedData);
+        setInitialData(updatedData);
+
         try {
             const userDocRef = doc(db, 'users', user.uid);
-            await setDoc(userDocRef, { ...formData, updatedAt: serverTimestamp() }, { merge: true });
-            toast({ title: 'Profile Updated!', description: 'Your profile has been successfully updated.' });
-            setSelectedSection(null); // Close the form on successful save
+            await setDoc(userDocRef, { ...updatedData, updatedAt: serverTimestamp() }, { merge: true });
+            
+            setSaveSuccess(true);
+            setTimeout(() => setSaveSuccess(false), 2000); // Show success for 2s
+            
         } catch (error) {
             console.error("Failed to update profile", error);
-            toast({ variant: 'destructive', title: 'Error', description: 'Failed to update your profile.' });
+            // Revert on failure
+            setFormData(originalData);
+            setInitialData(originalData);
+            toast({ variant: 'destructive', title: 'Error', description: 'Failed to update your profile. Please try again.' });
         } finally {
             setSaving(false);
         }
@@ -171,9 +197,13 @@ export default function SettingsPage() {
                                         <div className="space-y-2"><Label htmlFor="weight">Weight (kg)</Label><Input id="weight" name="weight" type="number" value={formData.weight} onChange={handleChange} required /></div>
                                         <div className="space-y-2"><Label htmlFor="height">Height (cm)</Label><Input id="height" name="height" type="number" value={formData.height} onChange={handleChange} required /></div>
                                     </div>
-                                    <Button type="submit" className="w-full font-bold" disabled={saving}>
-                                        {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        Save Changes
+                                    <Button type="submit" className="w-full font-bold" disabled={saving || saveSuccess}>
+                                        {saving ? (
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        ) : saveSuccess ? (
+                                            <Check className="mr-2 h-4 w-4" />
+                                        ) : null}
+                                        {saving ? 'Saving...' : saveSuccess ? 'Saved!' : 'Save Changes'}
                                     </Button>
                                 </form>
                             )}
