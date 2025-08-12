@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -46,3 +46,8 @@ export const loginWithEmailPassword = (email, password) => {
 export const registerWithEmailPassword = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
+
+// Fetch sign-in methods for an email
+export const getSignInMethodsForEmail = (email) => {
+    return fetchSignInMethodsForEmail(auth, email);
+}

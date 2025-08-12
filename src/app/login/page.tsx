@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, loginWithEmailPassword, auth, db } from '@/lib/firebase';
+import { signInWithGoogle, loginWithEmailPassword, getSignInMethodsForEmail, auth, db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
@@ -36,13 +36,37 @@ export default function LoginPage() {
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email || !password) {
+        toast({ variant: 'destructive', title: 'Login Failed', description: 'Please enter both email and password.' });
+        return;
+    }
     try {
+      const methods = await getSignInMethodsForEmail(email);
+
+      if (methods.length === 0) {
+        toast({
+            variant: 'destructive',
+            title: 'No Account Found',
+            description: 'No account found with this email. Please sign up first.',
+        });
+        return;
+      }
+
+      if (!methods.includes('password')) {
+        toast({
+            variant: 'destructive',
+            title: 'Sign-in Method Mismatch',
+            description: `This email is registered with ${methods.join(', ')}. Please use that method to sign in.`,
+        });
+        return;
+      }
+      
       const result = await loginWithEmailPassword(email, password);
       const user = result.user;
       await checkUserProfile(user);
     } catch (error: any) {
         let description = 'An unexpected error occurred. Please try again.';
-        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+        if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
             description = 'Invalid email or password. Please check your credentials and try again.';
         }
         toast({
