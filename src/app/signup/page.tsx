@@ -7,12 +7,13 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, registerWithEmailPassword, auth, db, getSignInMethods, signOut } from '@/lib/firebase';
+import { signInWithGoogle, registerWithEmailPassword, auth, db, getSignInMethods, signOut, createUserProfile } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -20,6 +21,10 @@ export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [height, setHeight] = useState('');
+  const [gender, setGender] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -65,13 +70,16 @@ export default function SignupPage() {
       });
       return;
     }
+     if (!name || !age || !height || !gender) {
+      toast({ variant: 'destructive', title: 'Validation Error', description: 'Please fill all required profile fields.' });
+      return;
+    }
+
     setLoading(true);
 
      try {
-        // Always start fresh
         await signOut(auth);
         
-        // Check if email is already registered with any provider
         const methods = await getSignInMethods(email.trim());
         if (methods.length > 0) {
             toast({
@@ -84,9 +92,18 @@ export default function SignupPage() {
             return;
         }
 
-      // Create new account
       const result = await registerWithEmailPassword(email, password);
-      await checkUserProfile(result.user);
+      
+      const profileData = {
+          name,
+          age: Number(age),
+          height: Number(height),
+          gender
+      }
+      await createUserProfile(result.user, profileData);
+      
+      toast({ title: 'Profile Created!', description: 'Welcome to the club!' });
+      router.push('/dashboard');
 
     } catch (error: any) {
         const errorMap: Record<string, string> = {
@@ -119,28 +136,53 @@ export default function SignupPage() {
         </CardHeader>
         <CardContent className="space-y-4">
            <form onSubmit={handleEmailSignup} className="space-y-4">
-              <div className="space-y-1">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={loading}/>
-              </div>
-               <div className="space-y-1">
-                <Label htmlFor="password">Password</Label>
-                <div className="relative">
-                    <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={loading}/>
-                    <Button type="button" variant="ghost" size="icon" className="absolute top-1/2 right-2 -translate-y-1/2 h-7 w-7 text-muted-foreground" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <EyeOff /> : <Eye />}
-                    </Button>
+                <div className="space-y-1">
+                    <Label htmlFor="name">Full Name</Label>
+                    <Input id="name" placeholder="John Doe" value={name} onChange={(e) => setName(e.target.value)} required disabled={loading}/>
                 </div>
-              </div>
-               <div className="space-y-1">
-                <Label htmlFor="confirm-password">Confirm Password</Label>
-                 <div className="relative">
-                    <Input id="confirm-password" type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required disabled={loading}/>
-                    <Button type="button" variant="ghost" size="icon" className="absolute top-1/2 right-2 -translate-y-1/2 h-7 w-7 text-muted-foreground" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                        {showConfirmPassword ? <EyeOff /> : <Eye />}
-                    </Button>
+                 <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                        <Label htmlFor="age">Age</Label>
+                        <Input id="age" type="number" placeholder="25" value={age} onChange={(e) => setAge(e.target.value)} required disabled={loading}/>
+                    </div>
+                    <div className="space-y-1">
+                        <Label htmlFor="height">Height (cm)</Label>
+                        <Input id="height" type="number" placeholder="180" value={height} onChange={(e) => setHeight(e.target.value)} required disabled={loading}/>
+                    </div>
+                 </div>
+                 <div className="space-y-1">
+                    <Label htmlFor="gender">Gender</Label>
+                    <Select value={gender} onValueChange={setGender} required>
+                        <SelectTrigger id="gender"><SelectValue placeholder="Select your gender" /></SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                    </Select>
+                 </div>
+                 <div className="space-y-1">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={loading}/>
                 </div>
-              </div>
+                <div className="space-y-1">
+                    <Label htmlFor="password">Password</Label>
+                    <div className="relative">
+                        <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={loading}/>
+                        <Button type="button" variant="ghost" size="icon" className="absolute top-1/2 right-2 -translate-y-1/2 h-7 w-7 text-muted-foreground" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <EyeOff /> : <Eye />}
+                        </Button>
+                    </div>
+                </div>
+                <div className="space-y-1">
+                    <Label htmlFor="confirm-password">Confirm Password</Label>
+                    <div className="relative">
+                        <Input id="confirm-password" type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required disabled={loading}/>
+                        <Button type="button" variant="ghost" size="icon" className="absolute top-1/2 right-2 -translate-y-1/2 h-7 w-7 text-muted-foreground" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                            {showConfirmPassword ? <EyeOff /> : <Eye />}
+                        </Button>
+                    </div>
+                </div>
               <Button type="submit" className="w-full" disabled={loading}>
                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                  Create Account

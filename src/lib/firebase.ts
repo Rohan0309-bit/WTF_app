@@ -1,7 +1,8 @@
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signOut } from "firebase/auth";
-import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signOut, type User } from "firebase/auth";
+import { getFirestore, connectFirestoreEmulator, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -50,6 +51,19 @@ export const registerWithEmailPassword = (email: string, password: string) => {
 // Fetch sign-in methods for an email
 export const getSignInMethods = (email: string) => {
     return fetchSignInMethodsForEmail(auth, email);
+}
+
+// Create user profile in Firestore
+export const createUserProfile = async (user: User, additionalData: any) => {
+    if (!user) return;
+    const userRef = doc(db, 'users', user.uid);
+    const data = {
+        uid: user.uid,
+        email: user.email,
+        createdAt: serverTimestamp(),
+        ...additionalData,
+    };
+    return setDoc(userRef, data, { merge: true });
 }
 
 export { signOut };
