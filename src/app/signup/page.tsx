@@ -13,6 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { signOut } from 'firebase/auth';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -40,6 +41,7 @@ export default function SignupPage() {
   const handleGoogleSignup = async () => {
     setLoading(true);
     try {
+      await signOut(auth); // Force signout to prevent conflicts
       const result = await signInWithGoogle();
       await checkUserProfile(result.user);
     } catch (err) {
@@ -67,6 +69,9 @@ export default function SignupPage() {
     setLoading(true);
 
      try {
+        // Optional: Force signout to clear any lingering state
+        await signOut(auth);
+        
         const methods = await getSignInMethods(email.trim());
         if (methods.length > 0) {
             toast({
@@ -85,6 +90,7 @@ export default function SignupPage() {
         const errorMap: Record<string, string> = {
             "auth/weak-password": "The password is too weak. Please choose a stronger password.",
             "auth/invalid-email": "Invalid email address format.",
+            "auth/email-already-in-use": "This email is already registered. Please log in instead.",
         };
         const description = errorMap[error.code] || 'An unexpected error occurred. Please try again.';
        
