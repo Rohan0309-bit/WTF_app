@@ -1,13 +1,12 @@
-
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, loginWithEmailPassword, auth, db, getSignInMethods } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { signInWithGoogle, loginWithEmailPassword, auth } from '@/lib/firebase';
+import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
@@ -23,22 +22,23 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const checkUserProfile = async (user: any) => {
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    if (!userDoc.exists()) {
-      router.push("/profile-setup");
-    } else {
-      router.push("/dashboard");
-    }
-  };
+  // Auto-redirect if already signed in
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push('/dashboard');
+      }
+    });
+    return () => unsub();
+  }, [router]);
 
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
-      const result = await signInWithGoogle();
-      await checkUserProfile(result.user);
+      await signInWithGoogle();
+      router.push('/dashboard');
     } catch (err) {
-      console.error("Google login failed", err);
+      console.error('Google login failed', err);
       toast({
         variant: 'destructive',
         title: 'Login Failed',
@@ -55,51 +55,51 @@ export default function LoginPage() {
       toast({
         variant: 'destructive',
         title: 'Login Failed',
-        description: 'Please enter both email and password.'
+        description: 'Please enter both email and password.',
       });
       return;
     }
     setLoading(true);
-
     try {
-      const methods = await getSignInMethods(email.trim());
-
-      if (methods.length === 0) {
-        toast({
-          variant: 'destructive',
-          title: 'No Account Found',
-          description: 'No account found with this email. Please sign up.',
-          action: <Button variant="secondary" onClick={() => router.push('/signup')}>Sign Up</Button>
-        });
-        setLoading(false);
-        return;
-      }
-
-      if (!methods.includes('password')) {
-        toast({
-          variant: 'destructive',
-          title: 'Sign-in Method Mismatch',
-          description: `This account was created with a different sign-in method (${methods.join(', ')}). Please use that method to log in.`,
-        });
-        setLoading(false);
-        return;
-      }
-
-      const result = await loginWithEmailPassword(email.trim(), password);
-      await checkUserProfile(result.user);
-
+      await loginWithEmailPassword(email.trim(), password);
+      router.push('/dashboard');
     } catch (error: any) {
       const errorMap: Record<string, string> = {
-        "auth/wrong-password": "Incorrect password. Try again.",
-        "auth/invalid-credential": "Incorrect password. Try again.",
-        "auth/too-many-requests": "Too many attempts. Try again later.",
+        'auth/wrong-password': 'Incorrect password. Try again.',
+        'auth/invalid-credential': 'Incorrect password. Try again.',
+        'auth/too-many-requests': 'Too many attempts. Try again later.',
       };
       toast({
         variant: 'destructive',
         title: 'Login Failed',
-        description: errorMap[error.code] || "Unexpected error. Try again."
+        description: errorMap[error.code] || 'Unexpected error. Try again.',
       });
-      console.error("Email login failed", error);
+      console.error('Email login failed', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleQuickSignup = async () => {
+    if (!email || !password) {
+      toast({
+        variant: 'destructive',
+        title: 'Signup Failed',
+        description: 'Please enter both email and password.',
+      });
+      return;
+    }
+    setLoading(true);
+    try {
+      await createUserWithEmailAndPassword(auth, email.trim(), password);
+      router.push('/dashboard');
+    } catch (error: any) {
+      toast({
+        variant: 'destructive',
+        title: 'Signup Failed',
+        description: error.message || 'Unexpected error. Try again.',
+      });
+      console.error('Quick signup failed', error);
     } finally {
       setLoading(false);
     }
@@ -124,7 +124,7 @@ export default function LoginPage() {
               <Icons.logo className="h-20 w-20 text-primary" />
             </motion.div>
             <CardTitle className="text-3xl font-bold text-white">Welcome Back</CardTitle>
-            <CardDescription className="text-gray-400">Sign in to continue your journey</CardDescription>
+            <CardDescription className="text-gray-400">Sign in or create an account instantly</CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
@@ -147,7 +147,7 @@ export default function LoginPage() {
                 <div className="relative">
                   <Input
                     id="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -166,14 +166,26 @@ export default function LoginPage() {
                   </Button>
                 </div>
               </div>
-              <Button
-                type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold"
-                disabled={loading}
-              >
-                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Sign In
-              </Button>
+
+              <div className="flex gap-2">
+                <Button
+                  type="submit"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold"
+                  disabled={loading}
+                >
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Sign In
+                </Button>
+                <Button
+                  type="button"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold"
+                  disabled={loading}
+                  onClick={handleQuickSignup}
+                >
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Quick Create
+                </Button>
+              </div>
             </form>
 
             <div className="relative">
@@ -192,15 +204,18 @@ export default function LoginPage() {
               disabled={loading}
             >
               {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> :
-                <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
+                <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false"
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
                   <path fill="currentColor"
-                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 126 21.5 173.5 58.1l-65.2 64.2C335.5 97 295.6 80 248 80c-82.6 0-150.2 
-                    67.5-150.2 150.2S165.4 406.2 248 406.2c46.4 0 87.5-21.2 
-                    115.8-54.8l65.2 64.2c-55.5 51.5-128.5 82.8-211 
-                    82.8-144.3 0-261.8-117.5-261.8-261.8S103.7-5.8 
-                    248-5.8c79.4 0 149.8 30.9 201.8 82.2l-3.2 
-                    3.2C485.4 121.3 488 187.3 488 261.8z" />
+                    d="M488 261.8C488 403.3 391.1 504 248 504C110.8 504 0 393.2 0 256S110.8 8 248 8
+                    c66.8 0 126 21.5 173.5 58.1l-65.2 64.2C335.5 97 295.6 80 248 80
+                    c-82.6 0-150.2 67.5-150.2 150.2S165.4 406.2 248 406.2
+                    c46.4 0 87.5-21.2 115.8-54.8l65.2 64.2
+                    c-55.5 51.5-128.5 82.8-211 82.8
+                    c-144.3 0-261.8-117.5-261.8-261.8
+                    S103.7-5.8 248-5.8
+                    c79.4 0 149.8 30.9 201.8 82.2l-3.2 3.2
+                    C485.4 121.3 488 187.3 488 261.8z" />
                 </svg>}
               Sign in with Google
             </Button>
