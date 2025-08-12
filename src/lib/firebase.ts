@@ -26,8 +26,6 @@ if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
     // Point to the emulators running on your local machine
     connectAuthEmulator(auth, 'http://localhost:9099');
     connectFirestoreEmulator(db, 'localhost', 8080);
-    // Dynamically set auth domain for emulators
-    auth.config.authDomain = window.location.hostname + ':9099';
 }
 
 
