@@ -24,8 +24,12 @@ export const db = getFirestore(app);
 // In a development environment, you might want to connect to the emulators
 if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
     // Point to the emulators running on your local machine
-    connectAuthEmulator(auth, 'http://localhost:9099');
-    connectFirestoreEmulator(db, 'localhost', 8080);
+    try {
+        connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
+        connectFirestoreEmulator(db, '127.0.0.1', 8080);
+    } catch (e) {
+        console.warn("Could not connect to emulators, this is fine if you are not running them locally", e)
+    }
 }
 
 
