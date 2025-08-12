@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -26,9 +26,21 @@ if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
     // Point to the emulators running on your local machine
     connectAuthEmulator(auth, 'http://localhost:9099');
     connectFirestoreEmulator(db, 'localhost', 8080);
+    // Dynamically set auth domain for emulators
+    auth.config.authDomain = window.location.hostname + ':9099';
 }
 
 
 export const signInWithGoogle = async () => {
   return signInWithPopup(auth, provider);
+};
+
+// Email/Password Sign-In
+export const loginWithEmailPassword = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password);
+};
+
+// Email/Password Sign-Up
+export const registerWithEmailPassword = (email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password);
 };
