@@ -16,6 +16,7 @@ import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shi
 import type { User } from 'firebase/auth';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 const settingsItems = [
     { id: 'profile', icon: UserIcon, title: 'Profile', description: 'Update your personal details.' },
