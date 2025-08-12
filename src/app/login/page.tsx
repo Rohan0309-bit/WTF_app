@@ -12,12 +12,14 @@ import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Eye, EyeOff } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleGoogleLogin = async () => {
     try {
@@ -41,7 +43,7 @@ export default function LoginPage() {
         return;
     }
     try {
-      const methods = await getSignInMethodsForEmail(email);
+      const methods = await getSignInMethodsForEmail(auth, email);
 
       if (methods.length === 0) {
         toast({
@@ -105,7 +107,12 @@ export default function LoginPage() {
               </div>
                <div className="space-y-1">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <div className="relative">
+                    <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <Button type="button" variant="ghost" size="icon" className="absolute top-1/2 right-2 -translate-y-1/2 h-7 w-7 text-muted-foreground" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <EyeOff /> : <Eye />}
+                    </Button>
+                </div>
               </div>
               <Button type="submit" className="w-full">Sign in with Email</Button>
             </form>
