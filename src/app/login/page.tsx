@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, loginWithEmailPassword, auth, db } from '@/lib/firebase';
+import { signInWithGoogle, loginWithEmailPassword, auth, db, getSignInMethods } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
@@ -60,12 +60,36 @@ export default function LoginPage() {
       return;
     }
     setLoading(true);
+
     try {
+      const methods = await getSignInMethods(email.trim());
+
+      if (methods.length === 0) {
+        toast({
+          variant: 'destructive',
+          title: 'No Account Found',
+          description: 'No account found with this email. Please sign up.',
+          action: <Button variant="secondary" onClick={() => router.push('/signup')}>Sign Up</Button>
+        });
+        setLoading(false);
+        return;
+      }
+
+      if (!methods.includes('password')) {
+        toast({
+          variant: 'destructive',
+          title: 'Sign-in Method Mismatch',
+          description: `This account was created with a different sign-in method (${methods.join(', ')}). Please use that method to log in.`,
+        });
+        setLoading(false);
+        return;
+      }
+
       const result = await loginWithEmailPassword(email.trim(), password);
       await checkUserProfile(result.user);
+
     } catch (error: any) {
       const errorMap: Record<string, string> = {
-        "auth/user-not-found": "No account found with this email.",
         "auth/wrong-password": "Incorrect password. Try again.",
         "auth/invalid-credential": "Incorrect password. Try again.",
         "auth/too-many-requests": "Too many attempts. Try again later.",
@@ -171,8 +195,7 @@ export default function LoginPage() {
                 <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
                   <path fill="currentColor"
-                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 
-                    126 21.5 173.5 58.1l-65.2 64.2C335.5 97 295.6 80 248 80c-82.6 0-150.2 
+                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 126 21.5 173.5 58.1l-65.2 64.2C335.5 97 295.6 80 248 80c-82.6 0-150.2 
                     67.5-150.2 150.2S165.4 406.2 248 406.2c46.4 0 87.5-21.2 
                     115.8-54.8l65.2 64.2c-55.5 51.5-128.5 82.8-211 
                     82.8-144.3 0-261.8-117.5-261.8-261.8S103.7-5.8 
