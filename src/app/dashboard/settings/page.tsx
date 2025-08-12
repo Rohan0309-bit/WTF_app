@@ -10,11 +10,12 @@ import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { auth, db } from '@/lib/firebase';
-import { doc, getDoc, updateDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight } from 'lucide-react';
 import type { User } from 'firebase/auth';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const settingsItems = [
     { id: 'profile', icon: UserIcon, title: 'Profile', description: 'Update your personal details.' },
@@ -29,7 +30,6 @@ const supportItems = [
     { id: 'more', icon: AppWindow, title: 'More Apps', href: '#' },
 ];
 
-
 export default function SettingsPage() {
     const { toast } = useToast();
     const [user, setUser] = useState<User | null>(null);
@@ -43,6 +43,7 @@ export default function SettingsPage() {
     });
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [selectedSection, setSelectedSection] = useState<'profile' | null>(null);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -54,15 +55,21 @@ export default function SettingsPage() {
                     if (userDoc.exists()) {
                         setFormData(userDoc.data() as any);
                     } else {
+                        // Pre-fill with any auth data if available
                         setFormData(prev => ({ ...prev, name: currentUser.displayName || '', email: currentUser.email || ''}));
                     }
                 } catch (error) {
                     console.error("Error fetching user document:", error);
-                    toast({
-                        variant: 'destructive',
-                        title: 'Error',
-                        description: 'Could not load your profile data. Please check your connection.',
-                    });
+                     if ((error as any).code.includes('offline')) {
+                        // This is fine, we can proceed with cached data if available or empty form
+                        console.warn('Client is offline, using cached/default data.');
+                    } else {
+                        toast({
+                            variant: 'destructive',
+                            title: 'Error',
+                            description: 'Could not load your profile data. Please check your connection.',
+                        });
+                    }
                 }
             } else {
                 setUser(null);
@@ -95,6 +102,7 @@ export default function SettingsPage() {
             const userDocRef = doc(db, 'users', user.uid);
             await setDoc(userDocRef, { ...formData, updatedAt: serverTimestamp() }, { merge: true });
             toast({ title: 'Profile Updated!', description: 'Your profile has been successfully updated.' });
+            setSelectedSection(null); // Close the form on successful save
         } catch (error) {
             console.error("Failed to update profile", error);
             toast({ variant: 'destructive', title: 'Error', description: 'Failed to update your profile.' });
@@ -109,81 +117,96 @@ export default function SettingsPage() {
                 <h1 className="text-3xl font-bold font-headline">Settings</h1>
                 <p className="text-muted-foreground">Manage your application preferences and profile.</p>
             </div>
-            
+
             <Card>
                 <CardHeader>
-                    <CardTitle className="font-headline">Profile Information</CardTitle>
-                    <CardDescription>Update your personal details.</CardDescription>
+                    <CardTitle className="font-headline">General</CardTitle>
                 </CardHeader>
-                <CardContent>
-                    {loading ? (
-                        <div className="flex justify-center items-center h-40">
-                            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <CardContent className="space-y-1 p-0">
+                    <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer" onClick={() => setSelectedSection(selectedSection === 'profile' ? null : 'profile')}>
+                        <UserIcon className="h-5 w-5 text-muted-foreground mr-4"/>
+                        <div className="flex-1">
+                            <span className="font-medium">Profile</span>
+                            <p className="text-sm text-muted-foreground">Update your personal details.</p>
                         </div>
-                    ) : (
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="space-y-2">
-                                <Label>User Type</Label>
-                                <RadioGroup value={formData.userType} onValueChange={handleRadioChange} className="flex gap-4">
-                                    <div className="flex items-center space-x-2"><RadioGroupItem value="athlete" id="r-athlete" /><Label htmlFor="r-athlete">Athlete</Label></div>
-                                    <div className="flex items-center space-x-2"><RadioGroupItem value="general" id="r-general" /><Label htmlFor="r-general">General User</Label></div>
-                                </RadioGroup>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="space-y-2"><Label htmlFor="name">Full Name</Label><Input id="name" name="name" value={formData.name} onChange={handleChange} required /></div>
-                                <div className="space-y-2"><Label htmlFor="age">Age</Label><Input id="age" name="age" type="number" value={formData.age} onChange={handleChange} required /></div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="gender">Gender</Label>
-                                    <Select name="gender" value={formData.gender} onValueChange={handleSelectChange('gender')} required>
-                                        <SelectTrigger id="gender"><SelectValue placeholder="Select gender" /></SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="male">Male</SelectItem>
-                                            <SelectItem value="female">Female</SelectItem>
-                                            <SelectItem value="other">Other</SelectItem>
-                                        </SelectContent>
-                                    </Select>
+                        <ChevronRight className={cn("h-5 w-5 text-muted-foreground transition-transform", selectedSection === 'profile' && 'rotate-90')}/>
+                    </div>
+                     {selectedSection === 'profile' && (
+                        <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            className="overflow-hidden"
+                        >
+                            <div className="p-4 pt-0">
+                            {loading ? (
+                                <div className="flex justify-center items-center h-40">
+                                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
                                 </div>
-                                <div className="space-y-2"><Label htmlFor="weight">Weight (kg)</Label><Input id="weight" name="weight" type="number" value={formData.weight} onChange={handleChange} required /></div>
-                                <div className="space-y-2"><Label htmlFor="height">Height (cm)</Label><Input id="height" name="height" type="number" value={formData.height} onChange={handleChange} required /></div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="space-y-6 pt-4 border-t">
+                                    <div className="space-y-2">
+                                        <Label>User Type</Label>
+                                        <RadioGroup value={formData.userType} onValueChange={handleRadioChange} className="flex gap-4">
+                                            <div className="flex items-center space-x-2"><RadioGroupItem value="athlete" id="r-athlete" /><Label htmlFor="r-athlete">Athlete</Label></div>
+                                            <div className="flex items-center space-x-2"><RadioGroupItem value="general" id="r-general" /><Label htmlFor="r-general">General User</Label></div>
+                                        </RadioGroup>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div className="space-y-2"><Label htmlFor="name">Full Name</Label><Input id="name" name="name" value={formData.name} onChange={handleChange} required /></div>
+                                        <div className="space-y-2"><Label htmlFor="age">Age</Label><Input id="age" name="age" type="number" value={formData.age} onChange={handleChange} required /></div>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="gender">Gender</Label>
+                                            <Select name="gender" value={formData.gender} onValueChange={handleSelectChange('gender')} required>
+                                                <SelectTrigger id="gender"><SelectValue placeholder="Select gender" /></SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="male">Male</SelectItem>
+                                                    <SelectItem value="female">Female</SelectItem>
+                                                    <SelectItem value="other">Other</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="space-y-2"><Label htmlFor="weight">Weight (kg)</Label><Input id="weight" name="weight" type="number" value={formData.weight} onChange={handleChange} required /></div>
+                                        <div className="space-y-2"><Label htmlFor="height">Height (cm)</Label><Input id="height" name="height" type="number" value={formData.height} onChange={handleChange} required /></div>
+                                    </div>
+                                    <Button type="submit" className="w-full font-bold" disabled={saving}>
+                                        {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                        Save Changes
+                                    </Button>
+                                </form>
+                            )}
                             </div>
-                            <Button type="submit" className="w-full font-bold" disabled={saving}>
-                                {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                Save Changes
-                            </Button>
-                        </form>
+                        </motion.div>
                     )}
-                </CardContent>
-            </Card>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">Appearance</CardTitle>
-                    <CardDescription>Customize the look and feel of the app.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <ThemeToggle />
-                </CardContent>
-            </Card>
+                    <div className="flex items-center p-4">
+                        <Palette className="h-5 w-5 text-muted-foreground mr-4"/>
+                        <div className="flex-1">
+                            <span className="font-medium">Appearance</span>
+                            <p className="text-sm text-muted-foreground">Customize the look and feel.</p>
+                        </div>
+                        <ThemeToggle/>
+                    </div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">Language</CardTitle>
-                    <CardDescription>Choose your preferred language.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                     <div className="max-w-xs">
-                        <Select defaultValue="en">
-                            <SelectTrigger>
-                                <SelectValue placeholder="Select language" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="en">English</SelectItem>
-                                <SelectItem value="es">Español (Coming Soon)</SelectItem>
-                                <SelectItem value="fr">Français (Coming Soon)</SelectItem>
-                            </SelectContent>
-                        </Select>
+                    <div className="flex items-center p-4">
+                        <Languages className="h-5 w-5 text-muted-foreground mr-4"/>
+                         <div className="flex-1">
+                            <span className="font-medium">Language</span>
+                            <p className="text-sm text-muted-foreground">Choose your preferred language.</p>
+                        </div>
+                         <div className="max-w-xs">
+                            <Select defaultValue="en">
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select language" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="en">English</SelectItem>
+                                    <SelectItem value="es" disabled>Español (Coming Soon)</SelectItem>
+                                    <SelectItem value="fr" disabled>Français (Coming Soon)</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
                 </CardContent>
             </Card>
