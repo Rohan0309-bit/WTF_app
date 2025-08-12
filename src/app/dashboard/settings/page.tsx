@@ -27,18 +27,28 @@ export default function SettingsPage() {
         height: '',
     });
     const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
                 const userDocRef = doc(db, 'users', currentUser.uid);
-                const userDoc = await getDoc(userDocRef);
-                if (userDoc.exists()) {
-                    setFormData(userDoc.data() as any);
-                } else {
-                    // Pre-fill from auth if available
-                    setFormData(prev => ({ ...prev, name: currentUser.displayName || '', email: currentUser.email || ''}));
+                try {
+                    const userDoc = await getDoc(userDocRef);
+                    if (userDoc.exists()) {
+                        setFormData(userDoc.data() as any);
+                    } else {
+                        // Pre-fill from auth if available
+                        setFormData(prev => ({ ...prev, name: currentUser.displayName || '', email: currentUser.email || ''}));
+                    }
+                } catch (error) {
+                    console.error("Error fetching user document:", error);
+                    toast({
+                        variant: 'destructive',
+                        title: 'Error',
+                        description: 'Could not load your profile data. Please check your connection.',
+                    });
                 }
             } else {
                 setUser(null);
@@ -46,7 +56,7 @@ export default function SettingsPage() {
             setLoading(false);
         });
         return () => unsubscribe();
-    }, []);
+    }, [toast]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -66,7 +76,7 @@ export default function SettingsPage() {
             toast({ variant: 'destructive', title: 'Error', description: 'You must be logged in.' });
             return;
         }
-        setLoading(true);
+        setSaving(true);
         try {
             const userDocRef = doc(db, 'users', user.uid);
             // Use setDoc with merge:true to create or update
@@ -76,7 +86,7 @@ export default function SettingsPage() {
             console.error("Failed to update profile", error);
             toast({ variant: 'destructive', title: 'Error', description: 'Failed to update your profile.' });
         } finally {
-            setLoading(false);
+            setSaving(false);
         }
     };
 
@@ -92,12 +102,7 @@ export default function SettingsPage() {
                     <CardDescription>Customize the look and feel of the app.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="flex items-center justify-between">
-                        <Label htmlFor="dark-mode" className="text-base">
-                            Dark Mode
-                        </Label>
-                        <ThemeToggle />
-                    </div>
+                    <ThemeToggle />
                 </CardContent>
             </Card>
 
@@ -139,8 +144,8 @@ export default function SettingsPage() {
                                 <div className="space-y-2"><Label htmlFor="weight">Weight (kg)</Label><Input id="weight" name="weight" type="number" value={formData.weight} onChange={handleChange} required /></div>
                                 <div className="space-y-2"><Label htmlFor="height">Height (cm)</Label><Input id="height" name="height" type="number" value={formData.height} onChange={handleChange} required /></div>
                             </div>
-                            <Button type="submit" className="w-full font-bold" disabled={loading}>
-                                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                            <Button type="submit" className="w-full font-bold" disabled={saving}>
+                                {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Save Changes
                             </Button>
                         </form>
@@ -150,4 +155,3 @@ export default function SettingsPage() {
         </div>
     );
 }
-
