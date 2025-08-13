@@ -4,11 +4,12 @@ import { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { cricketSubCategories, SPORT_CATEGORIES, Drill } from '@/lib/drills';
+import { cricketSubCategories, type Drill } from '@/lib/drills';
+import { SPORT_CATEGORIES } from '@/lib/constants';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { CheckCircle, XCircle, Youtube } from 'lucide-react';
+import { CheckCircle, XCircle, Youtube, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 

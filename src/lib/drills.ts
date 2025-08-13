@@ -1,6 +1,4 @@
 
-import { Dumbbell, Target, Activity, Shield, Stethoscope, Utensils, DumbbellIcon } from 'lucide-react';
-
 export interface Drill {
     name: string;
     youtubeUrl: string;
@@ -723,4 +721,8 @@ export const cricketSubCategories: Record<string, Drill[]> = {
         }
     ]
 };
-replace this in src/lib/drills.ts
+const comment = `
+The \`SPORT_CATEGORIES\` constant was moved to \`src/lib/constants.ts\` and no longer needs to be in \`src/lib/drills.ts\`.
+
+Additionally, the \`DumbbellIcon\` is not a standard Lucide React icon. Please use a suitable alternative, like \`Dumbbell\`.
+`
