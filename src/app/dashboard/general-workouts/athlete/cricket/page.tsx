@@ -1,88 +1,49 @@
+
 'use client';
 
-import { useState } from 'react';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import {
-  CRICKET_MALE_GYM_WORKOUT_PLAN,
-  CRICKET_MALE_HOME_WORKOUT_PLAN,
-  CRICKET_FEMALE_GYM_WORKOUT_PLAN,
-  CRICKET_FEMALE_HOME_WORKOUT_PLAN,
-  WorkoutSplit
-} from '@/lib/workouts';
-import { WorkoutDisplay } from '@/components/workout-display';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Target, Activity, Shield, Stethoscope, Dumbbell } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
-type Gender = 'male' | 'female';
-type Location = 'gym' | 'home';
+const cricketCategories = [
+    { name: "Workouts", href: "/dashboard/general-workouts/athlete/cricket/workouts", icon: Dumbbell, color: "from-green-500 to-emerald-500" },
+    { name: "Shot Training", href: "/dashboard/general-workouts/athlete/cricket/drills", icon: Target, color: "from-blue-500 to-sky-500" },
+    { name: "Bowling Drills", href: "/dashboard/general-workouts/athlete/cricket/drills", icon: Activity, color: "from-red-500 to-rose-500" },
+    { name: "Fielding Drills", href: "/dashboard/general-workouts/athlete/cricket/drills", icon: Shield, color: "from-purple-500 to-violet-500" },
+    { name: "Wicketkeeping", href: "/dashboard/general-workouts/athlete/cricket/drills", icon: Stethoscope, color: "from-orange-500 to-amber-500" },
+];
 
-export default function CricketWorkoutPage() {
-  const [gender, setGender] = useState<Gender>('male');
-  const [location, setLocation] = useState<Location>('gym');
-  const [selectedDay, setSelectedDay] = useState<string>('Monday');
-
-  const getWorkoutPlan = (): WorkoutSplit => {
-    if (gender === 'male' && location === 'gym') return CRICKET_MALE_GYM_WORKOUT_PLAN;
-    if (gender === 'male' && location === 'home') return CRICKET_MALE_HOME_WORKOUT_PLAN;
-    if (gender === 'female' && location === 'gym') return CRICKET_FEMALE_GYM_WORKOUT_PLAN;
-    return CRICKET_FEMALE_HOME_WORKOUT_PLAN;
-  };
-
-  const workoutPlan = getWorkoutPlan();
-  const workoutForDay = workoutPlan[selectedDay];
-  const days = Object.keys(workoutPlan);
-
+export default function CricketPage() {
   return (
     <div className="container mx-auto p-4">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold font-headline">Cricket Workout</h1>
+        <h1 className="text-3xl font-bold font-headline">🏏 Cricket Training Hub</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Sport-specific program for Cricket players to improve power, agility, and on-field performance.
+          Your central command for all cricket-specific training. Select a category to begin.
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-        <Tabs value={gender} onValueChange={(value) => setGender(value as Gender)}>
-          <TabsList>
-            <TabsTrigger value="male">Male</TabsTrigger>
-            <TabsTrigger value="female">Female</TabsTrigger>
-          </TabsList>
-        </Tabs>
-        <Tabs value={location} onValueChange={(value) => setLocation(value as Location)}>
-          <TabsList>
-            <TabsTrigger value="gym">Gym</TabsTrigger>
-            <TabsTrigger value="home">Home</TabsTrigger>
-          </TabsList>
-        </Tabs>
-        <Link href="/dashboard/general-workouts/athlete/cricket/drills">
-            <Button>Browse Drills</Button>
-        </Link>
-      </div>
-      
-       <div className="max-w-4xl mx-auto">
-         <Tabs value={selectedDay} onValueChange={setSelectedDay} className="mb-8">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-7 h-auto">
-             {days.map(day => (
-              <TabsTrigger key={day} value={day}>{day.substring(0,3)}</TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-
-        {workoutForDay ? (
-            <WorkoutDisplay workout={workoutForDay} />
-        ) : (
-             <Card>
-                <CardHeader>
-                    <CardTitle>No workout</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p>No workout plan found for the selected day.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {cricketCategories.map((category, index) => (
+          <Link href={category.href} key={category.name}>
+             <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="h-full"
+            >
+              <Card className={`overflow-hidden group h-full transition-all duration-300 hover:shadow-lg bg-gradient-to-br ${category.color} text-white`}>
+                <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full">
+                    <category.icon className="h-16 w-16 mb-4 drop-shadow-lg"/>
+                    <h3 className="text-xl font-bold font-headline">{category.name}</h3>
                 </CardContent>
-            </Card>
-        )}
+              </Card>
+            </motion.div>
+          </Link>
+        ))}
       </div>
-
     </div>
   );
 }

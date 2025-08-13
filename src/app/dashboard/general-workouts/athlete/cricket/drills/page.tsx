@@ -1,8 +1,8 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cricketSubCategories, type Drill } from '@/lib/drills';
 import { SPORT_CATEGORIES } from '@/lib/constants';
@@ -18,7 +18,7 @@ function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName
   
   return (
      <Dialog onOpenChange={(isOpen) => !isOpen && setSelectedDrill(null)}>
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion type="single" collapsible className="w-full" defaultValue={categoryName}>
         <AccordionItem value={categoryName}>
           <AccordionTrigger className="text-xl font-headline">{categoryName}</AccordionTrigger>
           <AccordionContent>
@@ -114,7 +114,7 @@ export default function CricketDrillsPage() {
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold font-headline">Cricket Drills Library</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Hone your skills with our expert collection of cricket drills.
+          Hone your skills with our expert collection of cricket drills. Select a category below.
         </p>
       </div>
       
