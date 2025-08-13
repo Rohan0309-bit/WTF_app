@@ -2,7 +2,7 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Target, Activity, Shield, Stethoscope, Dumbbell } from 'lucide-react';
+import { Target, Activity, Shield, Stethoscope, Dumbbell, Utensils } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 

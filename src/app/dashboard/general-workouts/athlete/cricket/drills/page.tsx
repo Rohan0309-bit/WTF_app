@@ -3,7 +3,6 @@
 
 import { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cricketSubCategories, type Drill } from '@/lib/drills';
 import { SPORT_CATEGORIES } from '@/lib/constants';
 import Image from 'next/image';
@@ -99,39 +98,28 @@ function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName
 }
 
 export default function CricketDrillsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("Shot Training");
-
   const categories = useMemo(() => {
     return SPORT_CATEGORIES.Cricket
         .filter(cat => cat.name !== "Workout" && cat.name !== "Nutrition")
         .map(cat => cat.name);
   }, []);
   
-  const drillsForCategory = cricketSubCategories[selectedCategory] || [];
-
   return (
     <div className="container mx-auto p-4">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold font-headline">Cricket Drills Library</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Hone your skills with our expert collection of cricket drills. Select a category below.
+          Hone your skills with our expert collection of cricket drills. Browse the categories below.
         </p>
       </div>
       
-      <div className="mb-8 max-w-sm mx-auto">
-        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger>
-                <SelectValue placeholder="Select a drill category" />
-            </SelectTrigger>
-            <SelectContent>
-                {categories.map(cat => (
-                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                ))}
-            </SelectContent>
-        </Select>
+      <div className="space-y-8">
+        {categories.map(categoryName => {
+            const drills = cricketSubCategories[categoryName] || [];
+            if (drills.length === 0) return null;
+            return <DrillsLibrary key={categoryName} drills={drills} categoryName={categoryName} />
+        })}
       </div>
-
-      <DrillsLibrary drills={drillsForCategory} categoryName={selectedCategory} />
 
     </div>
   );
