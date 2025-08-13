@@ -12,6 +12,9 @@ import {
 } from '@/lib/workouts';
 import { WorkoutDisplay } from '@/components/workout-display';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Target } from 'lucide-react';
 
 type Gender = 'male' | 'female';
 type Location = 'gym' | 'home';
@@ -40,8 +43,8 @@ export default function CricketWorkoutPage() {
           Sport-specific program for Cricketers to improve power, agility, and on-field performance.
         </p>
       </div>
-
-      <div className="flex justify-center gap-4 mb-8">
+      
+      <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
         <Tabs value={gender} onValueChange={(value) => setGender(value as Gender)}>
           <TabsList>
             <TabsTrigger value="male">Male</TabsTrigger>
@@ -54,6 +57,12 @@ export default function CricketWorkoutPage() {
             <TabsTrigger value="home">Home</TabsTrigger>
           </TabsList>
         </Tabs>
+         <Link href="/dashboard/general-workouts/athlete/cricket/drills">
+            <Button>
+              <Target className="mr-2 h-4 w-4" />
+              Browse Drills
+            </Button>
+          </Link>
       </div>
       
        <div className="max-w-4xl mx-auto">
@@ -82,4 +91,3 @@ export default function CricketWorkoutPage() {
     </div>
   );
 }
-
