@@ -1,7 +1,3 @@
-
-
-import { Dumbbell, Target, Activity, Shield, Stethoscope } from 'lucide-react';
-
 export const SPORTS = [
   'Cricket',
   'Badminton',
@@ -62,12 +58,4 @@ export const NON_ATHLETE_WORKOUTS = [
   { name: 'Facial', href: '/dashboard/general-workouts/non-athlete/facial', description: 'Exercises to tone and define facial muscles.', image: "https://i.ibb.co/dwdTz4k7/Whats-App-Image-2025-06-30-at-23-40-31.jpg" },
   { name: 'Vocal', href: '/dashboard/general-workouts/non-athlete/vocals', description: 'Improve vocal strength, range, and clarity.', image: "https://i.ibb.co/GvXwFvFq/Whats-App-Image-2025-06-30-at-23-42-54.jpg" },
   { name: 'Calisthenics', href: '#', description: 'Master your bodyweight with advanced calisthenics.', image: "https://i.ibb.co/3969w7K9/Whats-App-Image-2025-06-30-at-23-20-34.jpg", comingSoon: true },
-];
-
-export const CRICKET_CATEGORIES = [
-    { name: "Workout", icon: Dumbbell },
-    { name: "Shot Training", icon: Target },
-    { name: "Bowling Drills", icon: Activity },
-    { name: "Fielding Drills", icon: Shield },
-    { name: "Wicketkeeping Drills", icon: Stethoscope },
 ];

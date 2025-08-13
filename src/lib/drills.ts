@@ -1,5 +1,5 @@
 
-import { Dumbbell, Target, Activity, Shield, Stethoscope, Utensils } from 'lucide-react';
+import { Dumbbell, Target, Activity, Shield, Stethoscope, Utensils, DumbbellIcon } from 'lucide-react';
 
 export interface Drill {
     name: string;
@@ -723,3 +723,4 @@ export const cricketSubCategories: Record<string, Drill[]> = {
         }
     ]
 };
+replace this in src/lib/drills.ts
