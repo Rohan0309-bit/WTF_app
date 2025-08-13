@@ -72,24 +72,30 @@ function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName
                     </Link>
                 </div>
                 <div className="space-y-6">
+                    {selectedDrill.steps && (
                     <div>
                         <h3 className="font-headline text-xl mb-3 flex items-center gap-2 text-primary"><CheckCircle /> How to Perform</h3>
                         <ul className="space-y-2 list-inside list-decimal text-muted-foreground">
                             {selectedDrill.steps.map((step, i) => <li key={i}>{step}</li>)}
                         </ul>
                     </div>
+                    )}
+                    {selectedDrill.commonMistakes && (
                      <div>
                         <h3 className="font-headline text-xl mb-3 flex items-center gap-2 text-destructive"><XCircle /> Common Mistakes</h3>
                         <ul className="space-y-2 list-inside list-decimal text-muted-foreground">
-                            {selectedDrill.mistakes.map((mistake, i) => <li key={i}>{mistake}</li>)}
+                            {selectedDrill.commonMistakes.map((mistake, i) => <li key={i}>{mistake}</li>)}
                         </ul>
                     </div>
+                    )}
+                    {selectedDrill.injuryPrevention && (
                      <div>
                         <h3 className="font-headline text-xl mb-3 flex items-center gap-2 text-green-500"><Shield /> Injury Prevention</h3>
                         <ul className="space-y-2 list-inside list-decimal text-muted-foreground">
                             {selectedDrill.injuryPrevention.map((tip, i) => <li key={i}>{tip}</li>)}
                         </ul>
                     </div>
+                    )}
                 </div>
             </div>
         </DialogContent>
