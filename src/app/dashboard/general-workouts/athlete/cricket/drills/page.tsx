@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { cricketSubCategories, type Drill } from '@/lib/drills';
 import { SPORT_CATEGORIES } from '@/lib/constants';
@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { CheckCircle, XCircle, Youtube, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { useSearchParams } from 'next/navigation';
 
 function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName: string }) {
   const [selectedDrill, setSelectedDrill] = useState<Drill | null>(null);
@@ -97,19 +98,28 @@ function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName
   );
 }
 
-export default function CricketDrillsPage() {
+function CricketDrillsContent() {
+  const searchParams = useSearchParams();
+  const selectedCategory = searchParams.get('category');
+  
   const categories = useMemo(() => {
-    return SPORT_CATEGORIES.Cricket
+    const allCategories = SPORT_CATEGORIES.Cricket
         .filter(cat => cat.name !== "Workout" && cat.name !== "Nutrition")
         .map(cat => cat.name);
-  }, []);
+    
+    if (selectedCategory && allCategories.includes(selectedCategory)) {
+        return [selectedCategory];
+    }
+    
+    return allCategories;
+  }, [selectedCategory]);
   
   return (
     <div className="container mx-auto p-4">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold font-headline">Cricket Drills Library</h1>
+        <h1 className="text-3xl font-bold font-headline">{selectedCategory || 'Cricket Drills Library'}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Hone your skills with our expert collection of cricket drills. Browse the categories below.
+          Hone your skills with our expert collection of cricket drills.
         </p>
       </div>
       
@@ -123,4 +133,12 @@ export default function CricketDrillsPage() {
 
     </div>
   );
+}
+
+export default function CricketDrillsPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <CricketDrillsContent />
+        </Suspense>
+    )
 }

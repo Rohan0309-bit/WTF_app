@@ -8,10 +8,10 @@ import { motion } from 'framer-motion';
 
 const cricketCategories = [
     { name: "Workouts", href: "/dashboard/general-workouts/athlete/cricket/workouts", icon: Dumbbell, color: "from-green-500 to-emerald-500" },
-    { name: "Shot Training", href: "/dashboard/general-workouts/athlete/cricket/drills", icon: Target, color: "from-blue-500 to-sky-500" },
-    { name: "Bowling Drills", href: "/dashboard/general-workouts/athlete/cricket/drills", icon: Activity, color: "from-red-500 to-rose-500" },
-    { name: "Fielding Drills", href: "/dashboard/general-workouts/athlete/cricket/drills", icon: Shield, color: "from-purple-500 to-violet-500" },
-    { name: "Wicketkeeping", href: "/dashboard/general-workouts/athlete/cricket/drills", icon: Stethoscope, color: "from-orange-500 to-amber-500" },
+    { name: "Shot Training", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Shot%20Training", icon: Target, color: "from-blue-500 to-sky-500" },
+    { name: "Bowling Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Bowling%20Drills", icon: Activity, color: "from-red-500 to-rose-500" },
+    { name: "Fielding Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Fielding%20Drills", icon: Shield, color: "from-purple-500 to-violet-500" },
+    { name: "Wicketkeeping", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Wicketkeeping%20Drills", icon: Stethoscope, color: "from-orange-500 to-amber-500" },
 ];
 
 export default function CricketPage() {
