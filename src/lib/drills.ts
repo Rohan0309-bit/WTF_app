@@ -723,14 +723,3 @@ export const cricketSubCategories: Record<string, Drill[]> = {
         }
     ]
 };
-
-export const SPORT_CATEGORIES: Record<Sport, { name: string; icon: React.ElementType, drills?: Record<string, Drill[]> }[]> = {
-    Cricket: [
-        { name: "Workout", icon: Dumbbell },
-        { name: "Shot Training", icon: Target, drills: { "Shot Training": cricketSubCategories["Shot Training"] } },
-        { name: "Bowling Drills", icon: Activity, drills: { "Bowling Drills": cricketSubCategories["Bowling Drills"] } },
-        { name: "Fielding Drills", icon: Shield, drills: { "Fielding Drills": cricketSubCategories["Fielding Drills"] } },
-        { name: "Wicketkeeping Drills", icon: Stethoscope, drills: { "Wicketkeeping Drills": cricketSubCategories["Wicketkeeping Drills"] } },
-        { name: "Nutrition", icon: Utensils },
-    ]
-};
