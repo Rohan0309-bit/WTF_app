@@ -17,13 +17,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName: string }) {
   const [selectedDrill, setSelectedDrill] = useState<Drill | null>(null);
   
+  const tableCategories = ["Shot Training", "Bowling Drills", "Fielding Drills", "Wicketkeeping Drills"];
+  const useTableView = tableCategories.includes(categoryName);
+
   return (
      <Dialog onOpenChange={(isOpen) => !isOpen && setSelectedDrill(null)}>
       <Accordion type="single" collapsible className="w-full" defaultValue={categoryName}>
         <AccordionItem value={categoryName}>
           <AccordionTrigger className="text-xl font-headline">{categoryName}</AccordionTrigger>
           <AccordionContent>
-            {categoryName === 'Shot Training' ? (
+            {useTableView ? (
                  <Table>
                     <TableHeader>
                         <TableRow>
