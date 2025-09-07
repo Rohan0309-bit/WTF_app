@@ -1,4 +1,4 @@
-import { Dumbbell, Target, Activity, Shield, Stethoscope, Utensils } from 'lucide-react';
+import { Dumbbell, Target, Activity, Shield, Stethoscope, Utensils, Footprints, Zap, Hand, Dribbble } from 'lucide-react';
 import type { Drill } from './drills';
 
 export const SPORTS = [
@@ -63,7 +63,7 @@ export const NON_ATHLETE_WORKOUTS = [
   { name: 'Calisthenics', href: '#', description: 'Master your bodyweight with advanced calisthenics.', image: "https://i.ibb.co/3969w7K9/Whats-App-Image-2025-06-30-at-23-20-34.jpg", comingSoon: true },
 ];
 
-export const SPORT_CATEGORIES: Record<string, { name: string; icon: React.ElementType, drills?: Record<string, Drill[]> }[]> = {
+export const SPORT_CATEGORIES_CRICKET: Record<string, { name: string; icon: React.ElementType, drills?: Record<string, Drill[]> }[]> = {
     Cricket: [
         { name: "Workout", icon: Dumbbell },
         { name: "Nutrition", icon: Utensils },
@@ -73,3 +73,11 @@ export const SPORT_CATEGORIES: Record<string, { name: string; icon: React.Elemen
         { name: "Wicketkeeping Drills", icon: Stethoscope },
     ],
 };
+
+export const SPORT_CATEGORIES_BADMINTON = [
+    { name: "Workouts", icon: Dumbbell },
+    { name: "Footwork Drills", icon: Footprints },
+    { name: "Stroke Training", icon: Hand },
+    { name: "Defense Drills", icon: Shield },
+    { name: "Reaction & Reflex Training", icon: Zap },
+];
