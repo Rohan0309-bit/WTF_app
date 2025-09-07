@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, loginWithEmailPassword, auth } from '@/lib/firebase';
+import { signInWithGoogle, loginWithEmailPassword, auth, getSignInMethods, signOut } from '@/lib/firebase';
 import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
@@ -68,6 +69,7 @@ export default function LoginPage() {
         'auth/wrong-password': 'Incorrect password. Try again.',
         'auth/invalid-credential': 'Incorrect password. Try again.',
         'auth/too-many-requests': 'Too many attempts. Try again later.',
+        'auth/user-not-found': 'No account found with this email. Please create an account.',
       };
       toast({
         variant: 'destructive',
@@ -91,13 +93,29 @@ export default function LoginPage() {
     }
     setLoading(true);
     try {
+      const methods = await getSignInMethods(email.trim());
+      if (methods.length > 0) {
+        toast({
+            variant: 'destructive',
+            title: 'Email Already Registered',
+            description: `This email is already in use. Please sign in instead.`,
+        });
+        setLoading(false);
+        return;
+      }
+      
       await createUserWithEmailAndPassword(auth, email.trim(), password);
       router.push('/dashboard');
     } catch (error: any) {
+       const errorMap: Record<string, string> = {
+            "auth/weak-password": "Password should be at least 6 characters.",
+            "auth/invalid-email": "Invalid email address format.",
+        };
+      const description = errorMap[error.code] || 'Unexpected error. Try again.';
       toast({
         variant: 'destructive',
         title: 'Signup Failed',
-        description: error.message || 'Unexpected error. Try again.',
+        description: description,
       });
       console.error('Quick signup failed', error);
     } finally {
@@ -231,4 +249,5 @@ export default function LoginPage() {
       </motion.div>
     </div>
   );
-}
+
+    
