@@ -451,6 +451,52 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     ],
     "Reaction & Reflex Training": [
         { 
+          name: "Multi-shuttle Rapid Fire Drill", 
+          youtubeUrl: "https://www.youtube.com/watch?v=5Vj-8e4QZ6Y", 
+          image: "https://picsum.photos/400/320", 
+          hint: "badminton multi shuttle", 
+          steps: [
+              "Have a partner/coach stand on the other side of the net with a full tube of shuttles.",
+              "The feeder throws shuttles rapidly to different locations on your side of the court.",
+              "Your goal is to return each shuttle with an appropriate shot (net, lift, drive) and recover to the center as quickly as possible.",
+              "Focus on speed, reaction, and quick recovery."
+          ], 
+          commonMistakes: [
+              "Not returning to the center after each shot.",
+              "Choosing an inappropriate shot for the shuttle's position.",
+              "Slow recovery footwork.",
+              "Losing form as fatigue sets in."
+          ], 
+          injuryPrevention: [
+              "This is a very high-intensity drill. Ensure a full-body warm-up.",
+              "Stay hydrated.",
+              "Communicate with the feeder about the pace and duration.",
+              "Stop if you feel dizzy or overly fatigued to prevent injuries from loss of form."
+          ] 
+        },
+        { 
+          name: "Random Shuttle Toss Reaction Drill", 
+          youtubeUrl: "https://www.youtube.com/watch?v=5Vj-8e4QZ6Y", 
+          image: "https://picsum.photos/400/323", 
+          hint: "badminton shuttle toss", 
+          steps: [
+              "Have a partner stand on the other side of the net.",
+              "The partner will toss shuttles randomly around your front court area.",
+              "React as quickly as possible, lunge to the shuttle, and play a net shot or lift.",
+              "Focus on a quick first step and maintaining balance."
+          ], 
+          commonMistakes: [
+              "Being flat-footed and slow to react.",
+              "Poor lunging technique.",
+              "Making an indecisive shot selection."
+          ], 
+          injuryPrevention: [
+              "Ensure the training area is clear.",
+              "Warm up your hip flexors, groin, and knees for lunging movements.",
+              "Start with slow tosses before increasing the speed and randomness."
+          ] 
+        },
+        { 
           name: "Wall Rally Reflex", 
           youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", 
           image: "https://picsum.photos/400/319", 
@@ -475,30 +521,6 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
           ] 
         },
         {
-          name: "Multi-shuttle Rapid Fire Drill",
-          youtubeUrl: "https://www.youtube.com/watch?v=5Vj-8e4QZ6Y",
-          image: "https://picsum.photos/400/320",
-          hint: "badminton multi shuttle",
-          steps: [
-            "Have a partner/coach stand on the other side of the net with a full tube of shuttles.",
-            "The feeder throws shuttles rapidly to different locations on your side of the court.",
-            "Your goal is to return each shuttle with an appropriate shot (net, lift, drive) and recover to the center as quickly as possible.",
-            "Focus on speed, reaction, and quick recovery."
-          ],
-          commonMistakes: [
-            "Not returning to the center after each shot.",
-            "Choosing an inappropriate shot for the shuttle's position.",
-            "Slow recovery footwork.",
-            "Losing form as fatigue sets in."
-          ],
-          injuryPrevention: [
-            "This is a very high-intensity drill. Ensure a full-body warm-up.",
-            "Stay hydrated.",
-            "Communicate with the feeder about the pace and duration.",
-            "Stop if you feel dizzy or overly fatigued to prevent injuries from loss of form."
-          ]
-        },
-        {
             name: "Partner Drive Rally",
             youtubeUrl: "https://www.youtube.com/watch?v=wGk8t3yS-sQ",
             image: "https://picsum.photos/400/321",
@@ -519,6 +541,28 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
                 "Use a relaxed but firm grip to avoid strain.",
                 "Focus on good footwork to stay balanced."
             ]
+        },
+        { 
+          name: "Reaction Ball Catch Drill", 
+          youtubeUrl: "https://www.youtube.com/watch?v=b1Re0nDPwz4", 
+          image: "https://picsum.photos/400/324", 
+          hint: "badminton reaction ball", 
+          steps: [
+              "Use a reaction ball (a six-sided rubber ball).",
+              "Throw it against a wall or have a partner throw it to you.",
+              "React to the unpredictable bounce and catch it with one hand.",
+              "This drill improves hand-eye coordination and reflex speed without a racket."
+          ], 
+          commonMistakes: [
+              "Guessing the direction of the bounce.",
+              "Being flat-footed.",
+              "Not tracking the ball all the way to your hand."
+          ], 
+          injuryPrevention: [
+              "Start on a flat, clear surface.",
+              "Be aware of your surroundings.",
+              "Warm up your hands and wrists."
+          ] 
         },
         {
             name: "Random Smash & Drop Return Drill",
