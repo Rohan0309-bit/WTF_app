@@ -451,7 +451,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     ],
     "Reaction & Reflex Training": [
         { 
-          name: "Wall Rally Drill", 
+          name: "Wall Rally Reflex", 
           youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", 
           image: "https://picsum.photos/400/319", 
           hint: "badminton reaction", 
@@ -459,18 +459,89 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
               "Stand a short distance from a solid wall.",
               "Rally the shuttlecock against the wall as many times as you can.",
               "Focus on quick wrist action and short, controlled strokes.",
-              "Vary the angle and speed."
+              "Vary the angle and speed to challenge your reflexes."
           ], 
           commonMistakes: [
-              "Standing too far from the wall.",
-              "Using large swings instead of quick taps.",
-              "Poor concentration."
+              "Standing too far from the wall, making it too easy.",
+              "Using large swings instead of quick taps from the wrist.",
+              "Poor concentration leading to missed shots.",
+              "Staying in one spot instead of moving slightly to react."
           ], 
           injuryPrevention: [
               "Ensure the area is clear of obstacles.",
-              "Warm up your eyes and hands.",
-              "Don't overdo it to avoid wrist strain."
+              "Warm up your playing wrist and forearm thoroughly.",
+              "Don't overdo it; stop if you feel any sharp pain in your wrist or elbow.",
+              "Use a shuttle you don't mind getting damaged."
           ] 
         },
+        {
+          name: "Multi-shuttle Rapid Fire Drill",
+          youtubeUrl: "https://www.youtube.com/watch?v=5Vj-8e4QZ6Y",
+          image: "https://picsum.photos/400/320",
+          hint: "badminton multi shuttle",
+          steps: [
+            "Have a partner/coach stand on the other side of the net with a full tube of shuttles.",
+            "The feeder throws shuttles rapidly to different locations on your side of the court.",
+            "Your goal is to return each shuttle with an appropriate shot (net, lift, drive) and recover to the center as quickly as possible.",
+            "Focus on speed, reaction, and quick recovery."
+          ],
+          commonMistakes: [
+            "Not returning to the center after each shot.",
+            "Choosing an inappropriate shot for the shuttle's position.",
+            "Slow recovery footwork.",
+            "Losing form as fatigue sets in."
+          ],
+          injuryPrevention: [
+            "This is a very high-intensity drill. Ensure a full-body warm-up.",
+            "Stay hydrated.",
+            "Communicate with the feeder about the pace and duration.",
+            "Stop if you feel dizzy or overly fatigued to prevent injuries from loss of form."
+          ]
+        },
+        {
+            name: "Partner Drive Rally",
+            youtubeUrl: "https://www.youtube.com/watch?v=wGk8t3yS-sQ",
+            image: "https://picsum.photos/400/321",
+            hint: "badminton drive rally",
+            steps: [
+                "Start a flat, fast drive rally with a partner.",
+                "Keep the rally going for as long as possible.",
+                "Focus on short, sharp wrist movements and minimal backswing.",
+                "This drill hones your reaction time in fast, mid-court exchanges."
+            ],
+            commonMistakes: [
+                "Lifting the shuttle, which ends the drive rally.",
+                "Using a large swing, which makes you late for the next shot.",
+                "A loose wrist, resulting in poor control."
+            ],
+            injuryPrevention: [
+                "Warm up wrists, elbows, and shoulders.",
+                "Use a relaxed but firm grip to avoid strain.",
+                "Focus on good footwork to stay balanced."
+            ]
+        },
+        {
+            name: "Random Smash & Drop Return Drill",
+            youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY",
+            image: "https://picsum.photos/400/322",
+            hint: "badminton smash drop return",
+            steps: [
+                "Have a partner at the back of the court hit a mix of smashes and drop shots.",
+                "You must react to the shot, defending the smash or moving forward for the drop.",
+                "Focus on reading the opponent's body language and swing to anticipate the shot.",
+                "Practice the correct defensive shot for each situation (block/lift for smash, net shot for drop)."
+            ],
+            commonMistakes: [
+                "Guessing the shot instead of reacting.",
+                "Being caught flat-footed in the middle of the court.",
+                "Using the wrong defensive shot for the situation.",
+                "Slow recovery after playing the shot."
+            ],
+            injuryPrevention: [
+                "This drill requires explosive movements; warm up thoroughly.",
+                "Strengthen your core and legs for quick transitions.",
+                "Ensure proper lunging technique for drop shots to protect your knees."
+            ]
+        }
     ]
 };
