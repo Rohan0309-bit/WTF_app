@@ -1,27 +1,284 @@
 
 export interface BadmintonDrill {
-    title: string;
-    description: string;
+    name: string;
+    youtubeUrl: string;
+    image: string;
+    hint: string;
+    steps: string[];
+    commonMistakes: string[];
+    injuryPrevention: string[];
 }
 
 export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
   "footwork-drills": [
-    { title: "Shadow Footwork", description: "Mimic court movements without a shuttle to improve agility." },
-    { title: "Multi-directional Lunges", description: "Strengthen legs and improve quick directional changes." },
+    {
+        name: "Shadow Footwork",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=55",
+        hint: "badminton shadow footwork",
+        steps: [
+            "Start in the center of the court in a ready position.",
+            "Move to each of the six corners of the court (front-right, front-left, side-right, side-left, back-right, back-left) as if you were hitting a shuttle.",
+            "Perform a shadow swing for the appropriate shot at each corner (e.g., net shot at the front, smash at the back).",
+            "Focus on explosive movements, correct footwork patterns (shuffles, chasse, lunges), and quick recovery back to the center."
+        ],
+        commonMistakes: [
+            "Not returning to the center after each corner.",
+            "Standing up straight instead of staying low.",
+            "Using incorrect footwork for a specific corner.",
+            "Slow or lazy recovery."
+        ],
+        injuryPrevention: [
+            "Warm up ankles, knees, and hips thoroughly.",
+            "Wear proper court shoes with good grip and cushioning.",
+            "Focus on controlled landings during lunges to protect the knees.",
+        ]
+    },
+    {
+        name: "Multi-directional Lunges",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=56",
+        hint: "badminton lunges",
+        steps: [
+            "From a central ready stance, perform a forward lunge, ensuring your front knee doesn't go past your toes.",
+            "Push back explosively to the center.",
+            "Perform a side lunge to the right, keeping your core engaged.",
+            "Push back to the center.",
+            "Repeat for the left side and practice backward lunges as well.",
+            "This drill strengthens leg muscles for all court movements."
+        ],
+        commonMistakes: [
+            "Letting the front knee extend over the toes, straining the joint.",
+            "A weak push-back, leading to slow recovery.",
+            "Leaning the torso too far forward, losing balance."
+        ],
+        injuryPrevention: [
+            "Build up lunge depth gradually.",
+            "Strengthen your glutes and quads to support the knee joint.",
+            "Keep your core tight to protect your lower back.",
+        ]
+    },
   ],
   "stroke-training": [
-    { title: "Clear Shot Practice", description: "Work on deep clears to the back court." },
-    { title: "Drop Shot Control", description: "Refine accuracy with net drops." },
+    {
+        name: "Clear Shot Practice",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=57",
+        hint: "badminton clear shot",
+        steps: [
+            "Have a partner feed you high shuttles.",
+            "Get behind the shuttle, turn your body sideways, and use a full arm swing.",
+            "Contact the shuttle at the highest possible point.",
+            "Use your wrist snap and forearm rotation to generate power.",
+            "Aim for the shuttle to land deep in the opponent's backcourt."
+        ],
+        commonMistakes: [
+            "Using only the arm and not rotating the body.",
+            "Hitting the shuttle when it's too low or too far in front.",
+            "A weak wrist snap, resulting in a short clear.",
+        ],
+        injuryPrevention: [
+            "Properly warm up your shoulder, elbow, and wrist.",
+            "Strengthen your rotator cuff to prevent shoulder injuries.",
+            "Focus on smooth technique rather than muscling the shot.",
+        ]
+    },
+    {
+        name: "Drop Shot Control",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=58",
+        hint: "badminton drop shot",
+        steps: [
+            "Use the same preparation as a smash or clear to deceive your opponent.",
+            "At the last moment, slow down your arm swing.",
+            "Gently 'slice' or tap the shuttle, aiming for it to just tumble over the net.",
+            "Focus on placement and making the opponent move forward.",
+        ],
+        commonMistakes: [
+            "Slowing down the arm swing too early, making the shot obvious.",
+            "Hitting the shuttle into the net.",
+            "Hitting the drop shot too high or too deep, making it easy to attack.",
+        ],
+        injuryPrevention: [
+            "This is a touch shot; avoid jerky motions that can strain the wrist or elbow.",
+            "Good footwork is key to get into position without rushing the shot.",
+        ]
+    },
   ],
   "defense-drills": [
-    { title: "Smash Defense Drill", description: "Train returning powerful smashes consistently." },
-    { title: "Block & Net Recovery", description: "Work on blocking smashes and quickly recovering to net play." },
+     {
+        name: "Smash Defense Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=59",
+        hint: "badminton smash defense",
+        steps: [
+            "Have a partner smash shuttles at you from the other side.",
+            "Adopt a low, wide defensive stance.",
+            "Hold your racquet in front of you, ready for a backhand or forehand defense.",
+            "Use a short, blocking motion to lift the shuttle high and deep.",
+            "Focus on absorbing the power of the smash.",
+        ],
+        commonMistakes: [
+            "Trying to take a full swing at the shuttle.",
+            "Standing up straight, reducing reaction time.",
+            "A loose grip, causing the racquet to be pushed back by the force of the smash.",
+        ],
+        injuryPrevention: [
+            "Wear eye protection if the smasher is powerful or inconsistent.",
+            "Stay on the balls of your feet to react quickly and avoid awkward lunges.",
+        ]
+    },
+    {
+        name: "Block & Net Recovery",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=60",
+        hint: "badminton block recovery",
+        steps: [
+            "A partner smashes a shuttle at you.",
+            "Perform a block defense that drops the shuttle just over the net.",
+            "Immediately rush forward to the net to cover the return.",
+            "Be ready to play a net shot or lift the shuttle again.",
+        ],
+        commonMistakes: [
+            "Watching your block shot instead of recovering immediately.",
+            "Being slow to move to the net.",
+            "Popping the block up too high, making it an easy kill for the opponent.",
+        ],
+        injuryPrevention: [
+            "Requires explosive forward movement. Warm up your calves and Achilles tendons.",
+            "Stay balanced to prevent falls or stumbles when rushing the net.",
+        ]
+    },
   ],
   "reaction-reflex-training": [
-    { title: "Shuttle Reaction Toss", description: "Partner tosses shuttles randomly, react and return quickly." },
-    { title: "Multi-shuttle Defense", description: "Coach feeds multiple shuttles rapidly, improve quick responses." },
-    { title: "Wall Rally Reflex", description: "Hit shuttles against a wall continuously to boost reflex speed." },
-    { title: "Random Direction Feed", description: "Partner feeds shuttles unpredictably to test reflexes." },
-    { title: "Light Reaction Drill", description: "React to sudden light/signal cues with instant movement." },
-  ],
+    {
+        name: "Multi-shuttle Rapid Fire Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=61",
+        hint: "badminton multi-shuttle",
+        steps: [
+            "A coach or partner stands on the other side with many shuttles.",
+            "They will feed shuttles rapidly to different corners of your court.",
+            "Your goal is to return every shuttle, focusing on quick recovery and racquet readiness.",
+            "This drill builds stamina, reaction speed, and muscle memory."
+        ],
+        commonMistakes: [
+            "Not returning to a central ready position after each shot.",
+            "Getting frustrated and form breaking down.",
+            "Taking full swings instead of using short, efficient shots."
+        ],
+        injuryPrevention: [
+            "This is a high-intensity drill; ensure you are physically well-conditioned.",
+            "Stay hydrated and take breaks when fatigue sets in.",
+            "Focus on efficient footwork to reduce stress on joints."
+        ]
+    },
+    {
+        name: "Random Shuttle Toss Reaction Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=62",
+        hint: "badminton reaction toss",
+        steps: [
+            "Stand in the center of the court.",
+            "A partner stands behind you and tosses shuttles over your head into random locations.",
+            "As soon as you see the shuttle, you must react, move to it, and play an appropriate shot.",
+            "This drill forces pure reaction without anticipating the shot."
+        ],
+        commonMistakes: [
+            "Turning around too slowly to see the shuttle.",
+            "Being flat-footed and slow to move.",
+            "Poor shot selection due to being rushed."
+        ],
+        injuryPrevention: [
+            "Ensure the court is clear of any obstacles.",
+            "Requires quick pivots and turns; warm up your core and hips well."
+        ]
+    },
+    {
+        name: "Wall Rally Reflex",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=63",
+        hint: "badminton wall rally",
+        steps: [
+            "Stand a few feet from a flat wall.",
+            "Hit a shuttle against the wall and try to play a continuous rally with yourself.",
+            "Focus on using your wrist and short, quick racquet movements.",
+            "This drill dramatically improves hand-eye coordination and reflex speed."
+        ],
+        commonMistakes: [
+            "Standing too far or too close to the wall.",
+            "Trying to hit the shuttle too hard.",
+            "Using large arm swings instead of quick wrist snaps."
+        ],
+        injuryPrevention: [
+            "A very wrist-intensive drill. Warm up your wrist and forearm thoroughly.",
+            "Start slowly and build up speed as your control improves."
+        ]
+    },
+    {
+        name: "Partner Drive Rally",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=64",
+        hint: "badminton drive rally",
+        steps: [
+            "Stand at mid-court with a partner opposite you.",
+            "Engage in a fast-paced rally of flat, hard drives directly at each other.",
+            "Focus on quick racquet preparation and a short, punchy swing.",
+            "The goal is to keep the rally going at a high speed for as long as possible."
+        ],
+        commonMistakes: [
+            "Lifting the shuttle too high, ending the drive rally.",
+            "A slow backswing, not being ready for the next shot.",
+            "Not moving your feet to adjust to the shuttle's position."
+        ],
+        injuryPrevention: [
+            "This drill can be intense on the elbow and shoulder; ensure a good warm-up.",
+            "Agree on a comfortable pace with your partner before starting."
+        ]
+    },
+    {
+        name: "Reaction Ball Catch Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=65",
+        hint: "badminton reaction ball",
+        steps: [
+            "This is an off-court drill. Use a reaction ball (a small, unevenly shaped ball).",
+            "Drop the ball on a hard surface and try to catch it after it takes an unpredictable bounce.",
+            "Practice with both your dominant and non-dominant hands.",
+            "This drill trains your eyes to react quickly to unpredictable movements."
+        ],
+        commonMistakes: [
+            "Anticipating the bounce instead of reacting to it.",
+            "Being flat-footed.",
+            "Not tracking the ball all the way into your hand."
+        ],
+        injuryPrevention: [
+            "Perform in a clear, open space.",
+            "Can be done as part of a warm-up to activate the nervous system."
+        ]
+    },
+    {
+        name: "Random Smash & Drop Return Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/400/300?random=66",
+        hint: "badminton random return",
+        steps: [
+            "Have a partner on the other side of the net in a position to either smash or play a drop shot.",
+            "Your partner will feed you a high lift.",
+            "You must hold your defensive position, ready for either shot, and react accordingly.",
+            "If they smash, play a defensive lift. If they drop, rush forward and play a net shot."
+        ],
+        commonMistakes: [
+            "Leaning too far back, making you slow to react to a drop shot.",
+            "Being too far forward, making you vulnerable to a smash.",
+            "Guessing the shot instead of reacting to the opponent's body language and swing."
+        ],
+        injuryPrevention: [
+            "This is a game-simulation drill. Maintain focus to be ready for explosive movements.",
+            "Proper warm-up is crucial to prevent strains from sudden lunges or jumps."
+        ]
+    }
+  ]
 };
+
+    
