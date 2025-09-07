@@ -12,6 +12,7 @@ import { CheckCircle, XCircle, Youtube, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName: string }) {
   const [selectedDrill, setSelectedDrill] = useState<Drill | null>(null);
@@ -22,28 +23,51 @@ function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName
         <AccordionItem value={categoryName}>
           <AccordionTrigger className="text-xl font-headline">{categoryName}</AccordionTrigger>
           <AccordionContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {drills.map((drill) => (
-                <DialogTrigger asChild key={drill.name} onClick={() => setSelectedDrill(drill)}>
-                   <Card className="overflow-hidden group cursor-pointer h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
-                    <div className="relative">
-                      <Image
-                        src={drill.image}
-                        data-ai-hint={drill.hint}
-                        alt={drill.name}
-                        width={400}
-                        height={300}
-                        className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                      <div className="absolute bottom-0 p-4">
-                        <CardTitle className="font-headline text-lg text-white">{drill.name}</CardTitle>
-                      </div>
-                    </div>
-                  </Card>
-                </DialogTrigger>
-              ))}
-            </div>
+            {categoryName === 'Shot Training' ? (
+                 <Table>
+                    <TableHeader>
+                        <TableRow>
+                        <TableHead>Drill Name</TableHead>
+                        <TableHead className="text-right">Action</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {drills.map((drill) => (
+                        <TableRow key={drill.name}>
+                            <TableCell className="font-medium">{drill.name}</TableCell>
+                            <TableCell className="text-right">
+                                <DialogTrigger asChild onClick={() => setSelectedDrill(drill)}>
+                                    <Button variant="outline" size="sm">View Details</Button>
+                                </DialogTrigger>
+                            </TableCell>
+                        </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {drills.map((drill) => (
+                    <DialogTrigger asChild key={drill.name} onClick={() => setSelectedDrill(drill)}>
+                    <Card className="overflow-hidden group cursor-pointer h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
+                        <div className="relative">
+                        <Image
+                            src={drill.image}
+                            data-ai-hint={drill.hint}
+                            alt={drill.name}
+                            width={400}
+                            height={300}
+                            className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                        <div className="absolute bottom-0 p-4">
+                            <CardTitle className="font-headline text-lg text-white">{drill.name}</CardTitle>
+                        </div>
+                        </div>
+                    </Card>
+                    </DialogTrigger>
+                ))}
+                </div>
+            )}
           </AccordionContent>
         </AccordionItem>
       </Accordion>
