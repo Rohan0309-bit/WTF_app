@@ -8,10 +8,10 @@ import Image from 'next/image';
 
 const badmintonCategories = [
     { name: "Workouts", href: "/dashboard/general-workouts/athlete/badminton/workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "badminton workout" },
-    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Footwork%20Drills", image: "https://i.ibb.co/4nwcvrw6/Whats-App-Image-2025-09-07-at-16-45-56.jpg", hint: "badminton footwork" },
-    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Stroke%20Training", image: "https://i.ibb.co/qYmC0rDP/Whats-App-Image-2025-09-07-at-16-45-54.jpg", hint: "badminton stroke" },
-    { name: "Defense Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Defense%20Drills", image: "https://i.ibb.co/CKFnV9sL/Whats-App-Image-2025-09-07-at-16-45-55.jpg", hint: "badminton defense" },
-    { name: "Reaction & Reflex Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Reaction%20&%20Reflex%20Training", image: "https://i.ibb.co/674tvkPT/Whats-App-Image-2025-09-07-at-16-45-54-1.jpg", hint: "badminton reaction" },
+    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Footwork%20Drills", image: "https://i.ibb.co/2GQ9myt/Whats-App-Image-2025-09-07-at-17-11-01.jpg", hint: "badminton footwork" },
+    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Stroke%20Training", image: "https://i.ibb.co/PGNy8cP7/Whats-App-Image-2025-09-07-at-17-07-21-1.jpg", hint: "badminton stroke" },
+    { name: "Defense Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Defense%20Drills", image: "https://i.ibb.co/NdGLKzfy/Whats-App-Image-2025-09-07-at-17-08-28.jpg", hint: "badminton defense" },
+    { name: "Reaction & Reflex Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Reaction%20&%20Reflex%20Training", image: "https://i.ibb.co/5WPfRVBc/Whats-App-Image-2025-09-07-at-17-08-48.jpg", hint: "badminton reaction" },
 ];
 
 export default function BadmintonPage() {
