@@ -7,12 +7,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const footballCategories = [
-    { name: "Workouts", href: "/dashboard/general-workouts/athlete/football/workouts", image: "https://picsum.photos/400/300?random=1", hint: "football workout" },
-    { name: "Dribbling Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=dribbling-drills", image: "https://picsum.photos/400/300?random=2", hint: "football dribbling" },
-    { name: "Passing Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=passing-drills", image: "https://picsum.photos/400/300?random=3", hint: "football passing" },
-    { name: "Shooting & Finishing Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=shooting-finishing-drills", image: "https://picsum.photos/400/300?random=4", hint: "football shooting" },
-    { name: "Defensive Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=defensive-drills", image: "https://picsum.photos/400/300?random=5", hint: "football defense" },
-    { name: "Conditioning & Agility Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=conditioning-agility-drills", image: "https://picsum.photos/400/300?random=6", hint: "football conditioning" },
+    { name: "Workouts", href: "/dashboard/general-workouts/athlete/football/workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "football workout" },
+    { name: "Dribbling Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=dribbling-drills", image: "https://i.ibb.co/VYYMZ0Xs/Whats-App-Image-2025-09-07-at-23-14-55.jpg", hint: "football dribbling" },
+    { name: "Passing Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=passing-drills", image: "https://i.ibb.co/pjR1WmRD/Whats-App-Image-2025-09-07-at-23-14-56.jpg", hint: "football passing" },
+    { name: "Shooting & Finishing Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=shooting-finishing-drills", image: "https://i.ibb.co/Ldj3rjwB/Whats-App-Image-2025-09-07-at-23-14-56-1.jpg", hint: "football shooting" },
+    { name: "Defensive Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=defensive-drills", image: "https://i.ibb.co/q3QsGw4j/Whats-App-Image-2025-09-07-at-23-20-32.jpg", hint: "football defense" },
+    { name: "Conditioning & Agility Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=conditioning-agility-drills", image: "https://i.ibb.co/wFbHKxCn/Whats-App-Image-2025-09-07-at-23-14-56-2.jpg", hint: "football conditioning" },
 ];
 
 export default function FootballPage() {

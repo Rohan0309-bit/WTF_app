@@ -11,7 +11,7 @@ const badmintonCategories = [
     { name: "Footwork Drills", slug: "footwork-drills", image: "https://i.ibb.co/2GQ9myt/Whats-App-Image-2025-09-07-at-17-11-01.jpg", hint: "badminton footwork" },
     { name: "Stroke Training", slug: "stroke-training", image: "https://i.ibb.co/PGNy8cP7/Whats-App-Image-2025-09-07-at-17-07-21-1.jpg", hint: "badminton stroke" },
     { name: "Defense Drills", slug: "defense-drills", image: "https://i.ibb.co/NdGLKzfy/Whats-App-Image-2025-09-07-at-17-08-28.jpg", hint: "badminton defense" },
-    { name: "Reaction & Reflex Training", slug: "reaction-reflex-training", image: "https://picsum.photos/400/300?random=34", hint: "badminton reaction" },
+    { name: "Reaction & Reflex Training", slug: "reaction-reflex-training", image: "https://i.ibb.co/5WPfRVBc/Whats-App-Image-2025-09-07-at-17-08-48.jpg", hint: "badminton reaction" },
 ];
 
 export default function BadmintonPage() {
