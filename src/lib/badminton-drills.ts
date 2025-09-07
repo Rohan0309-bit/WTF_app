@@ -315,34 +315,145 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
       },
     ],
     "Defense Drills": [
-        { 
-          name: "Defensive Lifts and Blocks", 
-          youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", 
-          image: "https://picsum.photos/400/300", 
-          hint: "badminton defense", 
-          steps: [
-              "Stay low and on your toes.",
-              "Use a short backswing for blocks.",
-              "For lifts, get under the shuttlecock and push it high and deep.",
-              "Practice returning smashes from a partner."
-          ], 
-          commonMistakes: [
-              "Standing too upright.",
-              "A long backswing on defensive shots.",
-              "Not getting back to the center."
-          ], 
-          injuryPrevention: [
-              "Strengthen your core for stability.",
-              "Practice good footwork to avoid awkward lunges.",
-              "Warm up wrists and forearms."
-          ] 
-        },
+      {
+        name: "Smash Defense Block",
+        youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY",
+        image: "https://picsum.photos/400/313",
+        hint: "badminton defense block",
+        steps: [
+          "Adopt a low, wide defensive stance.",
+          "Hold the racket in front of you with a relaxed backhand or forehand grip.",
+          "Use a very short, blocking motion to meet the shuttle early.",
+          "Angle the racket face to direct the shuttle to the opponent's front court.",
+          "Let the shuttle's pace do the work; don't swing."
+        ],
+        commonMistakes: [
+          "A large backswing, which makes you late for the shot.",
+          "Standing too upright and not being ready.",
+          "Gripping the racket too tightly, causing the shuttle to fly out."
+        ],
+        injuryPrevention: [
+          "Warm up your wrists and forearms properly.",
+          "Strengthen your core for better stability.",
+          "Practice with a slower smash first to get the timing right."
+        ]
+      },
+      {
+        name: "Drive Return Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=wGk8t3yS-sQ",
+        image: "https://picsum.photos/400/314",
+        hint: "badminton drive return",
+        steps: [
+          "Have a partner feed flat, fast drives to both your forehand and backhand.",
+          "Use a compact, punchy swing to return the drive.",
+          "Focus on quick wrist action and keeping the shuttle low over the net.",
+          "Aim for the sidelines to move your opponent."
+        ],
+        commonMistakes: [
+          "A long, looping swing instead of a short, sharp one.",
+          "Being slow to react and change grips between forehand and backhand.",
+          "Lifting the shuttle, giving the opponent an easy follow-up smash."
+        ],
+        injuryPrevention: [
+          "Warm up shoulders and wrists thoroughly.",
+          "Don't over-grip the racket to avoid elbow and wrist strain.",
+          "Practice footwork to ensure you are balanced for each shot."
+        ]
+      },
+      {
+        name: "Defensive Footwork",
+        youtubeUrl: "https://www.youtube.com/watch?v=FjHs_pJSqV4",
+        image: "https://picsum.photos/400/315",
+        hint: "badminton defensive footwork",
+        steps: [
+          "Practice moving side-to-side using shuffle steps (chasse steps).",
+          "Stay in a low center of gravity.",
+          "Incorporate a split-step as your partner pretends to hit.",
+          "Focus on quick, small steps for fast recovery."
+        ],
+        commonMistakes: [
+          "Crossing your feet over, leading to trips.",
+          "Standing up straight between movements.",
+          "Being flat-footed instead of on the balls of your feet."
+        ],
+        injuryPrevention: [
+          "Strengthen glutes, quads, and adductor/abductor muscles.",
+          "Wear proper court shoes with good lateral support.",
+          "Warm up your ankles and knees thoroughly."
+        ]
+      },
+      {
+        name: "Counter-smash Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=7h4v5NzqG4k",
+        image: "https://picsum.photos/400/316",
+        hint: "badminton counter attack",
+        steps: [
+          "Have a partner feed smashes that are not too steep.",
+          "Intercept the shuttle early, in front of your body.",
+          "Use the opponent's pace and a firm wrist to drive the shuttle back flat and fast.",
+          "The swing should be very compact and punch-like."
+        ],
+        commonMistakes: [
+          "Trying to generate your own power with a big swing.",
+          "Making contact with the shuttle too late or too far back.",
+          "Lifting the shuttle instead of hitting it flat."
+        ],
+        injuryPrevention: [
+          "This is a high-intensity drill requiring excellent reflexes.",
+          "Ensure a proper warm-up to prevent wrist or shoulder injuries.",
+          "A strong core is essential for the stability needed to execute this shot."
+        ]
+      },
+      {
+        name: "Continuous Lift from Smashes",
+        youtubeUrl: "https://www.youtube.com/watch?v=yYyKkhK7o3k",
+        image: "https://picsum.photos/400/317",
+        hint: "badminton lift defense",
+        steps: [
+          "Have a partner smash continuously at you.",
+          "Your goal is to defend by lifting the shuttle high and deep to the opponent's back court.",
+          "Focus on getting your body behind the shuttle and using a full lifting motion.",
+          "This drill builds defensive stamina and consistency."
+        ],
+        commonMistakes: [
+          "Lifting the shuttle short, which invites another smash.",
+          "Not getting low enough to get under the shuttle.",
+          "Fatiguing and letting your form break down."
+        ],
+        injuryPrevention: [
+          "This is an endurance drill; listen to your body and stop if you feel pain.",
+          "Proper lifting technique is crucial to avoid shoulder strain.",
+          "Ensure good footwork to get into position, reducing the need to reach."
+        ]
+      },
+      {
+        name: "Half-court Defense with Partner Attack",
+        youtubeUrl: "https://www.youtube.com/watch?v=hV8X3V0-Ahc",
+        image: "https://picsum.photos/400/318",
+        hint: "badminton half court defense",
+        steps: [
+          "You are confined to one half of the court (e.g., forehand side).",
+          "Your partner can hit any shot (smash, drop, drive) into that half.",
+          "Your goal is to defend every shot and keep the rally going.",
+          "This improves your ability to cover a specific area under pressure."
+        ],
+        commonMistakes: [
+          "Anticipating the shot instead of reacting.",
+          "Poor recovery back to the center of your zone.",
+          "Making weak returns that are easy for your partner to put away."
+        ],
+        injuryPrevention: [
+          "This is a high-intensity drill; ensure a full warm-up.",
+          "Communicate with your partner about the intensity of their attack.",
+          "Be mindful of fatigue to prevent injuries from poor form."
+        ]
+      }
     ],
     "Reaction & Reflex Training": [
         { 
           name: "Wall Rally Drill", 
           youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", 
-          image: "https://picsum.photos/400/300", 
+          image: "https://picsum.photos/400/319", 
           hint: "badminton reaction", 
           steps: [
               "Stand a short distance from a solid wall.",
