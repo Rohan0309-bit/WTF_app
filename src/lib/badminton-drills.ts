@@ -12,7 +12,7 @@ export interface BadmintonDrill {
 export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     "Footwork Drills": [
       { 
-        name: "Basic Court Movement (Shadow Footwork)", 
+        name: "Shadow Footwork", 
         youtubeUrl: 'https://www.youtube.com/watch?v=zJgXk2g5-gE', 
         image: "https://picsum.photos/400/301", 
         hint: "badminton footwork", 
