@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useMemo, Suspense } from 'react';
@@ -15,11 +16,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 function DrillsLibrary({ drills, categoryName }: { drills: BasketballDrill[], categoryName: string }) {
   const [selectedDrill, setSelectedDrill] = useState<BasketballDrill | null>(null);
   
+  const prettyCategoryName = categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
   return (
      <Dialog onOpenChange={(isOpen) => !isOpen && setSelectedDrill(null)}>
       <Accordion type="single" collapsible className="w-full" defaultValue={categoryName}>
         <AccordionItem value={categoryName}>
-          <AccordionTrigger className="text-xl font-headline">{categoryName.replace(/-/g, ' ')}</AccordionTrigger>
+          <AccordionTrigger className="text-xl font-headline">{prettyCategoryName}</AccordionTrigger>
           <AccordionContent>
             <Table>
                 <TableHeader>
@@ -56,9 +59,9 @@ function DrillsLibrary({ drills, categoryName }: { drills: BasketballDrill[], ca
                         <Image
                             src={selectedDrill.image}
                             alt={selectedDrill.name}
-                            layout="fill"
-                            objectFit="cover"
-                            className="rounded-lg"
+                            width={400}
+                            height={300}
+                            className="rounded-lg object-cover"
                         />
                     </div>
                      <Link href={selectedDrill.youtubeUrl} target="_blank" rel="noopener noreferrer">
