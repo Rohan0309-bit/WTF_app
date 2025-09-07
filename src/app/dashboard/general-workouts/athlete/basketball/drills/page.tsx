@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useMemo, Suspense } from 'react';
@@ -20,7 +19,7 @@ function DrillsLibrary({ drills, categoryName }: { drills: BasketballDrill[], ca
      <Dialog onOpenChange={(isOpen) => !isOpen && setSelectedDrill(null)}>
       <Accordion type="single" collapsible className="w-full" defaultValue={categoryName}>
         <AccordionItem value={categoryName}>
-          <AccordionTrigger className="text-xl font-headline">{categoryName}</AccordionTrigger>
+          <AccordionTrigger className="text-xl font-headline">{categoryName.replace(/-/g, ' ')}</AccordionTrigger>
           <AccordionContent>
             <Table>
                 <TableHeader>
@@ -108,16 +107,19 @@ function BasketballDrillsContent() {
   
   const drillsForCategory = useMemo(() => {
     if (!selectedCategory) return [];
-    return basketballSubCategories[selectedCategory] || [];
+    const categoryData = basketballSubCategories[selectedCategory];
+    return Array.isArray(categoryData) ? categoryData : [];
   }, [selectedCategory]);
+  
+  const prettyCategoryName = selectedCategory?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   return (
     <div className="container mx-auto p-4">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold font-headline">{selectedCategory || 'Basketball Drills Library'}</h1>
+        <h1 className="text-3xl font-bold font-headline">{prettyCategoryName || 'Basketball Drills Library'}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           {selectedCategory 
-            ? `Hone your skills with our expert collection of ${selectedCategory}.`
+            ? `Hone your skills with our expert collection of ${prettyCategoryName} drills.`
             : "Select a category from the Basketball Hub to view drills."
           }
         </p>
