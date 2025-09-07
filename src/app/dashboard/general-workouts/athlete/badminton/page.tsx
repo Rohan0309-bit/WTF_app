@@ -7,11 +7,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const badmintonCategories = [
-    { name: "Workouts", href: "/dashboard/general-workouts/athlete/badminton/workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "badminton workout" },
-    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=footwork-drills", image: "https://i.ibb.co/2GQ9myt/Whats-App-Image-2025-09-07-at-17-11-01.jpg", hint: "badminton footwork" },
-    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=stroke-training", image: "https://i.ibb.co/PGNy8cP7/Whats-App-Image-2025-09-07-at-17-07-21-1.jpg", hint: "badminton stroke" },
-    { name: "Defense Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=defense-drills", image: "https://i.ibb.co/NdGLKzfy/Whats-App-Image-2025-09-07-at-17-08-28.jpg", hint: "badminton defense" },
-    { name: "Reaction & Reflex Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=reaction-reflex-training", image: "https://i.ibb.co/L5kRScD/volleyball-serve.jpg", hint: "badminton reaction" },
+    { name: "Workouts", slug: "workouts", href: "/dashboard/general-workouts/athlete/badminton/workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "badminton workout" },
+    { name: "Footwork Drills", slug: "footwork-drills", image: "https://i.ibb.co/2GQ9myt/Whats-App-Image-2025-09-07-at-17-11-01.jpg", hint: "badminton footwork" },
+    { name: "Stroke Training", slug: "stroke-training", image: "https://i.ibb.co/PGNy8cP7/Whats-App-Image-2025-09-07-at-17-07-21-1.jpg", hint: "badminton stroke" },
+    { name: "Defense Drills", slug: "defense-drills", image: "https://i.ibb.co/NdGLKzfy/Whats-App-Image-2025-09-07-at-17-08-28.jpg", hint: "badminton defense" },
+    { name: "Reaction & Reflex Training", slug: "reaction-reflex-training", image: "https://picsum.photos/400/300?random=34", hint: "badminton reaction" },
 ];
 
 export default function BadmintonPage() {
@@ -26,7 +26,14 @@ export default function BadmintonPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {badmintonCategories.map((category, index) => (
-          <Link href={category.href} key={category.name}>
+          <Link 
+            href={
+                category.slug === 'workouts' 
+                ? category.href 
+                : `/dashboard/general-workouts/athlete/badminton/drills?category=${category.slug}`
+            } 
+            key={category.name}
+          >
              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

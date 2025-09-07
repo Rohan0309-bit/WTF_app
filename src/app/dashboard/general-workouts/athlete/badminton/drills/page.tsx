@@ -1,152 +1,57 @@
 
 'use client';
 
-import { useState, useMemo, Suspense } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { badmintonSubCategories, type BadmintonDrill } from '@/lib/badminton-drills';
-import { SPORT_CATEGORIES_BADMINTON } from '@/lib/constants';
-import Image from 'next/image';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { CheckCircle, XCircle, Youtube, Shield, ChevronLeft } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-
-function DrillsLibrary({ drills, categoryName }: { drills: BadmintonDrill[], categoryName: string }) {
-  const [selectedDrill, setSelectedDrill] = useState<BadmintonDrill | null>(null);
-  const prettyCategoryName = categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-
-  return (
-     <Dialog onOpenChange={(isOpen) => !isOpen && setSelectedDrill(null)}>
-      <Accordion type="single" collapsible className="w-full" defaultValue={categoryName}>
-        <AccordionItem value={categoryName}>
-          <AccordionTrigger className="text-xl font-headline">{prettyCategoryName}</AccordionTrigger>
-          <AccordionContent>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                    <TableHead>Drill Name</TableHead>
-                    <TableHead className="text-right">Action</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {drills.map((drill) => (
-                    <TableRow key={drill.name}>
-                        <TableCell className="font-medium">{drill.name}</TableCell>
-                        <TableCell className="text-right">
-                            <DialogTrigger asChild onClick={() => setSelectedDrill(drill)}>
-                                <Button variant="outline" size="sm">View Details</Button>
-                            </DialogTrigger>
-                        </TableCell>
-                    </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-
-      {selectedDrill && (
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-                <DialogTitle className="font-headline text-3xl">{selectedDrill.name}</DialogTitle>
-            </DialogHeader>
-            <div className="grid md:grid-cols-2 gap-8 mt-4">
-                <div className="space-y-4">
-                    <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                        <Image
-                            src={selectedDrill.image}
-                            alt={selectedDrill.name}
-                            layout="fill"
-                            objectFit="cover"
-                            className="rounded-lg"
-                        />
-                    </div>
-                     <Link href={selectedDrill.youtubeUrl} target="_blank" rel="noopener noreferrer">
-                        <Button className="w-full">
-                            <Youtube className="mr-2 h-5 w-5" />
-                            Watch on YouTube
-                        </Button>
-                    </Link>
-                </div>
-                <div className="space-y-6">
-                    {selectedDrill.steps && (
-                    <div>
-                        <h3 className="font-headline text-xl mb-3 flex items-center gap-2 text-primary"><CheckCircle /> How to Perform</h3>
-                        <ul className="space-y-2 list-inside list-decimal text-muted-foreground">
-                            {selectedDrill.steps.map((step, i) => <li key={i}>{step}</li>)}
-                        </ul>
-                    </div>
-                    )}
-                    {selectedDrill.commonMistakes && (
-                     <div>
-                        <h3 className="font-headline text-xl mb-3 flex items-center gap-2 text-destructive"><XCircle /> Common Mistakes</h3>
-                        <ul className="space-y-2 list-inside list-decimal text-muted-foreground">
-                            {selectedDrill.commonMistakes.map((mistake, i) => <li key={i}>{mistake}</li>)}
-                        </ul>
-                    </div>
-                    )}
-                    {selectedDrill.injuryPrevention && (
-                     <div>
-                        <h3 className="font-headline text-xl mb-3 flex items-center gap-2 text-green-500"><Shield /> Injury Prevention</h3>
-                        <ul className="space-y-2 list-inside list-decimal text-muted-foreground">
-                            {selectedDrill.injuryPrevention.map((tip, i) => <li key={i}>{tip}</li>)}
-                        </ul>
-                    </div>
-                    )}
-                </div>
-            </div>
-        </DialogContent>
-    )}
-    </Dialog>
-  );
-}
+import { badmintonSubCategories } from '@/lib/badminton-drills';
+import { Suspense } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
 
 function BadmintonDrillsContent() {
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get('category');
+
+  const drills = selectedCategory ? badmintonSubCategories[selectedCategory] : null;
+
+  if (!drills) {
+    return (
+      <Card className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8 border-dashed">
+        <h3 className="text-xl font-bold font-headline">No Category Selected</h3>
+        <p className="text-muted-foreground mb-4">Please go back to the Badminton Hub to choose a drill category.</p>
+        <Link href="/dashboard/general-workouts/athlete/badminton">
+            <Button variant="outline">
+                <ChevronLeft className="mr-2 h-4 w-4" />
+                Back to Badminton Hub
+            </Button>
+        </Link>
+      </Card>
+    );
+  }
   
-  const drillsForCategory = useMemo(() => {
-    if (!selectedCategory) return [];
-    return badmintonSubCategories[selectedCategory] || [];
-  }, [selectedCategory]);
-  
-  const prettyCategoryName = selectedCategory?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const prettyCategoryName = selectedCategory.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold font-headline">{prettyCategoryName || 'Badminton Drills Library'}</h1>
+    <div className="space-y-6">
+       <div className="mb-8 text-center">
+        <h1 className="text-3xl font-bold font-headline">{prettyCategoryName}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {selectedCategory 
-            ? `Hone your skills with our expert collection of ${prettyCategoryName}.`
-            : "Select a category from the Badminton Hub to view drills."
-          }
+          Hone your skills with our expert collection of {prettyCategoryName} drills.
         </p>
       </div>
-      
-      <div className="space-y-8">
-        {selectedCategory && drillsForCategory.length > 0 ? (
-            <DrillsLibrary drills={drillsForCategory} categoryName={selectedCategory} />
-        ) : (
-             <Card className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8 border-dashed">
-                <h3 className="text-xl font-bold font-headline">No Category Selected</h3>
-                <p className="text-muted-foreground mb-4">Please go back to the Badminton Hub to choose a drill category.</p>
-                <Link href="/dashboard/general-workouts/athlete/badminton">
-                    <Button variant="outline">
-                        <ChevronLeft className="mr-2 h-4 w-4" />
-                        Back to Badminton Hub
-                    </Button>
-                </Link>
-             </Card>
-        )}
-      </div>
-
+      <ul className="space-y-4">
+        {drills.map((drill, idx) => (
+          <li key={idx} className="p-4 border rounded-lg bg-card shadow-sm">
+            <h3 className="font-semibold text-lg">{drill.title}</h3>
+            <p className="text-muted-foreground mt-1">{drill.description}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
+
 
 export default function BadmintonDrillsPage() {
     return (
