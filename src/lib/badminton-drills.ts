@@ -448,5 +448,139 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
           "Be mindful of fatigue to prevent injuries from poor form."
         ]
       }
+    ],
+    "Reaction & Reflex Training": [
+      {
+        name: "Multi-shuttle Rapid Fire Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=nGGs017h7c4",
+        image: "https://picsum.photos/400/320",
+        hint: "badminton multi shuttle",
+        steps: [
+          "Have a feeder stand on the other side with a tube of shuttles.",
+          "Feeder rapidly fires shuttles to different corners of your court.",
+          "Your goal is to return every shuttle, focusing on quick recovery to the center.",
+          "This drill improves reaction speed, footwork, and stamina."
+        ],
+        commonMistakes: [
+          "Not returning to the center base after each shot.",
+          "Being slow to react to the next shuttle.",
+          "Poor quality shots due to rushing."
+        ],
+        injuryPrevention: [
+          "This is a very high-intensity drill. Ensure a thorough warm-up.",
+          "Build up the duration and speed of the feed gradually.",
+          "Stay hydrated and listen to your body to avoid overexertion."
+        ]
+      },
+      {
+        name: "Random Shuttle Toss Reaction Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=some-video-id",
+        image: "https://picsum.photos/400/321",
+        hint: "badminton reaction toss",
+        steps: [
+          "Stand in the center of the court.",
+          "Have a partner stand behind you and toss shuttles randomly over your head.",
+          "You must react to the shuttle's trajectory, get in position, and play an appropriate shot.",
+          "This improves reaction to unexpected shots and backwards movement."
+        ],
+        commonMistakes: [
+          "Turning around too slowly to see the shuttle.",
+          "Misjudging the shuttle's flight path.",
+          "Being off-balance when hitting the shot."
+        ],
+        injuryPrevention: [
+          "Ensure the area is clear to prevent tripping while moving backward.",
+          "Practice good backward footwork to protect your ankles and knees.",
+          "Communicate with your partner to ensure tosses are safe and effective."
+        ]
+      },
+      {
+        name: "Wall Rally Reflex",
+        youtubeUrl: "https://www.youtube.com/watch?v=PZps9x983-I",
+        image: "https://picsum.photos/400/322",
+        hint: "badminton wall rally",
+        steps: [
+          "Stand a few feet from a flat wall.",
+          "Hit the shuttle against the wall and try to return it as many times as possible.",
+          "Focus on short, quick, wristy shots.",
+          "This drill drastically improves hand-eye coordination and reflex speed."
+        ],
+        commonMistakes: [
+          "Standing too close or too far from the wall.",
+          "Using large swings instead of compact, quick ones.",
+          "Losing control of the shuttle quickly."
+        ],
+        injuryPrevention: [
+          "Warm up your wrist and forearm thoroughly.",
+          "Start slowly to get a rhythm before increasing speed.",
+          "Don't overdo it to avoid repetitive strain injuries in the wrist or elbow."
+        ]
+      },
+      {
+        name: "Partner Drive Rally",
+        youtubeUrl: "https://www.youtube.com/watch?v=3g8K0nSCj-0",
+        image: "https://picsum.photos/400/323",
+        hint: "badminton drive rally",
+        steps: [
+          "Stand at mid-court with a partner opposite you.",
+          "Engage in a continuous rally of flat, fast drives.",
+          "Focus on quick reactions, short swings, and controlling the shuttle.",
+          "Try to keep the rally going for as long as possible."
+        ],
+        commonMistakes: [
+          "Lifting the shuttle, which ends the drive rally.",
+          "A slow grip change between forehand and backhand.",
+          "A large backswing that makes you late for the next shot."
+        ],
+        injuryPrevention: [
+          "Ensure proper warm-up of the shoulder, elbow, and wrist.",
+          "Maintain a relaxed grip to avoid strain.",
+          "Focus on good technique over pure power."
+        ]
+      },
+      {
+        name: "Reaction Ball Catch Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=some-video-id-2",
+        image: "https://picsum.photos/400/324",
+        hint: "reaction ball drill",
+        steps: [
+          "Use a reaction ball (a six-sided rubber ball).",
+          "Bounce it off the floor or a wall and react to its unpredictable bounce.",
+          "Try to catch it with one hand.",
+          "This is an excellent off-court drill to train your reflexes and hand-eye coordination."
+        ],
+        commonMistakes: [
+          "Anticipating the bounce instead of reacting to it.",
+          "Being flat-footed.",
+          "Not keeping your eyes on the ball."
+        ],
+        injuryPrevention: [
+          "Use this drill in a clear, open space.",
+          "Start with gentle bounces before increasing the force.",
+          "Be mindful of your surroundings to avoid collisions."
+        ]
+      },
+      {
+        name: "Random Smash & Drop Return Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=some-video-id-3",
+        image: "https://picsum.photos/400/325",
+        hint: "badminton smash drop return",
+        steps: [
+          "Have a feeder on the other side of the court.",
+          "The feeder will randomly play either a smash or a drop shot.",
+          "You must react with the appropriate defensive shot: a block/lift for the smash, or a net shot/lift for the drop.",
+          "This improves your ability to read the opponent and react defensively under pressure."
+        ],
+        commonMistakes: [
+          "Being caught in the wrong position (too far back for a drop, too far forward for a smash).",
+          "A slow split-step, reducing reaction time.",
+          "Playing the wrong defensive shot (e.g., trying to drive a steep smash)."
+        ],
+        injuryPrevention: [
+          "This is a demanding drill; ensure a full body warm-up.",
+          "Communicate with your feeder about the pace of the smashes.",
+          "Practice good lunging and defensive footwork to prevent injuries."
+        ]
+      }
     ]
 };
