@@ -4,14 +4,14 @@
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { IconWorkouts, IconShotTraining, IconBowlingHand, IconFieldingGlove, IconStumpsGlove } from '@/components/cricket-icons';
+import Image from 'next/image';
 
 const cricketCategories = [
-    { name: "Workouts", href: "/dashboard/general-workouts/athlete/cricket/workouts", icon: IconWorkouts, color: "from-green-500 to-emerald-500" },
-    { name: "Shot Training", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Shot%20Training", icon: IconShotTraining, color: "from-blue-500 to-sky-500" },
-    { name: "Bowling Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Bowling%20Drills", icon: IconBowlingHand, color: "from-red-500 to-rose-500" },
-    { name: "Fielding Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Fielding%20Drills", icon: IconFieldingGlove, color: "from-purple-500 to-violet-500" },
-    { name: "Wicketkeeping", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Wicketkeeping%20Drills", icon: IconStumpsGlove, color: "from-orange-500 to-amber-500" },
+    { name: "Workouts", href: "/dashboard/general-workouts/athlete/cricket/workouts", image: "https://picsum.photos/400/300", hint: "cricket workout" },
+    { name: "Shot Training", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Shot%20Training", image: "https://picsum.photos/400/300", hint: "shot training" },
+    { name: "Bowling Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Bowling%20Drills", image: "https://picsum.photos/400/300", hint: "bowling drills" },
+    { name: "Fielding Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Fielding%20Drills", image: "https://picsum.photos/400/300", hint: "fielding drills" },
+    { name: "Wicketkeeping", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Wicketkeeping%20Drills", image: "https://picsum.photos/400/300", hint: "wicketkeeping drills" },
 ];
 
 export default function CricketPage() {
@@ -34,11 +34,21 @@ export default function CricketPage() {
                 whileHover={{ scale: 1.05 }}
                 className="h-full"
             >
-              <Card className={`overflow-hidden group h-full transition-all duration-300 hover:shadow-lg bg-gradient-to-br ${category.color} text-white`}>
-                <CardContent className="p-6 flex flex-col items-center justify-center text-center h-full">
-                    <category.icon className="h-16 w-16 mb-4 drop-shadow-lg"/>
-                    <h3 className="text-xl font-bold font-headline">{category.name}</h3>
-                </CardContent>
+              <Card className="overflow-hidden group h-full transition-all duration-300 hover:shadow-lg hover:border-primary">
+                 <div className="relative">
+                    <Image
+                      src={category.image}
+                      data-ai-hint={category.hint}
+                      alt={category.name}
+                      width={400}
+                      height={300}
+                      className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                    <div className="absolute bottom-0 p-4">
+                      <h3 className="text-xl font-bold font-headline text-white">{category.name}</h3>
+                    </div>
+                  </div>
               </Card>
             </motion.div>
           </Link>
