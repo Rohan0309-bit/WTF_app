@@ -8,7 +8,7 @@ import { SPORT_CATEGORIES_CRICKET } from '@/lib/constants';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { CheckCircle, XCircle, Youtube, Shield } from 'lucide-react';
+import { CheckCircle, XCircle, Youtube, Shield, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
@@ -135,16 +135,9 @@ function CricketDrillsContent() {
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get('category');
   
-  const categories = useMemo(() => {
-    const allCategories = SPORT_CATEGORIES_CRICKET.Cricket
-        .filter(cat => cat.name !== "Workout" && cat.name !== "Nutrition")
-        .map(cat => cat.name);
-    
-    if (selectedCategory && allCategories.includes(selectedCategory)) {
-        return [selectedCategory];
-    }
-    
-    return allCategories;
+  const drillsForCategory = useMemo(() => {
+    if (!selectedCategory) return [];
+    return cricketSubCategories[selectedCategory] || [];
   }, [selectedCategory]);
   
   return (
@@ -152,16 +145,28 @@ function CricketDrillsContent() {
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold font-headline">{selectedCategory || 'Cricket Drills Library'}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Hone your skills with our expert collection of cricket drills.
+          {selectedCategory 
+            ? `Hone your skills with our expert collection of ${selectedCategory}.`
+            : "Select a category from the Cricket Hub to view drills."
+          }
         </p>
       </div>
       
       <div className="space-y-8">
-        {categories.map(categoryName => {
-            const drills = cricketSubCategories[categoryName] || [];
-            if (drills.length === 0) return null;
-            return <DrillsLibrary key={categoryName} drills={drills} categoryName={categoryName} />
-        })}
+        {selectedCategory && drillsForCategory.length > 0 ? (
+            <DrillsLibrary drills={drillsForCategory} categoryName={selectedCategory} />
+        ) : (
+             <Card className="flex flex-col items-center justify-center h-full min-h-[300px] text-center p-8 border-dashed">
+                <h3 className="text-xl font-bold font-headline">No Category Selected</h3>
+                <p className="text-muted-foreground mb-4">Please go back to the Cricket Hub to choose a drill category.</p>
+                <Link href="/dashboard/general-workouts/athlete/cricket">
+                    <Button variant="outline">
+                        <ChevronLeft className="mr-2 h-4 w-4" />
+                        Back to Cricket Hub
+                    </Button>
+                </Link>
+             </Card>
+        )}
       </div>
 
     </div>
