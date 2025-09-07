@@ -1,83 +1,59 @@
+
 'use client';
 
-import { useState } from 'react';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import {
-  VOLLEYBALL_MALE_GYM_WORKOUT_PLAN,
-  VOLLEYBALL_MALE_HOME_WORKOUT_PLAN,
-  VOLLEYBALL_FEMALE_GYM_WORKOUT_PLAN,
-  VOLLEYBALL_FEMALE_HOME_WORKOUT_PLAN,
-  WorkoutSplit
-} from '@/lib/workouts';
-import { WorkoutDisplay } from '@/components/workout-display';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-type Gender = 'male' | 'female';
-type Location = 'gym' | 'home';
+const volleyballCategories = [
+    { name: "Workouts", href: "/dashboard/general-workouts/athlete/volleyball/workouts", image: "https://i.ibb.co/V0tJBw3L/Whats-App-Image-2025-06-29-at-01-07-42.jpg", hint: "volleyball workout" },
+    { name: "Serving Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=Serving%20Drills", image: "https://i.ibb.co/L5kRScD/volleyball-serve.jpg", hint: "volleyball serving" },
+    { name: "Spiking / Attacking Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=Spiking%20/%20Attacking%20Drills", image: "https://i.ibb.co/N1pWf2Y/volleyball-spike.jpg", hint: "volleyball spiking" },
+    { name: "Blocking Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=Blocking%20Drills", image: "https://i.ibb.co/rfnL1rQ/volleyball-block.jpg", hint: "volleyball blocking" },
+    { name: "Defense & Passing Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=Defense%20&%20Passing%20Drills", image: "https://i.ibb.co/f2sFf9J/volleyball-defense.jpg", hint: "volleyball passing" },
+];
 
-export default function VolleyballWorkoutPage() {
-  const [gender, setGender] = useState<Gender>('male');
-  const [location, setLocation] = useState<Location>('gym');
-  const [selectedDay, setSelectedDay] = useState<string>('Monday');
-
-  const getWorkoutPlan = (): WorkoutSplit => {
-    if (gender === 'male' && location === 'gym') return VOLLEYBALL_MALE_GYM_WORKOUT_PLAN;
-    if (gender === 'male' && location === 'home') return VOLLEYBALL_MALE_HOME_WORKOUT_PLAN;
-    if (gender === 'female' && location === 'gym') return VOLLEYBALL_FEMALE_GYM_WORKOUT_PLAN;
-    return VOLLEYBALL_FEMALE_HOME_WORKOUT_PLAN;
-  };
-
-  const workoutPlan = getWorkoutPlan();
-  const workoutForDay = workoutPlan[selectedDay];
-  const days = Object.keys(workoutPlan);
-
+export default function VolleyballPage() {
   return (
     <div className="container mx-auto p-4">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold font-headline">Volleyball Workout</h1>
+        <h1 className="text-3xl font-bold font-headline">🏐 Volleyball Training Hub</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Sport-specific program for Volleyball players to improve power, agility, and on-court performance.
+          Your central command for all volleyball-specific training. Select a category to begin.
         </p>
       </div>
 
-      <div className="flex justify-center gap-4 mb-8">
-        <Tabs value={gender} onValueChange={(value) => setGender(value as Gender)}>
-          <TabsList>
-            <TabsTrigger value="male">Male</TabsTrigger>
-            <TabsTrigger value="female">Female</TabsTrigger>
-          </TabsList>
-        </Tabs>
-        <Tabs value={location} onValueChange={(value) => setLocation(value as Location)}>
-          <TabsList>
-            <TabsTrigger value="gym">Gym</TabsTrigger>
-            <TabsTrigger value="home">Home</TabsTrigger>
-          </TabsList>
-        </Tabs>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {volleyballCategories.map((category, index) => (
+          <Link href={category.href} key={category.name}>
+             <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="h-full"
+            >
+              <Card className="overflow-hidden group h-full transition-all duration-300 hover:shadow-lg hover:border-primary">
+                 <div className="relative">
+                    <Image
+                      src={category.image}
+                      data-ai-hint={category.hint}
+                      alt={category.name}
+                      width={400}
+                      height={300}
+                      className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                    <div className="absolute bottom-0 p-4">
+                      <h3 className="text-xl font-bold font-headline text-white">{category.name}</h3>
+                    </div>
+                  </div>
+              </Card>
+            </motion.div>
+          </Link>
+        ))}
       </div>
-      
-       <div className="max-w-4xl mx-auto">
-         <Tabs value={selectedDay} onValueChange={setSelectedDay} className="mb-8">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-7 h-auto">
-             {days.map(day => (
-              <TabsTrigger key={day} value={day}>{day.substring(0,3)}</TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-
-        {workoutForDay ? (
-            <WorkoutDisplay workout={workoutForDay} />
-        ) : (
-             <Card>
-                <CardHeader>
-                    <CardTitle>No workout</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p>No workout plan found for the selected day.</p>
-                </CardContent>
-            </Card>
-        )}
-      </div>
-
     </div>
   );
 }
