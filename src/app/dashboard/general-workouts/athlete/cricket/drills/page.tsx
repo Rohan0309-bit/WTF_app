@@ -17,14 +17,15 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName: string }) {
   const [selectedDrill, setSelectedDrill] = useState<Drill | null>(null);
   
-  const tableCategories = ["Shot Training", "Bowling Drills", "Fielding Drills", "Wicketkeeping Drills"];
+  const prettyCategoryName = categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const tableCategories = ["shot-training", "bowling-drills", "fielding-drills", "wicketkeeping-drills"];
   const useTableView = tableCategories.includes(categoryName);
 
   return (
      <Dialog onOpenChange={(isOpen) => !isOpen && setSelectedDrill(null)}>
       <Accordion type="single" collapsible className="w-full" defaultValue={categoryName}>
         <AccordionItem value={categoryName}>
-          <AccordionTrigger className="text-xl font-headline">{categoryName}</AccordionTrigger>
+          <AccordionTrigger className="text-xl font-headline">{prettyCategoryName}</AccordionTrigger>
           <AccordionContent>
             {useTableView ? (
                  <Table>
@@ -140,13 +141,15 @@ function CricketDrillsContent() {
     return cricketSubCategories[selectedCategory] || [];
   }, [selectedCategory]);
   
+  const prettyCategoryName = selectedCategory?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
   return (
     <div className="container mx-auto p-4">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold font-headline">{selectedCategory || 'Cricket Drills Library'}</h1>
+        <h1 className="text-3xl font-bold font-headline">{prettyCategoryName || 'Cricket Drills Library'}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           {selectedCategory 
-            ? `Hone your skills with our expert collection of ${selectedCategory}.`
+            ? `Hone your skills with our expert collection of ${prettyCategoryName}.`
             : "Select a category from the Cricket Hub to view drills."
           }
         </p>

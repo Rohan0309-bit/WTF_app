@@ -10,7 +10,7 @@ export interface VolleyballDrill {
 }
 
 export const volleyballSubCategories: Record<string, VolleyballDrill[]> = {
-    "Serving Drills": [
+    "serving-drills": [
         {
             name: "Standing Float Serve Practice",
             youtubeUrl: "https://www.youtube.com/watch?v=p_q-wLQ5c1A",
@@ -125,7 +125,7 @@ export const volleyballSubCategories: Record<string, VolleyballDrill[]> = {
             ]
         },
     ],
-    "Spiking / Attacking Drills": [
+    "spiking-attacking-drills": [
         {
             name: "Approach & Arm Swing Technique Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=e_p2z1gW-pA",
@@ -257,7 +257,7 @@ export const volleyballSubCategories: Record<string, VolleyballDrill[]> = {
             ]
         },
     ],
-    "Blocking Drills": [
+    "blocking-drills": [
         {
             name: "Single Block Timing Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=wL4cQhA-WqY",
@@ -392,7 +392,7 @@ export const volleyballSubCategories: Record<string, VolleyballDrill[]> = {
             ]
         },
     ],
-    "Defense & Passing Drills": [
+    "defense-passing-drills": [
         {
             name: "Forearm Passing Accuracy to Setter",
             youtubeUrl: "https://www.youtube.com/watch?v=yWd-0B8aQ4A",

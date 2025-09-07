@@ -16,12 +16,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 
 function DrillsLibrary({ drills, categoryName }: { drills: BadmintonDrill[], categoryName: string }) {
   const [selectedDrill, setSelectedDrill] = useState<BadmintonDrill | null>(null);
-  
+  const prettyCategoryName = categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
   return (
      <Dialog onOpenChange={(isOpen) => !isOpen && setSelectedDrill(null)}>
       <Accordion type="single" collapsible className="w-full" defaultValue={categoryName}>
         <AccordionItem value={categoryName}>
-          <AccordionTrigger className="text-xl font-headline">{categoryName}</AccordionTrigger>
+          <AccordionTrigger className="text-xl font-headline">{prettyCategoryName}</AccordionTrigger>
           <AccordionContent>
             <Table>
                 <TableHeader>
@@ -111,14 +112,16 @@ function BadmintonDrillsContent() {
     if (!selectedCategory) return [];
     return badmintonSubCategories[selectedCategory] || [];
   }, [selectedCategory]);
+  
+  const prettyCategoryName = selectedCategory?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   return (
     <div className="container mx-auto p-4">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold font-headline">{selectedCategory || 'Badminton Drills Library'}</h1>
+        <h1 className="text-3xl font-bold font-headline">{prettyCategoryName || 'Badminton Drills Library'}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           {selectedCategory 
-            ? `Hone your skills with our expert collection of ${selectedCategory}.`
+            ? `Hone your skills with our expert collection of ${prettyCategoryName}.`
             : "Select a category from the Badminton Hub to view drills."
           }
         </p>

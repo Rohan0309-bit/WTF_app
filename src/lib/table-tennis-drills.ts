@@ -10,7 +10,7 @@ export interface TableTennisDrill {
 }
 
 export const tableTennisSubCategories: Record<string, TableTennisDrill[]> = {
-    "Footwork Drills": [
+    "footwork-drills": [
         {
             name: "Side-to-Side Footwork with Shadow Play",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -57,7 +57,7 @@ export const tableTennisSubCategories: Record<string, TableTennisDrill[]> = {
             ]
         },
     ],
-    "Stroke Training": [
+    "stroke-training": [
         {
             name: "Forehand Drive Consistency Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -103,7 +103,7 @@ export const tableTennisSubCategories: Record<string, TableTennisDrill[]> = {
             ]
         },
     ],
-    "Serve & Return Drills": [
+    "serve-return-drills": [
         {
             name: "Short Backspin Serve Practice",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -145,7 +145,7 @@ export const tableTennisSubCategories: Record<string, TableTennisDrill[]> = {
             ]
         },
     ],
-    "Reaction & Reflex Training": [
+    "reaction-reflex-training": [
         {
             name: "Multi-ball Fast Reaction Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",

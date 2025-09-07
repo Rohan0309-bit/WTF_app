@@ -10,7 +10,7 @@ export interface FootballDrill {
 }
 
 export const footballSubCategories: Record<string, FootballDrill[]> = {
-    "Dribbling Drills": [
+    "dribbling-drills": [
         {
             name: "Cone Weaving Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -75,7 +75,7 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
             ]
         },
     ],
-    "Passing Drills": [
+    "passing-drills": [
         {
             name: "Short Passing Wall Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -98,7 +98,7 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
             ]
         },
     ],
-    "Shooting & Finishing Drills": [
+    "shooting-finishing-drills": [
          {
             name: "Shooting at Target Zones",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -121,7 +121,7 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
             ]
         },
     ],
-    "Defensive Drills": [
+    "defensive-drills": [
         {
             name: "Shadowing & Jockeying Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -146,7 +146,7 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
             ]
         },
     ],
-    "Conditioning & Agility Drills": [
+    "conditioning-agility-drills": [
         {
             name: "Sprint Intervals with Ball",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",

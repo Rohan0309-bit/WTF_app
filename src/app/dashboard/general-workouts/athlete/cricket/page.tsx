@@ -8,10 +8,10 @@ import Image from 'next/image';
 
 const cricketCategories = [
     { name: "Workouts", href: "/dashboard/general-workouts/athlete/cricket/workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "cricket workout" },
-    { name: "Shot Training", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Shot%20Training", image: "https://i.ibb.co/4nwcvrw6/Whats-App-Image-2025-09-07-at-16-45-56.jpg", hint: "shot training" },
-    { name: "Bowling Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Bowling%20Drills", image: "https://i.ibb.co/qYmC0rDP/Whats-App-Image-2025-09-07-at-16-45-54.jpg", hint: "bowling drills" },
-    { name: "Fielding Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Fielding%20Drills", image: "https://i.ibb.co/CKFnV9sL/Whats-App-Image-2025-09-07-at-16-45-55.jpg", hint: "fielding drills" },
-    { name: "Wicketkeeping", href: "/dashboard/general-workouts/athlete/cricket/drills?category=Wicketkeeping%20Drills", image: "https://i.ibb.co/674tvkPT/Whats-App-Image-2025-09-07-at-16-45-54-1.jpg", hint: "wicketkeeping drills" },
+    { name: "Shot Training", href: "/dashboard/general-workouts/athlete/cricket/drills?category=shot-training", image: "https://i.ibb.co/4nwcvrw6/Whats-App-Image-2025-09-07-at-16-45-56.jpg", hint: "shot training" },
+    { name: "Bowling Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=bowling-drills", image: "https://i.ibb.co/qYmC0rDP/Whats-App-Image-2025-09-07-at-16-45-54.jpg", hint: "bowling drills" },
+    { name: "Fielding Drills", href: "/dashboard/general-workouts/athlete/cricket/drills?category=fielding-drills", image: "https://i.ibb.co/CKFnV9sL/Whats-App-Image-2025-09-07-at-16-45-55.jpg", hint: "fielding drills" },
+    { name: "Wicketkeeping", href: "/dashboard/general-workouts/athlete/cricket/drills?category=wicketkeeping-drills", image: "https://i.ibb.co/674tvkPT/Whats-App-Image-2025-09-07-at-16-45-54-1.jpg", hint: "wicketkeeping drills" },
 ];
 
 export default function CricketPage() {

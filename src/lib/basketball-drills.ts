@@ -10,7 +10,7 @@ export interface BasketballDrill {
 }
 
 export const basketballSubCategories: Record<string, BasketballDrill[]> = {
-    "Dribbling & Ball Handling": [
+    "dribbling-ball-handling": [
         {
             name: "Cone Dribble (crossover, between legs, behind back)",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -74,7 +74,7 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
             ]
         },
     ],
-    "Shooting & Scoring": [
+    "shooting-scoring": [
         {
             name: "Spot Shooting from 5 Positions",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -138,7 +138,7 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
             ]
         },
     ],
-    "Passing & Team Play": [
+    "passing-team-play": [
         {
             name: "Chest Pass & Bounce Pass Wall Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -159,7 +159,7 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
             ]
         },
     ],
-    "Defense & Rebounding": [
+    "defense-rebounding": [
         {
             name: "Defensive Slide Drill",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
@@ -203,7 +203,7 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
             ]
         },
     ],
-    "Agility & Conditioning": [
+    "agility-conditioning": [
         {
             name: "Suicide Runs (baseline to baseline)",
             youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",

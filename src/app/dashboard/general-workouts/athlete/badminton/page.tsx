@@ -8,9 +8,10 @@ import Image from 'next/image';
 
 const badmintonCategories = [
     { name: "Workouts", href: "/dashboard/general-workouts/athlete/badminton/workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "badminton workout" },
-    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Footwork%20Drills", image: "https://i.ibb.co/2GQ9myt/Whats-App-Image-2025-09-07-at-17-11-01.jpg", hint: "badminton footwork" },
-    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Stroke%20Training", image: "https://i.ibb.co/PGNy8cP7/Whats-App-Image-2025-09-07-at-17-07-21-1.jpg", hint: "badminton stroke" },
-    { name: "Defense Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=Defense%20Drills", image: "https://i.ibb.co/NdGLKzfy/Whats-App-Image-2025-09-07-at-17-08-28.jpg", hint: "badminton defense" },
+    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=footwork-drills", image: "https://i.ibb.co/2GQ9myt/Whats-App-Image-2025-09-07-at-17-11-01.jpg", hint: "badminton footwork" },
+    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=stroke-training", image: "https://i.ibb.co/PGNy8cP7/Whats-App-Image-2025-09-07-at-17-07-21-1.jpg", hint: "badminton stroke" },
+    { name: "Defense Drills", href: "/dashboard/general-workouts/athlete/badminton/drills?category=defense-drills", image: "https://i.ibb.co/NdGLKzfy/Whats-App-Image-2025-09-07-at-17-08-28.jpg", hint: "badminton defense" },
+    { name: "Reaction & Reflex Training", href: "/dashboard/general-workouts/athlete/badminton/drills?category=reaction-reflex-training", image: "https://i.ibb.co/L5kRScD/volleyball-serve.jpg", hint: "badminton reaction" },
 ];
 
 export default function BadmintonPage() {

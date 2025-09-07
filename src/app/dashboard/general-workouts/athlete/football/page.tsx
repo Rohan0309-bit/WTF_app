@@ -8,11 +8,11 @@ import Image from 'next/image';
 
 const footballCategories = [
     { name: "Workouts", href: "/dashboard/general-workouts/athlete/football/workouts", image: "https://picsum.photos/400/300?random=1", hint: "football workout" },
-    { name: "Dribbling Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=Dribbling%20Drills", image: "https://picsum.photos/400/300?random=2", hint: "football dribbling" },
-    { name: "Passing Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=Passing%20Drills", image: "https://picsum.photos/400/300?random=3", hint: "football passing" },
-    { name: "Shooting & Finishing Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=Shooting%20&%20Finishing%20Drills", image: "https://picsum.photos/400/300?random=4", hint: "football shooting" },
-    { name: "Defensive Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=Defensive%20Drills", image: "https://picsum.photos/400/300?random=5", hint: "football defense" },
-    { name: "Conditioning & Agility Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=Conditioning%20&%20Agility%20Drills", image: "https://picsum.photos/400/300?random=6", hint: "football conditioning" },
+    { name: "Dribbling Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=dribbling-drills", image: "https://picsum.photos/400/300?random=2", hint: "football dribbling" },
+    { name: "Passing Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=passing-drills", image: "https://picsum.photos/400/300?random=3", hint: "football passing" },
+    { name: "Shooting & Finishing Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=shooting-finishing-drills", image: "https://picsum.photos/400/300?random=4", hint: "football shooting" },
+    { name: "Defensive Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=defensive-drills", image: "https://picsum.photos/400/300?random=5", hint: "football defense" },
+    { name: "Conditioning & Agility Drills", href: "/dashboard/general-workouts/athlete/football/drills?category=conditioning-agility-drills", image: "https://picsum.photos/400/300?random=6", hint: "football conditioning" },
 ];
 
 export default function FootballPage() {

@@ -8,11 +8,11 @@ import Image from 'next/image';
 
 const basketballCategories = [
     { name: "Workouts", href: "/dashboard/general-workouts/athlete/basketball/workouts", image: "https://picsum.photos/400/300?random=20", hint: "basketball workout" },
-    { name: "Dribbling & Ball Handling", href: "/dashboard/general-workouts/athlete/basketball/drills?category=Dribbling%20&%20Ball%20Handling", image: "https://picsum.photos/400/300?random=21", hint: "basketball dribbling" },
-    { name: "Shooting & Scoring", href: "/dashboard/general-workouts/athlete/basketball/drills?category=Shooting%20&%20Scoring", image: "https://picsum.photos/400/300?random=22", hint: "basketball shooting" },
-    { name: "Passing & Team Play", href: "/dashboard/general-workouts/athlete/basketball/drills?category=Passing%20&%20Team%20Play", image: "https://picsum.photos/400/300?random=23", hint: "basketball passing" },
-    { name: "Defense & Rebounding", href: "/dashboard/general-workouts/athlete/basketball/drills?category=Defense%20&%20Rebounding", image: "https://picsum.photos/400/300?random=24", hint: "basketball defense" },
-    { name: "Agility & Conditioning", href: "/dashboard/general-workouts/athlete/basketball/drills?category=Agility%20&%20Conditioning", image: "https://picsum.photos/400/300?random=25", hint: "basketball conditioning" },
+    { name: "Dribbling & Ball Handling", href: "/dashboard/general-workouts/athlete/basketball/drills?category=dribbling-ball-handling", image: "https://picsum.photos/400/300?random=21", hint: "basketball dribbling" },
+    { name: "Shooting & Scoring", href: "/dashboard/general-workouts/athlete/basketball/drills?category=shooting-scoring", image: "https://picsum.photos/400/300?random=22", hint: "basketball shooting" },
+    { name: "Passing & Team Play", href: "/dashboard/general-workouts/athlete/basketball/drills?category=passing-team-play", image: "https://picsum.photos/400/300?random=23", hint: "basketball passing" },
+    { name: "Defense & Rebounding", href: "/dashboard/general-workouts/athlete/basketball/drills?category=defense-rebounding", image: "https://picsum.photos/400/300?random=24", hint: "basketball defense" },
+    { name: "Agility & Conditioning", href: "/dashboard/general-workouts/athlete/basketball/drills?category=agility-conditioning", image: "https://picsum.photos/400/300?random=25", hint: "basketball conditioning" },
 ];
 
 export default function BasketballPage() {

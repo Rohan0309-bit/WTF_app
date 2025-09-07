@@ -12,7 +12,7 @@ export interface Drill {
 export type Sport = "Cricket"; // Can be expanded later
 
 export const cricketSubCategories: Record<string, Drill[]> = {
-    "Shot Training": [
+    "shot-training": [
       { name: "Mastering the Cover Drive", youtubeUrl: 'https://www.youtube.com/watch?v=zJgXk2g5-gE', image: "https://i.ibb.co/k2p0n4q/cover-drive.jpg", hint: "cricket cover drive", 
         steps: [
             "Start with a balanced stance, feet shoulder-width apart.",
@@ -192,7 +192,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
         ] 
       },
     ],
-    "Bowling Drills": [
+    "bowling-drills": [
       { name: "Seam Position & Grip Control", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/YZrdfg1/seam-position.jpg", hint: "bowling seam position", 
         steps: [
             "Hold the ball with the seam upright.",
@@ -367,7 +367,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
         ] 
       },
     ],
-    "Fielding Drills": [
+    "fielding-drills": [
         { name: "High Catch Technique (Overhead & Running)", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/pwnsRHL/high-catch.jpg", hint: "fielding high catch", 
           steps: [
               "Get under the ball as quickly as possible, using small, fast steps.",
@@ -543,7 +543,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
           ] 
         }
     ],
-    "Wicketkeeping Drills": [
+    "wicketkeeping-drills": [
         { name: "Basic Glove Work & Posture", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/X8gYkrr/glovework.jpg", hint: "wicketkeeping gloves", 
           steps: [
               "Assume a low, wide, and comfortable squat position.",

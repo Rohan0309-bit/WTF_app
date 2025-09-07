@@ -8,10 +8,10 @@ import Image from 'next/image';
 
 const tableTennisCategories = [
     { name: "Workouts", href: "/dashboard/general-workouts/athlete/table-tennis/workouts", image: "https://picsum.photos/400/300?random=41", hint: "table tennis workout" },
-    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=Footwork%20Drills", image: "https://picsum.photos/400/300?random=42", hint: "table tennis footwork" },
-    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=Stroke%20Training", image: "https://picsum.photos/400/300?random=43", hint: "table tennis stroke" },
-    { name: "Serve & Return Drills", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=Serve%20&%20Return%20Drills", image: "https://picsum.photos/400/300?random=44", hint: "table tennis serve" },
-    { name: "Reaction & Reflex Training", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=Reaction%20&%20Reflex%20Training", image: "https://picsum.photos/400/300?random=45", hint: "table tennis reaction" },
+    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=footwork-drills", image: "https://picsum.photos/400/300?random=42", hint: "table tennis footwork" },
+    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=stroke-training", image: "https://picsum.photos/400/300?random=43", hint: "table tennis stroke" },
+    { name: "Serve & Return Drills", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=serve-return-drills", image: "https://picsum.photos/400/300?random=44", hint: "table tennis serve" },
+    { name: "Reaction & Reflex Training", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=reaction-reflex-training", image: "https://picsum.photos/400/300?random=45", hint: "table tennis reaction" },
 ];
 
 export default function TableTennisPage() {
