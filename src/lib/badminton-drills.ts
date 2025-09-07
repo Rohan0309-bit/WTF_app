@@ -164,25 +164,153 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     ],
     "Stroke Training": [
       { 
-        name: "Mastering the Smash", 
-        youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", 
-        image: "https://picsum.photos/400/300", 
-        hint: "badminton smash", 
+        name: "Overhead Clear Practice", 
+        youtubeUrl: "https://www.youtube.com/watch?v=U0tI-t3YwS4", 
+        image: "https://picsum.photos/400/307", 
+        hint: "badminton overhead clear", 
         steps: [
-            "Get behind the shuttlecock.",
-            "Use a full arm rotation and snap your wrist at the point of impact.",
-            "Hit the shuttlecock at its highest point.",
-            "Follow through completely."
+            "Get under and slightly behind the shuttle.",
+            "Raise your non-racket arm to point at the shuttle for balance and aim.",
+            "Use a full throwing motion, rotating your hips and torso.",
+            "Contact the shuttle at the highest possible point with a relaxed grip, snapping your wrist at the last moment.",
+            "Follow through fully across your body."
         ], 
         commonMistakes: [
-            "Using only arm strength, not the whole body.",
-            "Hitting the shuttlecock too late.",
-            "Poor follow-through affecting recovery."
+            "Using only the arm, with no body rotation.",
+            "Hitting the shuttle when it's too low or too far in front.",
+            "A tense grip, which reduces power and feel.",
+            "Incomplete follow-through, leading to poor recovery."
         ], 
         injuryPrevention: [
-            "Warm up your shoulder and rotator cuff.",
-            "Avoid overusing the smash.",
-            "Ensure proper technique to prevent shoulder impingement."
+            "Thoroughly warm up your shoulder, elbow, and wrist.",
+            "Strengthen your rotator cuff and core muscles.",
+            "Don't over-practice with maximum power; focus on technique first.",
+            "Ensure good footwork to get into position early, avoiding rushed, off-balance swings."
+        ] 
+      },
+       { 
+        name: "Smash Technique", 
+        youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", 
+        image: "https://picsum.photos/400/308", 
+        hint: "badminton smash", 
+        steps: [
+            "Use the same preparation as an overhead clear to deceive your opponent.",
+            "Contact the shuttle slightly more in front of your body compared to a clear.",
+            "Use maximum arm speed and a powerful wrist snap.",
+            "Angle the racket face downwards to direct the shuttle steeply into the opponent's court.",
+            "Use a scissor kick to recover quickly to the center after landing."
+        ], 
+        commonMistakes: [
+            "Trying to hit too hard and tensing up, which ironically reduces speed.",
+            "Not using the wrist snap, resulting in a flat, slow smash.",
+            "Poor timing, hitting the shuttle with the frame or too low.",
+            "Landing off-balance and being slow to recover."
+        ], 
+        injuryPrevention: [
+            "This is a high-impact stroke; do not perform without a proper warm-up.",
+            "Build shoulder and core strength to handle the explosive force.",
+            "Avoid overuse. Mix smash drills with other stroke practices.",
+            "Master the correct landing and recovery technique to protect your knees and ankles."
+        ] 
+      },
+       { 
+        name: "Drop Shot Control", 
+        youtubeUrl: "https://www.youtube.com/watch?v=c-HnF8p589g", 
+        image: "https://picsum.photos/400/309", 
+        hint: "badminton drop shot", 
+        steps: [
+            "Use the same preparation as a clear or smash to be deceptive.",
+            "At the last moment, slow down your arm swing.",
+            "Gently tap or slice the shuttle, letting it just tumble over the net.",
+            "Aim for the shuttle to land as close to the net as possible.",
+            "Follow through slightly to guide the shuttle."
+        ], 
+        commonMistakes: [
+            "Slowing the arm down too early, making the shot obvious.",
+            "Hitting the shuttle too hard, sending it too deep.",
+            "Hitting the shuttle into the net.",
+            "Not using any deception, allowing the opponent to read the shot easily."
+        ], 
+        injuryPrevention: [
+            "Focus on a relaxed grip and touch to prevent wrist or elbow strain.",
+            "Ensure good footwork to get into position; reaching for the shot leads to poor control.",
+            "Strengthen forearm and finger muscles for better touch and control."
+        ] 
+      },
+       { 
+        name: "Net Shot Spin & Tight Control Drill", 
+        youtubeUrl: "https://www.youtube.com/watch?v=WJkZoP6K-sQ", 
+        image: "https://picsum.photos/400/310", 
+        hint: "badminton net shot", 
+        steps: [
+            "Approach the net with your racket up and ready.",
+            "Lunge forward with your racket leg.",
+            "Keep your body low and balanced.",
+            "Contact the shuttle as high as possible and as close to the net tape as you can.",
+            "Use a slicing motion to make the shuttle spin, causing it to tumble and be difficult to return.",
+            "The shot should be delicate, with minimal backswing."
+        ], 
+        commonMistakes: [
+            "Lifting the shuttle too high, giving the opponent an easy kill.",
+            "Hitting the net.",
+            "Using a big swing instead of a gentle, controlled push or slice.",
+            "Being too slow to the net, contacting the shuttle when it's too low."
+        ], 
+        injuryPrevention: [
+            "Strengthen your lunging leg (quads, glutes) and core for stability.",
+            "Practice good lunging technique to protect your knee.",
+            "Ensure good ankle flexibility and strength.",
+            "Don't over-reach; use your footwork to get close to the net."
+        ] 
+      },
+       { 
+        name: "Backhand Clear & Drive Practice", 
+        youtubeUrl: "https://www.youtube.com/watch?v=s5V3-j33Hw8", 
+        image: "https://picsum.photos/400/311", 
+        hint: "badminton backhand", 
+        steps: [
+            "Turn your body so your back is facing the net.",
+            "Use a backhand grip (thumb on the flat side of the handle for more power).",
+            "Use your forearm rotation and wrist flick to generate power.",
+            "For a clear, hit the shuttle high and deep. For a drive, hit it flat and fast.",
+            "The power comes from the sharp, quick rotation of the forearm and snap of the wrist."
+        ], 
+        commonMistakes: [
+            "Using the wrong grip, which severely limits power.",
+            "A weak or floppy wrist.",
+            "Not turning the body enough, forcing an awkward arm-only shot.",
+            "Hitting the shuttle with a 'panhandle' grip, resulting in no power."
+        ], 
+        injuryPrevention: [
+            "The backhand can strain the shoulder and elbow if done incorrectly.",
+            "Strengthen your forearm, wrist, and rotator cuff.",
+            "Practice the technique with no shuttle first to get the motion right.",
+            "Don't rely on a weak backhand; practice it until it becomes a weapon, not a liability."
+        ] 
+      },
+       { 
+        name: "Backhand Smash", 
+        youtubeUrl: "https://www.youtube.com/watch?v=j24hCqGgI0c", 
+        image: "https://picsum.photos/400/312", 
+        hint: "badminton backhand smash", 
+        steps: [
+            "This is an advanced, high-risk shot. Master the backhand clear first.",
+            "Get your body behind the shuttle and jump, turning your back to the net.",
+            "Use an explosive rotation of your hips, torso, and forearm.",
+            "Use a backhand grip and a very powerful wrist snap to hit down on the shuttle.",
+            "This shot is about surprising your opponent with power from a defensive position."
+        ], 
+        commonMistakes: [
+            "Attempting the shot when not in the correct position.",
+            "Lack of body rotation, resulting in a weak shot.",
+            "Poor timing, often resulting in hitting the net or sending the shuttle out.",
+            "Sacrificing control for power."
+        ], 
+        injuryPrevention: [
+            "Requires excellent shoulder mobility, core strength, and technique.",
+            "Warm up very thoroughly before practicing this shot.",
+            "Do not attempt if you have any shoulder or back injuries.",
+            "Build up the power gradually. Start with backhand clears and drives first."
         ] 
       },
     ],
