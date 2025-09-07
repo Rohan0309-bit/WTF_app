@@ -4,7 +4,7 @@
 import { useState, useMemo, Suspense } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { cricketSubCategories, type Drill } from '@/lib/drills';
-import { SPORT_CATEGORIES } from '@/lib/constants';
+import { SPORT_CATEGORIES_CRICKET } from '@/lib/constants';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -136,7 +136,7 @@ function CricketDrillsContent() {
   const selectedCategory = searchParams.get('category');
   
   const categories = useMemo(() => {
-    const allCategories = SPORT_CATEGORIES.Cricket
+    const allCategories = SPORT_CATEGORIES_CRICKET.Cricket
         .filter(cat => cat.name !== "Workout" && cat.name !== "Nutrition")
         .map(cat => cat.name);
     
