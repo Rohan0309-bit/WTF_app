@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { POSING_TUTORIALS, type Pose, type PosingCategory } from '@/lib/posing';
 import { CheckCircle, XCircle, ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
