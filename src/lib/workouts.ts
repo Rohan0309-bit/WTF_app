@@ -132,7 +132,7 @@ export const MASTER_EXERCISE_DATA: { [key: string]: Partial<ExerciseDetails> } =
     "Chest Stretch": { type: 'flexibility', muscle: 'Chest', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://placehold.co/400x400.png', injury_prevention: 'Perform the stretch gently. Do not force your arms back, to prevent shoulder impingement.' },
     "Shoulder Stretch": { type: 'flexibility', muscle: 'Shoulders', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://placehold.co/400x400.png', injury_prevention: 'Do not pull your arm across your body too hard. Keep your shoulder down and relaxed.' },
     "Triceps Stretch": { type: 'flexibility', muscle: 'Triceps', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://placehold.co/400x400.png', injury_prevention: 'Gently pull your elbow behind your head; avoid forcing the stretch if you feel any shoulder pain.' },
-    "Child's Pose": { type: 'flexibility', muscle: 'Back', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://placehold.co/400x400.png', injury_prevention: 'If you have knee issues, place a blanket under your shins for cushioning. Breathe deeply to relax your back.' },
+    "Child\'s Pose": { type: 'flexibility', muscle: 'Back', equipment: 'Bodyweight', difficulty: 'beginner', gifUrl: 'https://placehold.co/400x400.png', injury_prevention: 'If you have knee issues, place a blanket under your shins for cushioning. Breathe deeply to relax your back.' },
 
     // More exercises to fill out the list
     "Dumbbell Pullover": { type: 'strength', muscle: 'Chest', equipment: 'Dumbbell', difficulty: 'intermediate', gifUrl: 'https://placehold.co/400x400.png', injury_prevention: 'Keep a slight bend in your elbows and ensure your lower back stays on the bench. Use a lighter weight to master the form.' },
@@ -177,7 +177,7 @@ export const COOLDOWN_EXERCISES: ExerciseDetails[] = [
     { ...defaultExerciseProps, name: "Chest Stretch", sets: "1", reps: "30s", rest: "10s", ...MASTER_EXERCISE_DATA["Chest Stretch"] },
     { ...defaultExerciseProps, name: "Shoulder Stretch", sets: "1", reps: "30s each side", rest: "10s", ...MASTER_EXERCISE_DATA["Shoulder Stretch"] },
     { ...defaultExerciseProps, name: "Triceps Stretch", sets: "1", reps: "30s each side", rest: "10s", ...MASTER_EXERCISE_DATA["Triceps Stretch"] },
-    { ...defaultExerciseProps, name: "Child's Pose", sets: "1", reps: "60s", rest: "0s", ...MASTER_EXERCISE_DATA["Child's Pose"] }
+    { ...defaultExerciseProps, name: "Child\'s Pose", sets: "1", reps: "60s", rest: "0s", ...MASTER_EXERCISE_DATA["Child's Pose"] }
 ];
 
 // Function to get a workout plan by slug

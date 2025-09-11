@@ -7,11 +7,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const volleyballCategories = [
-    { name: "Workouts", href: "/dashboard/general-workouts/athlete/volleyball/workouts", image: "https://i.ibb.co/V0tJBw3L/Whats-App-Image-2025-06-29-at-01-07-42.jpg", hint: "volleyball workout" },
-    { name: "Serving Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=serving-drills", image: "https://i.ibb.co/L5kRScD/volleyball-serve.jpg", hint: "volleyball serving" },
-    { name: "Spiking / Attacking Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=spiking-attacking-drills", image: "https://i.ibb.co/N1pWf2Y/volleyball-spike.jpg", hint: "volleyball spiking" },
-    { name: "Blocking Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=blocking-drills", image: "https://i.ibb.co/rfnL1rQ/volleyball-block.jpg", hint: "volleyball blocking" },
-    { name: "Defense & Passing Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=defense-passing-drills", image: "https://i.ibb.co/f2sFf9J/volleyball-defense.jpg", hint: "volleyball passing" },
+    { name: "Workouts", href: "/dashboard/general-workouts/athlete/volleyball/workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "volleyball workout" },
+    { name: "Serving Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=serving-drills", image: "https://i.ibb.co/VcwRhp2Q/Whats-App-Image-2025-09-10-at-22-41-09.jpg", hint: "volleyball serving" },
+    { name: "Spiking / Attacking Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=spiking-attacking-drills", image: "https://i.ibb.co/chk6sQm4/Whats-App-Image-2025-09-10-at-22-41-08.jpg", hint: "volleyball spiking" },
+    { name: "Blocking Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=blocking-drills", image: "https://i.ibb.co/VWc3G8st/Whats-App-Image-2025-09-10-at-22-41-09-1.jpg", hint: "volleyball blocking" },
+    { name: "Defense & Passing Drills", href: "/dashboard/general-workouts/athlete/volleyball/drills?category=defense-passing-drills", image: "https://i.ibb.co/KcnbzNbs/Whats-App-Image-2025-09-10-at-22-41-09-2.jpg", hint: "volleyball passing" },
 ];
 
 export default function VolleyballPage() {

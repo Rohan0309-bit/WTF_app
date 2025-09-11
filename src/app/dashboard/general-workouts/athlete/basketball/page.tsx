@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const basketballCategories = [
-  { name: "Workouts", slug: "workouts", image: "https://picsum.photos/400/300?random=20", hint: "basketball workout" },
-  { name: "Dribbling & Ball Handling", slug: "dribbling-ball-handling", image: "https://picsum.photos/400/300?random=21", hint: "basketball dribbling" },
-  { name: "Shooting & Scoring", slug: "shooting-scoring", image: "https://picsum.photos/400/300?random=22", hint: "basketball shooting" },
-  { name: "Passing & Team Play", slug: "passing-team-play", image: "https://picsum.photos/400/300?random=23", hint: "basketball passing" },
-  { name: "Defense & Rebounding", slug: "defense-rebounding", image: "https://picsum.photos/400/300?random=24", hint: "basketball defense" },
-  { name: "Agility & Conditioning", slug: "agility-conditioning", image: "https://picsum.photos/400/300?random=25", hint: "basketball conditioning" },
+  { name: "Workouts", slug: "workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "basketball workout" },
+  { name: "Dribbling & Ball Handling", slug: "dribbling-ball-handling", image: "https://i.ibb.co/Ndqt8yWL/Whats-App-Image-2025-09-10-at-22-17-04.jpg", hint: "basketball dribbling" },
+  { name: "Shooting & Scoring", slug: "shooting-scoring", image: "https://i.ibb.co/ksVBjtV2/Whats-App-Image-2025-09-10-at-22-17-04-1.jpg", hint: "basketball shooting" },
+  { name: "Passing & Team Play", slug: "passing-team-play", image: "https://i.ibb.co/5hP74ZyB/Whats-App-Image-2025-09-10-at-22-20-58.jpg", hint: "basketball passing" },
+  { name: "Defense & Rebounding", slug: "defense-rebounding", image: "https://i.ibb.co/ZzrwNdDY/Whats-App-Image-2025-09-10-at-22-20-57.jpg", hint: "basketball defense" },
+  { name: "Agility & Conditioning", slug: "agility-conditioning", image: "https://i.ibb.co/LdCS4bDc/Whats-App-Image-2025-09-10-at-22-20-58-1.jpg", hint: "basketball conditioning" },
 ];
 
 export default function BasketballPage() {

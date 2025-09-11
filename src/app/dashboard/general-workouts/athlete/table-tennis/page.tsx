@@ -7,11 +7,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const tableTennisCategories = [
-    { name: "Workouts", href: "/dashboard/general-workouts/athlete/table-tennis/workouts", image: "https://picsum.photos/400/300?random=41", hint: "table tennis workout" },
-    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=footwork-drills", image: "https://picsum.photos/400/300?random=42", hint: "table tennis footwork" },
-    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=stroke-training", image: "https://picsum.photos/400/300?random=43", hint: "table tennis stroke" },
-    { name: "Serve & Return Drills", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=serve-return-drills", image: "https://picsum.photos/400/300?random=44", hint: "table tennis serve" },
-    { name: "Reaction & Reflex Training", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=reaction-reflex-training", image: "https://picsum.photos/400/300?random=45", hint: "table tennis reaction" },
+    { name: "Workouts", href: "/dashboard/general-workouts/athlete/table-tennis/workouts", image: "https://i.ibb.co/HDLtF7vg/Whats-App-Image-2025-09-07-at-16-45-55-1.jpg", hint: "table tennis workout" },
+    { name: "Footwork Drills", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=footwork-drills", image: "https://i.ibb.co/1f37v9sr/Whats-App-Image-2025-09-10-at-22-31-45-1.jpg", hint: "table tennis footwork" },
+    { name: "Stroke Training", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=stroke-training", image: "https://i.ibb.co/4n0B48Nj/Whats-App-Image-2025-09-10-at-22-31-45.jpg", hint: "table tennis stroke" },
+    { name: "Serve & Return Drills", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=serve-return-drills", image: "https://i.ibb.co/tMWHvyr4/Whats-App-Image-2025-09-10-at-22-31-44-1.jpg", hint: "table tennis serve" },
+    { name: "Reaction & Reflex Training", href: "/dashboard/general-workouts/athlete/table-tennis/drills?category=reaction-reflex-training", image: "https://i.ibb.co/WwcqrNk/Whats-App-Image-2025-09-10-at-22-31-44.jpg", hint: "table tennis reaction" },
 ];
 
 export default function TableTennisPage() {
