@@ -1,4 +1,5 @@
 
+
 export interface ExerciseDetails {
   name: string;
   type?: string;
@@ -117,9 +118,9 @@ export const MASTER_EXERCISE_DATA: Record<string, Partial<ExerciseDetails>> = {
     "20-30 min walk": { image: 'https://i.ibb.co/Jj676tFt/Whats-App-Image-2025-07-04-at-01-06-44.jpg', hint: 'walking person', type: "cardio", muscle: "Full Body", gifUrl: 'https://i.ibb.co/Jj676tFt/Whats-App-Image-2025-07-04-at-01-06-44.jpg' },
     "Incline Chest Press": { image: 'https://i.ibb.co/C3FmPcw8/Whats-App-Image-2025-07-03-at-12-31-15.jpg', hint: 'incline press', type: "strength", muscle: "Chest", gifUrl: 'https://i.ibb.co/C3FmPcw8/Whats-App-Image-2025-07-03-at-12-31-15.jpg' },
     "Chest Fly": { image: 'https://i.ibb.co/27NmYH8C/Whats-App-Image-2025-07-03-at-12-31-17.jpg', hint: 'chest fly', type: "strength", muscle: "Chest", gifUrl: 'https://i.ibb.co/27NmYH8C/Whats-App-Image-2025-07-03-at-12-31-17.jpg' },
-    "Triceps Rope Pushdown": { image: 'https://i.ibb.co/HDRgnWZs/Whats-App-Image-2025-07-03-at-12-31-16-1.jpg', hint: 'tricep pushdown', type: "strength", muscle: "Triceps", gifUrl: 'https://i.ibb.co/HDRgnWZs/Whats-App-Image-2025-07-03-at-12-31-16-1.jpg' },
     "Overhead DB Triceps Extension": { image: 'https://i.ibb.co/fVBpV0rm/Whats-App-Image-2025-07-04-at-01-14-03.jpg', hint: 'overhead extension', type: "strength", muscle: "Triceps", gifUrl: 'https://i.ibb.co/fVBpV0rm/Whats-App-Image-2025-07-04-at-01-14-03.jpg' },
     "Lat Pulldown": { image: 'https://i.ibb.co/20DKfhXx/Whats-App-Image-2025-07-03-at-15-36-32.jpg', hint: 'lat pulldown', type: "strength", muscle: "Back", gifUrl: 'https://i.ibb.co/20DKfhXx/Whats-App-Image-2025-07-03-at-15-36-32.jpg' },
+    "Seated Row": { image: 'https://i.ibb.co/QvjcWkVK/Whats-App-Image-2025-07-03-at-15-36-31.jpg', hint: 'seated row', type: "strength", muscle: "Back", gifUrl: 'https://i.ibb.co/QvjcWkVK/Whats-App-Image-2025-07-03-at-15-36-31.jpg' },
     "Assisted Pull-Ups": { image: 'https://i.ibb.co/9kDwhDf9/Whats-App-Image-2025-07-03-at-12-26-30.jpg', hint: 'assisted pullup', type: "strength", muscle: "Back", gifUrl: 'https://i.ibb.co/9kDwhDf9/Whats-App-Image-2025-07-03-at-12-26-30.jpg' },
     "Dumbbell Bicep Curls": { image: 'https://i.ibb.co/xSYFDHZd/Whats-App-Image-2025-07-03-at-15-32-23-2.jpg', hint: 'bicep curl', type: "strength", muscle: "Biceps", gifUrl: 'https://i.ibb.co/xSYFDHZd/Whats-App-Image-2025-07-03-at-15-32-23-2.jpg' },
     "Cable Bicep Curls": { image: 'https://i.ibb.co/5g9SsNy4/Whats-App-Image-2025-07-04-at-01-15-54.jpg', hint: 'cable curl', type: "strength", muscle: "Biceps", gifUrl: 'https://i.ibb.co/5g9SsNy4/Whats-App-Image-2025-07-04-at-01-15-54.jpg' },
@@ -238,8 +239,8 @@ export const MASTER_EXERCISE_DATA: Record<string, Partial<ExerciseDetails>> = {
     "Seated Chin Tucks": { image: 'https://i.ibb.co/JjnwYmjr/Whats-App-Image-2025-07-08-at-14-38-26-1.jpg', hint: 'chin tuck', gifUrl: 'https://i.ibb.co/JjnwYmjr/Whats-App-Image-2025-07-08-at-14-38-26-1.jpg' },
     "Child’s Pose with Reach": { image: 'https://i.ibb.co/kCQT6tM/Whats-App-Image-2025-07-03-at-13-58-48.jpg', hint: 'child pose', gifUrl: 'https://i.ibb.co/kCQT6tM/Whats-App-Image-2025-07-03-at-13-58-48.jpg' },
     "Butterfly Stretch": { image: 'https://i.ibb.co/gbrmsCqZ/Whats-App-Image-2025-07-08-at-14-38-26-2.jpg', hint: 'butterfly stretch', gifUrl: 'https://i.ibb.co/gbrmsCqZ/Whats-App-Image-2025-07-08-at-14-38-26-2.jpg' },
-    "Barbell Hip Thrusts": { image: 'https://i.ibb.co/Qg3WGqL/Whats-App-Image-2025-07-03-at-16-21-32.jpg', hint: 'hip thrust', gifUrl: 'https://i.ibb.co/Qg3WGqL/Whats-App-Image-2025-07-03-at-16-21-32.jpg' },
     "Cable Pull-Throughs": { image: 'https://i.ibb.co/gMKz8FmX/Whats-App-Image-2025-07-08-at-14-38-27.jpg', hint: 'cable pull through', gifUrl: 'https://i.ibb.co/gMKz8FmX/Whats-App-Image-2025-07-08-at-14-38-27.jpg' },
+    "Barbell Hip Thrusts": { image: 'https://i.ibb.co/Qg3WGqL/Whats-App-Image-2025-07-03-at-16-21-32.jpg', hint: 'hip thrust', gifUrl: 'https://i.ibb.co/Qg3WGqL/Whats-App-Image-2025-07-03-at-16-21-32.jpg' },
     "Kettlebell Swings": { image: 'https://i.ibb.co/NgDtX0C8/Whats-App-Image-2025-07-08-at-14-38-27-1.jpg', hint: 'kettlebell swing', gifUrl: 'https://i.ibb.co/NgDtX0C8/Whats-App-Image-2025-07-08-at-14-38-27-1.jpg' },
     "Standing Cable Hip Flexion": { image: 'https://i.ibb.co/QgdQTxY/Whats-App-Image-2025-07-08-at-14-38-27-2.jpg', hint: 'hip flexion', gifUrl: 'https://i.ibb.co/QgdQTxY/Whats-App-Image-2025-07-08-at-14-38-27-2.jpg' },
     "Controlled Box Jumps": { image: 'https://i.ibb.co/HpKMB3pL/Whats-App-Image-2025-07-08-at-14-38-28.jpg', hint: 'box jump', gifUrl: 'https://i.ibb.co/HpKMB3pL/Whats-App-Image-2025-07-08-at-14-38-28.jpg' },
@@ -492,19 +493,19 @@ export const MASTER_EXERCISE_DATA: Record<string, Partial<ExerciseDetails>> = {
 };
 
 export const WARMUP_EXERCISES: ExerciseDetails[] = [
-    { name: "Jumping Jacks", sets: "1", reps: "30-60s", rest: "30s", muscle: 'Full Body', image: MASTER_EXERCISE_DATA["Jumping Jacks"].image!, hint: 'jumping jacks', gifUrl: MASTER_EXERCISE_DATA["Jumping Jacks"].image! },
-    { name: "Arm Circles", sets: "1", reps: "15 each way", rest: "30s", muscle: 'Shoulders', image: MASTER_EXERCISE_DATA["Arm Circles"].image!, hint: 'arm circles', gifUrl: MASTER_EXERCISE_DATA["Arm Circles"].image! },
-    { name: "Hip Circles", sets: "1", reps: "15 each way", rest: "30s", muscle: 'Hips', image: MASTER_EXERCISE_DATA["Hip Circles"].image!, hint: 'hip circles', gifUrl: MASTER_EXERCISE_DATA["Hip Circles"].image! },
+    { name: "Jumping Jacks", sets: "1", reps: "30-60s", rest: "30s", muscle: 'Full Body', image: MASTER_EXERCISE_DATA["Jumping Jacks"].image!, hint: 'jumping jacks', gifUrl: MASTER_EXERCISE_DATA["Jumping Jacks"].gifUrl! },
+    { name: "Arm Circles", sets: "1", reps: "15 each way", rest: "30s", muscle: 'Shoulders', image: MASTER_EXERCISE_DATA["Arm Circles"].image!, hint: 'arm circles', gifUrl: MASTER_EXERCISE_DATA["Arm Circles"].gifUrl! },
+    { name: "Hip Circles", sets: "1", reps: "15 each way", rest: "30s", muscle: 'Hips', image: MASTER_EXERCISE_DATA["Hip Circles"].image!, hint: 'hip circles', gifUrl: MASTER_EXERCISE_DATA["Hip Circles"].gifUrl! },
     { name: "Leg Swings", sets: "1", reps: "15 each leg", rest: "30s", muscle: 'Legs', image: 'https://i.ibb.co/1JnZ0F7P/Whats-App-Image-2025-07-03-at-14-02-22.jpg', hint: 'leg swings', gifUrl: 'https://i.ibb.co/1JnZ0F7P/Whats-App-Image-2025-07-03-at-14-02-22.jpg' },
-    { name: "Cat-Cow Stretch", sets: "1", reps: "10", rest: "30s", muscle: 'Back', image: MASTER_EXERCISE_DATA["Cat-Cow Stretch"].image!, hint: 'cat cow', gifUrl: MASTER_EXERCISE_DATA["Cat-Cow Stretch"].image! },
+    { name: "Cat-Cow Stretch", sets: "1", reps: "10", rest: "30s", muscle: 'Back', image: MASTER_EXERCISE_DATA["Cat-Cow Stretch"].image!, hint: 'cat cow', gifUrl: MASTER_EXERCISE_DATA["Cat-Cow Stretch"].gifUrl! },
 ];
 
 export const COOLDOWN_EXERCISES: ExerciseDetails[] = [
-    { name: "Quad Stretch", sets: "1", reps: "30s each side", rest: "15s", muscle: 'Quads', image: MASTER_EXERCISE_DATA["Quad Stretch"].image!, hint: 'quad stretch', gifUrl: MASTER_EXERCISE_DATA["Quad Stretch"].image! },
-    { name: "Hamstring Stretch", sets: "1", reps: "30s each side", rest: "15s", muscle: 'Hamstrings', image: MASTER_EXERCISE_DATA["Hamstring Stretch"].image!, hint: 'hamstring stretch', gifUrl: MASTER_EXERCISE_DATA["Hamstring Stretch"].image! },
-    { name: "Chest Stretch", sets: "1", reps: "30s", rest: "15s", muscle: 'Chest', image: MASTER_EXERCISE_DATA["Chest Stretch"].image!, hint: 'chest stretch', gifUrl: MASTER_EXERCISE_DATA["Chest Stretch"].image! },
-    { name: "Triceps Stretch", sets: "1", reps: "30s each side", rest: "15s", muscle: 'Triceps', image: MASTER_EXERCISE_DATA["Triceps Stretch"].image!, hint: 'triceps stretch', gifUrl: MASTER_EXERCISE_DATA["Triceps Stretch"].image! },
-    { name: "Child's Pose", sets: "1", reps: "60s", rest: "15s", muscle: 'Back', image: MASTER_EXERCISE_DATA["Child's Pose"].image!, hint: 'child pose', gifUrl: MASTER_EXERCISE_DATA["Child's Pose"].image! },
+    { name: "Quad Stretch", sets: "1", reps: "30s each side", rest: "15s", muscle: 'Quads', image: MASTER_EXERCISE_DATA["Quad Stretch"].image!, hint: 'quad stretch', gifUrl: MASTER_EXERCISE_DATA["Quad Stretch"].gifUrl! },
+    { name: "Hamstring Stretch", sets: "1", reps: "30s each side", rest: "15s", muscle: 'Hamstrings', image: MASTER_EXERCISE_DATA["Hamstring Stretch"].image!, hint: 'hamstring stretch', gifUrl: MASTER_EXERCISE_DATA["Hamstring Stretch"].gifUrl! },
+    { name: "Chest Stretch", sets: "1", reps: "30s", rest: "15s", muscle: 'Chest', image: MASTER_EXERCISE_DATA["Chest Stretch"].image!, hint: 'chest stretch', gifUrl: MASTER_EXERCISE_DATA["Chest Stretch"].gifUrl! },
+    { name: "Triceps Stretch", sets: "1", reps: "30s each side", rest: "15s", muscle: 'Triceps', image: MASTER_EXERCISE_DATA["Triceps Stretch"].image!, hint: 'triceps stretch', gifUrl: MASTER_EXERCISE_DATA["Triceps Stretch"].gifUrl! },
+    { name: "Child's Pose", sets: "1", reps: "60s", rest: "15s", muscle: 'Back', image: MASTER_EXERCISE_DATA["Child's Pose"].image!, hint: 'child pose', gifUrl: MASTER_EXERCISE_DATA["Child's Pose"].gifUrl! },
 ];
 
 // *************** GENERAL NON-ATHLETE WORKOUTS ***************
@@ -858,7 +859,7 @@ export const FEMALE_SEXUAL_WELLNESS_HOME: DayWorkout = {
         { name: "Pelvic Tilts", sets: "3", reps: "20", rest: "30s", muscle: "Core, Pelvic Floor", image: MASTER_EXERCISE_DATA["Pelvic Tilts"].image!, hint: 'pelvic tilt', gifUrl: MASTER_EXERCISE_DATA["Pelvic Tilts"].image! },
         { name: "Fire Hydrants", sets: "3", reps: "15 each side", rest: "45s", muscle: "Hips, Glutes", image: MASTER_EXERCISE_DATA["Fire Hydrants"].image!, hint: 'fire hydrant', gifUrl: MASTER_EXERCISE_DATA["Fire Hydrants"].image! },
         { name: "Sumo Squats", sets: "4", reps: "15-20", rest: "60s", muscle: "Legs", image: MASTER_EXERCISE_DATA["Sumo Squats"].image!, hint: 'sumo squat', gifUrl: MASTER_EXERCISE_DATA["Sumo Squats"].image! },
-        { name: "Plank", sets: "4", reps: "60s hold", rest: "45s", muscle: "Core", image: MASTER_EXERCISE_DATA["Plank"].image!, hint: 'plank', gifUrl: MASTER_EXERCISE_DATA["Plank"].image! },
+        { name: "Plank", sets: 4, reps: "60s hold", rest: "45s", muscle: "Core", image: MASTER_EXERCISE_DATA["Plank"].image!, hint: 'plank', gifUrl: MASTER_EXERCISE_DATA["Plank"].image! },
         { name: "Butterfly Stretch", sets: "1", reps: "60s", rest: "0s", muscle: "Hips", image: MASTER_EXERCISE_DATA["Butterfly Stretch"].image!, hint: 'butterfly stretch', gifUrl: MASTER_EXERCISE_DATA["Butterfly Stretch"].image! },
     ]
 };
@@ -949,6 +950,47 @@ export const FEMALE_VOCAL_WORKOUT_PLAN: WorkoutSplit = {
   }
 };
 
+export const GENERAL_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
+  "Monday": MALE_CHEST_GYM,
+  "Tuesday": MALE_BACK_GYM,
+  "Wednesday": MALE_LEG_GYM_WORKOUT,
+  "Thursday": { focus: "Rest", exercises: [] },
+  "Friday": MALE_SHOULDER_GYM_WORKOUT,
+  "Saturday": MALE_ARMS_GYM,
+  "Sunday": { focus: "Rest", exercises: [] }
+};
+
+export const GENERAL_MALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
+  "Monday": MALE_CHEST_HOME,
+  "Tuesday": MALE_BACK_HOME,
+  "Wednesday": MALE_LEG_HOME_WORKOUT,
+  "Thursday": { focus: "Rest", exercises: [] },
+  "Friday": MALE_SHOULDER_HOME_WORKOUT,
+  "Saturday": MALE_ARMS_HOME,
+  "Sunday": { focus: "Rest", exercises: [] }
+};
+
+export const GENERAL_FEMALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
+  "Monday": FEMALE_LEG_GYM_WORKOUT,
+  "Tuesday": FEMALE_BACK_GYM,
+  "Wednesday": FEMALE_CHEST_GYM,
+  "Thursday": { focus: "Rest", exercises: [] },
+  "Friday": FEMALE_SHOULDER_GYM_WORKOUT,
+  "Saturday": FEMALE_ARMS_GYM,
+  "Sunday": { focus: "Rest", exercises: [] }
+};
+
+export const GENERAL_FEMALE_HOME_WORKOUT_PLAN: WorkoutSplit = {
+  "Monday": FEMALE_LEG_HOME_WORKOUT,
+  "Tuesday": FEMALE_BACK_HOME,
+  "Wednesday": FEMALE_CHEST_HOME,
+  "Thursday": { focus: "Rest", exercises: [] },
+  "Friday": FEMALE_SHOULDER_HOME_WORKOUT,
+  "Saturday": FEMALE_ARMS_HOME,
+  "Sunday": { focus: "Rest", exercises: [] }
+};
+
+
 // *************** ATHLETE WORKOUTS ***************
 
 // ========== CRICKET (MALE, GYM) ==========
@@ -998,7 +1040,7 @@ export const CRICKET_MALE_GYM_WORKOUT_PLAN: WorkoutSplit = {
         focus: "Full-Body Conditioning",
         exercises: [
             { name: "Battle Ropes", sets: "5", reps: "30s work, 30s rest", rest: "N/A", muscle: "Full Body", image: MASTER_EXERCISE_DATA["Battle Ropes"].image!, hint: 'battle rope', gifUrl: MASTER_EXERCISE_DATA["Battle Ropes"].gifUrl },
-            { name: "Dumbbell Thrusters", sets: "4", reps: "12-15", rest: "60s", muscle: "Full Body", image: MASTER_EXERCISE_DATA["Dumbbell Thrusters"].image!, hint: 'dumbbell thruster', gifUrl: MASTER_EXERCISE_DATA["Dumbbell Thrusters"].gifUrl },
+            { name: "Kettlebell Swings", sets: "4", reps: "15-20", rest: "60s", muscle: "Full Body", image: MASTER_EXERCISE_DATA["Kettlebell Swings"].image!, hint: 'kettlebell swing', gifUrl: MASTER_EXERCISE_DATA["Kettlebell Swings"].gifUrl },
             { name: "Sled Push", sets: "4", reps: "20 yards", rest: "90s", muscle: "Full Body", image: MASTER_EXERCISE_DATA["Sled Push"].image!, hint: 'sled push', gifUrl: MASTER_EXERCISE_DATA["Sled Push"].gifUrl },
             { name: "Ab Roller", sets: "3", reps: "10-15", rest: "60s", muscle: "Core", image: MASTER_EXERCISE_DATA["Ab Roller"].image!, hint: 'ab rollout', gifUrl: MASTER_EXERCISE_DATA["Ab Roller"].gifUrl },
         ]
@@ -1071,6 +1113,8 @@ export const muscles = [
     "Diaphragm",
 ];
     
+    
+
     
 
     
