@@ -1,0 +1,396 @@
+{
+  "entities": {
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user profile in the WTF app.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the UserProfile entity."
+        },
+        "authId": {
+          "type": "string",
+          "description": "The unique identifier from the external authentication provider (e.g., Firebase Auth UID).",
+          "format": "uuid"
+        },
+        "isAthlete": {
+          "type": "boolean",
+          "description": "Indicates whether the user is an athlete or a general user."
+        },
+        "name": {
+          "type": "string",
+          "description": "The user's full name."
+        },
+        "age": {
+          "type": "number",
+          "description": "The user's age in years.",
+          "format": "integer"
+        },
+        "gender": {
+          "type": "string",
+          "description": "The user's gender identity."
+        },
+        "weight": {
+          "type": "number",
+          "description": "The user's weight in kilograms.",
+          "format": "integer"
+        },
+        "height": {
+          "type": "number",
+          "description": "The user's height in centimeters.",
+          "format": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "authId",
+        "isAthlete",
+        "name",
+        "age",
+        "gender",
+        "weight",
+        "height"
+      ]
+    },
+    "WorkoutPlan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "WorkoutPlan",
+      "type": "object",
+      "description": "Represents a workout plan, either AI-generated or predefined.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the WorkoutPlan entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the workout plan."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the workout plan."
+        },
+        "isAthletePlan": {
+          "type": "boolean",
+          "description": "Indicates if this plan is specific to athletes."
+        },
+        "sport": {
+          "type": "string",
+          "description": "The sport this plan is tailored for, if applicable."
+        },
+        "difficulty": {
+          "type": "string",
+          "description": "The difficulty level of the workout plan (e.g., beginner, intermediate, advanced)."
+        },
+        "userProfileId": {
+          "type": "string",
+          "description": "Reference to UserProfile. (Relationship: UserProfile 1:N WorkoutPlan)"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "isAthletePlan",
+        "userProfileId"
+      ]
+    },
+    "Exercise": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Exercise",
+      "type": "object",
+      "description": "Represents a single exercise within a workout plan.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Exercise entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the exercise."
+        },
+        "sets": {
+          "type": "number",
+          "description": "Number of sets for the exercise.",
+          "format": "integer"
+        },
+        "reps": {
+          "type": "number",
+          "description": "Number of repetitions for the exercise.",
+          "format": "integer"
+        },
+        "restTime": {
+          "type": "number",
+          "description": "Rest time in seconds between sets.",
+          "format": "integer"
+        },
+        "animationUrl": {
+          "type": "string",
+          "description": "URL of the animation (GIF/video) demonstrating the exercise.",
+          "format": "uri"
+        },
+        "workoutPlanId": {
+          "type": "string",
+          "description": "Reference to WorkoutPlan. (Relationship: WorkoutPlan 1:N Exercise)"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "sets",
+        "reps",
+        "restTime",
+        "workoutPlanId"
+      ]
+    },
+    "NutritionPlan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "NutritionPlan",
+      "type": "object",
+      "description": "Represents a full-day meal plan for different goals and sports.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the NutritionPlan entity."
+        },
+        "goal": {
+          "type": "string",
+          "description": "The nutrition goal (e.g., cutting, bulking, lean muscle gain)."
+        },
+        "sport": {
+          "type": "string",
+          "description": "The sport this plan is tailored for, if applicable."
+        },
+        "meals": {
+          "type": "array",
+          "description": "An array of Meal objects for the day.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "userProfileId": {
+          "type": "string",
+          "description": "Reference to UserProfile. (Relationship: UserProfile 1:N NutritionPlan)"
+        }
+      },
+      "required": [
+        "id",
+        "goal",
+        "meals",
+        "userProfileId"
+      ]
+    },
+    "Meal": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Meal",
+      "type": "object",
+      "description": "Represents a single meal within a nutrition plan.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Meal entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the meal (e.g., Breakfast, Lunch, Dinner)."
+        },
+        "ingredients": {
+          "type": "array",
+          "description": "List of ingredients in the meal.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "calories": {
+          "type": "number",
+          "description": "Calorie count for the meal.",
+          "format": "integer"
+        },
+        "nutritionPlanId": {
+          "type": "string",
+          "description": "Reference to NutritionPlan. (Relationship: NutritionPlan 1:N Meal)"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "ingredients",
+        "calories",
+        "nutritionPlanId"
+      ]
+    },
+    "ProgressTracking": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ProgressTracking",
+      "type": "object",
+      "description": "Represents a user's progress tracking data.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the ProgressTracking entity."
+        },
+        "date": {
+          "type": "string",
+          "description": "The date of the progress tracking entry.",
+          "format": "date-time"
+        },
+        "weight": {
+          "type": "number",
+          "description": "The user's weight at the time of tracking.",
+          "format": "integer"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Any notes or comments for the progress entry."
+        },
+        "userProfileId": {
+          "type": "string",
+          "description": "Reference to UserProfile. (Relationship: UserProfile 1:N ProgressTracking)"
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "weight",
+        "userProfileId"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "UserProfile",
+          "schema": {
+            "$ref": "#/backend/entities/UserProfile"
+          },
+          "description": "Stores user profile information.  Authorization is based on the `userId` path parameter, ensuring only the authenticated user can access their own profile.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Auth UID of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/workoutPlans/{workoutPlanId}",
+        "definition": {
+          "entityName": "WorkoutPlan",
+          "schema": {
+            "$ref": "#/backend/entities/WorkoutPlan"
+          },
+          "description": "Stores workout plans for a specific user. Includes denormalized `userProfileId` for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Auth UID of the user."
+            },
+            {
+              "name": "workoutPlanId",
+              "description": "Unique identifier for the workout plan."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/workoutPlans/{workoutPlanId}/exercises/{exerciseId}",
+        "definition": {
+          "entityName": "Exercise",
+          "schema": {
+            "$ref": "#/backend/entities/Exercise"
+          },
+          "description": "Stores exercises for a specific workout plan. Includes denormalized `userProfileId` for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Auth UID of the user."
+            },
+            {
+              "name": "workoutPlanId",
+              "description": "Unique identifier for the workout plan."
+            },
+            {
+              "name": "exerciseId",
+              "description": "Unique identifier for the exercise."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/nutritionPlans/{nutritionPlanId}",
+        "definition": {
+          "entityName": "NutritionPlan",
+          "schema": {
+            "$ref": "#/backend/entities/NutritionPlan"
+          },
+          "description": "Stores nutrition plans for a specific user. Includes denormalized `userProfileId` for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Auth UID of the user."
+            },
+            {
+              "name": "nutritionPlanId",
+              "description": "Unique identifier for the nutrition plan."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/nutritionPlans/{nutritionPlanId}/meals/{mealId}",
+        "definition": {
+          "entityName": "Meal",
+          "schema": {
+            "$ref": "#/backend/entities/Meal"
+          },
+          "description": "Stores meals for a specific nutrition plan. Includes denormalized `userProfileId` for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Auth UID of the user."
+            },
+            {
+              "name": "nutritionPlanId",
+              "description": "Unique identifier for the nutrition plan."
+            },
+            {
+              "name": "mealId",
+              "description": "Unique identifier for the meal."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/progressTracking/{progressTrackingId}",
+        "definition": {
+          "entityName": "ProgressTracking",
+          "schema": {
+            "$ref": "#/backend/entities/ProgressTracking"
+          },
+          "description": "Stores progress tracking data for a specific user.  Authorization is based on the `userId` path parameter, ensuring only the authenticated user can access their own progress data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Auth UID of the user."
+            },
+            {
+              "name": "progressTrackingId",
+              "description": "Unique identifier for the progress tracking entry."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to be secure, scalable, and easily debuggable, following the principles of Authorization Independence, Clarity of Intent, DBAC (Database-Based Access Control), and QAPs (Rules are not Filters). It leverages denormalization for authorization and structural segregation for homogeneous security postures.\n\n**Authorization Independence:**\nAuthorization independence is achieved through denormalization. For example, the `WorkoutPlan`, `Exercise`, `NutritionPlan`, and `Meal` subcollections include the `userProfileId` field, copying the user ID from the parent `UserProfile` document. This eliminates the need for `get()` calls in security rules to verify ownership, enabling atomic operations.\n\n**Structural Segregation:**\nEach collection is designed to hold documents with similar access requirements. User-specific data (profiles, workout plans, nutrition plans, progress tracking) is stored under `/users/{userId}`, ensuring that only the authenticated user can access their data.\n\n**Access Modeling:**\nPath-based ownership is used for private user data under `/users/{userId}`. This hierarchical structure simplifies security rules based on user ID. The relationships between UserProfile and other collections (WorkoutPlan, NutritionPlan, ProgressTracking) are enforced by storing references (IDs) and using path-based rules.\n\n**QAPs (Rules are not Filters):**\nThe structure supports secure `list` operations by ensuring that collections contain only documents that the user is authorized to access. For instance, listing workout plans under `/users/{userId}/workoutPlans` will only return plans owned by the authenticated user. There are no public collections, avoiding the need for filtering based on user-specific data.\n\nThe error reported (Firebase: Error (auth/unauthorized-domain)) usually indicates an issue with the Firebase Authentication configuration, specifically the authorized domains. The domain from which the app is making the authentication request may not be listed in the Firebase Console under Authentication > Settings > Authorized domains. This is not related to the data structure, but is important to address."
+  }
+}

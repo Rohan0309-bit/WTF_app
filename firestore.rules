@@ -1,0 +1,179 @@
+/**
+ * @fileoverview Firestore Security Rules for the WTF app.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model for all data stored under the `/users/{userId}` path.
+ * Only the authenticated user can read and write their own profile data, workout plans, nutrition plans,
+ * and progress tracking information.
+ *
+ * Data Structure:
+ * All user-specific data is nested under the `/users/{userId}` collection. This includes:
+ * - User profiles (`/users/{userId}`)
+ * - Workout plans (`/users/{userId}/workoutPlans/{workoutPlanId}`)
+ * - Exercises (`/users/{userId}/workoutPlans/{workoutPlanId}/exercises/{exerciseId}`)
+ * - Nutrition plans (`/users/{userId}/nutritionPlans/{nutritionPlanId}`)
+ * - Meals (`/users/{userId}/nutritionPlans/{nutritionPlanId}/meals/{mealId}`)
+ * - Progress tracking data (`/users/{userId}/progressTracking/{progressTrackingId}`)
+ *
+ * Key Security Decisions:
+ * - All user-created content is private and accessible only to the creating user.
+ * - Listing of user profiles is explicitly denied to prevent unauthorized access to user data.
+ * - Write operations are guarded by ownership checks to ensure data integrity.
+ * - Data required for authorization (e.g., `userProfileId`) is denormalized into subcollections
+ *   to avoid costly `get()` calls in security rules.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Enforces access control for user profiles.
+     * @path /users/{userId}
+     * @allow (create) - Authenticated user can create their own profile if the userId matches their auth UID.
+     * @allow (get, update, delete) - Authenticated user can access/modify their own profile if the userId matches their auth UID.
+     * @deny (list) - Listing all users is not allowed.
+     * @deny (create, update, delete) - If the user is not authenticated, or userId does not match their auth UID.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId) && request.resource.data.id == userId && request.resource.data.authId == request.auth.uid;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces access control for workout plans under a user's profile.
+     * @path /users/{userId}/workoutPlans/{workoutPlanId}
+     * @allow (create) - Authenticated user can create a workout plan under their profile.
+     * @allow (get, update, delete) - Authenticated user can access/modify workout plans under their profile.
+     * @allow (list) - Authenticated user can list workout plans under their profile.
+     * @deny (create, update, delete) - If the user is not authenticated, or userId does not match their auth UID.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/workoutPlans/{workoutPlanId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.userProfileId == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.userProfileId == resource.data.userProfileId;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces access control for exercises under a workout plan.
+     * @path /users/{userId}/workoutPlans/{workoutPlanId}/exercises/{exerciseId}
+     * @allow (create) - Authenticated user can create an exercise under their workout plan.
+     * @allow (get, update, delete) - Authenticated user can access/modify exercises under their workout plan.
+     * @allow (list) - Authenticated user can list exercises under their workout plan.
+     * @deny (create, update, delete) - If the user is not authenticated, or userId does not match their auth UID.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/workoutPlans/{workoutPlanId}/exercises/{exerciseId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.workoutPlanId == workoutPlanId;
+      allow update: if isExistingOwner(userId) && request.resource.data.workoutPlanId == resource.data.workoutPlanId;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces access control for nutrition plans under a user's profile.
+     * @path /users/{userId}/nutritionPlans/{nutritionPlanId}
+     * @allow (create) - Authenticated user can create a nutrition plan under their profile.
+     * @allow (get, update, delete) - Authenticated user can access/modify nutrition plans under their profile.
+     * @allow (list) - Authenticated user can list nutrition plans under their profile.
+     * @deny (create, update, delete) - If the user is not authenticated, or userId does not match their auth UID.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/nutritionPlans/{nutritionPlanId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.userProfileId == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.userProfileId == resource.data.userProfileId;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces access control for meals under a nutrition plan.
+     * @path /users/{userId}/nutritionPlans/{nutritionPlanId}/meals/{mealId}
+     * @allow (create) - Authenticated user can create a meal under their nutrition plan.
+     * @allow (get, update, delete) - Authenticated user can access/modify meals under their nutrition plan.
+     * @allow (list) - Authenticated user can list meals under their nutrition plan.
+     * @deny (create, update, delete) - If the user is not authenticated, or userId does not match their auth UID.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/nutritionPlans/{nutritionPlanId}/meals/{mealId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.nutritionPlanId == nutritionPlanId;
+      allow update: if isExistingOwner(userId) && request.resource.data.nutritionPlanId == resource.data.nutritionPlanId;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Enforces access control for progress tracking data under a user's profile.
+     * @path /users/{userId}/progressTracking/{progressTrackingId}
+     * @allow (create) - Authenticated user can create progress tracking data under their profile.
+     * @allow (get, update, delete) - Authenticated user can access/modify progress tracking data under their profile.
+     * @allow (list) - Authenticated user can list progress tracking data under their profile.
+     * @deny (create, update, delete) - If the user is not authenticated, or userId does not match their auth UID.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/progressTracking/{progressTrackingId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.userProfileId == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.userProfileId == resource.data.userProfileId;
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}
