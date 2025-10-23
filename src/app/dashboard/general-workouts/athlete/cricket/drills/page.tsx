@@ -14,6 +14,43 @@ import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
+const YouTubePreview = ({ videoUrl }: { videoUrl: string }) => {
+  // Extract the video ID dynamically
+  const getVideoId = (url: string) => {
+    const regExp = /(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([^&#]+)/;
+    const match = url.match(regExp);
+    return match ? match[1] : null;
+  };
+
+  const videoId = getVideoId(videoUrl);
+  const thumbnailUrl = videoId
+    ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+    : "https://via.placeholder.com/480x270?text=No+Video";
+
+  return (
+    <div className="flex flex-col items-center">
+      <img
+        src={thumbnailUrl}
+        alt="YouTube Thumbnail"
+        style={{
+          width: "100%",
+          borderRadius: "12px",
+          objectFit: "cover",
+          marginBottom: "1rem",
+        }}
+      />
+      <a
+        href={videoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-red-600 text-white font-semibold px-6 py-2 rounded-md flex items-center gap-2"
+      >
+        <Youtube className="mr-2 h-5 w-5" /> Watch on YouTube
+      </a>
+    </div>
+  );
+};
+
 function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName: string }) {
   const [selectedDrill, setSelectedDrill] = useState<Drill | null>(null);
   
@@ -83,21 +120,7 @@ function DrillsLibrary({ drills, categoryName }: { drills: Drill[], categoryName
             </DialogHeader>
             <div className="grid md:grid-cols-2 gap-8 mt-4">
                 <div className="space-y-4">
-                    <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                        <Image
-                            src={selectedDrill.image}
-                            alt={selectedDrill.name}
-                            layout="fill"
-                            objectFit="cover"
-                            className="rounded-lg"
-                        />
-                    </div>
-                     <Link href={selectedDrill.youtubeUrl} target="_blank" rel="noopener noreferrer">
-                        <Button className="w-full">
-                            <Youtube className="mr-2 h-5 w-5" />
-                            Watch on YouTube
-                        </Button>
-                    </Link>
+                    <YouTubePreview videoUrl={selectedDrill.youtubeUrl} />
                 </div>
                 <div className="space-y-6">
                     {selectedDrill.steps && (
