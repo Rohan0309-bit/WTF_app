@@ -193,7 +193,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
       },
     ],
     "bowling-drills": [
-      { name: "Seam Position & Grip Control", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/YZrdfg1/seam-position.jpg", hint: "bowling seam position", 
+      { name: "Seam Position & Grip Control", youtubeUrl: 'https://youtu.be/wIha6oYWvtE?si=YrpoaJeazmB0kjfT', image: "https://i.ibb.co/YZrdfg1/seam-position.jpg", hint: "bowling seam position", 
         steps: [
             "Hold the ball with the seam upright.",
             "Place your index and middle fingers on either side of the seam, comfortably apart.",
@@ -214,7 +214,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Ensure a smooth, repeatable bowling action."
         ] 
       },
-      { name: "Outswing & Inswing Bowling Mechanics", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/3sZgRkP/swing-bowling.jpg", hint: "bowling swing", 
+      { name: "Outswing & Inswing Bowling Mechanics", youtubeUrl: 'https://youtube.com/shorts/wyCbTfwnwoI?si=Nnx1MJT5iE1DIo57', image: "https://i.ibb.co/3sZgRkP/swing-bowling.jpg", hint: "bowling swing", 
         steps: [
             "For outswing (to a right-hander), angle the seam towards the slips.",
             "For inswing, angle the seam towards fine leg.",
@@ -236,7 +236,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Listen to your body for any signs of pain in the shoulder, elbow, or back."
         ] 
       },
-      { name: "Perfecting the Yorker (Target Zone)", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/P9tGzR2/yorker.jpg", hint: "bowling yorker", 
+      { name: "Perfecting the Yorker (Target Zone)", youtubeUrl: 'https://youtube.com/shorts/cUyzDSTHGUc?si=kxN_JjlG3g1T2xU5', image: "https://i.ibb.co/P9tGzR2/yorker.jpg", hint: "bowling yorker", 
         steps: [
             "Place a target (e.g., a shoe or cone) at the base of the stumps.",
             "Run in with your normal action but focus on a slightly later release point.",
@@ -258,7 +258,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Follow through completely to decelerate your arm safely."
         ] 
       },
-      { name: "Length Variation Drill (Short, Good, Full)", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/Wc6x0bV/bowling-length.jpg", hint: "bowling length", 
+      { name: "Length Variation Drill (Short, Good, Full)", youtubeUrl: 'https://youtu.be/mnjPhoN7m9s?si=XW4SvjlVaIrnFLYi', image: "https://i.ibb.co/Wc6x0bV/bowling-length.jpg", hint: "bowling length", 
         steps: [
             "Set up three different colored cones on the pitch to mark short, good, and full lengths.",
             "Bowl with your normal action, deciding before you run in which cone you are aiming for.",
@@ -280,7 +280,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Stay hydrated and well-rested between sessions."
         ] 
       },
-      { name: "Run-Up Consistency & Rhythm Practice", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/L89kM0Q/bowling-runup.jpg", hint: "bowling run up", 
+      { name: "Run-Up Consistency & Rhythm Practice", youtubeUrl: 'https://youtu.be/jkqQGShPRKA?si=36t4P6XjS-lugrMb', image: "https://i.ibb.co/L89kM0Q/bowling-runup.jpg", hint: "bowling run up", 
         steps: [
             "Mark out your full run-up distance.",
             "Start slowly, jogging through the run-up to feel the rhythm.",
@@ -302,7 +302,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Avoid sudden changes to your run-up length or style."
         ] 
       },
-      { name: "Spin Bowling Variations (Off, Leg, Googly)", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/L6V2Mh0/spin-bowling.jpg", hint: "spin bowling", 
+      { name: "Spin Bowling Variations (Off, Leg, Googly)", youtubeUrl: 'https://youtube.com/shorts/tNSEY-xzbMg?si=NtCexyMFoi0wNMjH', image: "https://i.ibb.co/L6V2Mh0/spin-bowling.jpg", hint: "spin bowling", 
         steps: [
             "Master one type of delivery (e.g., off-spin) before adding variations.",
             "For off-spin, impart spin with your index finger.",
@@ -324,7 +324,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Gradually increase the number of deliveries to avoid finger and shoulder soreness."
         ] 
       },
-      { name: "Wrist Position for Seam Movement", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/PgpWp1B/wrist-position.jpg", hint: "bowling wrist", 
+      { name: "Wrist Position for Seam Movement", youtubeUrl: 'https://youtube.com/shorts/CT81EwRALDU?si=RSiGSRw5E1AkTlao', image: "https://i.ibb.co/PgpWp1B/wrist-position.jpg", hint: "bowling wrist", 
         steps: [
             "Practice bowling with a locked, firm wrist positioned directly behind the ball.",
             "Focus on snapping the wrist forward upon release to create backspin.",
@@ -345,7 +345,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Don't over-bowl, especially when focusing on a new technique, to avoid repetitive strain."
         ] 
       },
-      { name: "Slower Balls & Change-ups for Limited Overs", youtubeUrl: "https://www.youtube.com/watch?v=3-cQ2n_m2-M", image: "https://i.ibb.co/VMyL0n9/slower-ball.jpg", hint: "bowling slower ball", 
+      { name: "Slower Balls & Change-ups for Limited Overs", youtubeUrl: 'https://youtube.com/shorts/NwdzV29c25E?si=WdRRA4mPrPVl4uQB', image: "https://i.ibb.co/VMyL0n9/slower-ball.jpg", hint: "bowling slower ball", 
         steps: [
             "Maintain the same arm speed as your stock delivery to deceive the batsman.",
             "For an off-cutter, roll your fingers down the side of the ball.",
