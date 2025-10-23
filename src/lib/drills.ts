@@ -236,7 +236,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Listen to your body for any signs of pain in the shoulder, elbow, or back."
         ] 
       },
-      { name: "Perfecting the Yorker (Target Zone)", youtubeUrl: 'https://youtube.com/shorts/cUyzDSTHGUc?si=kxN_JjlG3g1T2xU5', image: "https://i.ibb.co/P9tGzR2/yorker.jpg", hint: "bowling yorker", 
+      { name: "Perfecting the Yorker (Target Zone)", youtubeUrl: 'https://youtu.be/AA_z4wLEGCA?si=qOGSM-TKckY-zuV5', image: "https://i.ibb.co/P9tGzR2/yorker.jpg", hint: "bowling yorker", 
         steps: [
             "Place a target (e.g., a shoe or cone) at the base of the stumps.",
             "Run in with your normal action but focus on a slightly later release point.",
