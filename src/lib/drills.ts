@@ -59,7 +59,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Don't play the shot if you are cramped for room."
         ] 
       },
-      { name: "Cut Shot – Square & Late", youtubeUrl: 'https://www.youtube.com/watch?v=2nNAzCgYv7Q', image: "https://i.ibb.co/yQn7w0q/cut-shot.jpg", hint: "cricket cut shot", 
+      { name: "Cut Shot – Square & Late", youtubeUrl: 'https://youtu.be/hFv3HmVgbbE?si=jmSYOqi51QwU_j_E', image: "https://i.ibb.co/yQn7w0q/cut-shot.jpg", hint: "cricket cut shot", 
         steps: [
             "Recognize the short and wide delivery.",
             "Move your back foot back and across, giving yourself room to free your arms.",
