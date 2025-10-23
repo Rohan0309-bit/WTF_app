@@ -36,7 +36,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Build core strength to support the rotational forces of the shot."
         ] 
       },
-      { name: "Pull Shot Timing & Body Position", youtubeUrl: 'https://www.youtube.com/watch?v=J34z51T-3V8', image: "https://i.ibb.co/hR4yL9w/pull-shot.jpg", hint: "cricket pull shot", 
+      { name: "Pull Shot Timing & Body Position", youtubeUrl: 'https://youtu.be/UIXnMcXYjS4?si=CIdUsmy-FHKAgNi1', image: "https://i.ibb.co/hR4yL9w/pull-shot.jpg", hint: "cricket pull shot", 
         steps: [
             "Identify the short-pitched delivery early.",
             "Move back and across in your crease to create space and get into position.",
@@ -721,8 +721,3 @@ export const cricketSubCategories: Record<string, Drill[]> = {
         }
     ]
 };
-const comment = `
-The \`SPORT_CATEGORIES\` constant was moved to \`src/lib/constants.ts\` and no longer needs to be in \`src/lib/drills.ts\`.
-
-Additionally, the \`DumbbellIcon\` is not a standard Lucide React icon. Please use a suitable alternative, like \`Dumbbell\`.
-`
