@@ -368,7 +368,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
       },
     ],
     "fielding-drills": [
-        { name: "High Catch Technique (Overhead & Running)", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/pwnsRHL/high-catch.jpg", hint: "fielding high catch", 
+        { name: "High Catch Technique (Overhead & Running)", youtubeUrl: "https://youtube.com/shorts/mXirakac2us?si=wa2TPwMIZ_3DlZiA", image: "https://i.ibb.co/pwnsRHL/high-catch.jpg", hint: "fielding high catch", 
           steps: [
               "Get under the ball as quickly as possible, using small, fast steps.",
               "Position yourself slightly behind the ball's expected landing spot.",
@@ -389,7 +389,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Practice finger-strengthening exercises to prevent sprains."
           ] 
         },
-        { name: "Slip Catching Reaction Drills", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/3s6t4cT/slip-catch.jpg", hint: "fielding slip catch", 
+        { name: "Slip Catching Reaction Drills", youtubeUrl: "https://youtu.be/nHticEx6I_I?si=hLSejg-We5hlf_C0", image: "https://i.ibb.co/3s6t4cT/slip-catch.jpg", hint: "fielding slip catch", 
           steps: [
               "Assume a low, wide, and balanced stance.",
               "Stay on the balls of your feet, ready to move in any direction.",
@@ -411,7 +411,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Keep your head up to maintain awareness."
           ] 
         },
-        { name: "One-Hand Reflex Catches", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/dK5wK2c/reflex-catch.jpg", hint: "fielding reflex catch", 
+        { name: "One-Hand Reflex Catches", youtubeUrl: "https://youtube.com/shorts/eidg2T2PLPY?si=nWaxIRXCwPPxtjVN", image: "https://i.ibb.co/dK5wK2c/reflex-catch.jpg", hint: "fielding reflex catch", 
           steps: [
               "Stand close to a wall or a partner with a reaction ball or tennis ball.",
               "Have the ball thrown against the wall or directly at you from a short distance.",
@@ -433,7 +433,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Ensure the training area is clear of obstacles."
           ] 
         },
-        { name: "Direct Hit Drill (Cone Target)", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/JqSjTq3/direct-hit.jpg", hint: "fielding direct hit", 
+        { name: "Direct Hit Drill (Cone Target)", youtubeUrl: "https://youtu.be/1gszkRU0BA8?si=r49-gKm2mpRcl4YA", image: "https://i.ibb.co/JqSjTq3/direct-hit.jpg", hint: "fielding direct hit", 
           steps: [
               "Set up a single stump or a cone as a target.",
               "Start by attacking a stationary ball, picking it up cleanly.",
@@ -455,7 +455,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Strengthen your core to provide a stable base for throwing."
           ] 
         },
-        { name: "Boundary Throw Mechanics (Long Distance)", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/M8Vz0B3/boundary-throw.jpg", hint: "fielding boundary throw", 
+        { name: "Boundary Throw Mechanics (Long Distance)", youtubeUrl: "https://youtu.be/vRYnDzOqpbg?si=MjlKc18dZezsywFV", image: "https://i.ibb.co/M8Vz0B3/boundary-throw.jpg", hint: "fielding boundary throw", 
           steps: [
               "Approach the ball at speed, but stay balanced.",
               "As you pick up the ball, use a small 'crow hop' to generate momentum.",
@@ -477,7 +477,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Listen to your shoulder; stop if you feel any sharp pain."
           ] 
         },
-        { name: "Agility Ladder + Throw Combo", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/FqsD3g8/agility-fielding.jpg", hint: "fielding agility", 
+        { name: "Agility Ladder + Throw Combo", youtubeUrl: "https://youtube.com/shorts/OUfdNGBDznA?si=2CJbBfDvBhvqcj_2", image: "https://i.ibb.co/FqsD3g8/agility-fielding.jpg", hint: "fielding agility", 
           steps: [
               "Perform a quick footwork drill through an agility ladder.",
               "As you exit the ladder, a coach rolls a ball out.",
@@ -498,7 +498,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Stay hydrated throughout the session."
           ] 
         },
-        { name: "Diving Technique for Ground Saves", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/y5MctbS/diving-save.jpg", hint: "fielding dive", 
+        { name: "Diving Technique for Ground Saves", youtubeUrl: "https://youtube.com/shorts/B1qsDzL4SHg?si=16DnhQ5SCf8wlpJ-", image: "https://i.ibb.co/y5MctbS/diving-save.jpg", hint: "fielding dive", 
           steps: [
               "Start in a low, ready position.",
               "Take a powerful step towards the direction of the dive.",
@@ -520,7 +520,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Wear long sleeves or protective padding when first learning."
           ] 
         },
-        { name: "Flat Throw Accuracy Under Pressure", youtubeUrl: "https://www.youtube.com/watch?v=b2s4Y_a3bgY", image: "https://i.ibb.co/VDKg1Jt/flat-throw.jpg", hint: "fielding flat throw", 
+        { name: "Flat Throw Accuracy Under Pressure", youtubeUrl: "https://youtu.be/IrXJ-6so8AU?si=TrisKx15kdbq9uWa", image: "https://i.ibb.co/VDKg1Jt/flat-throw.jpg", hint: "fielding flat throw", 
           steps: [
               "Set up a single stump as a target.",
               "Have a feeder roll the ball out to your left and right.",
