@@ -13,7 +13,7 @@ export type Sport = "Cricket"; // Can be expanded later
 
 export const cricketSubCategories: Record<string, Drill[]> = {
     "shot-training": [
-      { name: "Mastering the Cover Drive", youtubeUrl: 'https://www.youtube.com/watch?v=s_wSAD5-zI0', image: "https://i.ibb.co/k2p0n4q/cover-drive.jpg", hint: "cricket cover drive", 
+      { name: "Mastering the Cover Drive", youtubeUrl: 'https://youtu.be/h3N-BRQXTS4?si=NnCYVaAOvI2_O7my', image: "https://i.ibb.co/k2p0n4q/cover-drive.jpg", hint: "cricket cover drive", 
         steps: [
             "Start with a balanced stance, feet shoulder-width apart.",
             "As the bowler releases the ball, take a small initial movement (front press).",
