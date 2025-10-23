@@ -81,7 +81,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Avoid playing the shot off-balance."
         ] 
       },
-      { name: "Sweep Shot Variations (Conventional & Reverse)", youtubeUrl: 'https://www.youtube.com/watch?v=QLsCo32-3QA', image: "https://i.ibb.co/P9tLgqP/sweep-shot.jpg", hint: "cricket sweep shot", 
+      { name: "Sweep Shot Variations (Conventional & Reverse)", youtubeUrl: 'https://youtu.be/VAuatgBXwDA?si=ZwvQcKwFFwfD8dmx', image: "https://i.ibb.co/P9tLgqP/sweep-shot.jpg", hint: "cricket sweep shot", 
         steps: [
             "Identify the fuller length delivery from the spinner.",
             "Get down on one knee (back knee), getting your head over your front knee.",
@@ -103,7 +103,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Be mindful of your back knee on abrasive surfaces."
         ] 
       },
-      { name: "Lofted Shots – Over Mid-off & Mid-wicket", youtubeUrl: 'https://www.youtube.com/watch?v=F5229J9CPfg', image: "https://i.ibb.co/v4d2M1p/lofted-shot.jpg", hint: "cricket lofted shot", 
+      { name: "Lofted Shots – Over Mid-off & Mid-wicket", youtubeUrl: 'https://youtu.be/ZlpUOPEknG4?si=weHY9nLfV4z6fjtO', image: "https://i.ibb.co/v4d2M1p/lofted-shot.jpg", hint: "cricket lofted shot", 
         steps: [
             "Create a stable, strong base with your feet.",
             "Identify a full-pitched ball in your hitting zone.",
@@ -125,7 +125,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Don't compromise your balance for power."
         ] 
       },
-      { name: "Shadow Practice for Batting Rhythm", youtubeUrl: 'https://www.youtube.com/watch?v=XW9T0tr64pg', image: "https://i.ibb.co/mHZd2X0/shadow-batting.jpg", hint: "cricket shadow practice", 
+      { name: "Shadow Practice for Batting Rhythm", youtubeUrl: 'https://youtu.be/klmnN3UNKsY?si=GE5BrVbFnvHA64pG', image: "https://i.ibb.co/mHZd2X0/shadow-batting.jpg", hint: "cricket shadow practice", 
         steps: [
             "Take your normal batting stance in front of a mirror or open space.",
             "Visualize a bowler running in and releasing the ball.",
@@ -147,7 +147,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Ensure you have enough space around you to swing the bat freely."
         ] 
       },
-      { name: "Playing Spin with Soft Hands", youtubeUrl: 'https://www.youtube.com/watch?v=3-pwRj2r9Qc', image: "https://i.ibb.co/Smsyq1c/playing-spin.jpg", hint: "cricket playing spin", 
+      { name: "Playing Spin with Soft Hands", youtubeUrl: 'https://youtu.be/2VcAkGFvH4Y?si=Q-HgpMcczVYqPuAg', image: "https://i.ibb.co/Smsyq1c/playing-spin.jpg", hint: "cricket playing spin", 
         steps: [
             "Watch the ball closely from the spinner's hand to pick the type of delivery.",
             "Use your feet to get to the pitch of the ball (stride out) or get right back in your crease.",
@@ -169,7 +169,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
             "Stay light on your feet to reduce stress on the joints."
         ] 
       },
-      { name: "Footwork Drills for Front & Back Foot Balance", youtubeUrl: 'https://www.youtube.com/watch?v=jVE-a122394', image: "https://i.ibb.co/Y05G1D5/footwork-drills.jpg", hint: "cricket footwork", 
+      { name: "Footwork Drills for Front & Back Foot Balance", youtubeUrl: 'https://youtu.be/HEHggOOds1w?si=KtCc8cd1dVGX6Rvb', image: "https://i.ibb.co/Y05G1D5/footwork-drills.jpg", hint: "cricket footwork", 
         steps: [
             "Use cones or markers to create a small grid.",
             "Practice moving forward into a drive position, ensuring your head leads the movement.",
