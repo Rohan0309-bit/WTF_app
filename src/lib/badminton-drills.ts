@@ -102,28 +102,6 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
         ]
     },
     {
-        name: "Butterfly Movement Drill",
-        youtubeUrl: "https://youtube.com/dummy5",
-        image: "https://picsum.photos/seed/bfd5/400/300",
-        hint: "badminton butterfly drill",
-        steps: [
-            "Start at the center.",
-            "Move to the front-right corner, then diagonally back to the back-left corner.",
-            "Recover to the center.",
-            "Move to the front-left corner, then diagonally back to the back-right corner.",
-            "This creates a 'butterfly wing' pattern and improves diagonal movement."
-        ],
-        commonMistakes: [
-            "Poor balance when moving diagonally backward.",
-            "Not recovering to the center between butterfly wings.",
-            "Inefficient footwork on the diagonal transition.",
-        ],
-        injuryPrevention: [
-            "Requires good core strength for stability during diagonal movements.",
-            "Warm up hips and groin area well.",
-        ]
-    },
-    {
         name: "Base-Recovery Reflex Drill",
         youtubeUrl: "https://youtube.com/dummy9",
         image: "https://picsum.photos/seed/bfd9/400/300",
@@ -387,5 +365,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     }
   ]
 };
+
+    
 
     
