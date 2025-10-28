@@ -13,7 +13,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
   "footwork-drills": [
     {
         name: "Shadow Footwork",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/S6BumK0A5TM?si=L8KbxQzc2RUkJeM1",
         image: "https://picsum.photos/400/300?random=55",
         hint: "badminton shadow footwork",
         steps: [
@@ -36,7 +36,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Multi-directional Lunges",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/BOrOB2muf4A?si=5Ou9Y_rF7yCeH_lq",
         image: "https://picsum.photos/400/300?random=56",
         hint: "badminton lunges",
         steps: [
