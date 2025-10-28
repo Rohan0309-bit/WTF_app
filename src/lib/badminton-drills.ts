@@ -318,7 +318,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
         ],
         injuryPrevention: [
             "Stay balanced on the balls of your feet.",
-            "Be prepared for fast exchanges to avoid being hit.",
+            "Be prepared for fast exchanges to avoid being hit by the shuttle or racquet.",
         ]
     },
     {
@@ -349,7 +349,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
   "defense-drills": [
     {
         name: "Wall Defense Rally",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/RB28Owopbno?si=OI31HT9q6MtdtBBh",
         image: "https://picsum.photos/seed/bdd1/400/300",
         hint: "badminton wall defense",
         steps: [
@@ -391,7 +391,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Backcourt Recovery Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/UkGG10sDGxs?si=gtfTYLf2qKESG_QT",
         image: "https://picsum.photos/seed/bdd3/400/300",
         hint: "badminton backcourt recovery",
         steps: [
@@ -412,7 +412,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Drive Counter Challenge",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/sr2pxJkZPk4?si=gc813rxNE9C-yxIA",
         image: "https://picsum.photos/seed/bdd4/400/300",
         hint: "badminton drive counter",
         steps: [
@@ -433,7 +433,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Shadow Defense Footwork",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/GSI1eC0HZW8?si=8UVMiXv6cx0cmvJi",
         image: "https://picsum.photos/seed/bdd5/400/300",
         hint: "badminton defense footwork",
         steps: [
@@ -455,7 +455,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Reaction Net Defense",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtube.com/shorts/QtRZXTXEgMA?si=BRLxOdpb325-PRMx",
         image: "https://picsum.photos/seed/bdd6/400/300",
         hint: "badminton net defense",
         steps: [
@@ -476,7 +476,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Lift & Recover Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/yRLtypZzJ1E?si=sxFw7_7yEOleZvFm",
         image: "https://picsum.photos/seed/bdd7/400/300",
         hint: "badminton lift recover",
         steps: [
@@ -497,7 +497,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Smash Return Practice",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/BQfXztjZcIA?si=hH3TMgGvlzyY3iTu",
         image: "https://picsum.photos/seed/bdd8/400/300",
         hint: "badminton smash return",
         steps: [
@@ -519,7 +519,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Pressure Defense Simulation",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/cg2SkJb9Uyg?si=5PhzkX7hU4fXW2yW",
         image: "https://picsum.photos/seed/bdd9/400/300",
         hint: "badminton pressure defense",
         steps: [
@@ -675,5 +675,6 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     
 
     
+
 
 
