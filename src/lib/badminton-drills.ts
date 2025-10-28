@@ -521,7 +521,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
   "reaction-reflex-training": [
     {
         name: "Multi-shuttle Rapid Fire Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/DCRLPekS-gg?si=tZvBsAIhN96_MsLg",
         image: "https://picsum.photos/400/300?random=61",
         hint: "badminton multi-shuttle",
         steps: [
@@ -543,7 +543,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Random Shuttle Toss Reaction Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/oX812so_6cU?si=KnOmhmbict47aROB",
         image: "https://picsum.photos/400/300?random=62",
         hint: "badminton reaction toss",
         steps: [
@@ -564,7 +564,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Wall Rally Reflex",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/csRhifSG1ds?si=IE0UO7_aXn71HaZa",
         image: "https://picsum.photos/400/300?random=63",
         hint: "badminton wall rally",
         steps: [
@@ -585,7 +585,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Partner Drive Rally",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtube.com/shorts/f1dBDOE1dkQ?si=fviKRVDozQaB-Nye",
         image: "https://picsum.photos/400/300?random=64",
         hint: "badminton drive rally",
         steps: [
@@ -606,7 +606,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Reaction Ball Catch Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/ZxL74DF2CHM?si=8hU2dj9BdNWjmakr",
         image: "https://picsum.photos/400/300?random=65",
         hint: "badminton reaction ball",
         steps: [
@@ -627,7 +627,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Random Smash & Drop Return Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtube.com/shorts/yVlwggtTTh0?si=kEZ5thYvOBPrAf-0",
         image: "https://picsum.photos/400/300?random=66",
         hint: "badminton random return",
         steps: [
@@ -648,5 +648,3 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     }
   ]
 };
-
-    
