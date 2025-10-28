@@ -13,7 +13,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
   "footwork-drills": [
     {
         name: "Four-Corner Footwork Drill",
-        youtubeUrl: "https://youtube.com/dummy1",
+        youtubeUrl: "https://youtu.be/fBa08o5GEqw?si=qVxDrWgGl_OEHG5J",
         image: "https://picsum.photos/seed/bfd1/400/300",
         hint: "badminton footwork",
         steps: [
@@ -37,7 +37,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Ladder Quick-Feet Drill",
-        youtubeUrl: "https://youtube.com/dummy2",
+        youtubeUrl: "https://youtube.com/shorts/QjuKzU3DXIs?si=MupdiCXsUlAt4iAk",
         image: "https://picsum.photos/seed/bfd2/400/300",
         hint: "agility ladder",
         steps: [
@@ -58,7 +58,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Split-Step & Explosive Lunge",
-        youtubeUrl: "https://youtube.com/dummy3",
+        youtubeUrl: "https://youtu.be/gy4YZS5tGxE?si=4CoQjtEsNTiejfDS",
         image: "https://picsum.photos/seed/bfd3/400/300",
         hint: "badminton split-step",
         steps: [
@@ -80,7 +80,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Shadow Footwork Circuit",
-        youtubeUrl: "https://youtube.com/dummy4",
+        youtubeUrl: "https://youtu.be/a7ajExQKOvY?si=h25smfFmcqbJyYC8",
         image: "https://picsum.photos/seed/bfd4/400/300",
         hint: "badminton shadow circuit",
         steps: [
