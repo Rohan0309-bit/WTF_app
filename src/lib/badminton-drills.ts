@@ -146,49 +146,205 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
   ],
   "stroke-training": [
     {
-        name: "Clear Shot Practice",
+        name: "Power Forehand Smash",
         youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=57",
-        hint: "badminton clear shot",
+        image: "https://picsum.photos/seed/pfs1/400/300",
+        hint: "badminton smash",
         steps: [
-            "Have a partner feed you high shuttles.",
-            "Get behind the shuttle, turn your body sideways, and use a full arm swing.",
+            "Get into position behind and under the shuttle.",
+            "Rotate your body, bringing your non-racquet arm up for balance.",
+            "Swing with a full, fast arm motion, leading with the elbow.",
             "Contact the shuttle at the highest possible point.",
-            "Use your wrist snap and forearm rotation to generate power.",
-            "Aim for the shuttle to land deep in the opponent's backcourt."
+            "Snap your wrist downwards upon impact for maximum power.",
+            "Follow through completely."
         ],
         commonMistakes: [
-            "Using only the arm and not rotating the body.",
-            "Hitting the shuttle when it's too low or too far in front.",
-            "A weak wrist snap, resulting in a short clear.",
+            "Not using body rotation, relying only on arm strength.",
+            "Contacting the shuttle too late or too low.",
+            "A weak wrist snap, resulting in a slow smash.",
         ],
         injuryPrevention: [
-            "Properly warm up your shoulder, elbow, and wrist.",
-            "Strengthen your rotator cuff to prevent shoulder injuries.",
-            "Focus on smooth technique rather than muscling the shot.",
+            "Properly warm up your shoulder and core.",
+            "Strengthen your rotator cuff to prevent injuries.",
+            "Focus on technique to generate power, not just brute force.",
         ]
     },
     {
-        name: "Drop Shot Control",
+        name: "Precision Drop Shot",
         youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=58",
-        hint: "badminton drop shot",
+        image: "https://picsum.photos/seed/pds2/400/300",
+        hint: "badminton drop",
         steps: [
             "Use the same preparation as a smash or clear to deceive your opponent.",
-            "At the last moment, slow down your arm swing.",
-            "Gently 'slice' or tap the shuttle, aiming for it to just tumble over the net.",
-            "Focus on placement and making the opponent move forward.",
+            "At the last moment, slow down the racquet head speed.",
+            "Gently slice or tap the shuttle with control.",
+            "Aim for the shuttle to tumble just over the net.",
+            "Focus on placement, forcing the opponent to move forward quickly."
         ],
         commonMistakes: [
-            "Slowing down the arm swing too early, making the shot obvious.",
+            "Revealing the shot too early by slowing down the entire arm motion.",
             "Hitting the shuttle into the net.",
-            "Hitting the drop shot too high or too deep, making it easy to attack.",
+            "The drop shot being too high or deep, creating an easy return for the opponent.",
         ],
         injuryPrevention: [
-            "This is a touch shot; avoid jerky motions that can strain the wrist or elbow.",
-            "Good footwork is key to get into position without rushing the shot.",
+            "This is a touch shot; avoid sudden, jerky motions.",
+            "Ensure good footwork to get into position without rushing.",
         ]
     },
+    {
+        name: "Backhand Drive Blast",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/bdb3/400/300",
+        hint: "badminton backhand",
+        steps: [
+            "Use a backhand grip, with your thumb placed on the flat side of the handle for support.",
+            "Keep the swing short, quick, and in front of your body.",
+            "Use a punching motion, powered by forearm rotation and thumb push.",
+            "Contact the shuttle early and at a comfortable height.",
+            "Aim for a flat trajectory low over the net."
+        ],
+        commonMistakes: [
+            "Taking a large backswing, which is too slow.",
+            "Using a forehand grip.",
+            "Hitting the shuttle upwards, creating a lift instead of a drive.",
+        ],
+        injuryPrevention: [
+            "Warm up your wrist and forearm extensively.",
+            "Strengthen your thumb and forearm muscles.",
+        ]
+    },
+    {
+        name: "Controlled Backhand Drop",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/cbd4/400/300",
+        hint: "badminton backhand drop",
+        steps: [
+            "Prepare as if you are hitting a backhand clear or drive.",
+            "Use a backhand grip.",
+            "Just before contact, open the racquet face and gently guide or slice the shuttle.",
+            "Use minimal force, letting the shuttle's pace do some of the work.",
+            "Aim for the shuttle to drop tightly over the net."
+        ],
+        commonMistakes: [
+            "Hitting the shuttle too hard, sending it deep.",
+            "Not getting the racquet face angled correctly, pushing the shuttle wide.",
+            "Poor deception, making the shot obvious.",
+        ],
+        injuryPrevention: [
+            "Requires good touch and feel; don't force the shot.",
+        ]
+    },
+    {
+        name: "Explosive Backhand Smash",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/ebs5/400/300",
+        hint: "badminton backhand smash",
+        steps: [
+            "This is an advanced shot requiring exceptional timing and power.",
+            "Get your body behind the shuttle quickly.",
+            "Use a powerful rotation of your forearm and a strong thumb push.",
+            "Contact the shuttle high and in front of you.",
+            "Follow through with a sharp, downward snap of the wrist."
+        ],
+        commonMistakes: [
+            "Attempting this shot when not in a good position.",
+            "A weak forearm rotation leading to a slow shot.",
+            "Poor timing, resulting in a mishit.",
+        ],
+        injuryPrevention: [
+            "Requires significant wrist and forearm strength.",
+            "Warm up thoroughly as this is a high-stress shot on the arm.",
+        ]
+    },
+    {
+        name: "Defensive Backhand Lift",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/dbl6/400/300",
+        hint: "badminton backhand lift",
+        steps: [
+            "Get low to the ground.",
+            "Use a backhand grip.",
+            "Swing from low to high, getting under the shuttle.",
+            "Use your forearm and wrist to lift the shuttle high and deep to the opponent's backcourt.",
+            "The goal is to give yourself time to recover."
+        ],
+        commonMistakes: [
+            "Not getting low enough, resulting in hitting the net.",
+            "A flat lift that can be easily smashed.",
+            "Not lifting the shuttle deep enough.",
+        ],
+        injuryPrevention: [
+            "Requires good flexibility in the legs and back.",
+            "Avoid jerky lifting motions that can strain the wrist.",
+        ]
+    },
+    {
+        name: "Deceptive Cross Net Shot",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/dcns7/400/300",
+        hint: "badminton net shot",
+        steps: [
+            "Approach the net as if you are playing a straight net shot.",
+            "At the last second, change the angle of your racquet face.",
+            "Slice the shuttle laterally across the net.",
+            "Keep the shuttle as tight to the net as possible.",
+            "Follow the shuttle's path with your racquet to be ready for the return."
+        ],
+        commonMistakes: [
+            "Hitting the net.",
+            "The shot being too high, allowing the opponent to kill it.",
+            "Making the deception too obvious by changing the racquet angle too early.",
+        ],
+        injuryPrevention: [
+            "Requires precise footwork to get into position without touching the net.",
+        ]
+    },
+    {
+        name: "Quick Reaction Net Kill",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/qrnk8/400/300",
+        hint: "badminton net kill",
+        steps: [
+            "Hold your racquet up and in front of you when at the net.",
+            "If the opponent's return is high, react quickly.",
+            "Use a short, sharp, downward tapping motion.",
+            "There is no backswing; it's a pure reaction shot.",
+            "Aim straight down into the opponent's court."
+        ],
+        commonMistakes: [
+            "Taking a backswing, which is too slow.",
+            "Hitting the shuttle into the net.",
+            "Hitting the shuttle out the back if the angle is wrong.",
+        ],
+        injuryPrevention: [
+            "Stay balanced on the balls of your feet.",
+            "Be prepared for fast exchanges to avoid being hit.",
+        ]
+    },
+    {
+        name: "High-Impact Jump Smash",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/hijs9/400/300",
+        hint: "badminton jump smash",
+        steps: [
+            "Use explosive footwork to get behind the shuttle.",
+            "Jump vertically using a two-footed takeoff.",
+            "Arch your back and bring your hitting arm into a 'bow and arrow' position.",
+            "Contact the shuttle at the absolute peak of your jump.",
+            "Use your core and a full arm swing to generate maximum power.",
+            "Land safely on both feet."
+        ],
+        commonMistakes: [
+            "Mistiming the jump and hitting the shuttle on the way down.",
+            "Drifting forward into the net while jumping.",
+            "Not getting a full body rotation, losing power.",
+        ],
+        injuryPrevention: [
+            "This is a very athletic move; ensure you have a strong core and legs.",
+            "Practice proper landing techniques to absorb impact and protect your knees and ankles.",
+            "Do not overuse this shot to prevent shoulder injuries.",
+        ]
+    }
   ],
   "defense-drills": [
      {
