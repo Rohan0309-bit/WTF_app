@@ -12,52 +12,226 @@ export interface BadmintonDrill {
 export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
   "footwork-drills": [
     {
-        name: "Shadow Footwork",
-        youtubeUrl: "https://youtu.be/S6BumK0A5TM?si=L8KbxQzc2RUkJeM1",
-        image: "https://picsum.photos/400/300?random=55",
-        hint: "badminton shadow footwork",
+        name: "Four-Corner Footwork Drill",
+        youtubeUrl: "https://youtube.com/dummy1",
+        image: "https://picsum.photos/seed/bfd1/400/300",
+        hint: "badminton footwork",
         steps: [
-            "Start in the center of the court in a ready position.",
-            "Move to each of the six corners of the court (front-right, front-left, side-right, side-left, back-right, back-left) as if you were hitting a shuttle.",
-            "Perform a shadow swing for the appropriate shot at each corner (e.g., net shot at the front, smash at the back).",
-            "Focus on explosive movements, correct footwork patterns (shuffles, chasse, lunges), and quick recovery back to the center."
+            "Start at the center base in a ready stance.",
+            "Move explosively to the front-right corner, play a shadow net shot, and recover to the center.",
+            "Move to the front-left corner, shadow a net shot, and recover.",
+            "Move to the back-right corner, shadow a clear or smash, and recover.",
+            "Move to the back-left corner, shadow a clear or smash, and recover.",
+            "Focus on using correct footwork (chasse, lunge, shuffle) for each corner."
         ],
         commonMistakes: [
-            "Not returning to the center after each corner.",
-            "Standing up straight instead of staying low.",
-            "Using incorrect footwork for a specific corner.",
-            "Slow or lazy recovery."
+            "Not returning to the center base after each corner.",
+            "Standing up straight instead of staying low and balanced.",
+            "Taking large, slow steps instead of small, quick ones.",
         ],
         injuryPrevention: [
             "Warm up ankles, knees, and hips thoroughly.",
             "Wear proper court shoes with good grip and cushioning.",
-            "Focus on controlled landings during lunges to protect the knees.",
+            "Maintain a low center of gravity to reduce stress on joints.",
         ]
     },
     {
-        name: "Multi-directional Lunges",
-        youtubeUrl: "https://youtu.be/BOrOB2muf4A?si=5Ou9Y_rF7yCeH_lq",
-        image: "https://picsum.photos/400/300?random=56",
-        hint: "badminton lunges",
+        name: "Ladder Quick-Feet Drill",
+        youtubeUrl: "https://youtube.com/dummy2",
+        image: "https://picsum.photos/seed/bfd2/400/300",
+        hint: "agility ladder",
         steps: [
-            "From a central ready stance, perform a forward lunge, ensuring your front knee doesn't go past your toes.",
-            "Push back explosively to the center.",
-            "Perform a side lunge to the right, keeping your core engaged.",
-            "Push back to the center.",
-            "Repeat for the left side and practice backward lunges as well.",
-            "This drill strengthens leg muscles for all court movements."
+            "Lay an agility ladder on the court.",
+            "Perform various footwork patterns through the ladder, such as one foot in each square, two feet in each square, and lateral shuffles.",
+            "Focus on speed, precision, and keeping your feet light.",
+            "Keep your head up and arms moving for balance."
         ],
         commonMistakes: [
-            "Letting the front knee extend over the toes, straining the joint.",
-            "A weak push-back, leading to slow recovery.",
-            "Leaning the torso too far forward, losing balance."
+            "Tripping on the ladder rungs.",
+            "Looking down at your feet instead of forward.",
+            "Heavy, stomping steps that slow you down.",
         ],
         injuryPrevention: [
-            "Build up lunge depth gradually.",
-            "Strengthen your glutes and quads to support the knee joint.",
-            "Keep your core tight to protect your lower back.",
+            "Start slowly to master the patterns before increasing speed.",
+            "Ensure the ladder is flat and secure on the floor.",
         ]
     },
+    {
+        name: "Split-Step & Explosive Lunge",
+        youtubeUrl: "https://youtube.com/dummy3",
+        image: "https://picsum.photos/seed/bfd3/400/300",
+        hint: "badminton split-step",
+        steps: [
+            "Stand in a ready position.",
+            "As your opponent is about to hit the shuttle, perform a small hop (the split-step), landing with feet wide.",
+            "From the split-step, immediately push off explosively in the direction of the shuttle.",
+            "Execute a controlled lunge to play the shot.",
+            "Push back to the center base."
+        ],
+        commonMistakes: [
+            "Timing the split-step too early or too late.",
+            "A weak push-off after the split-step.",
+            "Over-lunging and losing balance.",
+        ],
+        injuryPrevention: [
+            "Strengthen calves and quads for a powerful split-step.",
+            "Practice controlled lunges to avoid knee strain.",
+        ]
+    },
+    {
+        name: "Shadow Footwork Circuit",
+        youtubeUrl: "https://youtube.com/dummy4",
+        image: "https://picsum.photos/seed/bfd4/400/300",
+        hint: "badminton shadow circuit",
+        steps: [
+            "Set up a circuit moving between all six corners of the court without a shuttle.",
+            "Move to the front-right corner (net shot), recover to center.",
+            "Move to the back-left corner (clear), recover to center.",
+            "Move to the side-left (drive), recover to center.",
+            "Continue this pattern, mixing up the corners randomly.",
+            "Maintain a high intensity and focus on perfect form for the duration.",
+        ],
+        commonMistakes: [
+            "Slowing down as fatigue sets in.",
+            "Taking shortcuts and not returning fully to the center.",
+            "Lazy or incorrect footwork patterns.",
+        ],
+        injuryPrevention: [
+            "This is a high-endurance drill; ensure you are well-conditioned.",
+            "Stay hydrated and listen to your body.",
+        ]
+    },
+    {
+        name: "Butterfly Movement Drill",
+        youtubeUrl: "https://youtube.com/dummy5",
+        image: "https://picsum.photos/seed/bfd5/400/300",
+        hint: "badminton butterfly drill",
+        steps: [
+            "Start at the center.",
+            "Move to the front-right corner, then diagonally back to the back-left corner.",
+            "Recover to the center.",
+            "Move to the front-left corner, then diagonally back to the back-right corner.",
+            "This creates a 'butterfly wing' pattern and improves diagonal movement."
+        ],
+        commonMistakes: [
+            "Poor balance when moving diagonally backward.",
+            "Not recovering to the center between butterfly wings.",
+            "Inefficient footwork on the diagonal transition.",
+        ],
+        injuryPrevention: [
+            "Requires good core strength for stability during diagonal movements.",
+            "Warm up hips and groin area well.",
+        ]
+    },
+    {
+        name: "V-Shape Front-Court Movement",
+        youtubeUrl: "https://youtube.com/dummy6",
+        image: "https://picsum.photos/seed/bfd6/400/300",
+        hint: "badminton front court",
+        steps: [
+            "Start at the center base, slightly back.",
+            "Move forward to the front-right corner for a shot.",
+            "Push back diagonally to your starting base.",
+            "Move forward to the front-left corner for a shot.",
+            "Push back diagonally to your starting base.",
+            "The movement creates a 'V' shape.",
+        ],
+        commonMistakes: [
+            "Pushing straight back instead of diagonally, which is slower.",
+            "Not getting low enough for the front-court shots.",
+            "A slow recovery push.",
+        ],
+        injuryPrevention: [
+            "Focus on a powerful push-off from the lunging leg.",
+            "Keep your core engaged to protect your back during recovery.",
+        ]
+    },
+    {
+        name: "Rear-Court Shuffle Drill",
+        youtubeUrl: "https://youtube.com/dummy7",
+        image: "https://picsum.photos/seed/bfd7/400/300",
+        hint: "badminton rear court",
+        steps: [
+            "Start at the back-right corner.",
+            "Use shuffle steps to move laterally across the rear court to the back-left corner.",
+            "Stay low and on the balls of your feet.",
+            "At each corner, perform a shadow swing for an overhead shot.",
+            "Shuffle back to the starting corner.",
+        ],
+        commonMistakes: [
+            "Standing up straight during the shuffle.",
+            "Crossing feet, which is slower and less stable.",
+            "Being flat-footed.",
+        ],
+        injuryPrevention: [
+            "Strengthen hip abductors and adductors for stable lateral movement.",
+            "Keep your knees slightly bent to absorb impact.",
+        ]
+    },
+    {
+        name: "Six-Point Footwork Routine",
+        youtubeUrl: "https://youtube.com/dummy8",
+        image: "https://picsum.photos/seed/bfd8/400/300",
+        hint: "badminton six point",
+        steps: [
+            "This drill covers all six corners of the court in a set sequence.",
+            "Move: center -> front-right -> center -> front-left -> center.",
+            "Then move: center -> side-right -> center -> side-left -> center.",
+            "Finally move: center -> back-right -> center -> back-left -> center.",
+            "Focus on efficiency and quick recovery after each shot."
+        ],
+        commonMistakes: [
+            "Anticipating the next corner and not fully recovering to the center.",
+            "Using the wrong footwork for a specific corner (e.g., wrong lunge foot).",
+            "A drop in intensity as the sequence progresses.",
+        ],
+        injuryPrevention: [
+            "This is a comprehensive drill; build up to it.",
+            "Ensure a thorough warm-up of all lower body joints.",
+        ]
+    },
+    {
+        name: "Base-Recovery Reflex Drill",
+        youtubeUrl: "https://youtube.com/dummy9",
+        image: "https://picsum.photos/seed/bfd9/400/300",
+        hint: "badminton reflex drill",
+        steps: [
+            "Stand at the center base.",
+            "Have a partner point to a random corner.",
+            "Explode to that corner, perform a shadow swing, and recover to the base as quickly as possible.",
+            "The goal is to minimize the time from the cue to your recovery to the base.",
+        ],
+        commonMistakes: [
+            "A slow initial reaction to the cue.",
+            "A lazy recovery back to the center.",
+            "Poor balance when stopping and changing direction.",
+        ],
+        injuryPrevention: [
+            "Requires high levels of concentration.",
+            "The unpredictable nature means you must be well-warmed up to prevent strains.",
+        ]
+    },
+    {
+        name: "Reaction Split-Step Challenge",
+        youtubeUrl: "https://youtube.com/dummy10",
+        image: "https://picsum.photos/seed/bfd10/400/300",
+        hint: "badminton split-step challenge",
+        steps: [
+            "Stand in a ready position.",
+            "Have a partner give a sudden cue (like clapping or shouting 'NOW!').",
+            "On the cue, immediately perform a split-step.",
+            "For an advanced version, the partner can point in a direction simultaneously with the cue, forcing you to split-step and then move.",
+        ],
+        commonMistakes: [
+            "Reacting slowly to the cue.",
+            "A small, ineffective split-step that doesn't lower your center of gravity.",
+            "Being tense instead of relaxed and ready.",
+        ],
+        injuryPrevention: [
+            "This drill trains neural pathways. Start with simple cues.",
+            "Ensure your landing from the split-step is balanced and controlled.",
+        ]
+    }
   ],
   "stroke-training": [
     {
