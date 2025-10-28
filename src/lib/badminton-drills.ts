@@ -147,7 +147,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
   "stroke-training": [
     {
         name: "Power Forehand Smash",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/Px5XUqcvyXc?si=ahixY9tCwG9iWp95",
         image: "https://picsum.photos/seed/pfs1/400/300",
         hint: "badminton smash",
         steps: [
@@ -171,7 +171,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Precision Drop Shot",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/u--taRfMoTs?si=hgC2_CrRvmPR_jAZ",
         image: "https://picsum.photos/seed/pds2/400/300",
         hint: "badminton drop",
         steps: [
@@ -193,7 +193,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Backhand Drive Blast",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtube.com/shorts/6-OYUvME5Cs?si=4gBfFb1liF7GD7nW",
         image: "https://picsum.photos/seed/bdb3/400/300",
         hint: "badminton backhand",
         steps: [
@@ -215,7 +215,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Controlled Backhand Drop",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/ox5z5dJUL6A?si=bPW7VZV2DUZFCL-C",
         image: "https://picsum.photos/seed/cbd4/400/300",
         hint: "badminton backhand drop",
         steps: [
@@ -236,7 +236,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Explosive Backhand Smash",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/-0qCrO6FdOA?si=E97OFIHo3KUvudUh",
         image: "https://picsum.photos/seed/ebs5/400/300",
         hint: "badminton backhand smash",
         steps: [
@@ -258,7 +258,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Defensive Backhand Lift",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtube.com/shorts/BkFIhm_Klis?si=9OCFQ3JzcgGJlrSQ",
         image: "https://picsum.photos/seed/dbl6/400/300",
         hint: "badminton backhand lift",
         steps: [
@@ -280,7 +280,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Deceptive Cross Net Shot",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/1p0Nv5-90e8?si=6w6iHVZ7lIGmMXpw",
         image: "https://picsum.photos/seed/dcns7/400/300",
         hint: "badminton net shot",
         steps: [
@@ -301,7 +301,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Quick Reaction Net Kill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/BIZ6PJ8z5Uo?si=KhWqvKxsIO8xAZZB",
         image: "https://picsum.photos/seed/qrnk8/400/300",
         hint: "badminton net kill",
         steps: [
@@ -323,7 +323,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "High-Impact Jump Smash",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        youtubeUrl: "https://youtu.be/5Z6Y5SEb08Y?si=bi1n27X7eMUDJh_f",
         image: "https://picsum.photos/seed/hijs9/400/300",
         hint: "badminton jump smash",
         steps: [
@@ -527,3 +527,4 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     
 
     
+
