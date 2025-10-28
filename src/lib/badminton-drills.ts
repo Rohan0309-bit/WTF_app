@@ -103,7 +103,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Base-Recovery Reflex Drill",
-        youtubeUrl: "https://youtube.com/dummy9",
+        youtubeUrl: "https://youtube.com/shorts/dHmxqgsjZnE?si=zfxT4a8790if6ee7",
         image: "https://picsum.photos/seed/bfd9/400/300",
         hint: "badminton reflex drill",
         steps: [
@@ -124,7 +124,7 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     },
     {
         name: "Reaction Split-Step Challenge",
-        youtubeUrl: "https://youtube.com/dummy10",
+        youtubeUrl: "https://youtu.be/D9rfB26cqQM?si=iDek88mi7RcxmYcK",
         image: "https://picsum.photos/seed/bfd10/400/300",
         hint: "badminton split-step challenge",
         steps: [
@@ -365,6 +365,8 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     }
   ]
 };
+
+    
 
     
 
