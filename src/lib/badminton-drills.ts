@@ -347,49 +347,197 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     }
   ],
   "defense-drills": [
-     {
-        name: "Smash Defense Drill",
+    {
+        name: "Wall Defense Rally",
         youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=59",
-        hint: "badminton smash defense",
+        image: "https://picsum.photos/seed/bdd1/400/300",
+        hint: "badminton wall defense",
         steps: [
-            "Have a partner smash shuttles at you from the other side.",
-            "Adopt a low, wide defensive stance.",
-            "Hold your racquet in front of you, ready for a backhand or forehand defense.",
-            "Use a short, blocking motion to lift the shuttle high and deep.",
-            "Focus on absorbing the power of the smash.",
+            "Stand a few feet from a solid wall.",
+            "Hit the shuttle against the wall and try to maintain a continuous rally.",
+            "Focus on short, quick, defensive pushes and blocks.",
+            "This drill sharpens reflexes and hand-eye coordination in a small space."
         ],
         commonMistakes: [
-            "Trying to take a full swing at the shuttle.",
-            "Standing up straight, reducing reaction time.",
-            "A loose grip, causing the racquet to be pushed back by the force of the smash.",
+            "Trying to swing too hard, losing control.",
+            "Standing too close or too far from the wall.",
+            "Using a loose wrist instead of a firm, controlled block."
         ],
         injuryPrevention: [
-            "Wear eye protection if the smasher is powerful or inconsistent.",
-            "Stay on the balls of your feet to react quickly and avoid awkward lunges.",
+            "Warm up your wrist and forearm.",
+            "Use a durable shuttle as this can wear them out quickly.",
         ]
     },
     {
-        name: "Block & Net Recovery",
+        name: "Quick Reflex Block",
         youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=60",
-        hint: "badminton block recovery",
+        image: "https://picsum.photos/seed/bdd2/400/300",
+        hint: "badminton reflex block",
         steps: [
-            "A partner smashes a shuttle at you.",
-            "Perform a block defense that drops the shuttle just over the net.",
-            "Immediately rush forward to the net to cover the return.",
-            "Be ready to play a net shot or lift the shuttle again.",
+            "Have a partner stand on the other side of the net and smash shuttles directly at your body.",
+            "Adopt a low, wide stance with your racquet in front of you.",
+            "Your goal is not to swing, but to use the racquet as a shield to block the shuttle back over the net.",
+            "Focus on quick reactions and absorbing the power of the smash."
         ],
         commonMistakes: [
-            "Watching your block shot instead of recovering immediately.",
-            "Being slow to move to the net.",
-            "Popping the block up too high, making it an easy kill for the opponent.",
+            "Swinging at the shuttle, leading to an uncontrolled return.",
+            "Having a slow reaction time due to poor ready position.",
+            "A weak grip, causing the racquet to be pushed back by the force of the smash."
         ],
         injuryPrevention: [
-            "Requires explosive forward movement. Warm up your calves and Achilles tendons.",
-            "Stay balanced to prevent falls or stumbles when rushing the net.",
+            "Wear protective eyewear.",
+            "Partner should start with controlled smashes before increasing power.",
         ]
     },
+    {
+        name: "Backcourt Recovery Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/bdd3/400/300",
+        hint: "badminton backcourt recovery",
+        steps: [
+            "Start at the net.",
+            "Have a partner lift a shuttle deep into one of the back corners.",
+            "Quickly turn and run using appropriate footwork (cross-over steps) to get behind the shuttle.",
+            "Play a defensive clear or drop shot and immediately recover to the center base.",
+        ],
+        commonMistakes: [
+            "Back-pedaling instead of turning and running, which is much slower.",
+            "Being off-balance when hitting the shot.",
+            "A slow or lazy recovery after the shot."
+        ],
+        injuryPrevention: [
+            "Requires good court awareness to avoid tripping.",
+            "Warm up hips and groin for the quick turning motion.",
+        ]
+    },
+    {
+        name: "Drive Counter Challenge",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/bdd4/400/300",
+        hint: "badminton drive counter",
+        steps: [
+            "Engage in a fast, flat drive rally with a partner at mid-court.",
+            "Focus on a short, punchy swing, using your wrist and forearm.",
+            "Keep your racquet up and ready at all times.",
+            "Try to change the direction of the drive to keep your partner off balance.",
+        ],
+        commonMistakes: [
+            "Taking a big swing, which is too slow for a drive rally.",
+            "Lifting the shuttle up, turning it into a defensive shot.",
+            "Being flat-footed and not adjusting to the shuttle's position."
+        ],
+        injuryPrevention: [
+            "High-intensity drill for the wrist and elbow; ensure a proper warm-up.",
+            "Agree on a controlled pace with your partner to start.",
+        ]
+    },
+    {
+        name: "Shadow Defense Footwork",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/bdd5/400/300",
+        hint: "badminton defense footwork",
+        steps: [
+            "From a central base, practice the footwork for all defensive shots.",
+            "Lunge forward for a net shot defense.",
+            "Take a wide stance and get low for a smash defense.",
+            "Shuffle sideways for a drive defense.",
+            "Perform all movements without a shuttle, focusing on perfect, efficient form."
+        ],
+        commonMistakes: [
+            "Not maintaining a low center of gravity.",
+            "Incorrect footwork patterns for different defensive scenarios.",
+            "Slow recovery back to the central base."
+        ],
+        injuryPrevention: [
+            "Focus on technique to build good habits and prevent strain.",
+            "Strengthen core and leg muscles to support the low stances.",
+        ]
+    },
+    {
+        name: "Reaction Net Defense",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/bdd6/400/300",
+        hint: "badminton net defense",
+        steps: [
+            "Stand near the net with your racquet up.",
+            "Have a partner play quick, unpredictable shots towards the net (net kills, pushes, tumbles).",
+            "Your goal is to react and get the shuttle back over the net, either with a block, a lift, or another net shot.",
+            "This improves reflexes in fast, front-court exchanges."
+        ],
+        commonMistakes: [
+            "Dropping your racquet, leading to slow reaction time.",
+            "Trying to do too much with the shuttle instead of just returning it.",
+            "Being flat-footed and unable to adjust."
+        ],
+        injuryPrevention: [
+            "Stay on the balls of your feet.",
+            "High concentration is needed to avoid getting hit by the shuttle or racquet.",
+        ]
+    },
+    {
+        name: "Lift & Recover Drill",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/bdd7/400/300",
+        hint: "badminton lift recover",
+        steps: [
+            "A partner plays a drop shot.",
+            "Lunge forward to get under the shuttle and play a high, deep lift to the back of their court.",
+            "As soon as you hit the lift, push back explosively to the center of the court to prepare for the likely smash.",
+            "Assume a low defensive stance upon recovery."
+        ],
+        commonMistakes: [
+            "A flat or short lift that is easy to kill.",
+            "Watching your lift instead of recovering immediately.",
+            "A slow recovery that leaves you vulnerable."
+        ],
+        injuryPrevention: [
+            "Requires a powerful lunge and push-back; ensure legs are strong.",
+            "Practice controlled lunges to avoid knee strain.",
+        ]
+    },
+    {
+        name: "Smash Return Practice",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/bdd8/400/300",
+        hint: "badminton smash return",
+        steps: [
+            "Have a partner feed you high lifts, then smash them at you.",
+            "Practice returning the smash with a defensive block to the net.",
+            "Practice returning the smash with a defensive lift deep to the backcourt.",
+            "Practice returning the smash with a flat drive.",
+            "Vary your returns to become unpredictable."
+        ],
+        commonMistakes: [
+            "Only having one type of return (e.g., always lifting).",
+            "Swinging at the smash instead of blocking or pushing.",
+            "Poor ready position, leading to slow reactions."
+        ],
+        injuryPrevention: [
+            "Defending against smashes can be jarring; ensure a good warm-up.",
+            "Wear eye protection for safety.",
+        ]
+    },
+    {
+        name: "Pressure Defense Simulation",
+        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
+        image: "https://picsum.photos/seed/bdd9/400/300",
+        hint: "badminton pressure defense",
+        steps: [
+            "Play a half-court game where one player can only defend and the other can only attack.",
+            "The defender's goal is to survive the rally for as long as possible using lifts, blocks, and drives.",
+            "The attacker uses smashes, drops, and kills to try and win the point.",
+            "This simulates real-game pressure and improves defensive decision-making.",
+        ],
+        commonMistakes: [
+            "Panicking and making a poor shot choice.",
+            "Giving up on the rally after a few good attacks.",
+            "Not recovering to the base after each defensive shot."
+        ],
+        injuryPrevention: [
+            "High-intensity drill; ensure excellent conditioning.",
+            "Both players must be aware to avoid injuries from close-range shots.",
+        ]
+    }
   ],
   "reaction-reflex-training": [
     {
@@ -527,4 +675,5 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
     
 
     
+
 
