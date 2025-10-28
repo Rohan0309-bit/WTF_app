@@ -544,7 +544,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
         }
     ],
     "wicketkeeping-drills": [
-        { name: "Basic Glove Work & Posture", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/X8gYkrr/glovework.jpg", hint: "wicketkeeping gloves", 
+        { name: "Basic Glove Work & Posture", youtubeUrl: "https://youtu.be/BohUQirAwuA?si=nhQt_5_ObnJdLM4e", image: "https://i.ibb.co/X8gYkrr/glovework.jpg", hint: "wicketkeeping gloves", 
           steps: [
               "Assume a low, wide, and comfortable squat position.",
               "Stay on the balls of your feet, not flat-footed.",
@@ -566,7 +566,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Always wear a helmet and other protective gear."
           ] 
         },
-        { name: "Standing Up to Spinners – Collection Drill", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/ZcTyQ6c/wk-spin.jpg", hint: "wicketkeeping spinners", 
+        { name: "Standing Up to Spinners – Collection Drill", youtubeUrl: "https://youtu.be/rK5FemOXCas?si=B0shYpE1FqMU0blH", image: "https://i.ibb.co/ZcTyQ6c/wk-spin.jpg", hint: "wicketkeeping spinners", 
           steps: [
               "Start in your low squat position, as close to the stumps as comfortable.",
               "Stay low as the ball is delivered and bounces.",
@@ -588,7 +588,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Stay alert to avoid being hit by the bat or ball."
           ] 
         },
-        { name: "Stumping Practice with Moving Ball", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/Bq5nQ3F/stumping.jpg", hint: "wicketkeeping stumping", 
+        { name: "Stumping Practice with Moving Ball", youtubeUrl: "https://youtube.com/shorts/95ry9j9fwM4?si=I6mRHIgLSMwi0vKj", image: "https://i.ibb.co/Bq5nQ3F/stumping.jpg", hint: "wicketkeeping stumping", 
           steps: [
               "Take the ball cleanly on the side of the stumps.",
               "Your hands should move in a smooth arc from the collection point to the stumps.",
@@ -610,7 +610,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Don't over-practice; quality over quantity to prevent strain."
           ] 
         },
-        { name: "High Ball Catching – Under Lights", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/k0z0v2B/wk-high-catch.jpg", hint: "wicketkeeping high ball", 
+        { name: "High Ball Catching – Under Lights", youtubeUrl: "https://youtube.com/shorts/7F6S8yBbZcI?si=r8FZGb0XWtF5kxNw", image: "https://i.ibb.co/k0z0v2B/wk-high-catch.jpg", hint: "wicketkeeping high ball", 
           steps: [
               "Get under the ball quickly.",
               "Keep your eyes on the ball at all times, even with lights in your vision.",
@@ -632,7 +632,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Practice falling safely."
           ] 
         },
-        { name: "Reaction Time Drills (Ball Drop, Net)", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/1KkR4zK/wk-reaction.jpg", hint: "wicketkeeping reaction", 
+        { name: "Reaction Time Drills (Ball Drop, Net)", youtubeUrl: "https://youtu.be/IaQKaRVQ2Eo?si=PiU0DdumnuDb68nE", image: "https://i.ibb.co/1KkR4zK/wk-reaction.jpg", hint: "wicketkeeping reaction", 
           steps: [
               "For ball drop, have a coach stand behind you and drop a ball; react and catch it after it bounces.",
               "For a net drill, throw a ball into a rebound net and react to the unpredictable bounce.",
@@ -653,7 +653,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Stay hydrated and focused to prevent accidents."
           ] 
         },
-        { name: "Leg-Side Take Technique", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/VSPgWwS/leg-side-take.jpg", hint: "wicketkeeping leg side", 
+        { name: "Leg-Side Take Technique", youtubeUrl: "https://youtu.be/mbzrbMoSO_8?si=igU_HOx8DMZIuyO4", image: "https://i.ibb.co/VSPgWwS/leg-side-take.jpg", hint: "wicketkeeping leg side", 
           steps: [
               "From your stance, lead with your head towards the leg side.",
               "Push off powerfully with your right foot (for a right-hander).",
@@ -675,7 +675,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Ensure you have adequate space to move."
           ] 
         },
-        { name: "Footwork Behind the Stumps", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/9q0mHhM/wk-footwork.jpg", hint: "wicketkeeping footwork", 
+        { name: "Footwork Behind the Stumps", youtubeUrl: "https://youtu.be/GS_uPa26p5Y?si=8N4aFWmVHmvnyP3T", image: "https://i.ibb.co/9q0mHhM/wk-footwork.jpg", hint: "wicketkeeping footwork", 
           steps: [
               "Set up cones in an arc behind the stumps.",
               "Practice moving laterally from the center to each cone and back.",
@@ -697,7 +697,7 @@ export const cricketSubCategories: Record<string, Drill[]> = {
               "Ensure the ground is not slippery or uneven."
           ] 
         },
-        { name: "Drill: 10 Catches in 30 Seconds", youtubeUrl: "https://www.youtube.com/watch?v=Jg_c-gQ1j2o", image: "https://i.ibb.co/yqgZ365/wk-catches.jpg", hint: "wicketkeeping catches", 
+        { name: "Drill: 10 Catches in 30 Seconds", youtubeUrl: "https://youtube.com/shorts/PqJT0xJnUPg?si=mx_g8E8N3I1bruSj", image: "https://i.ibb.co/yqgZ365/wk-catches.jpg", hint: "wicketkeeping catches", 
           steps: [
               "Have a feeder (or a bowling machine) deliver 10 balls in quick succession.",
               "The balls should vary in line and length.",
