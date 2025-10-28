@@ -369,27 +369,6 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
         ]
     },
     {
-        name: "Quick Reflex Block",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/seed/bdd2/400/300",
-        hint: "badminton reflex block",
-        steps: [
-            "Have a partner stand on the other side of the net and smash shuttles directly at your body.",
-            "Adopt a low, wide stance with your racquet in front of you.",
-            "Your goal is not to swing, but to use the racquet as a shield to block the shuttle back over the net.",
-            "Focus on quick reactions and absorbing the power of the smash."
-        ],
-        commonMistakes: [
-            "Swinging at the shuttle, leading to an uncontrolled return.",
-            "Having a slow reaction time due to poor ready position.",
-            "A weak grip, causing the racquet to be pushed back by the force of the smash."
-        ],
-        injuryPrevention: [
-            "Wear protective eyewear.",
-            "Partner should start with controlled smashes before increasing power.",
-        ]
-    },
-    {
         name: "Backcourt Recovery Drill",
         youtubeUrl: "https://youtu.be/UkGG10sDGxs?si=gtfTYLf2qKESG_QT",
         image: "https://picsum.photos/seed/bdd3/400/300",
@@ -671,10 +650,3 @@ export const badmintonSubCategories: Record<string, BadmintonDrill[]> = {
 };
 
     
-
-    
-
-    
-
-
-
