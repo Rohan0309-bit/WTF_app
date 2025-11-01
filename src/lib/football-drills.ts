@@ -13,8 +13,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
     "dribbling-drills": [
         {
             name: "Cone Weaving Drill (close control)",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=7",
+            youtubeUrl: "https://youtu.be/9p89Cv6vNeg?si=YHUc0A5Dqvgfbpjr",
+            image: "https://placehold.co/400x300.png",
             hint: "football cone weaving",
             steps: [
                 "Set up a line of cones about 2 feet apart.",
@@ -34,8 +34,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Zig-Zag Dribble with Ball Control",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=8",
+            youtubeUrl: "https://youtu.be/I41vFM20RZ4?si=944oXAb4J-YaWP4h",
+            image: "https://placehold.co/400x300.png",
             hint: "football zig zag",
             steps: [
                 "Set up cones in a zig-zag pattern, about 5 yards apart.",
@@ -55,8 +55,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Speed Dribble in Straight Line",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=9",
+            youtubeUrl: "https://youtube.com/shorts/RpPKTUNAk6Q?si=C_JtbXsB5RF3GBmS",
+            image: "https://placehold.co/400x300.png",
             hint: "football speed dribble",
             steps: [
                 "Dribble the ball in a straight line for 20-30 yards at maximum speed.",
@@ -76,8 +76,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "1v1 Defender Dribble Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=14",
+            youtubeUrl: "https://youtu.be/ENgKv5KvV1o?si=_KnHetHRXz_wHyUF",
+            image: "https://placehold.co/400x300.png",
             hint: "football 1v1 dribble",
             steps: [
                 "Set up a small grid with a defender at one end.",
@@ -100,8 +100,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Circle Dribbling (tight turns around cones)",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=15",
+            youtubeUrl: "https://youtu.be/12qnPEGcedQ?si=dMh-_DNIdLf306Qu",
+            image: "https://placehold.co/400x300.png",
             hint: "football circle dribbling",
             steps: [
                 "Set up a single cone.",
@@ -122,8 +122,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Change of Direction Dribble Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=16",
+            youtubeUrl: "https://youtube.com/shorts/zf-KB_DCp9Q?si=HjnymVqQfFmp91Sf",
+            image: "https://placehold.co/400x300.png",
             hint: "football direction change",
             steps: [
                 "Dribble forward at a medium pace.",
@@ -661,3 +661,5 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         }
     ],
 };
+
+    
