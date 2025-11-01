@@ -13,8 +13,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
   "dribbling-ball-handling": [
     {
         name: "Cone Dribble (crossover, between legs, behind back)",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=26",
+        youtubeUrl: "https://youtube.com/shorts/E5VNE7gMTac?si=1_DQZAKv-w-RYtnO",
+        image: "",
         hint: "basketball cone dribble",
         steps: [
             "Set up a line of cones.",
@@ -34,8 +34,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Two-ball Dribbling Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=27",
+        youtubeUrl: "https://youtube.com/shorts/LanAWs-KRyI?si=6V5wXFNS-DKM994O",
+        image: "",
         hint: "basketball two ball dribble",
         steps: [
             "Dribble two basketballs simultaneously.",
@@ -55,8 +55,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Speed Dribble Full Court",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=28",
+        youtubeUrl: "https://youtube.com/shorts/MJ4sCMcN59k?si=JQIyoX83uRIILEuk",
+        image: "",
         hint: "basketball speed dribble",
         steps: [
             "Dribble the ball up the court at full speed.",
@@ -75,8 +75,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Stationary Pound Dribble Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=36",
+        youtubeUrl: "https://youtube.com/shorts/BdkwgcTduBE?si=peyoNFLBQdTqu6hQ",
+        image: "",
         hint: "basketball pound dribble",
         steps: [
             "In a low athletic stance, pound the basketball as hard as you can into the floor.",
@@ -96,8 +96,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Zig-Zag Crossover Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=37",
+        youtubeUrl: "https://youtube.com/shorts/cg3m4h9zslM?si=DGalH6mj0h6-Vb8G",
+        image: "",
         hint: "basketball zigzag crossover",
         steps: [
             "Set up cones in a zig-zag pattern.",
@@ -116,8 +116,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Retreat Dribble Under Pressure",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=38",
+        youtubeUrl: "https://youtube.com/shorts/9qpUZX_0qNA?si=FLJby-Nx-xa7UMSp",
+        image: "",
         hint: "basketball retreat dribble",
         steps: [
             "Have a partner apply light defensive pressure.",
@@ -624,3 +624,5 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
   ],
 };
+
+    
