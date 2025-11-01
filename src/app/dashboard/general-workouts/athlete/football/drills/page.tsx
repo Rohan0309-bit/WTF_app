@@ -53,14 +53,18 @@ function DrillsLibrary({ drills, categoryName }: { drills: FootballDrill[], cate
             </DialogHeader>
             <div className="grid md:grid-cols-2 gap-8 mt-4">
                 <div className="space-y-4">
-                    <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                        <Image
-                            src={selectedDrill.image}
-                            alt={selectedDrill.name}
-                            layout="fill"
-                            objectFit="cover"
-                            className="rounded-lg"
-                        />
+                    <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-muted flex items-center justify-center">
+                        {selectedDrill.image ? (
+                            <Image
+                                src={selectedDrill.image}
+                                alt={selectedDrill.name}
+                                layout="fill"
+                                objectFit="cover"
+                                className="rounded-lg"
+                            />
+                        ) : (
+                            <p className="text-muted-foreground">No Image</p>
+                        )}
                     </div>
                      <Link href={selectedDrill.youtubeUrl} target="_blank" rel="noopener noreferrer">
                         <Button className="w-full">
@@ -114,10 +118,10 @@ function FootballDrillsContent() {
   return (
     <div className="container mx-auto p-4">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold font-headline">{selectedCategory || 'Football Drills Library'}</h1>
+        <h1 className="text-3xl font-bold font-headline">{selectedCategory?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Football Drills Library'}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           {selectedCategory 
-            ? `Hone your skills with our expert collection of ${selectedCategory}.`
+            ? `Hone your skills with our expert collection of ${selectedCategory?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}.`
             : "Select a category from the Football Hub to view drills."
           }
         </p>
