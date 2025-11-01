@@ -139,8 +139,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
   "shooting-scoring": [
     {
         name: "Spot Shooting from 5 Positions",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=29",
+        youtubeUrl: "https://youtu.be/G6n4WYbVDMI?si=aPC0jW41JNkJa3Yf",
+        image: "",
         hint: "basketball spot shooting",
         steps: [
             "Choose 5 spots on the court (e.g., baseline, wing, top of key, other wing, other baseline).",
@@ -160,8 +160,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Free Throw Routine Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=30",
+        youtubeUrl: "https://youtu.be/ARE6txWA318?si=uYkKyhzSTOaWvQ62",
+        image: "",
         hint: "basketball free throw",
         steps: [
             "Develop a consistent pre-shot routine (e.g., number of dribbles, spin of the ball).",
@@ -180,8 +180,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Catch-and-Shoot Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=39",
+        youtubeUrl: "https://youtube.com/shorts/ow16151mQDE?si=OwDip76V77BvSYjl",
+        image: "",
         hint: "basketball catch and shoot",
         steps: [
             "Have a partner pass you the ball from different angles.",
@@ -201,8 +201,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Layup Lines (both hands)",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=31",
+        youtubeUrl: "https://youtu.be/q4IqeXob_qg?si=QeQ-tZ-qAJU8m8xH",
+        image: "",
         hint: "basketball layup",
         steps: [
             "Practice layups from both the right and left sides of the basket.",
@@ -222,8 +222,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Pull-up Jump Shot Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=40",
+        youtubeUrl: "https://youtu.be/jZpCRBuzt2U?si=KatAMzWZaKSALTup",
+        image: "",
         hint: "basketball pull-up jumper",
         steps: [
             "Dribble towards a designated spot on the floor (e.g., the elbow).",
@@ -243,8 +243,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "3-Point Shooting Circuit",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=41",
+        youtubeUrl: "https://youtu.be/l8y6kAHPymE?si=KaEL-sRjvKOef-W5",
+        image: "",
         hint: "basketball 3-point shooting",
         steps: [
             "Set up at five spots around the 3-point arc (both corners, both wings, top).",
@@ -439,7 +439,7 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
             "Allowing the offensive player to dictate the direction.",
         ],
         injuryPrevention: [
-            "Maintain a safe distance to react.",
+            "Maintain a safe distance to react to the attacker's moves.",
         ]
     },
     {
@@ -625,4 +625,5 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
   ],
 };
 
+    
     
