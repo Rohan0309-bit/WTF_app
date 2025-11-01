@@ -266,8 +266,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
   "passing-team-play": [
     {
         name: "Chest Pass & Bounce Pass Wall Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=32",
+        youtubeUrl: "https://youtu.be/sKd6aAN8CeY?si=yx6cxXaoi6Om-LSo",
+        image: "",
         hint: "basketball wall pass",
         steps: [
             "Stand facing a wall and practice chest passes, focusing on power and accuracy.",
@@ -285,8 +285,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Partner Passing on the Move",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=42",
+        youtubeUrl: "https://youtube.com/shorts/Mo0W6joMd2s?si=PvUwyRXZs-nlH61E",
+        image: "",
         hint: "basketball moving pass",
         steps: [
             "Two players run parallel to each other up the court.",
@@ -305,8 +305,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "No-look & Overhead Passing Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=43",
+        youtubeUrl: "https://youtu.be/KO4ZzfqHC6w?si=fn2NgLZdr0U5YDQM",
+        image: "",
         hint: "basketball advanced passing",
         steps: [
             "Practice no-look passes with a stationary partner, focusing on using your peripheral vision.",
@@ -323,8 +323,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "3-Man Weave Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=44",
+        youtubeUrl: "https://youtu.be/qe-QLhE1hgw?si=cbRBiONMAvs31bVr",
+        image: "",
         hint: "basketball 3-man weave",
         steps: [
             "Three players line up on the baseline.",
@@ -343,8 +343,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Full Court Passing Relay",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=45",
+        youtubeUrl: "https://youtu.be/aYjqIzgVB1A?si=otJmYiCk0mRArl-J",
+        image: "",
         hint: "basketball passing relay",
         steps: [
             "Two lines of players on opposite baselines.",
@@ -362,8 +362,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Quick Decision Rondo Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=46",
+        youtubeUrl: "https://youtube.com/shorts/4z-zZPZHHKs?si=ykjTQ9pNuZbzd7j5",
+        image: "",
         hint: "basketball rondo",
         steps: [
             "4 attackers form a square, with 1 defender in the middle.",
@@ -626,4 +626,6 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
 };
 
     
+    
+
     
