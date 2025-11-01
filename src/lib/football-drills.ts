@@ -534,9 +534,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
     "conditioning-agility-drills": [
         {
             name: "Sprint Intervals with Ball",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=13",
-            hint: "football sprint drills",
+            youtubeUrl: "https://youtube.com/shorts/21Ok2F_nxm4?si=V8D6cVt2UJ8_lfzn",
+            image: "",
+            hint: "",
             steps: [
                 "Sprint with the ball at your feet for 30 yards.",
                 "Rest or jog back slowly.",
@@ -555,30 +555,28 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Ladder Footwork Drills",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=32",
-            hint: "football ladder drills",
+            youtubeUrl: "https://youtube.com/shorts/O75KMTshmnY?si=vekkCU5hcwnvfcUl",
+            image: "",
+            hint: "",
             steps: [
                 "Set up an agility ladder.",
-                "Perform various footwork patterns: one foot in each box, two feet in each box, lateral shuffles, etc.",
-                "Focus on quick, light feet and staying on the balls of your feet.",
-                "Keep your arms moving to help with balance and rhythm."
+                "Perform various footwork patterns like Ickey Shuffle, lateral steps, and high knees.",
+                "Focus on being quick and light on your feet.",
             ],
             commonMistakes: [
-                "Looking down at your feet.",
-                "Heavy, slow steps.",
-                "Losing rhythm and coordination."
+                "Heavy feet.",
+                "Looking down.",
+                "Incorrect form.",
             ],
             injuryPrevention: [
                 "Start slowly to learn the patterns.",
-                "Ensure the ladder is securely on the ground to prevent tripping."
             ]
         },
         {
             name: "Cone Agility & Sprint Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=33",
-            hint: "football cone agility",
+            youtubeUrl: "https://youtube.com/shorts/Jmunmr5ocgo?si=3OoV76USKGBoHcqM",
+            image: "",
+            hint: "",
             steps: [
                 "Set up a series of cones in a specific pattern (T-drill, square drill).",
                 "Sprint, shuffle, and backpedal between the cones as per the drill instructions.",
@@ -597,9 +595,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Shuttle Runs (with/without ball)",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=34",
-            hint: "football shuttle runs",
+            youtubeUrl: "https://youtube.com/shorts/7js7-iQTGS0?si=u6CgJx_oU5Vb075P",
+            image: "",
+            hint: "",
             steps: [
                 "Set up cones at intervals (e.g., 5, 10, 15 yards).",
                 "Sprint to the first cone and back, then the second cone and back, and so on.",
@@ -618,9 +616,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Resistance Band Sprint Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=35",
-            hint: "football resistance sprint",
+            youtubeUrl: "https://youtube.com/shorts/2HtqrXWzh-c?si=esrwJTNci3jIUKuu",
+            image: "",
+            hint: "",
             steps: [
                 "Have a partner hold a resistance band around your waist.",
                 "Sprint forward for 10-15 yards while your partner provides resistance.",
@@ -639,9 +637,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Endurance Possession Drill (continuous play)",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=36",
-            hint: "football endurance drill",
+            youtubeUrl: "https://youtube.com/shorts/fgpexG3z7Hk?si=RYvfp92jD3UPsPE-",
+            image: "",
+            hint: "",
             steps: [
                 "Play a small-sided game (e.g., 4v4) in a large area for an extended period (e.g., 5-10 minutes) without stopping.",
                 "The goal is continuous movement, both on and off the ball.",
@@ -665,3 +663,4 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
     
 
     
+
