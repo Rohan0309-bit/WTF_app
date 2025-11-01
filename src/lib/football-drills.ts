@@ -403,8 +403,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
     "defensive-drills": [
         {
             name: "Shadowing & Jockeying Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=12",
+            youtubeUrl: "https://youtube.com/shorts/NhHs9rcANdg?si=fEtk2eWB49N_bFMB",
+            image: "",
             hint: "football jockeying",
             steps: [
                 "Have a partner dribble towards you.",
@@ -426,8 +426,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Tackling Technique Drill (stand & slide)",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=27",
+            youtubeUrl: "https://youtube.com/shorts/WoVfA1-hxPs?si=CZ4DgXj7dVnfe_CL",
+            image: "",
             hint: "football tackling",
             steps: [
                 "For stand tackles, get side-on and use your front foot to poke the ball away when the attacker takes a heavy touch.",
@@ -446,8 +446,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "1v1 Defensive Situations",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=28",
+            youtubeUrl: "https://youtube.com/shorts/brf4Rl8pGiU?si=VE8793cb1GkugkW0",
+            image: "",
             hint: "football 1v1 defense",
             steps: [
                 "In a defined area, defend against an attacker trying to dribble past you.",
@@ -467,8 +467,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Interception Anticipation Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=29",
+            youtubeUrl: "https://youtube.com/shorts/nLIhIGT14xQ?si=LXlor2Vzr49zzd3W",
+            image: "",
             hint: "football interception",
             steps: [
                 "Set up three players: two passers and one defender in the middle.",
@@ -488,8 +488,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Defensive Heading Practice",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=30",
+            youtubeUrl: "https://youtube.com/shorts/DqOVjbglg0M?si=lCW-9_WF9bu24wVH",
+            image: "",
             hint: "football defensive heading",
             steps: [
                 "Have a partner toss high balls towards you.",
@@ -510,8 +510,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Small-Sided Defending Drill (3v3, 4v4)",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=31",
+            youtubeUrl: "https://youtu.be/PcHuI7RjXGg?si=y8U7QB_CnMgIHVYH",
+            image: "",
             hint: "football small sided defending",
             steps: [
                 "Play a small-sided game with a focus on defensive principles.",
