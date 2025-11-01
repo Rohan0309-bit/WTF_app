@@ -14,8 +14,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         {
             name: "Cone Weaving Drill (close control)",
             youtubeUrl: "https://youtu.be/9p89Cv6vNeg?si=YHUc0A5Dqvgfbpjr",
-            image: "https://placehold.co/400x300.png",
-            hint: "football cone weaving",
+            image: "",
+            hint: "",
             steps: [
                 "Set up a line of cones about 2 feet apart.",
                 "Dribble the ball in and out of the cones using both the inside and outside of both feet.",
@@ -35,8 +35,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         {
             name: "Zig-Zag Dribble with Ball Control",
             youtubeUrl: "https://youtu.be/I41vFM20RZ4?si=944oXAb4J-YaWP4h",
-            image: "https://placehold.co/400x300.png",
-            hint: "football zig zag",
+            image: "",
+            hint: "",
             steps: [
                 "Set up cones in a zig-zag pattern, about 5 yards apart.",
                 "Dribble from one cone to the next, changing direction sharply.",
@@ -56,8 +56,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         {
             name: "Speed Dribble in Straight Line",
             youtubeUrl: "https://youtube.com/shorts/RpPKTUNAk6Q?si=C_JtbXsB5RF3GBmS",
-            image: "https://placehold.co/400x300.png",
-            hint: "football speed dribble",
+            image: "",
+            hint: "",
             steps: [
                 "Dribble the ball in a straight line for 20-30 yards at maximum speed.",
                 "Focus on pushing the ball slightly ahead of you and sprinting to catch up.",
@@ -77,8 +77,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         {
             name: "1v1 Defender Dribble Drill",
             youtubeUrl: "https://youtu.be/ENgKv5KvV1o?si=_KnHetHRXz_wHyUF",
-            image: "https://placehold.co/400x300.png",
-            hint: "football 1v1 dribble",
+            image: "",
+            hint: "",
             steps: [
                 "Set up a small grid with a defender at one end.",
                 "Start at the opposite end and dribble towards the defender.",
@@ -101,8 +101,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         {
             name: "Circle Dribbling (tight turns around cones)",
             youtubeUrl: "https://youtu.be/12qnPEGcedQ?si=dMh-_DNIdLf306Qu",
-            image: "https://placehold.co/400x300.png",
-            hint: "football circle dribbling",
+            image: "",
+            hint: "",
             steps: [
                 "Set up a single cone.",
                 "Dribble in a tight circle around the cone, first with one foot, then the other.",
@@ -123,8 +123,8 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         {
             name: "Change of Direction Dribble Drill",
             youtubeUrl: "https://youtube.com/shorts/zf-KB_DCp9Q?si=HjnymVqQfFmp91Sf",
-            image: "https://placehold.co/400x300.png",
-            hint: "football direction change",
+            image: "",
+            hint: "",
             steps: [
                 "Dribble forward at a medium pace.",
                 "On a visual or auditory cue, quickly cut left or right at a 90-degree angle.",
@@ -147,9 +147,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
     "passing-drills": [
         {
             name: "Short Passing Wall Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=10",
-            hint: "football wall pass",
+            youtubeUrl: "https://youtube.com/shorts/guoGeVB3UbY?si=xn8doauT_AMjC6TK",
+            image: "",
+            hint: "",
             steps: [
                 "Stand 5-10 feet from a wall or rebounder.",
                 "Pass the ball against the wall with the inside of your foot.",
@@ -168,9 +168,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Triangle Passing with Teammates",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=17",
-            hint: "football triangle passing",
+            youtubeUrl: "https://youtube.com/shorts/KcuPZDsTPWo?si=Abt4JvknUP56LEii",
+            image: "",
+            hint: "",
             steps: [
                 "Form a triangle with two other players, about 10-15 yards apart.",
                 "Pass the ball around the triangle, focusing on one-touch or two-touch passing.",
@@ -189,9 +189,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "One-touch Passing Squares",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=18",
-            hint: "football one touch pass",
+            youtubeUrl: "https://youtu.be/EMIQhtHknPg?si=ibVqKXoKDGtdMLXY",
+            image: "",
+            hint: "",
             steps: [
                 "Set up a 10x10 yard square with four players, one on each corner.",
                 "Pass the ball around the square, aiming for one-touch passes.",
@@ -210,9 +210,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Long Ball Passing Accuracy Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=19",
-            hint: "football long pass",
+            youtubeUrl: "https://youtube.com/shorts/uCuWtMj6LqE?si=GvHaFYqHCIAueN0u",
+            image: "",
+            hint: "",
             steps: [
                 "Set up a target area (e.g., a 10x10 yard box) about 30-40 yards away.",
                 "Practice hitting long passes (driven and lofted) into the target area.",
@@ -231,9 +231,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Passing Under Pressure (2v1)",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=20",
-            hint: "football passing pressure",
+            youtubeUrl: "https://youtu.be/8v8kgQQ1FXw?si=eb7JVx8JmGk7R78V",
+            image: "",
+            hint: "",
             steps: [
                 "In a small grid, two attackers try to keep possession against one defender.",
                 "The attackers must use quick passes and movement to create space.",
@@ -252,9 +252,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Rondo Drill (keep-away possession)",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=21",
-            hint: "football rondo drill",
+            youtubeUrl: "https://youtube.com/shorts/fgpexG3z7Hk?si=EipHhDPl8X2OtHGu",
+            image: "",
+            hint: "",
             steps: [
                 "Form a circle with a group of players (e.g., 5-8 players).",
                 "Send 1 or 2 players into the middle as defenders.",
