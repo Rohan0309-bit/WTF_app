@@ -275,9 +275,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
     "shooting-finishing-drills": [
          {
             name: "Shooting at Target Zones",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=11",
-            hint: "football shooting targets",
+            youtubeUrl: "https://youtube.com/shorts/uYr6GRBZIqo?si=0rh4_an6aFgA3kFv",
+            image: "",
+            hint: "",
             steps: [
                 "Place targets in the four corners of the goal.",
                 "Shoot from different angles and distances outside the penalty box.",
@@ -296,9 +296,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "First-touch Finishing Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=22",
-            hint: "football first touch finish",
+            youtubeUrl: "https://youtube.com/shorts/xXCaL8Exrn4?si=aOsSt2j_zBF537o1",
+            image: "",
+            hint: "",
             steps: [
                 "A partner passes the ball to you from the side.",
                 "Take one touch to control the ball and set up your shot.",
@@ -317,9 +317,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Volleys & Half-volley Shooting",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=23",
-            hint: "football volley shooting",
+            youtubeUrl: "https://youtu.be/y0CBWGghI64?si=xJEIc1aqYICLQXkq",
+            image: "",
+            hint: "",
             steps: [
                 "Have a partner toss or chip the ball to you.",
                 "For volleys, strike the ball before it hits the ground. Keep your eye on the ball and your knee over the ball.",
@@ -338,9 +338,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Penalty Kick Practice",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=24",
-            hint: "football penalty kick",
+            youtubeUrl: "https://youtu.be/YrH-Hky1WI0?si=CBQSBX4qmhZPKdwG",
+            image: "",
+            hint: "",
             steps: [
                 "Develop a consistent run-up routine.",
                 "Pick your spot before you start your run-up and stick with it.",
@@ -358,9 +358,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "Crossing + Finishing Combo Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=25",
-            hint: "football crossing finishing",
+            youtubeUrl: "https://youtu.be/BUa263POJhA?si=SKUcq4JlNHZMhjCo",
+            image: "",
+            hint: "",
             steps: [
                 "Set up a winger and a striker.",
                 "The winger dribbles down the flank and delivers a cross into the box.",
@@ -379,9 +379,9 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         },
         {
             name: "1v1 Against Goalkeeper Drill",
-            youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-            image: "https://picsum.photos/400/300?random=26",
-            hint: "football 1v1 goalkeeper",
+            youtubeUrl: "https://youtu.be/5OWWGerdpss?si=d7XICal-COB7EpCc",
+            image: "",
+            hint: "",
             steps: [
                 "Start with the ball at the top of the penalty box.",
                 "Dribble towards the goalkeeper.",
@@ -661,5 +661,7 @@ export const footballSubCategories: Record<string, FootballDrill[]> = {
         }
     ],
 };
+
+    
 
     
