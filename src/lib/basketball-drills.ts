@@ -506,8 +506,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
   "agility-conditioning": [
     {
         name: "Suicide Runs (baseline to baseline)",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=35",
+        youtubeUrl: "https://youtu.be/6XYSqfInJFU?si=47pqqsMvQL4puhjH",
+        image: "",
         hint: "basketball suicide runs",
         steps: [
             "Start at the baseline.",
@@ -528,8 +528,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Ladder Footwork Drills",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=51",
+        youtubeUrl: "https://youtube.com/shorts/fXpsPyo-vlw?si=ZpTWpzVOIHh5xFQR",
+        image: "",
         hint: "basketball ladder drills",
         steps: [
             "Set up an agility ladder.",
@@ -547,8 +547,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Sprint + Backpedal Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=52",
+        youtubeUrl: "https://youtube.com/shorts/lT8iWa1j_D0?si=sr1d4jXbdvy2MBvo",
+        image: "",
         hint: "basketball sprint backpedal",
         steps: [
             "Sprint from the baseline to half-court.",
@@ -565,8 +565,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Cone Shuffle Agility Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=53",
+        youtubeUrl: "https://youtube.com/shorts/Jmunmr5ocgo?si=aqFZcAmRxHwaPcdx",
+        image: "",
         hint: "basketball cone shuffle",
         steps: [
             "Set up cones in a T-shape or square.",
@@ -583,8 +583,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Plyometric Jumps (box, squat jumps)",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=54",
+        youtubeUrl: "https://youtube.com/shorts/3T7zAynPp7o?si=cCVvN_bvKEHdTFXM",
+        image: "",
         hint: "basketball plyometric jumps",
         steps: [
             "Perform box jumps by jumping onto a sturdy box and stepping down.",
@@ -603,8 +603,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Full-Court Sprint Layup Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=55",
+        youtubeUrl: "https://youtube.com/shorts/sb-CUR8PB_0?si=ddHGTldA1YGQj_JC",
+        image: "",
         hint: "basketball sprint layup",
         steps: [
             "Start at one baseline.",
@@ -626,6 +626,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
 };
 
     
+    
+
     
 
     
