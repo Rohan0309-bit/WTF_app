@@ -505,6 +505,50 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
   ],
   "agility-conditioning": [
     {
+        name: "Side-to-Side Footwork with Shadow Play",
+        youtubeUrl: "https://youtube.com/shorts/WaNqqo9wfuM?si=VatjFVve3RHpTZl0",
+        image: "",
+        hint: "basketball side to side",
+        steps: [
+            "Stand in a ready position at the center of the court.",
+            "Shuffle step to one side (e.g., to the edge of the key).",
+            "Touch the ground, then shuffle back to the center.",
+            "Immediately shuffle to the other side and repeat.",
+            "Focus on staying low and keeping your feet active."
+        ],
+        commonMistakes: [
+            "Crossing feet over.",
+            "Standing up straight when changing direction.",
+            "Not touching the line or designated spot."
+        ],
+        injuryPrevention: [
+            "Warm up hips and groin.",
+            "Wear shoes with good lateral support.",
+        ]
+    },
+    {
+        name: "In-Out Footwork Drill",
+        youtubeUrl: "https://youtube.com/shorts/Ym-2640lN_Y?si=AXbXqbDT0Uz1E8By",
+        image: "",
+        hint: "basketball in out footwork",
+        steps: [
+            "Start at the three-point line.",
+            "Sprint to the free-throw line.",
+            "Backpedal to the three-point line.",
+            "Repeat for a set number of repetitions or time.",
+            "Focus on quick transitions from sprinting to backpedaling."
+        ],
+        commonMistakes: [
+            "Turning around instead of backpedaling.",
+            "Poor backpedaling form (e.g., standing upright).",
+            "Slowing down significantly during transitions."
+        ],
+        injuryPrevention: [
+            "Ensure a clear path.",
+            "Practice the backpedal motion slowly to ensure good form."
+        ]
+    },
+    {
         name: "Suicide Runs (baseline to baseline)",
         youtubeUrl: "https://youtu.be/6XYSqfInJFU?si=47pqqsMvQL4puhjH",
         image: "",
@@ -624,12 +668,5 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
   ],
 };
-
-    
-    
-
-    
-
-    
 
     
