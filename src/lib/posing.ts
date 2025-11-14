@@ -326,7 +326,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Pinching shoulder blades together, which makes the back look narrow.",
                     "Slouching forward.",
                     "Not flexing the glutes or hamstrings."
-                ]
+                ],
+                youtubeUrl: "https://youtube.com/shorts/urmmg0x0mxs?si=TdHxHi-QNl-pNrpv"
             },
             {
                 name: "Back Double Biceps",
@@ -345,7 +346,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Failing to spread the lats, resulting in a narrow-looking back.",
                     "Elbows positioned too high or too low.",
                     "Not flexing the glutes and hamstrings."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/kuHtzeXfN_Y?si=NrD8EltdQq1SXqNF"
             },
             {
                 name: "Back Lat Spread",
@@ -363,7 +365,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Arching the back too much.",
                     "Not bringing elbows forward enough before spreading.",
                     "A 'flat' look from not flexing the lower body."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/yl0mGgQou9Q?si=zpGgmMqEZB7QuO2q"
             },
             {
                 name: "Rear Most Muscular",
@@ -380,7 +383,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "A weak grip or poor arm positioning.",
                     "Not squeezing the traps hard enough.",
                     "Forgetting about lower body flexion."
-                ]
+                ],
+                youtubeUrl: ""
             },
             {
                 name: "Back Pose with Calves Flexed",
@@ -397,7 +401,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Losing balance.",
                     "Not getting high enough on the toes for a full calf contraction.",
                     "Forgetting to keep the upper back flared."
-                ]
+                ],
+                youtubeUrl: ""
             },
             {
                 name: "Glute-Hamstring Flex",
@@ -414,7 +419,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Losing balance.",
                     "Not getting a strong enough hamstring contraction.",
                     "Having relaxed, unflexed glutes on the standing leg."
-                ]
+                ],
+                youtubeUrl: "https://youtube.com/shorts/sK3PTDKxqmk?si=kk8eSFPr9j-pmGq3"
             },
             {
                 name: "One-Arm Back Flex (Twist)",
@@ -431,7 +437,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Not getting a deep enough twist.",
                     "Poor hand placement that hides muscles.",
                     "Unsteady footing."
-                ]
+                ],
+                youtubeUrl: "https://youtube.com/shorts/i0cbasdBIKo?si=3YO401ElT3VoUCr5"
             }
         ]
     },
