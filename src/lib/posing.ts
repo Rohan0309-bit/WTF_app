@@ -229,7 +229,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Hiding the chest by not rotating the torso enough.",
                     "A flat-looking bicep from an incorrect arm angle.",
                     "Forgetting to flex the hamstring of the rear leg."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/Z-DvXUks_HA?si=4JclZTalU4DqmUSc"
             },
             {
                 name: "Side Triceps",
@@ -248,7 +249,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Shrugging the shoulder up.",
                     "Failing to flex the obliques.",
                     "Poor leg and calf flexion."
-                ]
+                ],
+                youtubeUrl: "https://youtube.com/shorts/2TZiyj7_4D8?si=p7tRK0-teRifWHPR"
             },
             {
                 name: "Side Serratus Flex",
@@ -265,7 +267,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Not crunching the obliques hard enough.",
                     "Letting the elbow drop.",
                     "Holding your breath and looking strained."
-                ]
+                ],
+                youtubeUrl: ""
             },
             {
                 name: "Side Glute-Ham Tie-In",
@@ -282,7 +285,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Not creating enough tension in the rear leg.",
                     "Poor balance.",
                     "Hiding the tie-in area with poor lighting or posing angle."
-                ]
+                ],
+                youtubeUrl: ""
             },
             {
                 name: "Casual Side Pose (Relaxed Arm)",
@@ -299,7 +303,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Looking too stiff and posed.",
                     "Completely relaxing the muscles, losing all definition.",
                     "Bad posture or slouching."
-                ]
+                ],
+                youtubeUrl: ""
             }
         ]
     },
