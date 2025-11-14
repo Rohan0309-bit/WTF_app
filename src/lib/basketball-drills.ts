@@ -383,8 +383,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
   "defense-rebounding": [
      {
         name: "Defensive Slide Drill (lateral quickness)",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=33",
+        youtubeUrl: "https://youtube.com/shorts/MIPpxnp9Zgw?si=FyPaBUl82Ota-NbL",
+        image: "",
         hint: "basketball defensive slide",
         steps: [
             "Get into a low defensive stance (knees bent, back straight, hands up).",
@@ -404,8 +404,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Closeout Drill (contest without fouling)",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=47",
+        youtubeUrl: "https://youtube.com/shorts/Jg1sOiKqa0s?si=qntRn4B94E4aJKkX",
+        image: "",
         hint: "basketball closeout",
         steps: [
             "Start in the paint and have a partner on the 3-point line.",
@@ -424,8 +424,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "1v1 On-ball Defense Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=48",
+        youtubeUrl: "https://youtube.com/shorts/s2JH1D92NY8?si=4Sv7Y2XTAOnwdpp7",
+        image: "",
         hint: "basketball 1v1 defense",
         steps: [
             "Guard an offensive player in a defined space.",
@@ -444,8 +444,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Box Out & Rebound Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=34",
+        youtubeUrl: "https://youtube.com/shorts/_DXsMaMnohA?si=m8WuTkvWvr7rjsEr",
+        image: "",
         hint: "basketball box out",
         steps: [
             "Have a partner shoot the ball.",
@@ -465,8 +465,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Help Defense Rotation Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=49",
+        youtubeUrl: "https://youtube.com/shorts/rassKGd0EpA?si=-aAW3rgmoan34jbI",
+        image: "",
         hint: "basketball help defense",
         steps: [
             "Set up an offense with multiple players.",
@@ -485,8 +485,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
     },
     {
         name: "Fast Break Defense Drill",
-        youtubeUrl: "https://www.youtube.com/watch?v=your-link-here",
-        image: "https://picsum.photos/400/300?random=50",
+        youtubeUrl: "https://youtube.com/shorts/_dfyWAA33IY?si=wX4wOFlrmnhFgvzk",
+        image: "",
         hint: "basketball fast break defense",
         steps: [
             "Practice a 2-on-1 or 3-on-2 fast break scenario.",
@@ -626,6 +626,8 @@ export const basketballSubCategories: Record<string, BasketballDrill[]> = {
 };
 
     
+    
+
     
 
     
