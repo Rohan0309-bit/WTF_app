@@ -5,6 +5,7 @@ export interface Pose {
     hint: string;
     steps: string[];
     mistakes: string[];
+    youtubeUrl?: string;
 }
 
 export interface PosingCategory {
@@ -33,7 +34,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Forgetting to flare the lats, losing the V-taper.",
                     "Holding breath and looking uncomfortable.",
                     "Standing completely straight, hiding muscle definition."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/y2tNynHLPNY?si=y-gQ6gE4d5Wy2b57"
             },
             {
                 name: "Front Double Biceps",
@@ -52,7 +54,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Forgetting to spread the lats (a common error).",
                     "Not flexing the abs or quads.",
                     "A weak or limp wrist posture."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/ibtM-lYpuWY?si=a0KE6VmiJ8uqA9fs"
             },
             {
                 name: "Front Lat Spread",
@@ -71,7 +74,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Leaning too far back or forward.",
                     "Not pushing hard enough with the hands to spread the lats.",
                     "Forgetting to flex the legs."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/ng_AzaRqMM4?si=zDlpRQJKj629zzy3"
             },
             {
                 name: "Most Muscular (Hands-on-Hips)",
@@ -89,7 +93,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "A weak or incomplete contraction.",
                     "Looking down instead of confidently at the judges/camera.",
                     "Forgetting leg tension."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/bHp6GI2fllY?si=wXHo5OOGHaMNPoNh"
             },
             {
                 name: "Most Muscular (Crab Style)",
@@ -107,7 +112,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Not squeezing the chest and shoulders together effectively.",
                     "Weak grip, making the pose look soft.",
                     "Unbalanced foot placement."
-                ]
+                ],
+                youtubeUrl: "https://youtube.com/shorts/mj1C9lAjUrE?si=7I9kkrwgTnxcpRB1"
             },
             {
                 name: "Abdominals and Thighs",
@@ -125,7 +131,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Pulling on your head with your hands.",
                     "Not flexing the quad hard enough.",
                     "Holding the pose for too short a time."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/G9wxoWouUjg?si=W6ZzOxClm4R-Lpfv"
             },
             {
                 name: "Vacuum Pose",
@@ -143,7 +150,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Not expanding the rib cage enough.",
                     "Failing to keep the lats flared.",
                     "A pained or strained facial expression."
-                ]
+                ],
+                youtubeUrl: "https://youtu.be/2_5AQNizULc?si=mXzQ3xo536R8NSOI"
             },
             {
                 name: "Front Chest Flex",
@@ -160,7 +168,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Shrugging your shoulders.",
                     "Not squeezing the hands together hard enough to activate the chest.",
                     "Forgetting to breathe."
-                ]
+                ],
+                youtubeUrl: ""
             },
             {
                 name: "Front Arm Cross (Casual)",
@@ -177,7 +186,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Slouching or poor posture.",
                     "Flexing too hard, making it look unnatural.",
                     "Hiding your physique instead of showcasing it."
-                ]
+                ],
+                youtubeUrl: ""
             },
             {
                 name: "Arms Overhead (Abs Flex)",
@@ -194,7 +204,8 @@ export const POSING_TUTORIALS: PosingCategory[] = [
                     "Arching the back too much.",
                     "Not exhaling fully to get a deep ab contraction.",
                     "Letting the shoulders creep up to the ears."
-                ]
+                ],
+                youtubeUrl: "https://youtube.com/shorts/CESUiMrk_x4?si=L6vK9SYG1MampU30"
             }
         ]
     },
