@@ -20,6 +20,8 @@ import { cn } from '@/lib/utils';
 import { maleAvatars, femaleAvatars } from '@/lib/avatars';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { errorEmitter } from '@/firebase/error-emitter';
+import { FirestorePermissionError } from '@/firebase/errors';
 
 
 const supportItems = [
@@ -128,39 +130,37 @@ export default function SettingsPage() {
             return;
         }
 
-        const originalData = { ...initialData! };
         const updatedData = { ...formData };
         
         setSaving(true);
         
-        try {
-            const userDocRef = doc(db, 'users', user.uid);
-            await setDoc(userDocRef, { 
-                ...updatedData,
-                age: Number(updatedData.age),
-                weight: Number(updatedData.weight),
-                height: Number(updatedData.height),
-                updatedAt: serverTimestamp() 
-            }, { merge: true });
+        const userDocRef = doc(db, 'users', user.uid);
+        const dataToSave = { 
+            ...updatedData,
+            age: Number(updatedData.age),
+            weight: Number(updatedData.weight),
+            height: Number(updatedData.height),
+            updatedAt: serverTimestamp() 
+        };
 
+        setDoc(userDocRef, dataToSave, { merge: true }).then(() => {
             if (user.photoURL !== updatedData.avatarUrl) {
-                await updateProfile(user, { photoURL: updatedData.avatarUrl });
+                updateProfile(user, { photoURL: updatedData.avatarUrl });
             }
-
             setInitialData(updatedData); // Update initial data to new saved state
             setSaveSuccess(true);
             toast({ title: 'Profile Saved!', description: 'Your changes have been saved successfully.' });
             setTimeout(() => setSaveSuccess(false), 2000);
-            
-        } catch (error) {
-            console.error("Failed to update profile", error);
-            // Revert on failure
-            setFormData(originalData);
-            setInitialData(originalData);
-            toast({ variant: 'destructive', title: 'Error', description: 'Failed to update your profile. Please try again.' });
-        } finally {
+        }).catch(async (serverError) => {
+             const permissionError = new FirestorePermissionError({
+                path: userDocRef.path,
+                operation: 'update',
+                requestResourceData: dataToSave,
+            });
+            errorEmitter.emit('permission-error', permissionError);
+        }).finally(() => {
             setSaving(false);
-        }
+        });
     };
     
     const avatarList = formData.gender === 'male' ? maleAvatars : formData.gender === 'female' ? femaleAvatars : [];
