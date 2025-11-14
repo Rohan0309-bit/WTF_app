@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -14,9 +13,14 @@ import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight, Check } from 'lucide-react';
 import type { User } from 'firebase/auth';
+import { updateProfile } from 'firebase/auth';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { maleAvatars, femaleAvatars } from '@/lib/avatars';
+import Image from 'next/image';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 
 const supportItems = [
     { id: 'rate', icon: Star, title: 'Rate Us', href: '#' },
@@ -32,6 +36,7 @@ type FormData = {
     gender: string;
     weight: string;
     height: string;
+    avatarUrl: string;
 }
 
 export default function SettingsPage() {
@@ -44,6 +49,7 @@ export default function SettingsPage() {
         gender: '',
         weight: '',
         height: '',
+        avatarUrl: '',
     });
     const [initialData, setInitialData] = useState<FormData | null>(null);
     const [loading, setLoading] = useState(true);
@@ -59,9 +65,18 @@ export default function SettingsPage() {
                 try {
                     const userDoc = await getDoc(userDocRef);
                     if (userDoc.exists()) {
-                        const data = userDoc.data() as FormData;
-                        setFormData(data);
-                        setInitialData(data); // Store initial data for revert
+                        const data = userDoc.data();
+                        const profileData = {
+                           userType: data.userType || 'general',
+                           name: data.name || currentUser.displayName || '',
+                           age: data.age?.toString() || '',
+                           gender: data.gender || '',
+                           weight: data.weight?.toString() || '',
+                           height: data.height?.toString() || '',
+                           avatarUrl: data.avatarUrl || currentUser.photoURL || '',
+                        }
+                        setFormData(profileData);
+                        setInitialData(profileData);
                     } else {
                         const initial = {
                             userType: 'general',
@@ -70,6 +85,7 @@ export default function SettingsPage() {
                             gender: '',
                             weight: '',
                             height: '',
+                            avatarUrl: currentUser.photoURL || '',
                         };
                         setFormData(initial);
                         setInitialData(initial);
@@ -115,17 +131,26 @@ export default function SettingsPage() {
         const originalData = { ...initialData! };
         const updatedData = { ...formData };
         
-        // Optimistic UI update
         setSaving(true);
-        setFormData(updatedData);
-        setInitialData(updatedData);
-
+        
         try {
             const userDocRef = doc(db, 'users', user.uid);
-            await setDoc(userDocRef, { ...updatedData, updatedAt: serverTimestamp() }, { merge: true });
-            
+            await setDoc(userDocRef, { 
+                ...updatedData,
+                age: Number(updatedData.age),
+                weight: Number(updatedData.weight),
+                height: Number(updatedData.height),
+                updatedAt: serverTimestamp() 
+            }, { merge: true });
+
+            if (user.photoURL !== updatedData.avatarUrl) {
+                await updateProfile(user, { photoURL: updatedData.avatarUrl });
+            }
+
+            setInitialData(updatedData); // Update initial data to new saved state
             setSaveSuccess(true);
-            setTimeout(() => setSaveSuccess(false), 2000); // Show success for 2s
+            toast({ title: 'Profile Saved!', description: 'Your changes have been saved successfully.' });
+            setTimeout(() => setSaveSuccess(false), 2000);
             
         } catch (error) {
             console.error("Failed to update profile", error);
@@ -137,6 +162,9 @@ export default function SettingsPage() {
             setSaving(false);
         }
     };
+    
+    const avatarList = formData.gender === 'male' ? maleAvatars : formData.gender === 'female' ? femaleAvatars : [];
+
 
     return (
         <div className="space-y-8">
@@ -197,6 +225,30 @@ export default function SettingsPage() {
                                         <div className="space-y-2"><Label htmlFor="weight">Weight (kg)</Label><Input id="weight" name="weight" type="number" value={formData.weight} onChange={handleChange} required /></div>
                                         <div className="space-y-2"><Label htmlFor="height">Height (cm)</Label><Input id="height" name="height" type="number" value={formData.height} onChange={handleChange} required /></div>
                                     </div>
+
+                                    {avatarList.length > 0 && (
+                                        <div className="space-y-2">
+                                            <Label>Choose Your Avatar</Label>
+                                            <div className="flex flex-wrap gap-2">
+                                                {avatarList.map((avatar) => (
+                                                <div
+                                                    key={avatar}
+                                                    onClick={() => setFormData({ ...formData, avatarUrl: avatar })}
+                                                    className={cn(
+                                                    'rounded-full cursor-pointer transition-all duration-200 p-1',
+                                                    formData.avatarUrl === avatar ? 'bg-primary' : 'bg-transparent'
+                                                    )}
+                                                >
+                                                    <Avatar className="h-16 w-16">
+                                                    <AvatarImage src={avatar} alt="Avatar" />
+                                                    <AvatarFallback>AV</AvatarFallback>
+                                                    </Avatar>
+                                                </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
                                     <Button type="submit" className="w-full font-bold" disabled={saving || saveSuccess}>
                                         {saving ? (
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
