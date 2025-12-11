@@ -27,7 +27,7 @@ import {
 import { Icons } from './icons';
 import Link from 'next/link';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
-import { useSidebar } from './ui/sidebar';
+import { Sidebar, useSidebar } from './ui/sidebar';
 import { auth } from '@/lib/firebase';
 
 
@@ -179,9 +179,9 @@ export function AppSidebar() {
 
   return (
     <TooltipProvider>
-      <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
+      <Sidebar collapsible="offcanvas">
         <SidebarNav />
-      </aside>
+      </Sidebar>
     </TooltipProvider>
   );
 }

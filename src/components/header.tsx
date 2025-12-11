@@ -82,8 +82,8 @@ export function Header() {
       <h1 className="text-lg font-semibold font-headline md:text-xl">
         {title}
       </h1>
-      <div className="ml-auto flex items-center gap-4">
-        {isClient && <SidebarTrigger className="md:hidden">
+      <div className="ml-auto flex items-center gap-2">
+        {isClient && <SidebarTrigger>
           <MoreVertical />
         </SidebarTrigger>}
         <DropdownMenu>
