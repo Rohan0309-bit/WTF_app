@@ -1,23 +1,19 @@
 "use server";
 
 /**
- * @fileOverview AI-powered meal plan generator using Genkit with Google AI.
- *
- * - generateNutritionPlan: Main function to generate a full-day nutrition plan.
+ * Nutrition Plan Generator (ChatGPT + Genkit)
  */
 
-import { ai } from 'genkit';
+import { ai } from "@/ai/genkit";      // ✅ Correct AI import
 import { z } from "zod";
 
 // ------------------------------
 // 🔹 Input Schema
 // ------------------------------
 const GenerateNutritionPlanInputSchema = z.object({
-  goal: z
-    .string()
-    .describe(
-      "The nutrition goal (e.g., Cutting, Bulking, Lean Muscle, or for a specific sport)."
-    ),
+  goal: z.string().describe(
+    "The nutrition goal (e.g., Cutting, Bulking, Lean Muscle, or sport-specific)."
+  ),
 });
 
 export type GenerateNutritionPlanInput = z.infer<
@@ -28,24 +24,18 @@ export type GenerateNutritionPlanInput = z.infer<
 // 🔹 Meal Schema
 // ------------------------------
 const MealSchema = z.object({
-  name: z
-    .string()
-    .describe("The name of the meal (e.g., 'Scrambled Eggs with Spinach')."),
-  description: z
-    .string()
-    .describe(
-      "A short description of the meal including ingredients and preparation."
-    ),
+  name: z.string().describe("Meal name"),
+  description: z.string().describe("Short description with ingredients."),
 });
 
 // ------------------------------
 // 🔹 Output Schema
 // ------------------------------
 const GenerateNutritionPlanOutputSchema = z.object({
-  breakfast: MealSchema.describe("The breakfast meal."),
-  lunch: MealSchema.describe("The lunch meal."),
-  dinner: MealSchema.describe("The dinner meal."),
-  snacks: MealSchema.describe("Snack options for the day."),
+  breakfast: MealSchema,
+  lunch: MealSchema,
+  dinner: MealSchema,
+  snacks: MealSchema,
 });
 
 export type GenerateNutritionPlanOutput = z.infer<
@@ -53,7 +43,7 @@ export type GenerateNutritionPlanOutput = z.infer<
 >;
 
 // ------------------------------
-// 🔹 Main Function (Public API)
+// 🔹 Main Function
 // ------------------------------
 export async function generateNutritionPlan(
   input: GenerateNutritionPlanInput
@@ -62,33 +52,34 @@ export async function generateNutritionPlan(
 }
 
 // ------------------------------
-// 🔹 Prompt for the AI Model
+// 🔹 Prompt (ChatGPT Model)
 // ------------------------------
 const prompt = ai.definePrompt({
   name: "generateNutritionPlanPrompt",
   input: { schema: GenerateNutritionPlanInputSchema },
   output: { schema: GenerateNutritionPlanOutputSchema },
-  prompt: `You are an expert AI nutritionist.
+  prompt: `
+You are an expert AI nutritionist.
 
-Create a professional, full-day meal plan for the following goal: **{{{goal}}}**.
+Create a clean, structured **full-day meal plan** for: {{{goal}}}
 
-Provide:
-- A healthy breakfast  
-- A balanced lunch  
-- A nutritious dinner  
-- Snack options  
+Rules:
+- Provide breakfast, lunch, dinner, and snack options.
+- Return ONLY JSON-compatible structured objects with:
+  {
+    "name": "...",
+    "description": "..."
+  }
+- No emojis.
+- No markdown headings.
+- No extra paragraphs.
 
-Each meal must be returned as:
-{
-  "name": "...",
-  "description": "..."
-}
-
-Generate the full-day plan now.`,
+Generate the full-day plan now.
+`,
 });
 
 // ------------------------------
-// 🔹 Genkit Flow (Google AI model)
+// 🔹 Flow (ChatGPT executes here)
 // ------------------------------
 const generateNutritionPlanFlow = ai.defineFlow(
   {

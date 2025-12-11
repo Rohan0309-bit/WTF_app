@@ -1,26 +1,32 @@
-'use server';
-import {genkit} from 'genkit';
-import {googleAI} from '@genkit-ai/googleai';
-import {z} from 'zod';
 
-genkit({
+"use server";
+
+import { genkit } from "@genkit-ai/core";
+import { googleAI } from "@genkit-ai/googleai";
+import { z } from "zod";
+
+// --------------------------------------------------
+// 🔹 Initialize Genkit With Google AI
+// --------------------------------------------------
+export const ai = genkit({
   plugins: [
     googleAI({
       apiKey: process.env.GEMINI_API_KEY,
     }),
   ],
-  logLevel: 'debug',
+  logLevel: "debug",
   enableTracingAndMetrics: true,
 });
 
-export const ai = genkit;
-
+// --------------------------------------------------
+// 🔹 Simple text generation using Gemini
+// --------------------------------------------------
 export async function generateWithAI(prompt: string): Promise<string> {
-  const llm = ai.model('googleai/gemini-pro');
+  const model = ai.llm("googleai/gemini-1.5-flash");
 
-  const {text} = await llm.generate({
-    prompt: prompt,
+  const result = await model.generate({
+    prompt,
   });
 
-  return text;
+  return result.text ?? "";
 }
