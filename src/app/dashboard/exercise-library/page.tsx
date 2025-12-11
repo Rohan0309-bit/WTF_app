@@ -67,14 +67,13 @@ export default function ExerciseLibraryPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredExercises.map((exercise, index) => (
           <Card key={index} className="overflow-hidden group h-full flex flex-col">
-            <div className="relative">
+            <div className="relative aspect-square">
               <Image
                 src={exercise.gifUrl!}
                 data-ai-hint={`${exercise.muscle} exercise`}
                 alt={exercise.name}
-                width={400}
-                height={300}
-                className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                fill
+                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
               />
                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>

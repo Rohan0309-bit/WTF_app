@@ -17,13 +17,12 @@ export default function NonAthleteWorkoutsPage() {
         {NON_ATHLETE_WORKOUTS.map((category) => (
           <Link href={category.href} key={category.name} className={category.comingSoon ? "pointer-events-none" : ""}>
             <Card className="overflow-hidden group w-full h-full block hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <div className="relative">
+              <div className="relative aspect-square">
                 <Image
                   src={category.image}
                   alt={category.name}
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                  <div className="absolute bottom-0 p-4">

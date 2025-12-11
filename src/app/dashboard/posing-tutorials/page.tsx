@@ -39,15 +39,14 @@ export default function PosingTutorialsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Card className="overflow-hidden group cursor-pointer h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
-                    <div className="relative">
+                  <Card className="overflow-hidden group cursor-pointer aspect-square hover:border-primary transition-all duration-300 hover:shadow-lg flex flex-col">
+                    <div className="relative h-full">
                       <Image
                         src={pose.image}
                         data-ai-hint={pose.hint}
                         alt={pose.name}
-                        width={400}
-                        height={600}
-                        className="object-cover w-full h-72 transition-transform duration-300 group-hover:scale-105"
+                        fill
+                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                       <div className="absolute bottom-0 p-4">
@@ -114,14 +113,13 @@ export default function PosingTutorialsPage() {
               onClick={() => setSelectedCategory(category)}
               className="cursor-pointer"
             >
-              <Card className="overflow-hidden group h-full transition-all duration-300 hover:shadow-lg hover:border-primary">
-                <div className="relative">
+              <Card className="overflow-hidden group aspect-square transition-all duration-300 hover:shadow-lg hover:border-primary flex flex-col">
+                <div className="relative h-full">
                     <Image
                       src={category.poses[0].image}
                       alt={category.categoryName}
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-60 transition-transform duration-300 group-hover:scale-105"
+                      fill
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                       data-ai-hint={category.poses[0].hint}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />

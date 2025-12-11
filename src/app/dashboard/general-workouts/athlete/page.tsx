@@ -24,14 +24,13 @@ export default function AthleteWorkoutsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {athleteCategories.map((category) => (
           <Link href={category.href} key={category.name}>
-            <Card className="overflow-hidden group h-full hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <div className="relative">
+            <Card className="overflow-hidden group aspect-square hover:border-primary transition-all duration-300 hover:shadow-lg flex flex-col">
+              <div className="relative h-full">
                 <Image
                   src={category.image}
                   alt={category.name}
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                 />
                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                  <div className="absolute bottom-0 p-4">

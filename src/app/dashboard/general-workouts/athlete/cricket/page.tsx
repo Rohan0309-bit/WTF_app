@@ -34,15 +34,14 @@ export default function CricketPage() {
                 whileHover={{ scale: 1.05 }}
                 className="h-full"
             >
-              <Card className="overflow-hidden group h-full transition-all duration-300 hover:shadow-lg hover:border-primary">
-                 <div className="relative">
+              <Card className="overflow-hidden group aspect-square transition-all duration-300 hover:shadow-lg hover:border-primary flex flex-col">
+                 <div className="relative h-full">
                     <Image
                       src={category.image}
                       data-ai-hint={category.hint}
                       alt={category.name}
-                      width={400}
-                      height={300}
-                      className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+                      fill
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     <div className="absolute bottom-0 p-4">
