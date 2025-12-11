@@ -8,8 +8,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { auth, db } from '@/lib/firebase';
+import { auth } from '@/lib/firebase';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight, Check } from 'lucide-react';
 import type { User } from 'firebase/auth';
@@ -130,37 +131,40 @@ export default function SettingsPage() {
             return;
         }
 
-        const updatedData = { ...formData };
-        
         setSaving(true);
         
         const userDocRef = doc(db, 'users', user.uid);
         const dataToSave = { 
-            ...updatedData,
-            age: Number(updatedData.age),
-            weight: Number(updatedData.weight),
-            height: Number(updatedData.height),
+            ...formData,
+            uid: user.uid,
+            email: user.email,
+            age: Number(formData.age) || 0,
+            weight: Number(formData.weight) || 0,
+            height: Number(formData.height) || 0,
             updatedAt: serverTimestamp() 
         };
 
-        setDoc(userDocRef, dataToSave, { merge: true }).then(() => {
-            if (user.photoURL !== updatedData.avatarUrl) {
-                updateProfile(user, { photoURL: updatedData.avatarUrl });
+        try {
+            await setDoc(userDocRef, dataToSave, { merge: true });
+            
+            if (user.photoURL !== formData.avatarUrl) {
+                await updateProfile(user, { photoURL: formData.avatarUrl });
             }
-            setInitialData(updatedData); // Update initial data to new saved state
+            
+            setInitialData(formData);
             setSaveSuccess(true);
             toast({ title: 'Profile Saved!', description: 'Your changes have been saved successfully.' });
             setTimeout(() => setSaveSuccess(false), 2000);
-        }).catch(async (serverError) => {
+        } catch (serverError) {
              const permissionError = new FirestorePermissionError({
                 path: userDocRef.path,
                 operation: 'update',
                 requestResourceData: dataToSave,
             });
             errorEmitter.emit('permission-error', permissionError);
-        }).finally(() => {
+        } finally {
             setSaving(false);
-        });
+        }
     };
     
     const avatarList = formData.gender === 'male' ? maleAvatars : formData.gender === 'female' ? femaleAvatars : [];
