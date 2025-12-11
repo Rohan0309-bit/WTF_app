@@ -44,7 +44,7 @@ type FormData = {
 
 export default function SettingsPage() {
     const { toast } = useToast();
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User | null>(auth.currentUser);
     const [formData, setFormData] = useState<FormData>({
         userType: 'general',
         name: '',
@@ -63,7 +63,7 @@ export default function SettingsPage() {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
             if (currentUser) {
-                setUser(currentUser);
+                setUser(currentUser); // Keep user object in sync
                 const userDocRef = doc(db, 'users', currentUser.uid);
                 try {
                     const userDoc = await getDoc(userDocRef);
@@ -145,11 +145,13 @@ export default function SettingsPage() {
         };
 
         try {
-            await setDoc(userDocRef, dataToSave, { merge: true });
-            
+            // First, update the user's auth profile if avatar changed
             if (user.photoURL !== formData.avatarUrl) {
                 await updateProfile(user, { photoURL: formData.avatarUrl });
             }
+            
+            // Then, save all data to Firestore
+            await setDoc(userDocRef, dataToSave, { merge: true });
             
             setInitialData(formData);
             setSaveSuccess(true);
@@ -162,6 +164,11 @@ export default function SettingsPage() {
                 requestResourceData: dataToSave,
             });
             errorEmitter.emit('permission-error', permissionError);
+             toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: "Could not save your profile. Check permissions.",
+            });
         } finally {
             setSaving(false);
         }
