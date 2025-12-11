@@ -6,9 +6,10 @@ import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { POSING_TUTORIALS, type Pose, type PosingCategory } from '@/lib/posing';
-import { CheckCircle, XCircle, ChevronLeft } from 'lucide-react';
+import { CheckCircle, XCircle, ChevronLeft, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function PosingTutorialsPage() {
   const [selectedCategory, setSelectedCategory] = useState<PosingCategory | null>(null);
@@ -65,14 +66,24 @@ export default function PosingTutorialsPage() {
                       <DialogTitle className="font-headline text-3xl">{selectedPose.name}</DialogTitle>
                   </DialogHeader>
                   <div className="grid md:grid-cols-2 gap-8 mt-4">
-                      <div className="relative w-full aspect-[2/3] rounded-lg overflow-hidden">
-                          <Image
-                              src={selectedPose.image}
-                              alt={selectedPose.name}
-                              layout="fill"
-                              objectFit="cover"
-                              className="rounded-lg"
-                          />
+                      <div className="space-y-4">
+                          <div className="relative w-full aspect-[2/3] rounded-lg overflow-hidden">
+                              <Image
+                                  src={selectedPose.image}
+                                  alt={selectedPose.name}
+                                  layout="fill"
+                                  objectFit="cover"
+                                  className="rounded-lg"
+                              />
+                          </div>
+                           {selectedPose.youtubeUrl && (
+                                <Link href={selectedPose.youtubeUrl} target="_blank" rel="noopener noreferrer">
+                                    <Button className="w-full">
+                                        <Youtube className="mr-2 h-5 w-5" />
+                                        Watch on YouTube
+                                    </Button>
+                                </Link>
+                           )}
                       </div>
                       <div>
                           <div className="mb-6">
