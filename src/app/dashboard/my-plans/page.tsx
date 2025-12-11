@@ -49,7 +49,7 @@ export default function MyPlansPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold font-headline">My Plans</h1>
+          <h1 className="text-3xl font-bold font-headline">My Customized Plans</h1>
           <p className="text-muted-foreground">Your collection of custom-built workout plans.</p>
         </div>
         <Link href="/dashboard/my-plans/create">

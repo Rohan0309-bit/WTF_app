@@ -19,7 +19,7 @@ const features = [
     icon: <Sparkles className="h-8 w-8 text-primary" />,
   },
   {
-    title: 'My Plans',
+    title: 'My Customized Plans',
     description: 'Create and manage your own custom workout plans.',
     href: '/dashboard/my-plans',
     icon: <ListPlus className="h-8 w-8 text-primary" />,

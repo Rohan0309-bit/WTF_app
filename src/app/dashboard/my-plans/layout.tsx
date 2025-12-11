@@ -1,7 +1,7 @@
 
 'use client'
 
-export default function MyPlansLayout({
+export default function MyCustomizedPlansLayout({
     children,
   }: {
     children: React.ReactNode;

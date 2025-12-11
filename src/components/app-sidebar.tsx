@@ -139,7 +139,7 @@ function SidebarNav() {
 const menu = [
   { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
   { name: 'AI Planner', icon: Sparkles, path: '/dashboard/athlete-workout-planner' },
-  { name: 'My Plans', icon: ListPlus, path: '/dashboard/my-plans'},
+  { name: 'My Customized Plans', icon: ListPlus, path: '/dashboard/my-plans'},
   { name: 'Workouts', icon: Dumbbell, path: '/dashboard/general-workouts' },
   { name: 'Exercise Library', icon: BookOpen, path: '/dashboard/exercise-library' },
   { name: 'Calculators', icon: Calculator, path: '/dashboard/calculators' },
