@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -49,3 +50,7 @@ export default function FacialWorkoutPage() {
                 </CardContent>
             </Card>
         )}
+      </div>
+    </div>
+  );
+}
