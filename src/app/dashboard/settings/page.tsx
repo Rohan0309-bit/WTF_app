@@ -8,9 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { auth } from '@/lib/firebase';
+import { auth, db } from '@/lib/firebase';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight, Check } from 'lucide-react';
 import type { User } from 'firebase/auth';
@@ -22,7 +21,7 @@ import { maleAvatars, femaleAvatars } from '@/lib/avatars';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { errorEmitter } from '@/firebase/error-emitter';
-import { FirestorePermissionError } from '@/firebase/errors';
+import { FirestorePermissionError, type SecurityRuleContext } from '@/firebase/errors';
 
 
 const supportItems = [
@@ -132,43 +131,48 @@ export default function SettingsPage() {
         }
 
         setSaving(true);
-        
         const userDocRef = doc(db, 'users', user.uid);
-        const dataToSave = { 
-            ...formData,
-            uid: user.uid,
-            email: user.email,
-            age: Number(formData.age) || 0,
-            weight: Number(formData.weight) || 0,
-            height: Number(formData.height) || 0,
-            updatedAt: serverTimestamp() 
+        
+        const dataToSave = {
+          uid: user.uid,
+          email: user.email,
+          ...formData,
+          age: Number(formData.age) || null,
+          weight: Number(formData.weight) || null,
+          height: Number(formData.height) || null,
+          updatedAt: serverTimestamp(),
         };
 
         try {
-            // First, update the user's auth profile if avatar changed
-            if (user.photoURL !== formData.avatarUrl) {
-                await updateProfile(user, { photoURL: formData.avatarUrl });
+            if (user.photoURL !== formData.avatarUrl || user.displayName !== formData.name) {
+                await updateProfile(user, { 
+                    displayName: formData.name,
+                    photoURL: formData.avatarUrl 
+                });
             }
             
-            // Then, save all data to Firestore
             await setDoc(userDocRef, dataToSave, { merge: true });
             
             setInitialData(formData);
             setSaveSuccess(true);
             toast({ title: 'Profile Saved!', description: 'Your changes have been saved successfully.' });
             setTimeout(() => setSaveSuccess(false), 2000);
-        } catch (serverError) {
-             const permissionError = new FirestorePermissionError({
+
+        } catch (serverError: any) {
+            const context: SecurityRuleContext = {
                 path: userDocRef.path,
-                operation: 'update',
+                operation: 'write',
                 requestResourceData: dataToSave,
-            });
+            };
+            const permissionError = new FirestorePermissionError(context);
             errorEmitter.emit('permission-error', permissionError);
-             toast({
-                variant: "destructive",
-                title: "Uh oh! Something went wrong.",
-                description: "Could not save your profile. Check permissions.",
+
+            toast({
+                variant: 'destructive',
+                title: 'Save Failed',
+                description: 'Could not save your profile. Check permissions or network.',
             });
+            console.error(permissionError);
         } finally {
             setSaving(false);
         }
