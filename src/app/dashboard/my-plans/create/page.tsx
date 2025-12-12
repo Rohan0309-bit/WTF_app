@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -10,8 +9,9 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { MASTER_EXERCISE_DATA, ExerciseDetails } from '@/lib/workouts';
-import { useLocalStorage } from '@/hooks/use-local-storage';
-import { PlusCircle, Trash2, X, Dumbbell, Repeat, Timer, Check, Search } from 'lucide-react';
+import { auth, db } from '@/lib/firebase';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { PlusCircle, Trash2, X, Dumbbell, Repeat, Timer, Check, Search, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -40,7 +40,7 @@ const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satu
 export default function CreatePlanPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const [savedPlans, setSavedPlans] = useLocalStorage<any[]>('custom-workout-plans', []);
+  const [saving, setSaving] = useState(false);
   const [planName, setPlanName] = useState('');
   const [planDescription, setPlanDescription] = useState('');
   const [days, setDays] = useState<Record<string, CustomExercise[]>>({ 'Monday': [] });
@@ -87,20 +87,40 @@ export default function CreatePlanPage() {
       setDays(newDays);
   }
 
-  const savePlan = () => {
+  const savePlan = async () => {
     if (!planName) {
       toast({ variant: 'destructive', title: 'Error', description: 'Plan name is required.' });
       return;
     }
-    const newPlan = {
-      id: new Date().toISOString(),
-      name: planName,
+
+    const user = auth.currentUser;
+    if (!user) {
+        toast({ variant: 'destructive', title: 'Not Authenticated', description: 'You must be logged in to save a plan.' });
+        return;
+    }
+
+    setSaving(true);
+    
+    const planData = {
+      planName,
       description: planDescription,
-      days: days,
+      days,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+      userId: user.uid,
     };
-    setSavedPlans([...savedPlans, newPlan]);
-    toast({ title: 'Plan Saved!', description: 'Your new custom plan has been saved.' });
-    router.push('/dashboard/my-plans');
+
+    try {
+        const customPlansCollectionRef = collection(db, 'users', user.uid, 'customPlans');
+        await addDoc(customPlansCollectionRef, planData);
+        toast({ title: 'Plan Saved!', description: 'Your new custom plan has been saved to your account.' });
+        router.push('/dashboard/my-plans');
+    } catch (error) {
+        console.error("Error saving plan:", error);
+        toast({ variant: 'destructive', title: 'Save Failed', description: 'Could not save the plan to the database.' });
+    } finally {
+        setSaving(false);
+    }
   };
 
   const filteredExercises = useMemo(() => {
@@ -213,7 +233,7 @@ export default function CreatePlanPage() {
                       </Card>
                     )) : (
                         <div className="col-span-full text-center py-10">
-                            <p className="text-muted-foreground">No exercises found.</p>
+                            <p className="text-muted-foreground">No exercises found for this letter.</p>
                         </div>
                     )}
                   </div>
@@ -231,12 +251,13 @@ export default function CreatePlanPage() {
         </Button>
         <div className="flex gap-2">
             <Button variant="outline" onClick={() => router.back()}>Cancel</Button>
-            <Button onClick={savePlan}>
-                <Check className="mr-2 h-4 w-4"/>
-                Save Plan
+            <Button onClick={savePlan} disabled={saving}>
+                {saving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Check className="mr-2 h-4 w-4"/>}
+                {saving ? 'Saving...' : 'Save Plan'}
             </Button>
         </div>
       </div>
     </div>
   );
 }
+    

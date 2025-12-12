@@ -1,12 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlusCircle, Trash2, Play, FilePlus } from 'lucide-react';
+import { PlusCircle, Trash2, Play, FilePlus, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import { useLocalStorage } from '@/hooks/use-local-storage';
-import { CustomWorkoutPlan, DayWorkout } from '@/lib/workouts';
+import { auth, db } from '@/lib/firebase';
+import { collection, doc, deleteDoc } from 'firebase/firestore';
+import { useCollection } from '@/firebase/firestore/use-collection';
+import { useUser, useMemoFirebase } from '@/firebase';
+import type { CustomWorkoutPlan, DayWorkout, CustomExercise } from '@/lib/workouts';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,19 +25,25 @@ import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import { ActiveWorkoutDialog } from '@/components/active-workout-dialog';
 
+interface StoredWorkoutPlan extends Omit<CustomWorkoutPlan, 'id'> {
+    // This interface matches the data fetched from Firestore, which includes the doc ID.
+}
+
 export default function MyPlansPage() {
-  const [savedPlans, setSavedPlans] = useLocalStorage<CustomWorkoutPlan[]>('custom-workout-plans', []);
-  const [isClient, setIsClient] = useState(false);
+  const { user } = useUser();
   const { toast } = useToast();
   const router = useRouter();
+
+  const customPlansQuery = useMemoFirebase(() => 
+    user ? collection(db, 'users', user.uid, 'customPlans') : null
+  , [user]);
+
+  const { data: savedPlans, isLoading } = useCollection<StoredWorkoutPlan>(customPlansQuery);
+
   const [isWorkoutDialogOpen, setWorkoutDialogOpen] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState<DayWorkout | null>(null);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  
-  const handleStartWorkout = (plan: CustomWorkoutPlan) => {
+  const handleStartWorkout = (plan: StoredWorkoutPlan) => {
     if (Object.keys(plan.days).length === 0) {
       toast({
         variant: 'destructive',
@@ -43,12 +52,20 @@ export default function MyPlansPage() {
       });
       return;
     }
-    // Start with the first day by default
     const firstDayKey = Object.keys(plan.days)[0];
-    const firstDayExercises = plan.days[firstDayKey];
+    const firstDayExercises: CustomExercise[] = plan.days[firstDayKey];
+
+    if (!firstDayExercises || firstDayExercises.length === 0) {
+        toast({
+            variant: 'destructive',
+            title: 'Empty Day',
+            description: 'The first day of this plan has no exercises.'
+        });
+        return;
+    }
 
     const formattedWorkout: DayWorkout = {
-      focus: `${plan.name} - ${firstDayKey}`,
+      focus: `${plan.planName} - ${firstDayKey}`,
       exercises: firstDayExercises.map(ex => ({
           ...ex,
           sets: ex.customSets,
@@ -61,17 +78,32 @@ export default function MyPlansPage() {
   };
 
 
-  const handleDeletePlan = (id: string) => {
-    setSavedPlans(savedPlans.filter(p => p.id !== id));
-    toast({
-      variant: 'destructive',
-      title: 'Plan Deleted',
-      description: 'Your custom workout plan has been deleted.',
-    });
+  const handleDeletePlan = async (planId: string) => {
+    if (!user) return;
+    try {
+        const planDocRef = doc(db, 'users', user.uid, 'customPlans', planId);
+        await deleteDoc(planDocRef);
+        toast({
+            variant: 'destructive',
+            title: 'Plan Deleted',
+            description: 'Your custom workout plan has been deleted.',
+        });
+    } catch (error) {
+        console.error("Error deleting plan: ", error);
+        toast({
+            variant: 'destructive',
+            title: 'Error',
+            description: 'Failed to delete the plan. Please try again.',
+        });
+    }
   };
-
-  if (!isClient) {
-    return null;
+  
+   if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    );
   }
 
   return (
@@ -90,12 +122,12 @@ export default function MyPlansPage() {
         </Link>
       </div>
 
-      {savedPlans.length > 0 ? (
+      {savedPlans && savedPlans.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {savedPlans.map(plan => (
             <Card key={plan.id} className="flex flex-col">
               <CardHeader>
-                <CardTitle className="font-headline">{plan.name}</CardTitle>
+                <CardTitle className="font-headline">{plan.planName}</CardTitle>
                 <CardDescription>{plan.description || 'No description'}</CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
@@ -120,7 +152,7 @@ export default function MyPlansPage() {
                     <AlertDialogHeader>
                       <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        This will permanently delete your custom plan: "{plan.name}". This action cannot be undone.
+                        This will permanently delete your custom plan: "{plan.planName}". This action cannot be undone.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -155,3 +187,4 @@ export default function MyPlansPage() {
     </>
   );
 }
+    
