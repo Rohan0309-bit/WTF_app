@@ -14,13 +14,6 @@
  * - Nutrition plans (`/users/{userId}/nutritionPlans/{nutritionPlanId}`)
  * - Meals (`/users/{userId}/nutritionPlans/{nutritionPlanId}/meals/{mealId}`)
  * - Progress tracking data (`/users/{userId}/progressTracking/{progressTrackingId}`)
- *
- * Key Security Decisions:
- * - All user-created content is private and accessible only to the creating user.
- * - Listing of user profiles is explicitly denied to prevent unauthorized access to user data.
- * - Write operations are guarded by ownership checks to ensure data integrity.
- * - Data required for authorization (e.g., `userProfileId`) is denormalized into subcollections
- *   to avoid costly `get()` calls in security rules.
  */
 rules_version = '2';
 service cloud.firestore {
@@ -42,6 +35,16 @@ service cloud.firestore {
       allow read, delete: if isOwner();
       allow write: if isOwner();
       allow list: if false;
+    }
+    
+    /**
+     * @description Enforces access control for custom workout plans under a user's profile.
+     * @path /users/{userId}/customPlans/{planId}
+     * @allow (read, write, delete) - Authenticated user can access/modify their own custom plans.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/customPlans/{planId} {
+        allow read, write, delete: if request.auth != null && request.auth.uid == userId;
     }
 
     /**
