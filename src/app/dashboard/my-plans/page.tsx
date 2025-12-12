@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { PlusCircle, Trash2, Play, FilePlus } from 'lucide-react';
 import Link from 'next/link';
 import { useLocalStorage } from '@/hooks/use-local-storage';
-import { CustomWorkoutPlan } from '@/lib/workouts';
+import { CustomWorkoutPlan, DayWorkout } from '@/lib/workouts';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,16 +21,46 @@ import {
 } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { ActiveWorkoutDialog } from '@/components/active-workout-dialog';
 
 export default function MyPlansPage() {
   const [savedPlans, setSavedPlans] = useLocalStorage<CustomWorkoutPlan[]>('custom-workout-plans', []);
   const [isClient, setIsClient] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
+  const [isWorkoutDialogOpen, setWorkoutDialogOpen] = useState(false);
+  const [selectedWorkout, setSelectedWorkout] = useState<DayWorkout | null>(null);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+  
+  const handleStartWorkout = (plan: CustomWorkoutPlan) => {
+    if (Object.keys(plan.days).length === 0) {
+      toast({
+        variant: 'destructive',
+        title: 'Empty Plan',
+        description: 'This plan has no workout days. Please edit it to add exercises.',
+      });
+      return;
+    }
+    // Start with the first day by default
+    const firstDayKey = Object.keys(plan.days)[0];
+    const firstDayExercises = plan.days[firstDayKey];
+
+    const formattedWorkout: DayWorkout = {
+      focus: `${plan.name} - ${firstDayKey}`,
+      exercises: firstDayExercises.map(ex => ({
+          ...ex,
+          sets: ex.customSets,
+          reps: ex.customReps,
+          rest: ex.customRest
+      }))
+    };
+    setSelectedWorkout(formattedWorkout);
+    setWorkoutDialogOpen(true);
+  };
+
 
   const handleDeletePlan = (id: string) => {
     setSavedPlans(savedPlans.filter(p => p.id !== id));
@@ -46,6 +76,7 @@ export default function MyPlansPage() {
   }
 
   return (
+    <>
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
@@ -69,12 +100,14 @@ export default function MyPlansPage() {
                 <CardDescription>{plan.description || 'No description'}</CardDescription>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-sm font-semibold text-muted-foreground">
-                  {Object.keys(plan.days).length} workout day(s)
-                </p>
+                 <div className="flex flex-wrap gap-1">
+                  {Object.keys(plan.days).map(day => (
+                    <span key={day} className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-full">{day.substring(0,3)}</span>
+                  ))}
+                 </div>
               </CardContent>
               <CardContent className="flex justify-end gap-2">
-                 <Button variant="outline" size="sm" onClick={() => router.push(`/dashboard/my-plans/workout-session/${plan.id}`)}>
+                 <Button variant="outline" size="sm" onClick={() => handleStartWorkout(plan)}>
                   <Play className="mr-2 h-4 w-4" />
                   Start
                 </Button>
@@ -115,5 +148,11 @@ export default function MyPlansPage() {
           </Card>
       )}
     </div>
+     <ActiveWorkoutDialog 
+        isOpen={isWorkoutDialogOpen}
+        onOpenChange={setWorkoutDialogOpen}
+        workout={selectedWorkout}
+      />
+    </>
   );
 }
