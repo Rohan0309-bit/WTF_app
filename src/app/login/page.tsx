@@ -173,6 +173,7 @@ export default function LoginPage() {
           title: 'Email Already Registered',
           description: "This email is already in use. Please sign in instead.",
         });
+        setLoading(false); // Make sure to stop loading here
         return;
       }
 

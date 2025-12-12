@@ -1,21 +1,20 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp, getApps, getApp } from "firebase/app";
+import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signOut, type User } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator, doc, setDoc, serverTimestamp, enableIndexedDbPersistence } from "firebase/firestore";
+import { firebaseConfig } from "@/firebase/config"; // Correctly import the config
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  "projectId": "well-trained-freak-bc3s8",
-  "appId": "1:28358839:web:9e0e7ba54a5aafbe0a3532",
-  "storageBucket": "well-trained-freak-bc3s8.firebasestorage.app",
-  "apiKey": "AIzaSyAuBiCFf0IyXkfBXkbXrclRwD5W79EqpzA",
-  "authDomain": "well-trained-freak-bc3s8.firebaseapp.com",
-  "measurementId": "",
-  "messagingSenderId": "28358839"
-};
+// const firebaseConfig = { ... }; // This is now imported
 
 // Initialize Firebase
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+let app: FirebaseApp;
+if (!getApps().length) {
+    app = initializeApp(firebaseConfig);
+} else {
+    app = getApp();
+}
+
 
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
