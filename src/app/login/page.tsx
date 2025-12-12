@@ -7,13 +7,107 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
 import { signInWithGoogle, loginWithEmailPassword, auth } from '@/lib/firebase';
-import { createUserWithEmailAndPassword, onAuthStateChanged, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, fetchSignInMethodsForEmail, sendPasswordResetEmail } from 'firebase/auth';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+
+function ForgotPasswordDialog() {
+    const { toast } = useToast();
+    const [isOpen, setIsOpen] = useState(false);
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handlePasswordReset = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email) {
+            toast({ variant: 'destructive', title: 'Error', description: 'Please enter an email.' });
+            return;
+        }
+        if (!emailRegex.test(email)) {
+            toast({ variant: 'destructive', title: 'Error', description: 'Invalid email format.' });
+            return;
+        }
+
+        setLoading(true);
+        try {
+            await sendPasswordResetEmail(auth, email);
+            toast({ title: 'Password reset link sent!', description: 'Check your inbox to reset your password.' });
+            setIsOpen(false);
+            setEmail('');
+        } catch (error: any) {
+            let description = "Something went wrong. Please try again.";
+            if (error.code === 'auth/user-not-found') {
+                description = "No account exists with this email.";
+            } else if (error.code === 'auth/invalid-email') {
+                description = "Invalid email format.";
+            }
+            toast({ variant: 'destructive', title: 'Error', description });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+                <Button variant="link" className="px-0 text-sm text-gray-400 hover:text-red-500 h-auto py-1">
+                    Forgot Password?
+                </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px] bg-card border-gray-800 text-white">
+                <AnimatePresence>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <DialogHeader>
+                            <DialogTitle className="font-headline text-2xl">Reset Password</DialogTitle>
+                            <DialogDescription className="text-gray-400">
+                                Enter your email and we’ll send you a reset link.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <form onSubmit={handlePasswordReset}>
+                            <div className="grid gap-4 py-4">
+                                <div className="grid grid-cols-4 items-center gap-4">
+                                    <Label htmlFor="reset-email" className="text-right">
+                                        Email
+                                    </Label>
+                                    <Input
+                                        id="reset-email"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="col-span-3 bg-gray-800 border-gray-700 placeholder:text-gray-500 focus:ring-red-500"
+                                        placeholder="you@example.com"
+                                    />
+                                </div>
+                            </div>
+                            <DialogFooter>
+                                <DialogClose asChild>
+                                    <Button type="button" variant="secondary">Cancel</Button>
+                                </DialogClose>
+                                <Button type="submit" disabled={loading} className="bg-red-600 hover:bg-red-700">
+                                    {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    Send Reset Link
+                                </Button>
+                            </DialogFooter>
+                        </form>
+                    </motion.div>
+                </AnimatePresence>
+            </DialogContent>
+        </Dialog>
+    );
+}
+
 
 export default function LoginPage() {
   const router = useRouter();
@@ -174,7 +268,10 @@ export default function LoginPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="password" className="text-white">Password</Label>
+                <div className="flex justify-between items-center">
+                    <Label htmlFor="password" className="text-white">Password</Label>
+                    <ForgotPasswordDialog />
+                </div>
                 <div className="relative">
                   <Input
                     id="password"
@@ -262,5 +359,4 @@ export default function LoginPage() {
       </motion.div>
     </div>
   );
-
-    
+}
