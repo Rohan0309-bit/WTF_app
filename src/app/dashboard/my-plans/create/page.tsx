@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,9 +11,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { MASTER_EXERCISE_DATA, ExerciseDetails } from '@/lib/workouts';
 import { useLocalStorage } from '@/hooks/use-local-storage';
-import { PlusCircle, Trash2, X, Dumbbell, Repeat, Timer, Check } from 'lucide-react';
+import { PlusCircle, Trash2, X, Dumbbell, Repeat, Timer, Check, Search } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const allExercises: ExerciseDetails[] = Object.entries(MASTER_EXERCISE_DATA).map(([name, details]) => ({
   name,
@@ -24,6 +26,8 @@ const allExercises: ExerciseDetails[] = Object.entries(MASTER_EXERCISE_DATA).map
   instructions: details.instructions || 'No instructions available.',
   gifUrl: details.gifUrl || `https://placehold.co/400x300.png`,
 })).sort((a, b) => a.name.localeCompare(b.name));
+
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
 
 interface CustomExercise extends ExerciseDetails {
   customSets: string;
@@ -42,6 +46,8 @@ export default function CreatePlanPage() {
   const [days, setDays] = useState<Record<string, CustomExercise[]>>({ 'Monday': [] });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [activeDay, setActiveDay] = useState('Monday');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [alphabetFilter, setAlphabetFilter] = useState<string | null>(null);
 
   const addDay = () => {
     const nextDay = WEEK_DAYS.find(d => !Object.keys(days).includes(d));
@@ -97,6 +103,14 @@ export default function CreatePlanPage() {
     router.push('/dashboard/my-plans');
   };
 
+  const filteredExercises = useMemo(() => {
+    return allExercises.filter(ex => {
+        const matchesSearch = ex.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesAlphabet = alphabetFilter ? ex.name.toUpperCase().startsWith(alphabetFilter) : true;
+        return matchesSearch && matchesAlphabet;
+    });
+  }, [searchTerm, alphabetFilter]);
+
   return (
     <div className="space-y-6">
       <Card>
@@ -125,6 +139,7 @@ export default function CreatePlanPage() {
             </Button>
           </CardHeader>
           <CardContent className="space-y-4">
+            {exercises.length === 0 && <p className="text-muted-foreground text-sm">No exercises added for this day.</p>}
             {exercises.map((ex, index) => (
               <div key={index} className="flex items-start gap-4 p-2 border rounded-lg">
                 <Image src={ex.gifUrl!} alt={ex.name} width={60} height={60} className="rounded-md" />
@@ -141,42 +156,75 @@ export default function CreatePlanPage() {
                 </Button>
               </div>
             ))}
-            <Dialog open={isDialogOpen && activeDay === day} onOpenChange={(open) => { if (!open) setIsDialogOpen(false); }}>
+            <Dialog open={isDialogOpen && activeDay === day} onOpenChange={(open) => { if (!open) { setIsDialogOpen(false); setSearchTerm(''); setAlphabetFilter(null); } }}>
               <DialogTrigger asChild>
                 <Button variant="outline" onClick={() => { setActiveDay(day); setIsDialogOpen(true); }}>
                   <PlusCircle className="mr-2 h-4 w-4" />
                   Add Exercise
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-3xl h-5/6 flex flex-col">
+              <DialogContent className="max-w-4xl h-[90vh] flex flex-col">
                 <DialogHeader>
                   <DialogTitle>Add Exercise to {day}</DialogTitle>
                 </DialogHeader>
-                <div className="flex-grow overflow-y-auto pr-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {allExercises.map(ex => (
+                <div className="flex flex-col sm:flex-row gap-2">
+                    <div className="relative flex-1">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input 
+                            placeholder="Search exercises..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="pl-10"
+                        />
+                    </div>
+                     <div className="flex-shrink-0">
+                        <Button variant={alphabetFilter === null ? 'default' : 'outline'} onClick={() => setAlphabetFilter(null)}>All</Button>
+                    </div>
+                </div>
+                 <ScrollArea className="flex-shrink-0">
+                    <div className="flex items-center gap-1 p-2">
+                        {alphabet.map(letter => (
+                            <Button
+                                key={letter}
+                                variant={alphabetFilter === letter ? 'default' : 'ghost'}
+                                size="icon"
+                                className="h-8 w-8 text-xs"
+                                onClick={() => setAlphabetFilter(letter)}
+                            >
+                                {letter}
+                            </Button>
+                        ))}
+                    </div>
+                 </ScrollArea>
+                <ScrollArea className="flex-grow">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-1">
+                    {filteredExercises.length > 0 ? filteredExercises.map(ex => (
                       <Card key={ex.name} className="flex flex-col">
-                        <CardHeader className="p-2">
-                           <Image src={ex.gifUrl!} alt={ex.name} width={200} height={150} className="rounded-md mx-auto" />
+                        <CardHeader className="p-0">
+                           <Image src={ex.gifUrl!} alt={ex.name} width={200} height={150} className="rounded-t-lg mx-auto w-full object-cover aspect-video" />
                         </CardHeader>
-                        <CardContent className="p-3 flex-grow">
-                          <p className="font-semibold text-sm">{ex.name}</p>
+                        <CardContent className="p-3 flex-grow flex flex-col">
+                          <p className="font-semibold text-sm flex-grow">{ex.name}</p>
                           <p className="text-xs text-muted-foreground capitalize">{ex.muscle}</p>
                         </CardContent>
-                         <CardContent className="p-3">
+                         <CardContent className="p-3 pt-0">
                             <Button size="sm" className="w-full" onClick={() => addExerciseToDay(ex)}>Add</Button>
                          </CardContent>
                       </Card>
-                    ))}
+                    )) : (
+                        <div className="col-span-full text-center py-10">
+                            <p className="text-muted-foreground">No exercises found.</p>
+                        </div>
+                    )}
                   </div>
-                </div>
+                </ScrollArea>
               </DialogContent>
             </Dialog>
           </CardContent>
         </Card>
       ))}
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mt-6">
         <Button onClick={addDay} variant="secondary" disabled={Object.keys(days).length >= 7}>
           <PlusCircle className="mr-2 h-4 w-4" />
           Add Day
