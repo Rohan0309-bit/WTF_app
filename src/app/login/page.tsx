@@ -65,18 +65,19 @@ export default function LoginPage() {
       await loginWithEmailPassword(email.trim(), password);
       router.push('/dashboard');
     } catch (error: any) {
-      const errorMap: Record<string, string> = {
-        'auth/wrong-password': 'Incorrect password. Try again.',
-        'auth/invalid-credential': 'Incorrect password. Try again.',
-        'auth/too-many-requests': 'Too many attempts. Try again later.',
-        'auth/user-not-found': 'No account found with this email. Please create an account.',
-      };
+      let description = "Something went wrong. Please try again.";
+
+      if (error.code === "auth/invalid-credential" || error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
+        description = "Incorrect email or password.";
+      } else if (error.code === "auth/too-many-requests") {
+        description = "Too many attempts. Please wait a moment and try again.";
+      }
+      
       toast({
         variant: 'destructive',
         title: 'Login Failed',
-        description: errorMap[error.code] || 'Unexpected error. Try again.',
+        description: description,
       });
-      console.error('Email login failed', error);
     } finally {
       setLoading(false);
     }
