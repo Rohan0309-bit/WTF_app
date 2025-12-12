@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, loginWithEmailPassword, auth } from '@/lib/firebase';
+import { signInWithGoogle, loginWithEmailPassword, auth, createUserProfile } from '@/lib/firebase';
 import { createUserWithEmailAndPassword, onAuthStateChanged, fetchSignInMethodsForEmail, sendPasswordResetEmail } from 'firebase/auth';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
@@ -42,50 +42,39 @@ export default function LoginPage() {
     if (!resetEmail) {
       toast({
         variant: "destructive",
-        title: "Email Required",
-        description: "Please enter your email.",
+        title: "Missing Email",
+        description: "Please enter your registered email.",
       });
       return;
     }
-
-    if (!resetEmail.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      toast({
-        variant: "destructive",
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
-      });
-      return;
-    }
-
+  
+    setResetLoading(true);
     try {
-      setResetLoading(true);
-      await sendPasswordResetEmail(auth, resetEmail);
-
+      await sendPasswordResetEmail(auth, resetEmail.trim());
+  
       toast({
-        title: "Reset Link Sent!",
-        description: "Check your inbox for the password reset link.",
+        title: "Reset Link Sent",
+        description: "Check your inbox for a password reset email.",
       });
-
       setOpenResetModal(false);
       setResetEmail("");
-
     } catch (error: any) {
-      console.error("Reset Error:", error);
-
       const errorMap: Record<string, string> = {
-        "auth/user-not-found": "No account exists with this email.",
-        "auth/invalid-email": "Invalid email format.",
-        "auth/missing-email": "Email is required.",
+        "auth/user-not-found":
+          "No account exists with this email.",
+        "auth/invalid-email":
+          "Enter a valid email address.",
+        "auth/missing-email":
+          "Please enter your email first.",
       };
-
+  
       toast({
         variant: "destructive",
         title: "Reset Failed",
-        description: errorMap[error.code] || "Something went wrong.",
+        description: errorMap[error.code] || "Could not send reset link.",
       });
-
     } finally {
-      setResetLoading(false);
+        setResetLoading(false);
     }
   };
 
