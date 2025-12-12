@@ -182,7 +182,7 @@ export default function CreatePlanPage() {
                     </div>
                 </div>
                  <ScrollArea className="flex-shrink-0">
-                    <div className="flex items-center gap-1 p-2">
+                    <div className="flex flex-wrap items-center gap-1 p-2">
                         {alphabet.map(letter => (
                             <Button
                                 key={letter}
