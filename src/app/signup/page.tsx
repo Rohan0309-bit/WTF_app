@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, registerWithEmailPassword, getSignInMethods, auth, createUserProfile, signOut } from '@/lib/firebase';
+import { signInWithGoogle, registerWithEmailPassword, auth, createUserProfile, signOut } from '@/lib/firebase';
 import { db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { fetchSignInMethodsForEmail, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -79,9 +80,8 @@ export default function SignupPage() {
     setLoading(true);
 
      try {
-        await signOut(auth);
-        
-        const methods = await getSignInMethods(email.trim());
+        const methods = await fetchSignInMethodsForEmail(auth, email.trim());
+
         if (methods.length > 0) {
             toast({
                 variant: 'destructive',
@@ -93,7 +93,7 @@ export default function SignupPage() {
             return;
         }
 
-      const result = await registerWithEmailPassword(email, password);
+      const result = await createUserWithEmailAndPassword(auth, email, password);
       
       const profileData = {
           name,
