@@ -168,7 +168,7 @@ export function AppSidebar() {
   if (isMobile) {
     return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-            <SheetContent side="left" className="w-72 bg-card p-4 flex flex-col">
+            <SheetContent side="left" className="w-72 bg-transparent p-4 flex flex-col">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <SidebarNav />
             </SheetContent>
