@@ -67,7 +67,7 @@ export default function LoginPage() {
     } catch (error: any) {
       let description = "Something went wrong. Please try again.";
 
-      if (error.code === "auth/invalid-credential" || error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
+      if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
         description = "Incorrect email or password.";
       } else if (error.code === "auth/too-many-requests") {
         description = "Too many attempts. Please wait a moment and try again.";
@@ -109,10 +109,11 @@ export default function LoginPage() {
       router.push('/dashboard');
     } catch (error: any) {
        const errorMap: Record<string, string> = {
+            "auth/email-already-in-use": "This email is already registered. Please log in instead.",
             "auth/weak-password": "Password should be at least 6 characters.",
             "auth/invalid-email": "Invalid email address format.",
         };
-      const description = errorMap[error.code] || 'Unexpected error. Try again.';
+      const description = errorMap[error.code] || 'Something went wrong. Please try again.';
       toast({
         variant: 'destructive',
         title: 'Signup Failed',
@@ -250,5 +251,8 @@ export default function LoginPage() {
       </motion.div>
     </div>
   );
+
+    
+
 
     
