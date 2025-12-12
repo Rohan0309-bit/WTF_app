@@ -92,34 +92,45 @@ export default function LoginPage() {
       });
       return;
     }
+
     setLoading(true);
+
     try {
       const methods = await fetchSignInMethodsForEmail(auth, email.trim());
       if (methods.length > 0) {
         toast({
-            variant: 'destructive',
-            title: 'Email Already Registered',
-            description: `This email is already in use. Please sign in instead.`,
+          variant: 'destructive',
+          title: 'Email Already Registered',
+          description: "This email is already in use. Please sign in instead.",
         });
         setLoading(false);
         return;
       }
-      
+
       await createUserWithEmailAndPassword(auth, email.trim(), password);
       router.push('/dashboard');
+
     } catch (error: any) {
-       const errorMap: Record<string, string> = {
-            "auth/email-already-in-use": "This email is already registered. Please log in instead.",
-            "auth/weak-password": "Password should be at least 6 characters.",
-            "auth/invalid-email": "Invalid email address format.",
-        };
-      const description = errorMap[error.code] || 'Something went wrong. Please try again.';
+      if (error.code === "auth/email-already-in-use") {
+        toast({
+          variant: 'destructive',
+          title: 'Email Already Registered',
+          description: "This email is already in use. Please sign in instead.",
+        });
+        return;
+      }
+
+      const errorMap: Record<string, string> = {
+        "auth/weak-password": "Password should be at least 6 characters.",
+        "auth/invalid-email": "Invalid email address.",
+      };
+
       toast({
         variant: 'destructive',
         title: 'Signup Failed',
-        description: description,
+        description: errorMap[error.code] || 'Something went wrong. Please try again.',
       });
-      console.error('Quick signup failed', error);
+      console.error("Quick signup failed:", error);
     } finally {
       setLoading(false);
     }
