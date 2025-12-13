@@ -323,9 +323,9 @@ export default function LoginPage() {
         <DialogContent className="bg-card/80 backdrop-blur-xl border-border text-foreground rounded-2xl">
             <DialogHeader>
             <DialogTitle className="text-xl font-bold">Reset Password</DialogTitle>
-            <p className="text-muted-foreground text-sm">
+            <DialogDescription className="text-muted-foreground text-sm">
                 Enter your email and we’ll send you a reset link instantly.
-            </p>
+            </DialogDescription>
             </DialogHeader>
 
             <div className="space-y-3 mt-3">
