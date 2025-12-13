@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -9,10 +10,10 @@ const mindFocusCategories = [
   {
     title: 'Visualization & Goal-Setting',
     description: 'Mental rehearsal, goal mapping, and performance visualization to mentally plan workouts, poses, or athletic moves.',
-    href: '#',
+    href: '/dashboard/mind-focus-training/visualization-goal-setting',
     image: 'https://i.ibb.co/yF5DccBG/Whats-App-Image-2025-12-13-at-13-04-37.jpg',
     icon: Target,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     title: 'Meditation & Mindfulness',
