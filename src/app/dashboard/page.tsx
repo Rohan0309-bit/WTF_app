@@ -48,7 +48,7 @@ const features = [
     title: 'Posing Tutorials',
     description: 'Master the art of physique presentation.',
     href: '/dashboard/posing-tutorials',
-    image: 'https://i.ibb.co/HTW1T1jh/Whats-App-Image-2025-12-11-at-22-18-43.jpg',
+    image: 'https://i.ibb.co/HTW1T1j/Whats-App-Image-2025-12-11-at-22-18-43.jpg',
   },
   {
     title: 'Track Progress',
