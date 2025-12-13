@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -213,10 +214,7 @@ const SidebarTrigger = React.forwardRef<
         toggleSidebar()
       }}
       {...props}
-    >
-      <Menu />
-      <span className="sr-only">Toggle Sidebar</span>
-    </Button>
+    />
   )
 })
 SidebarTrigger.displayName = "SidebarTrigger"
@@ -638,7 +636,7 @@ SidebarMenuSub.displayName = "SidebarMenuSub"
 const SidebarMenuSubItem = React.forwardRef<
   HTMLLIElement,
   React.ComponentProps<"li">
->(({ ...props }, ref) => <li ref={ref} {...props} />)
+>((props, ref) => <li ref={ref} {...props} />)
 SidebarMenuSubItem.displayName = "SidebarMenuSubItem"
 
 const SidebarMenuSubButton = React.forwardRef<
