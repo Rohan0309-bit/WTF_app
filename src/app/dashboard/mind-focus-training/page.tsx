@@ -41,10 +41,10 @@ const mindFocusCategories = [
   {
     title: 'Performance Psychology',
     description: 'Techniques like positive self-talk and confidence building to stay motivated, reduce anxiety, and perform better under pressure.',
-    href: '#',
+    href: '/dashboard/mind-focus-training/performance-psychology',
     image: 'https://i.ibb.co/r2h4hmb5/Whats-App-Image-2025-12-13-at-13-04-38-2.jpg',
     icon: UserCheck,
-    comingSoon: true,
+    comingSoon: false,
   },
 ];
 
