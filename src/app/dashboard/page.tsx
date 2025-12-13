@@ -15,34 +15,28 @@ import { useUser } from '@/firebase';
 
 const features = [
   {
-    title: 'My Customized Plans',
-    description: 'Create and manage your own custom workout plans.',
-    href: '/dashboard/my-plans',
-    image: 'https://i.ibb.co/Z64w6vf0/Whats-App-Image-2025-12-11-at-22-18-41.jpg',
-  },
-   {
-    title: 'Exercise Library',
-    description: 'Browse hundreds of exercises with animated examples.',
-    href: '/dashboard/exercise-library',
-    image: 'https://i.ibb.co/ZzHq6fvz/Whats-App-Image-2025-12-11-at-22-18-45.jpg',
-  },
-  {
     title: 'General Workouts',
     description: 'Browse our library of pre-defined workout plans.',
     href: '/dashboard/general-workouts',
     image: 'https://i.ibb.co/MxMLz7L2/Whats-App-Image-2025-12-11-at-22-18-43-1.jpg',
   },
   {
-    title: 'Calculators',
-    description: 'Calculate your BMI and daily calorie needs.',
-    href: '/dashboard/calculators',
-    image: 'https://i.ibb.co/rKQrtpz7/Whats-App-Image-2025-12-11-at-22-18-44.jpg',
+    title: 'My Customized Plans',
+    description: 'Create and manage your own custom workout plans.',
+    href: '/dashboard/my-plans',
+    image: 'https://i.ibb.co/Z64w6vf0/Whats-App-Image-2025-12-11-at-22-18-41.jpg',
   },
   {
-    title: 'Nutrition Plans',
-    description: 'Find the perfect meal plan for your goals.',
-    href: '/dashboard/nutrition',
-    image: 'https://i.ibb.co/YF8VcTHH/Whats-App-Image-2025-12-11-at-22-18-44-1.jpg',
+    title: 'Exercise Library',
+    description: 'Browse hundreds of exercises with animated examples.',
+    href: '/dashboard/exercise-library',
+    image: 'https://i.ibb.co/ZzHq6fvz/Whats-App-Image-2025-12-11-at-22-18-45.jpg',
+  },
+  {
+    title: 'Mind & Focus Training',
+    description: 'Sharpen your mental game with focus and meditation exercises.',
+    href: '/dashboard/mind-focus-training',
+    image: 'https://i.ibb.co/bjL1Zbj3/Whats-App-Image-2025-12-13-at-12-48-08.jpg',
   },
   {
     title: 'Posing Tutorials',
@@ -51,16 +45,22 @@ const features = [
     image: 'https://i.ibb.co/HTW1T1jh/Whats-App-Image-2025-12-11-at-22-18-43.jpg',
   },
   {
+    title: 'Nutrition Plans',
+    description: 'Find the perfect meal plan for your goals.',
+    href: '/dashboard/nutrition',
+    image: 'https://i.ibb.co/YF8VcTHH/Whats-App-Image-2025-12-11-at-22-18-44-1.jpg',
+  },
+  {
+    title: 'Calculators',
+    description: 'Calculate your BMI and daily calorie needs.',
+    href: '/dashboard/calculators',
+    image: 'https://i.ibb.co/rKQrtpz7/Whats-App-Image-2025-12-11-at-22-18-44.jpg',
+  },
+  {
     title: 'Track Progress',
     description: 'Monitor your gains and stay motivated.',
     href: '/dashboard/progress',
     image: 'https://i.ibb.co/ksPLhW16/Whats-App-Image-2025-12-11-at-22-18-42.jpg',
-  },
-  {
-    title: 'Mind & Focus Training',
-    description: 'Sharpen your mental game with focus and meditation exercises.',
-    href: '/dashboard/mind-focus-training',
-    image: 'https://i.ibb.co/bjL1Zbj3/Whats-App-Image-2025-12-13-at-12-48-08.jpg',
   },
 ];
 

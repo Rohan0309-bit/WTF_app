@@ -142,14 +142,14 @@ function SidebarNav() {
 
 const menu = [
   { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { name: 'My Customized Plans', icon: ListPlus, path: '/dashboard/my-plans'},
   { name: 'Workouts', icon: Dumbbell, path: '/dashboard/general-workouts' },
+  { name: 'My Customized Plans', icon: ListPlus, path: '/dashboard/my-plans'},
   { name: 'Exercise Library', icon: BookOpen, path: '/dashboard/exercise-library' },
-  { name: 'Calculators', icon: Calculator, path: '/dashboard/calculators' },
-  { name: 'Nutrition', icon: UtensilsCrossed, path: '/dashboard/nutrition' },
-  { name: 'Posing', icon: PersonStanding, path: '/dashboard/posing-tutorials' },
-  { name: 'Progress', icon: TrendingUp, path: '/dashboard/progress' },
   { name: 'Mind & Focus', icon: BrainCircuit, path: '/dashboard/mind-focus-training' },
+  { name: 'Posing', icon: PersonStanding, path: '/dashboard/posing-tutorials' },
+  { name: 'Nutrition', icon: UtensilsCrossed, path: '/dashboard/nutrition' },
+  { name: 'Calculators', icon: Calculator, path: '/dashboard/calculators' },
+  { name: 'Progress', icon: TrendingUp, path: '/dashboard/progress' },
 ];
 
 export function AppSidebar() {
