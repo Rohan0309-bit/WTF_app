@@ -1,4 +1,3 @@
-
 import type { SVGProps } from "react";
 import { CheckCircle2 } from "lucide-react";
 import Image from 'next/image';
