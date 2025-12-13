@@ -56,6 +56,12 @@ const features = [
     href: '/dashboard/progress',
     image: 'https://i.ibb.co/ksPLhW16/Whats-App-Image-2025-12-11-at-22-18-42.jpg',
   },
+  {
+    title: 'Mind & Focus Training',
+    description: 'Sharpen your mental game with focus and meditation exercises.',
+    href: '/dashboard/mind-focus-training',
+    image: 'https://i.ibb.co/bjL1Zbj3/Whats-App-Image-2025-12-13-at-12-48-08.jpg',
+  },
 ];
 
 export default function DashboardPage() {

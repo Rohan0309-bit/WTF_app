@@ -18,6 +18,7 @@ import {
   ListPlus,
   MoreVertical,
   Menu,
+  BrainCircuit,
 } from 'lucide-react';
 import { Icons } from '@/components/icons';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
@@ -148,6 +149,7 @@ const menu = [
   { name: 'Nutrition', icon: UtensilsCrossed, path: '/dashboard/nutrition' },
   { name: 'Posing', icon: PersonStanding, path: '/dashboard/posing-tutorials' },
   { name: 'Progress', icon: TrendingUp, path: '/dashboard/progress' },
+  { name: 'Mind & Focus', icon: BrainCircuit, path: '/dashboard/mind-focus-training' },
 ];
 
 export function AppSidebar() {
