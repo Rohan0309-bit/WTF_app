@@ -184,14 +184,14 @@ export default function LoginPage() {
 
   return (
     <>
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900 p-4">
+    <div className="flex items-center justify-center min-h-screen bg-background p-4">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="w-full max-w-md"
       >
-        <Card className="bg-black/40 backdrop-blur-lg shadow-2xl border border-gray-800 rounded-2xl overflow-hidden">
+        <Card className="bg-card/70 dark:bg-card/50 backdrop-blur-lg shadow-2xl border-border rounded-2xl overflow-hidden">
           <CardHeader className="text-center">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -201,14 +201,14 @@ export default function LoginPage() {
             >
               <Icons.logo className="h-20 w-20 text-primary" />
             </motion.div>
-            <CardTitle className="text-3xl font-bold text-white">Welcome Back</CardTitle>
-            <CardDescription className="text-gray-400">Sign in or create an account instantly</CardDescription>
+            <CardTitle className="text-3xl font-bold text-foreground">Welcome Back</CardTitle>
+            <CardDescription className="text-muted-foreground">Sign in or create an account instantly</CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
             <form onSubmit={handleEmailLogin} className="space-y-4">
               <div>
-                <Label htmlFor="email" className="text-white">Email</Label>
+                <Label htmlFor="email" className="text-foreground">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -217,12 +217,12 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={loading}
-                  className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:ring-red-500"
+                  className="bg-secondary border-border text-foreground placeholder:text-muted-foreground focus:ring-primary"
                 />
               </div>
               <div>
                 <div className="flex justify-between items-center">
-                    <Label htmlFor="password" className="text-white">Password</Label>
+                    <Label htmlFor="password" className="text-foreground">Password</Label>
                 </div>
                 <div className="relative">
                   <Input
@@ -233,13 +233,13 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     disabled={loading}
-                    className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:ring-red-500"
+                    className="bg-secondary border-border text-foreground placeholder:text-muted-foreground focus:ring-primary"
                   />
                   <Button
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400 hover:text-white"
+                    className="absolute top-1/2 right-2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <EyeOff /> : <Eye />}
@@ -249,7 +249,7 @@ export default function LoginPage() {
                     <button
                         type="button"
                         onClick={() => setOpenResetModal(true)}
-                        className="text-xs text-gray-400 hover:text-white hover:underline"
+                        className="text-xs text-muted-foreground hover:text-foreground hover:underline"
                     >
                         Forgot Password?
                     </button>
@@ -259,7 +259,7 @@ export default function LoginPage() {
               <div className="flex gap-2">
                 <Button
                   type="submit"
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
                   disabled={loading}
                 >
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -279,16 +279,16 @@ export default function LoginPage() {
 
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-gray-700" />
+                <span className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-gray-400">Or continue with</span>
+                <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
               </div>
             </div>
 
             <Button
               variant="outline"
-              className="w-full bg-gray-800 hover:bg-gray-700 text-white border-gray-700"
+              className="w-full bg-secondary hover:bg-muted text-foreground border-border"
               onClick={handleGoogleLogin}
               disabled={loading}
             >
@@ -310,9 +310,9 @@ export default function LoginPage() {
             </Button>
           </CardContent>
 
-          <CardFooter className="justify-center text-sm text-gray-400">
+          <CardFooter className="justify-center text-sm text-muted-foreground">
             Don’t have an account?{' '}
-            <Link href="/signup" className="ml-1 font-semibold text-red-500 hover:underline">
+            <Link href="/signup" className="ml-1 font-semibold text-primary hover:underline">
               Sign up
             </Link>
           </CardFooter>
@@ -320,10 +320,10 @@ export default function LoginPage() {
       </motion.div>
     </div>
     <Dialog open={openResetModal} onOpenChange={setOpenResetModal}>
-        <DialogContent className="bg-black/60 backdrop-blur-xl border border-gray-800 text-white rounded-2xl">
+        <DialogContent className="bg-card/80 backdrop-blur-xl border-border text-foreground rounded-2xl">
             <DialogHeader>
             <DialogTitle className="text-xl font-bold">Reset Password</DialogTitle>
-            <p className="text-gray-400 text-sm">
+            <p className="text-muted-foreground text-sm">
                 Enter your email and we’ll send you a reset link instantly.
             </p>
             </DialogHeader>
@@ -334,7 +334,7 @@ export default function LoginPage() {
                 value={resetEmail}
                 onChange={(e) => setResetEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="bg-gray-800 border-gray-700 text-white"
+                className="bg-secondary border-border text-foreground"
             />
             </div>
 
@@ -342,7 +342,7 @@ export default function LoginPage() {
             <Button
                 variant="ghost"
                 onClick={() => setOpenResetModal(false)}
-                className="text-gray-300 hover:text-white"
+                className="text-muted-foreground hover:text-foreground"
             >
                 Cancel
             </Button>
@@ -350,7 +350,7 @@ export default function LoginPage() {
             <Button
                 onClick={handleForgotPassword}
                 disabled={resetLoading}
-                className="bg-red-600 hover:bg-red-700 text-white"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
                 {resetLoading ? "Sending..." : "Send Reset Link"}
             </Button>
