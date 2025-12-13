@@ -16,12 +16,12 @@ import {
   Settings,
   LogOut,
   ListPlus,
-  Flame,
 } from 'lucide-react';
+import { Icons } from '@/components/icons';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
 import Link from 'next/link';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
-import { Sidebar, useSidebar, SidebarTrigger } from './ui/sidebar';
+import { Sidebar, useSidebar } from './ui/sidebar';
 import { auth } from '@/lib/firebase';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -41,7 +41,7 @@ function SidebarNav() {
         <div className="flex flex-col h-full p-4">
             <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
                 <Link href="/dashboard" className="flex items-center gap-3">
-                    <Flame className="h-10 w-10 text-primary" />
+                    <Icons.logo className="h-12 w-12" />
                     <div>
                         <div className="text-primary font-extrabold text-lg">Well</div>
                         <div className="font-bold text-lg">Trained Freak</div>
@@ -159,7 +159,7 @@ export function AppSidebar() {
     return (
         <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
              <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
-                <Flame className="h-12 w-12 text-primary" />
+                <Icons.logo className="h-12 w-12" />
             </div>
         </aside>
     );
