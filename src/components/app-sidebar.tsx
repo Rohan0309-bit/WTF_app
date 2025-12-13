@@ -47,7 +47,7 @@ function SidebarNav() {
                     <div className="flex flex-col -space-y-1">
                         <div className="text-white font-extrabold text-lg">Well</div>
                         <div className="text-primary font-bold text-lg">Trained</div>
-                        <div className="text-black font-bold text-lg">Freak</div>
+                        <div className="text-muted-foreground font-bold text-lg">Freak</div>
                     </div>
                 </Link>
             </div>
