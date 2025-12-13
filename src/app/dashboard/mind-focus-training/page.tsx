@@ -1,8 +1,57 @@
-
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { BrainCircuit } from 'lucide-react';
+import { BrainCircuit, Target, Wind, Puzzle, Heart, Sparkles, UserCheck } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const mindFocusCategories = [
+  {
+    title: 'Visualization & Goal-Setting',
+    description: 'Mental rehearsal, goal mapping, and performance visualization to mentally plan workouts, poses, or athletic moves.',
+    href: '#',
+    image: 'https://picsum.photos/seed/vis1/600/400',
+    dataAiHint: 'focus meditation',
+    icon: Target,
+    comingSoon: true,
+  },
+  {
+    title: 'Meditation & Mindfulness',
+    description: 'Guided meditations, breathing exercises, and body scans to improve focus, reduce stress, and enhance mind-body connection.',
+    href: '#',
+    image: 'https://picsum.photos/seed/med2/600/400',
+    dataAiHint: 'calm meditation',
+    icon: Wind,
+    comingSoon: true,
+  },
+  {
+    title: 'Cognitive & Focus Drills',
+    description: 'Attention exercises, reaction time games, and dual-task challenges to sharpen concentration and decision-making.',
+    href: '#',
+    image: 'https://picsum.photos/seed/cog3/600/400',
+    dataAiHint: 'brain puzzle',
+    icon: Puzzle,
+    comingSoon: true,
+  },
+  {
+    title: 'Stress & Recovery Techniques',
+    description: 'Progressive muscle relaxation and mental recovery visualization for post-workout relaxation and stress reduction.',
+    href: '#',
+    image: 'https://picsum.photos/seed/rec4/600/400',
+    dataAiHint: 'relax nature',
+    icon: Heart,
+    comingSoon: true,
+  },
+  {
+    title: 'Performance Psychology',
+    description: 'Techniques like positive self-talk and confidence building to stay motivated, reduce anxiety, and perform better under pressure.',
+    href: '#',
+    image: 'https://picsum.photos/seed/psy5/600/400',
+    dataAiHint: 'success achievement',
+    icon: UserCheck,
+    comingSoon: true,
+  },
+];
 
 export default function MindFocusTrainingPage() {
   return (
@@ -14,11 +63,33 @@ export default function MindFocusTrainingPage() {
         </p>
       </div>
 
-      <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">
-        <BrainCircuit className="h-16 w-16 text-muted-foreground mb-4" />
-        <h3 className="text-xl font-bold font-headline">Coming Soon</h3>
-        <p className="text-muted-foreground">We're developing powerful mind and focus training modules. Stay tuned!</p>
-      </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {mindFocusCategories.map((category) => (
+          <Link href={category.href} key={category.title} className={category.comingSoon ? "pointer-events-none" : ""}>
+            <Card className="overflow-hidden group w-full h-full block hover:border-primary transition-all duration-300 hover:shadow-lg">
+                <div className="relative aspect-video">
+                    <Image
+                      src={category.image}
+                      alt={category.title}
+                      fill
+                      data-ai-hint={category.dataAiHint}
+                      className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                    <div className="absolute top-4 right-4">
+                         {category.comingSoon && <div className="text-xs bg-black/50 text-white/90 px-2 py-1 rounded-full backdrop-blur-sm">Coming Soon</div>}
+                    </div>
+                     <div className="absolute bottom-0 p-4">
+                        <h3 className="text-lg font-bold font-headline text-white">{category.title}</h3>
+                     </div>
+                </div>
+                <CardContent className="p-4">
+                    <p className="text-sm text-muted-foreground">{category.description}</p>
+                </CardContent>
+            </Card>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
