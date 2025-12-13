@@ -18,10 +18,10 @@ const mindFocusCategories = [
   {
     title: 'Meditation & Mindfulness',
     description: 'Guided meditations, breathing exercises, and body scans to improve focus, reduce stress, and enhance mind-body connection.',
-    href: '#',
+    href: '/dashboard/mind-focus-training/meditation-mindfulness',
     image: 'https://i.ibb.co/dJHKd74N/Whats-App-Image-2025-12-13-at-13-04-37-1.jpg',
     icon: Wind,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     title: 'Cognitive & Focus Drills',
