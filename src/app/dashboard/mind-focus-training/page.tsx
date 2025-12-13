@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -34,10 +33,10 @@ const mindFocusCategories = [
   {
     title: 'Stress & Recovery Techniques',
     description: 'Progressive muscle relaxation and mental recovery visualization for post-workout relaxation and stress reduction.',
-    href: '#',
+    href: '/dashboard/mind-focus-training/stress-recovery-techniques',
     image: 'https://i.ibb.co/qY4XTP4v/Whats-App-Image-2025-12-13-at-13-04-38-1.jpg',
     icon: Heart,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     title: 'Performance Psychology',
