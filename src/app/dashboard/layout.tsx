@@ -17,7 +17,7 @@ export default function DashboardLayout({
     <SidebarProvider>
       <div 
         className="h-screen w-full bg-background text-foreground flex bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('https://i.ibb.co/68Mh12v/Whats-App-Image-2025-12-11-at-20-26-00.jpg')" }}
+        style={{ backgroundImage: "url('https://i.ibb.co/LDk90Fzv/Whats-App-Image-2025-12-11-at-20-26-00.jpg')" }}
       >
         <div className="h-screen w-full flex bg-background/50 dark:bg-black/50 backdrop-blur-sm">
           <AppSidebar />
