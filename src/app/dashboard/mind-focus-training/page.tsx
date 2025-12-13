@@ -26,10 +26,10 @@ const mindFocusCategories = [
   {
     title: 'Cognitive & Focus Drills',
     description: 'Attention exercises, reaction time games, and dual-task challenges to sharpen concentration and decision-making.',
-    href: '#',
+    href: '/dashboard/mind-focus-training/cognitive-focus-drills',
     image: 'https://i.ibb.co/LdKDLzjq/Whats-App-Image-2025-12-13-at-13-04-38.jpg',
     icon: Puzzle,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     title: 'Stress & Recovery Techniques',
