@@ -10,8 +10,7 @@ const mindFocusCategories = [
     title: 'Visualization & Goal-Setting',
     description: 'Mental rehearsal, goal mapping, and performance visualization to mentally plan workouts, poses, or athletic moves.',
     href: '#',
-    image: 'https://picsum.photos/seed/vis1/600/400',
-    dataAiHint: 'focus meditation',
+    image: 'https://i.ibb.co/yF5DccBG/Whats-App-Image-2025-12-13-at-13-04-37.jpg',
     icon: Target,
     comingSoon: true,
   },
@@ -19,8 +18,7 @@ const mindFocusCategories = [
     title: 'Meditation & Mindfulness',
     description: 'Guided meditations, breathing exercises, and body scans to improve focus, reduce stress, and enhance mind-body connection.',
     href: '#',
-    image: 'https://picsum.photos/seed/med2/600/400',
-    dataAiHint: 'calm meditation',
+    image: 'https://i.ibb.co/dJHKd74N/Whats-App-Image-2025-12-13-at-13-04-37-1.jpg',
     icon: Wind,
     comingSoon: true,
   },
@@ -28,8 +26,7 @@ const mindFocusCategories = [
     title: 'Cognitive & Focus Drills',
     description: 'Attention exercises, reaction time games, and dual-task challenges to sharpen concentration and decision-making.',
     href: '#',
-    image: 'https://picsum.photos/seed/cog3/600/400',
-    dataAiHint: 'brain puzzle',
+    image: 'https://i.ibb.co/LdKDLzjq/Whats-App-Image-2025-12-13-at-13-04-38.jpg',
     icon: Puzzle,
     comingSoon: true,
   },
@@ -37,8 +34,7 @@ const mindFocusCategories = [
     title: 'Stress & Recovery Techniques',
     description: 'Progressive muscle relaxation and mental recovery visualization for post-workout relaxation and stress reduction.',
     href: '#',
-    image: 'https://picsum.photos/seed/rec4/600/400',
-    dataAiHint: 'relax nature',
+    image: 'https://i.ibb.co/qY4XTP4v/Whats-App-Image-2025-12-13-at-13-04-38-1.jpg',
     icon: Heart,
     comingSoon: true,
   },
@@ -46,8 +42,7 @@ const mindFocusCategories = [
     title: 'Performance Psychology',
     description: 'Techniques like positive self-talk and confidence building to stay motivated, reduce anxiety, and perform better under pressure.',
     href: '#',
-    image: 'https://picsum.photos/seed/psy5/600/400',
-    dataAiHint: 'success achievement',
+    image: 'https://i.ibb.co/r2h4hmb5/Whats-App-Image-2025-12-13-at-13-04-38-2.jpg',
     icon: UserCheck,
     comingSoon: true,
   },
@@ -72,7 +67,6 @@ export default function MindFocusTrainingPage() {
                       src={category.image}
                       alt={category.title}
                       fill
-                      data-ai-hint={category.dataAiHint}
                       className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
