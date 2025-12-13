@@ -16,6 +16,7 @@ import {
   Settings,
   LogOut,
   ListPlus,
+  MoreVertical,
 } from 'lucide-react';
 import { Icons } from '@/components/icons';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
@@ -41,7 +42,7 @@ function SidebarNav() {
         <div className="flex flex-col h-full p-4">
             <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
                 <Link href="/dashboard" className="flex items-center gap-3">
-                    <Icons.logo className="h-12 w-12" />
+                    <Icons.logo className="h-16 w-16" />
                     <div>
                         <div className="text-primary font-extrabold text-lg">Well</div>
                         <div className="font-bold text-lg">Trained Freak</div>
