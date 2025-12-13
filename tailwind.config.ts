@@ -15,8 +15,8 @@ export default {
         code: ['monospace'],
       },
        boxShadow: {
-        glow: '0 0 10px rgba(var(--primary-glow), 0.8)',
-        'glow-active': '0 0 15px rgba(var(--primary-glow), 0.9)',
+        glow: '0 0 10px hsl(var(--primary-glow))',
+        'glow-active': '0 0 15px hsl(var(--primary-glow))',
       },
       colors: {
         background: 'hsl(var(--background))',

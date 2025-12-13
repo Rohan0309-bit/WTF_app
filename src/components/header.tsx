@@ -14,10 +14,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from './ui/button';
-import { User, Settings, LogOut, ArrowLeft, MoreVertical } from 'lucide-react';
+import { User, Settings, LogOut, ArrowLeft, Menu } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { auth } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useSidebar } from './ui/sidebar';
 
 const pathToTitle: { [key: string]: string } = {
   '/dashboard': 'Dashboard',
@@ -38,6 +39,7 @@ export function Header() {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const { isMobile } = useSidebar();
 
   useEffect(() => {
     setIsClient(true);
@@ -59,6 +61,13 @@ export function Header() {
      if (pathname.includes('/dashboard/my-plans/workout-session')) {
       return 'Workout Session';
     }
+     if (pathname.includes('/dashboard/general-workouts/athlete')) {
+      const parts = pathname.split('/');
+      const sport = parts[parts.length - 1];
+      if (sport !== 'athlete') {
+        return sport.charAt(0).toUpperCase() + sport.slice(1) + ' Training';
+      }
+    }
     return 'Well Trained Freak';
   }
   
@@ -72,20 +81,24 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6">
-      {showBackButton && (
-        <Button variant="ghost" size="icon" onClick={() => router.back()} className="h-8 w-8">
-          <ArrowLeft className="h-5 w-5" />
-          <span className="sr-only">Back</span>
-        </Button>
-      )}
+    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-card/80 dark:bg-card/50 backdrop-blur-lg px-4 md:px-6">
+      <div className="flex items-center gap-2">
+        {isClient && isMobile && (
+          <SidebarTrigger asChild>
+            <Button variant="ghost" size="icon"><Menu /></Button>
+          </SidebarTrigger>
+        )}
+        {showBackButton && !isMobile && (
+          <Button variant="ghost" size="icon" onClick={() => router.back()} className="h-8 w-8">
+            <ArrowLeft className="h-5 w-5" />
+            <span className="sr-only">Back</span>
+          </Button>
+        )}
+      </div>
       <h1 className="text-lg font-semibold font-headline md:text-xl">
         {title}
       </h1>
       <div className="ml-auto flex items-center gap-2">
-        {isClient && <SidebarTrigger>
-          <MoreVertical />
-        </SidebarTrigger>}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-10 w-10 rounded-full">
@@ -98,10 +111,12 @@ export function Header() {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <User className="mr-2 h-4 w-4" />
-              <span>{user?.displayName || 'Profile'}</span>
-            </DropdownMenuItem>
+            <Link href="/dashboard/settings">
+              <DropdownMenuItem>
+                <User className="mr-2 h-4 w-4" />
+                <span>{user?.displayName || 'Profile'}</span>
+              </DropdownMenuItem>
+            </Link>
             <Link href="/dashboard/settings">
               <DropdownMenuItem>
                 <Settings className="mr-2 h-4 w-4" />

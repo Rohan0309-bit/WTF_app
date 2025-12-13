@@ -4,79 +4,74 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
-    --primary: 0 84.2% 60.2%; /* Red-500 */
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 0 84.2% 60.2%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 10%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 84.2% 60.2%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 154 100% 32.2%; /* Vibrant Green: #00A36C */
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 154 100% 42.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 88 57% 55%; /* Yellow-Green: #9ACD32 */
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 154 100% 32.2%;
     --radius: 0.5rem;
-    --chart-1: 0 84.2% 60.2%;
-    --chart-2: 24 9.8% 52.4%;
-    --chart-3: 48 9.8% 52.4%;
-    --chart-4: 0 72.2% 50.6%;
-    --chart-5: 0 62.8% 40.2%;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 10%;
-    --sidebar-primary: 0 84.2% 60.2%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 94%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 0 84.2% 60.2%;
+    --chart-1: 154 100% 32.2%;
+    --chart-2: 88 57% 55%;
+    --chart-3: 210 40% 98%;
+    --chart-4: 222.2 47.4% 11.2%;
+    --chart-5: 215 20.2% 65.1%;
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 154 100% 32.2%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 154 100% 32.2%;
   }
-
+ 
   .dark {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 84.2% 60.2%; /* Red-500 */
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 0 84.2% 60.2%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 63%;
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 84.2% 60.2%;
-    --chart-1: 0 84.2% 60.2%;
-    --chart-2: 24 9.8% 52.4%;
-    --chart-3: 48 9.8% 52.4%;
-    --chart-4: 0 72.2% 50.6%;
-    --chart-5: 0 62.8% 40.2%;
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 0 84.2% 60.2%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 0 84.2% 60.2%;
+    --background: 147 33% 95%; /* Light Pastel Green: #E0F2E9 */
+    --foreground: 222.2 84% 4.9%;
+    --card: 147 33% 95%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 147 33% 95%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 154 100% 32.2%; /* Vibrant Green: #00A36C */
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 154 100% 42.2%;
+    --secondary: 147 33% 90%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 147 33% 90%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 88 57% 55%; /* Yellow-Green: #9ACD32 */
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 147 33% 85%;
+    --input: 147 33% 85%;
+    --ring: 154 100% 32.2%;
+    --sidebar-background: 147 33% 95%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-primary: 154 100% 32.2%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 147 33% 90%;
+    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+    --sidebar-border: 147 33% 85%;
+    --sidebar-ring: 154 100% 32.2%;
   }
 }
-
+ 
 @layer base {
   * {
     @apply border-border;

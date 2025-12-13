@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
-  Sparkles,
   Dumbbell,
   BookOpen,
   Calculator,
@@ -17,23 +16,21 @@ import {
   Settings,
   LogOut,
   ListPlus,
+  Flame,
 } from 'lucide-react';
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from '@/components/ui/tooltip';
-import { Icons } from './icons';
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
 import Link from 'next/link';
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
-import { Sidebar, useSidebar } from './ui/sidebar';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
+import { Sidebar, useSidebar, SidebarTrigger } from './ui/sidebar';
 import { auth } from '@/lib/firebase';
-
+import { Button } from './ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { useUser } from '@/firebase';
 
 function SidebarNav() {
     const pathname = usePathname();
     const router = useRouter();
+    const { user, isUserLoading } = useUser();
 
     const handleLogout = async () => {
       await auth.signOut();
@@ -41,13 +38,13 @@ function SidebarNav() {
     };
 
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full p-4">
             <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
                 <Link href="/dashboard" className="flex items-center gap-3">
-                    <Icons.logo className="h-12 w-12 text-primary" />
+                    <Flame className="h-10 w-10 text-primary" />
                     <div>
-                    <div className="text-primary font-extrabold">Well</div>
-                    <div className="text-foreground font-bold">Trained Freak</div>
+                        <div className="text-primary font-extrabold text-lg">Well</div>
+                        <div className="font-bold text-lg">Trained Freak</div>
                     </div>
                 </Link>
             </div>
@@ -74,7 +71,7 @@ function SidebarNav() {
                         <span
                         className={cn(
                             "absolute left-0 top-0 bottom-0 w-1 rounded-r-full transition-all duration-500",
-                            isActive ? "bg-gradient-to-b from-primary via-orange-400 to-yellow-300" : "opacity-0"
+                            isActive ? "bg-gradient-to-b from-primary via-accent to-yellow-300" : "opacity-0"
                         )}
                         aria-hidden
                         />
@@ -90,8 +87,8 @@ function SidebarNav() {
                         />
                         <span
                         className={cn(
-                            "relative z-10 flex items-center justify-center w-10 h-10 rounded-md transition-transform duration-300",
-                            isActive ? "bg-gradient-to-br from-primary to-orange-400 shadow-glow" : "bg-background"
+                            "relative z-10 flex items-center justify-center w-8 h-8 rounded-md transition-transform duration-300",
+                            isActive ? "bg-gradient-to-br from-primary to-accent shadow-glow" : "bg-card"
                         )}
                         >
                         <Icon
@@ -113,24 +110,27 @@ function SidebarNav() {
                 );
             })}
             </nav>
-             <div className="mt-6 px-2 space-y-2 flex-shrink-0">
+             <div className="mt-6 px-2 space-y-2 flex-shrink-0 border-t border-border pt-4">
                 <Link href="/dashboard/settings">
-                    <motion.button
-                        whileHover={{ scale: 1.04 }}
-                        className="w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-secondary/50 hover:bg-secondary transition"
-                    >
-                        <Settings className="w-5 h-5 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">Settings</span>
-                    </motion.button>
+                    <div className="flex items-center gap-3">
+                         <Avatar className="h-10 w-10">
+                            <AvatarImage src={user?.photoURL || undefined} />
+                            <AvatarFallback>{user?.displayName?.[0]}</AvatarFallback>
+                        </Avatar>
+                        <div className="text-sm">
+                            <p className="font-semibold">{user?.displayName || 'User'}</p>
+                            <p className="text-xs text-muted-foreground">{user?.email}</p>
+                        </div>
+                    </div>
                 </Link>
-                <motion.button
-                  onClick={handleLogout}
-                  whileHover={{ scale: 1.02 }}
-                  className="w-full px-3 py-2 rounded-md text-sm flex items-center justify-center bg-secondary/50 hover:bg-secondary transition"
-                >
-                  <LogOut className="w-4 h-4 mr-2 text-muted-foreground" />
-                  <span className="text-muted-foreground">Logout</span>
-                </motion.button>
+                <div className="flex items-center gap-2">
+                    <Button variant="ghost" size="icon" asChild>
+                        <Link href="/dashboard/settings"><Settings className="w-5 h-5 text-muted-foreground" /></Link>
+                    </Button>
+                     <Button variant="ghost" size="icon" onClick={handleLogout}>
+                        <LogOut className="w-5 h-5 text-muted-foreground" />
+                    </Button>
+                </div>
             </div>
         </div>
     )
@@ -159,7 +159,7 @@ export function AppSidebar() {
     return (
         <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
              <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
-                <Icons.logo className="h-12 w-12 text-primary" />
+                <Flame className="h-12 w-12 text-primary" />
             </div>
         </aside>
     );
@@ -168,8 +168,7 @@ export function AppSidebar() {
   if (isMobile) {
     return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-            <SheetContent side="left" className="w-72 bg-transparent p-4 flex flex-col">
-                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+            <SheetContent side="left" className="w-72 bg-card p-0 flex flex-col">
                 <SidebarNav />
             </SheetContent>
         </Sheet>
@@ -178,7 +177,7 @@ export function AppSidebar() {
 
   return (
     <TooltipProvider>
-      <Sidebar collapsible="offcanvas">
+      <Sidebar>
         <SidebarNav />
       </Sidebar>
     </TooltipProvider>

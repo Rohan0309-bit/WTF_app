@@ -9,39 +9,40 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Dumbbell, Calculator, UtensilsCrossed, PersonStanding, TrendingUp, Sparkles, ListPlus, BookOpen } from 'lucide-react';
+import { Dumbbell, Calculator, UtensilsCrossed, PersonStanding, TrendingUp, BookOpen, ListPlus } from 'lucide-react';
 import Image from 'next/image';
+import { useUser } from '@/firebase';
 
 const features = [
   {
     title: 'My Customized Plans',
     description: 'Create and manage your own custom workout plans.',
     href: '/dashboard/my-plans',
-    image: 'https://i.ibb.co/Z64w6vf0/Whats-App-Image-2025-12-11-at-22-18-41.jpg',
+    image: 'https://i.ibb.co/Z64w6vf/Whats-App-Image-2025-12-11-at-22-18-41.jpg',
   },
    {
     title: 'Exercise Library',
     description: 'Browse hundreds of exercises with animated examples.',
     href: '/dashboard/exercise-library',
-    image: 'https://i.ibb.co/ZzHq6fvz/Whats-App-Image-2025-12-11-at-22-18-45.jpg',
+    image: 'https://i.ibb.co/ZzHq6fv/Whats-App-Image-2025-12-11-at-22-18-45.jpg',
   },
   {
     title: 'General Workouts',
     description: 'Browse our library of pre-defined workout plans.',
     href: '/dashboard/general-workouts',
-    image: 'https://i.ibb.co/MxMLz7L2/Whats-App-Image-2025-12-11-at-22-18-43-1.jpg',
+    image: 'https://i.ibb.co/MxMLz7L/Whats-App-Image-2025-12-11-at-22-18-43-1.jpg',
   },
   {
     title: 'Calculators',
     description: 'Calculate your BMI and daily calorie needs.',
     href: '/dashboard/calculators',
-    image: 'https://i.ibb.co/rKQrtpz7/Whats-App-Image-2025-12-11-at-22-18-44.jpg',
+    image: 'https://i.ibb.co/rKQrtpz/Whats-App-Image-2025-12-11-at-22-18-44.jpg',
   },
   {
     title: 'Nutrition Plans',
     description: 'Find the perfect meal plan for your goals.',
     href: '/dashboard/nutrition',
-    image: 'https://i.ibb.co/YF8VcTHH/Whats-App-Image-2025-12-11-at-22-18-44-1.jpg',
+    image: 'https://i.ibb.co/YF8VcTH/Whats-App-Image-2025-12-11-at-22-18-44-1.jpg',
   },
   {
     title: 'Posing Tutorials',
@@ -53,11 +54,14 @@ const features = [
     title: 'Track Progress',
     description: 'Monitor your gains and stay motivated.',
     href: '/dashboard/progress',
-    image: 'https://i.ibb.co/ksPLhW16/Whats-App-Image-2025-12-11-at-22-18-42.jpg',
+    image: 'https://i.ibb.co/ksPLhW1/Whats-App-Image-2025-12-11-at-22-18-42.jpg',
   },
 ];
 
 export default function DashboardPage() {
+  const { user } = useUser();
+  const displayName = user?.displayName?.split(' ')[0] || 'Freak';
+
   return (
     <div className="flex flex-col gap-8">
       <div>
@@ -65,7 +69,7 @@ export default function DashboardPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-bold font-headline">Welcome, Freak!</motion.h1>
+          className="text-3xl font-bold font-headline">Welcome, {displayName}!</motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,16 +90,17 @@ export default function DashboardPage() {
                 transition={{ type: "spring", stiffness: 300 }}
                 className="h-full"
                 >
-                <Card className="h-full hover:border-primary transition-all duration-300 hover:shadow-lg group overflow-hidden">
+                <Card className="h-full hover:border-primary transition-all duration-300 hover:shadow-lg group overflow-hidden bg-card/70 dark:bg-card/50 backdrop-blur-lg">
                     <CardHeader className="p-0 relative h-40">
                       <Image 
                           src={feature.image}
+                          data-ai-hint="fitness workout"
                           alt={feature.title}
                           layout="fill"
                           objectFit="cover"
                           className="transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4 flex flex-col justify-end">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 flex flex-col justify-end">
                          <CardTitle className="font-headline text-white text-lg">{feature.title}</CardTitle>
                       </div>
                     </CardHeader>
