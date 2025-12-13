@@ -1,11 +1,11 @@
-// Import the functions you need from the SDKs you need
+// This file is deprecated and its contents have been moved to src/firebase/index.ts
+// It is kept to prevent breaking imports in files that have not been updated yet.
+// Please update imports to point to '@/firebase' instead of '@/lib/firebase'.
+
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signOut, type User } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator, doc, setDoc, serverTimestamp, enableIndexedDbPersistence } from "firebase/firestore";
-import { firebaseConfig } from "@/firebase/config"; // Correctly import the config
-
-// Your web app's Firebase configuration
-// const firebaseConfig = { ... }; // This is now imported
+import { firebaseConfig } from "@/firebase/config";
 
 // Initialize Firebase
 let app: FirebaseApp;
@@ -14,7 +14,6 @@ if (!getApps().length) {
 } else {
     app = getApp();
 }
-
 
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
@@ -25,21 +24,15 @@ if (typeof window !== 'undefined') {
     enableIndexedDbPersistence(db)
       .catch((err) => {
         if (err.code == 'failed-precondition') {
-          // Multiple tabs open, persistence can only be enabled
-          // in one tab at a time.
           console.warn('Firestore persistence failed: failed-precondition. Multiple tabs open?');
         } else if (err.code == 'unimplemented') {
-          // The current browser does not support all of the
-          // features required to enable persistence
           console.warn('Firestore persistence failed: unimplemented. Browser not supported.');
         }
       });
 }
 
-
-// In a development environment, you might want to connect to the emulators
+// In a development environment, connect to emulators
 if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-    // Point to the emulators running on your local machine
     try {
         connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
         connectFirestoreEmulator(db, '127.0.0.1', 8080);
@@ -48,27 +41,22 @@ if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' |
     }
 }
 
-
 export const signInWithGoogle = async () => {
   return signInWithPopup(auth, provider);
 };
 
-// Email/Password Sign-In
 export const loginWithEmailPassword = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
-// Email/Password Sign-Up
 export const registerWithEmailPassword = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
-// Fetch sign-in methods for an email
 export const getSignInMethods = (email: string) => {
     return fetchSignInMethodsForEmail(auth, email);
 }
 
-// Create user profile in Firestore
 export const createUserProfile = async (user: User, additionalData: any) => {
     if (!user) return;
     const userRef = doc(db, 'users', user.uid);
