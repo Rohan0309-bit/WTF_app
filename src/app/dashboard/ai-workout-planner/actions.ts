@@ -2,6 +2,7 @@
 "use server";
 
 import { z } from 'zod';
+import { parseWorkoutPlan, DailyWorkout, Exercise } from '@/lib/workout-parser';
 
 const formSchema = z.object({
   goal: z.string().optional(),
@@ -12,7 +13,7 @@ const formSchema = z.object({
 
 export type FormState = {
   message: string;
-  workoutPlan?: string;
+  workoutPlan?: DailyWorkout;
   workoutInputs?: any;
   issues?: string[];
   isSuccess: boolean;
@@ -38,7 +39,6 @@ export async function getWorkoutPlan(
   }
   
   try {
-    // URL for the Firebase Function
     const functionUrl = "https://generateaiworkout-bc3s8-uc.a.run.app";
 
     const response = await fetch(functionUrl, {
@@ -55,10 +55,27 @@ export async function getWorkoutPlan(
     }
 
     const result = await response.json();
+    
+    // The AI returns a JSON object with a workout plan. We need to parse it.
+    // The AI's response is a single object, not a weekly plan.
+    const workout: DailyWorkout = {
+        day: "Today",
+        title: result.focus || "Generated Workout",
+        exercises: result.exercises.map((ex: any) => ({
+            name: ex.name,
+            sets: String(ex.sets),
+            reps: String(ex.reps),
+            rest: `${ex.rest}s`
+        }))
+    };
+
+    if (!workout || workout.exercises.length === 0) {
+      throw new Error("AI returned an empty or invalid workout plan.");
+    }
 
     return {
       message: 'Workout plan generated successfully!',
-      workoutPlan: JSON.stringify(result, null, 2), // Stringify the JSON for display
+      workoutPlan: workout,
       workoutInputs: validatedFields.data,
       isSuccess: true,
     };

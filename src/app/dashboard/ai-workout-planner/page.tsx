@@ -1,6 +1,7 @@
+
 'use client';
 
-import { useActionState, useEffect, useState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,8 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { GENDERS, SKILL_LEVELS, WORKOUT_PREFERENCES } from '@/lib/constants';
 import { getWorkoutPlan, FormState } from './actions';
 import { useToast } from '@/hooks/use-toast';
-import { WorkoutCard } from '@/components/workout-card';
-import { Loader2, Sparkles, Trash2, ListRestart } from 'lucide-react';
+import { WorkoutDisplay } from '@/components/workout-display';
+import { Loader2, Sparkles } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
 
@@ -71,10 +72,6 @@ export default function AiWorkoutPlannerPage() {
     }
   }, [state, toast, isPending]);
 
-  const clearGeneratedWorkout = () => {
-     window.location.reload();
-  }
-  
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="lg:col-span-1">
@@ -93,7 +90,7 @@ export default function AiWorkoutPlannerPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="skillLevel">Fitness Level</Label>
-                <Select name="skillLevel" required>
+                <Select name="level" required>
                   <SelectTrigger id="skillLevel"><SelectValue placeholder="Select your skill level" /></SelectTrigger>
                   <SelectContent>
                     {SKILL_LEVELS.map((level) => (
@@ -136,9 +133,7 @@ export default function AiWorkoutPlannerPage() {
         {isPending ? (
             <LoadingSkeleton />
         ) : state.isSuccess && state.workoutPlan ? (
-          <pre className="whitespace-pre-wrap font-code text-sm bg-muted p-4 rounded-lg border">
-            {JSON.stringify(state.workoutPlan, null, 2)}
-          </pre>
+          <WorkoutDisplay workout={state.workoutPlan} />
         ) : (
           <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">
             <Sparkles className="h-16 w-16 text-muted-foreground mb-4" />

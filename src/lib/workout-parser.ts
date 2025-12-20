@@ -1,3 +1,4 @@
+
 export interface Exercise {
   name: string;
   sets: string;
@@ -12,26 +13,31 @@ export interface DailyWorkout {
 }
 
 function parseSingleExercise(line: string): Exercise | null {
-  const exerciseRegex = /^\d+\.\s*(.*?):\s*(?:(\d+)\s*sets.*?\s*(\d+[-/a-z\s]*?)\s*reps|(\d+x\d+))\s*\((.*?)\)/i;
+  const exerciseRegex = /^\d+\.\s*(.*?)(?:\s*—\s*|:\s*)(\d+)\s*x\s*([\d-]+(?:\s*reps)?)\s*\((.*?)\)/i;
   const match = line.match(exerciseRegex);
 
   if (match) {
-    if (match[4]) { // Matched "3x10" format
-      const [sets, reps] = match[4].split('x');
-      return {
-        name: match[1].trim(),
-        sets: sets.trim(),
-        reps: reps.trim(),
-        rest: match[5].trim().replace(/^Rest:\s*/i, ''),
-      };
-    }
     return {
       name: match[1].trim(),
       sets: match[2].trim(),
-      reps: match[3].trim(),
-      rest: match[5].trim().replace(/^Rest:\s*/i, ''),
+      reps: match[3].trim().replace(/\s*reps/i, ''),
+      rest: match[4].trim(),
     };
   }
+
+  const simplerRegex = /^\d+\.\s*(.*?)\s*—\s*(\d+)\s*×\s*([\d\s\w-]+)\s*\((.*?)\)/i;
+  const simplerMatch = line.match(simplerRegex);
+
+  if (simplerMatch) {
+    return {
+        name: simplerMatch[1].trim(),
+        sets: simplerMatch[2].trim(),
+        reps: simplerMatch[3].trim(),
+        rest: simplerMatch[4].trim(),
+    };
+  }
+
+
   return null;
 }
 
