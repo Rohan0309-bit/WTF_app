@@ -13,8 +13,9 @@ Task:
   - goal: string (e.g., "muscle gain", "fat loss", "general fitness")
 
 Output Requirements:
-- Return **only JSON** (no explanations or extra text)
-- Each day should be an object with:
+- Return **only a JSON object** with a single key "workoutPlan".
+- The value of "workoutPlan" should be an array of 7 day objects.
+- Each day object must have:
   - day: string (e.g., "Monday")
   - title: string (e.g., "Full Body Strength", "Upper Body Power")
   - exercises: array of objects with:
@@ -24,21 +25,22 @@ Output Requirements:
       - rest: string (e.g., "60s", "90s")
 - Example JSON format:
 
-[
-  {
-    "day": "Monday",
-    "title": "Full Body Strength",
-    "exercises": [
-      { "name": "Push Ups", "sets": 3, "reps": 12, "rest": "60s" },
-      { "name": "Squats", "sets": 3, "reps": 15, "rest": "90s" }
-    ]
-  },
-  ...
-]
+{
+  "workoutPlan": [
+    {
+      "day": "Monday",
+      "title": "Full Body Strength",
+      "exercises": [
+        { "name": "Push Ups", "sets": 3, "reps": 12, "rest": "60s" },
+        { "name": "Squats", "sets": 3, "reps": 15, "rest": "90s" }
+      ]
+    }
+  ]
+}
 
 Important:
-- Do not include any text outside the JSON.
-- Make sure the JSON is valid and parsable.
+- Do not include any text outside the main JSON object.
+- Make sure the entire output is valid and parsable JSON.
 `;
 
 export async function POST(req: Request) {
@@ -90,15 +92,12 @@ Generate a 7-day workout plan based on the following user info:
     
     let workoutPlan;
     try {
-      // The API is now expected to return a JSON object with a key, e.g. "workoutPlan"
-      const parsedObject = JSON.parse(text);
-      // Let's assume the array is under a key, e.g. "plan" or we can adjust based on actual AI output
-      workoutPlan = parsedObject.workoutPlan || parsedObject; 
+      workoutPlan = JSON.parse(text); 
     } catch {
       return NextResponse.json({ error: "AI returned invalid JSON", raw: text }, { status: 500 });
     }
 
-    return NextResponse.json({ workoutPlan });
+    return NextResponse.json(workoutPlan);
 
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
