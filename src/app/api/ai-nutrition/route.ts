@@ -6,66 +6,63 @@ const nutritionInputSchema = z.object({
   goal: z.string().min(3, 'Goal must be at least 3 characters'),
 });
 
-const mealSchema = z.object({
-  name: z.string(),
-  description: z.string(),
-});
-
-const nutritionOutputSchema = z.object({
-    planName: z.string(),
-    planDescription: z.string(),
-    dailyPlan: z.object({
-        breakfast: mealSchema,
-        lunch: mealSchema,
-        dinner: mealSchema,
-        snack: mealSchema,
-    }),
-});
-
-export async function POST(req: NextRequest) {
-  const body = await req.json();
-
-  const validatedFields = nutritionInputSchema.safeParse(body);
-
-  if (!validatedFields.success) {
-    return NextResponse.json({error: 'Invalid input'}, {status: 400});
-  }
-
-  const {goal} = validatedFields.data;
-
-  const prompt = `
+const SYSTEM_PROMPT = `
 You are an expert AI nutritionist.
 
-Create a clean, structured full-day meal plan for the goal: "${goal}"
+Task:
+- Create a clean, structured full-day meal plan based on the user's goal.
+- The user can provide a goal like "cutting", "bulking", or "lean muscle gain".
 
-IMPORTANT: Respond with ONLY a valid JSON object that matches this exact schema. Do not add any conversational text, markdown, or any other text outside of the JSON structure.
-
-JSON FORMAT:
+Output Requirements:
+- Respond with **ONLY** a valid JSON object. Do not add any conversational text, markdown, or any other text outside of the JSON structure.
+- The JSON object must match this exact schema:
 {
-  "planName": "Full-Day Meal Plan for ${goal}",
-  "planDescription": "A sample one-day meal plan designed to help with ${goal}, focusing on whole foods and balanced macronutrients.",
+  "planName": "string",
+  "planDescription": "string",
+  "dailyPlan": {
+    "breakfast": { "name": "string", "description": "string" },
+    "lunch": { "name": "string", "description": "string" },
+    "dinner": { "name": "string", "description": "string" },
+    "snack": { "name": "string", "description": "string" }
+  }
+}
+
+Example for the goal "cutting":
+{
+  "planName": "Full-Day Meal Plan for Cutting",
+  "planDescription": "A sample one-day meal plan designed to help with fat loss, focusing on whole foods and balanced macronutrients.",
   "dailyPlan": {
     "breakfast": {
-      "name": "Meal Name (e.g., Protein Oatmeal)",
-      "description": "A short description of the meal with key ingredients."
+      "name": "Protein Oatmeal",
+      "description": "Oatmeal with whey protein, berries, and a sprinkle of chia seeds."
     },
     "lunch": {
-      "name": "Meal Name (e.g., Grilled Chicken Salad)",
-      "description": "A short description of the meal with key ingredients."
+      "name": "Grilled Chicken Salad",
+      "description": "Mixed greens with grilled chicken breast, vegetables, and a light vinaigrette."
     },
     "dinner": {
-      "name": "Meal Name (e.g., Salmon with Quinoa)",
-      "description": "A short description of the meal with key ingredients."
+      "name": "Salmon with Quinoa & Asparagus",
+      "description": "Baked salmon served with a side of quinoa and roasted asparagus."
     },
     "snack": {
-      "name": "Meal Name (e.g., Greek Yogurt with Berries)",
-      "description": "A short description of the meal with key ingredients."
+      "name": "Greek Yogurt with Almonds",
+      "description": "A serving of plain Greek yogurt topped with a handful of almonds."
     }
   }
 }
 `;
 
+
+export async function POST(req: NextRequest) {
   try {
+    const body = await req.json();
+    const validatedFields = nutritionInputSchema.safeParse(body);
+
+    if (!validatedFields.success) {
+      return NextResponse.json({error: 'Invalid input'}, {status: 400});
+    }
+    const {goal} = validatedFields.data;
+
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -74,40 +71,41 @@ JSON FORMAT:
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
-        messages: [{ role: "system", content: prompt }],
+        messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: `My goal is: "${goal}"` },
+        ],
         temperature: 0.7,
         response_format: { type: "json_object" }
       }),
     });
 
+    const data = await response.json();
+    
     if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Invalid response from AI:', errorData);
-        throw new Error(errorData.error?.message || 'The AI failed to generate a response.');
+        console.error('Invalid response from AI:', data);
+        throw new Error(data.error?.message || 'The AI failed to generate a response.');
     }
     
-    const data = await response.json();
     const aiText = data.choices?.[0]?.message?.content;
 
     if (!aiText) {
         throw new Error("AI returned an empty response.");
     }
     
-    const nutritionJson = JSON.parse(aiText);
-
-    // Validate the output from the AI
-    const parsedOutput = nutritionOutputSchema.safeParse(nutritionJson);
-    if (!parsedOutput.success) {
-      console.error('AI returned malformed JSON object:', parsedOutput.error);
-      throw new Error('AI returned a plan with an invalid structure.');
+    let nutritionPlan;
+    try {
+      nutritionPlan = JSON.parse(aiText);
+    } catch (error) {
+      console.error("Failed to parse AI response as JSON:", aiText);
+      return NextResponse.json({error: "AI returned invalid JSON", raw: aiText}, {status: 500});
     }
 
-    return NextResponse.json({ plan: parsedOutput.data });
+    return NextResponse.json({ plan: nutritionPlan });
 
   } catch (error) {
-    console.error('AI handler error:', error);
-    const errorMessage =
-      error instanceof Error ? error.message : 'An unknown error occurred';
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+    console.error('AI nutrition handler error:', error);
     return NextResponse.json({error: errorMessage}, {status: 500});
   }
 }

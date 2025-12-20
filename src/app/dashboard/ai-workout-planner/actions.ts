@@ -13,7 +13,7 @@ const formSchema = z.object({
 
 export type FormState = {
   message: string;
-  workoutPlan?: DailyWorkout;
+  workoutPlan?: DailyWorkout[];
   workoutInputs?: any;
   issues?: string[];
   isSuccess: boolean;
@@ -54,24 +54,13 @@ export async function getWorkoutPlan(
 
     const result = await response.json();
     
-    if (!result || !result.exercises || result.exercises.length === 0) {
+    if (!result || !result.workoutPlan || result.workoutPlan.length === 0) {
       throw new Error("AI returned an empty or invalid workout plan.");
     }
     
-    const workout: DailyWorkout = {
-        day: "Today",
-        title: result.focus || "Generated Workout",
-        exercises: result.exercises.map((ex: any) => ({
-            name: ex.name,
-            sets: String(ex.sets),
-            reps: String(ex.reps),
-            rest: `${ex.rest}s`
-        }))
-    };
-
     return {
       message: 'Workout plan generated successfully!',
-      workoutPlan: workout,
+      workoutPlan: result.workoutPlan,
       workoutInputs: validatedFields.data,
       isSuccess: true,
     };
@@ -84,4 +73,3 @@ export async function getWorkoutPlan(
     };
   }
 }
-

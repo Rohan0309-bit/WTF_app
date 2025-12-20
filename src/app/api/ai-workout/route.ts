@@ -1,89 +1,62 @@
 
-import {NextRequest, NextResponse} from 'next/server';
-import { z } from 'zod';
+import { NextResponse } from "next/server";
 
-const workoutInputSchema = z.object({
-  gender: z.string(),
-  level: z.string(),
-  goal: z.string(),
-  location: z.string(),
-});
+const SYSTEM_PROMPT = `
+You are a professional fitness trainer and AI workout coach.
 
-const exerciseSchema = z.object({
-  name: z.string(),
-  sets: z.number(),
-  reps: z.string(),
-  rest: z.number(),
-});
+Task:
+- Generate a 7-day workout plan for a user.
+- The user can provide:
+  - gender: "male" or "female"
+  - location: "home" or "gym"
+  - level: "beginner", "intermediate", "advanced"
+  - goal: string (e.g., "muscle gain", "fat loss", "general fitness")
 
-const workoutOutputSchema = z.object({
-  category: z.literal('AI Workout Generator'),
-  focus: z.string(),
-  level: z.string(),
-  location: z.string(),
-  goal: z.string(),
-  gender: z.string(),
-  exercises: z.array(exerciseSchema),
-});
+Output Requirements:
+- Return **only JSON** (no explanations or extra text)
+- Each day should be an object with:
+  - day: string (e.g., "Monday")
+  - title: string (e.g., "Full Body Strength", "Upper Body Power")
+  - exercises: array of objects with:
+      - name: string
+      - sets: number or string
+      - reps: number or string (e.g., "8-12", "30 sec")
+      - rest: string (e.g., "60s", "90s")
+- Example JSON format:
 
-export async function POST(req: NextRequest) {
-  const body = await req.json();
+[
+  {
+    "day": "Monday",
+    "title": "Full Body Strength",
+    "exercises": [
+      { "name": "Push Ups", "sets": 3, "reps": 12, "rest": "60s" },
+      { "name": "Squats", "sets": 3, "reps": 15, "rest": "90s" }
+    ]
+  },
+  ...
+]
 
-  const validatedFields = workoutInputSchema.safeParse(body);
-
-  if (!validatedFields.success) {
-    return NextResponse.json({error: 'Invalid input'}, {status: 400});
-  }
-
-  const {gender, level, goal, location} = validatedFields.data;
-
-  const prompt = `
-You are a professional certified fitness coach working inside the WTF (Well Trained Freak) fitness app.
-
-You MUST generate workouts in structured JSON only.
-You must NEVER explain anything.
-You must NEVER add extra text.
-You must NEVER use markdown.
-You must NEVER invent unsafe or advanced exercises.
-
-STRICT RULES:
-- Output must always be valid JSON that matches the provided schema. Do not wrap it in markdown backticks.
-- Use clear, commonly known exercise names only.
-- Always include: sets, reps, rest (in seconds).
-- Workouts must be realistic, balanced, and achievable.
-- Respect user gender: ${gender}, fitness level: ${level}, goal: ${goal}, and workout location: ${location}.
-- If unsure, always choose safer beginner-friendly exercises.
-- Avoid injury-prone movements (no extreme plyometrics, no dangerous lifts).
-- Do NOT include medical advice.
-
-WORKOUT STRUCTURE RULES:
-- Always generate 6–8 exercises.
-- Maintain full-body or goal-appropriate muscle balance.
-- Rest time must be between 30–120 seconds.
-- Reps must be realistic for the user’s level.
-- Sets must be between 2–5.
-
-JSON FORMAT (DO NOT CHANGE KEYS):
-
-{
-  "category": "AI Workout Generator",
-  "focus": "...",
-  "level": "${level}",
-  "location": "${location}",
-  "goal": "${goal}",
-  "gender": "${gender}",
-  "exercises": [
-    {
-      "name": "...",
-      "sets": 0,
-      "reps": "...",
-      "rest": 0
-    }
-  ]
-}
+Important:
+- Do not include any text outside the JSON.
+- Make sure the JSON is valid and parsable.
 `;
 
+export async function POST(req: Request) {
   try {
+    const { gender, location, level, goal } = await req.json();
+
+    if (!gender || !location || !level || !goal) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    const userPrompt = `
+Generate a 7-day workout plan based on the following user info:
+- gender: ${gender}
+- location: ${location}
+- fitnessLevel: ${level}
+- goal: ${goal}
+`;
+
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -92,40 +65,44 @@ JSON FORMAT (DO NOT CHANGE KEYS):
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
-        messages: [{ role: "system", content: prompt }],
+        messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: userPrompt },
+        ],
         temperature: 0.7,
-        max_tokens: 1200,
+        max_tokens: 2000,
         response_format: { type: "json_object" }
       }),
     });
 
     const data = await response.json();
 
-    if (!response.ok || !data.choices || data.choices.length === 0) {
-      console.error('Invalid response from AI:', data);
-      throw new Error(data.error?.message || 'The AI failed to generate a response.');
+    if (!response.ok) {
+        console.error('Invalid response from AI:', data);
+        throw new Error(data.error?.message || 'The AI failed to generate a response.');
     }
-    
-    const aiText = data.choices[0].message.content;
 
-    if (!aiText) {
+    const text = data.choices?.[0]?.message?.content;
+
+    if (!text) {
         throw new Error("AI returned an empty response.");
     }
     
-    const workoutJson = JSON.parse(aiText);
-
-    // Validate the output from the AI
-    const parsedOutput = workoutOutputSchema.safeParse(workoutJson);
-    if (!parsedOutput.success) {
-      console.error('AI returned malformed JSON object:', parsedOutput.error);
-      throw new Error('AI returned a workout with an invalid structure.');
+    let workoutPlan;
+    try {
+      // The API is now expected to return a JSON object with a key, e.g. "workoutPlan"
+      const parsedObject = JSON.parse(text);
+      // Let's assume the array is under a key, e.g. "plan" or we can adjust based on actual AI output
+      workoutPlan = parsedObject.workoutPlan || parsedObject; 
+    } catch {
+      return NextResponse.json({ error: "AI returned invalid JSON", raw: text }, { status: 500 });
     }
 
-    return NextResponse.json(parsedOutput.data);
-  } catch (error) {
-    console.error('AI handler error:', error);
-    const errorMessage =
-      error instanceof Error ? error.message : 'An unknown error occurred';
-    return NextResponse.json({error: errorMessage}, {status: 500});
+    return NextResponse.json({ workoutPlan });
+
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
+    console.error("AI handler error:", errorMessage);
+    return NextResponse.json({ error: "Failed to generate workout plan" }, { status: 500 });
   }
 }

@@ -11,11 +11,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { GENDERS, SKILL_LEVELS, WORKOUT_PREFERENCES } from '@/lib/constants';
 import { getWorkoutPlan, FormState } from './actions';
 import { useToast } from '@/hooks/use-toast';
-import { WorkoutDisplay } from '@/components/workout-display';
 import { Loader2, Sparkles } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
-import { WorkoutCard } from '@/components/workout-card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Dumbbell, Repeat, Timer } from 'lucide-react';
+import { DailyWorkout } from '@/lib/workout-parser';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -56,6 +57,51 @@ function LoadingSkeleton() {
     )
 }
 
+function AIWorkoutDisplay({ plan }: { plan: DailyWorkout[] }) {
+  if (!plan || plan.length === 0) {
+    return <p>No workout plan available.</p>;
+  }
+
+  return (
+    <Card className="shadow-lg">
+      <CardHeader>
+        <CardTitle className="font-headline">Your Custom AI Workout Plan</CardTitle>
+        <CardDescription>A 7-day plan generated just for you.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Accordion type="single" collapsible defaultValue="item-0">
+          {plan.map((day, dayIndex) => (
+            <AccordionItem value={`item-${dayIndex}`} key={dayIndex}>
+              <AccordionTrigger className="font-headline">{day.day}: {day.title}</AccordionTrigger>
+              <AccordionContent>
+                {day.exercises && day.exercises.length > 0 ? (
+                  <div className="space-y-4 pt-2">
+                    {day.exercises.map((exercise, exIndex) => (
+                      <div key={exIndex} className="flex items-start gap-4">
+                        <div className="flex-1">
+                          <p className="font-semibold">{exercise.name}</p>
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mt-1">
+                            <div className="flex items-center gap-1.5"><Dumbbell className="h-4 w-4" /><span>{exercise.sets} sets</span></div>
+                            <div className="flex items-center gap-1.5"><Repeat className="h-4 w-4" /><span>{exercise.reps} reps</span></div>
+                            {exercise.rest && <div className="flex items-center gap-1.5"><Timer className="h-4 w-4" /><span>{exercise.rest}</span></div>}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                   <p className="text-muted-foreground text-sm p-2">Rest Day</p>
+                )}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </CardContent>
+    </Card>
+  );
+}
+
+
 export default function AiWorkoutPlannerPage() {
   const { toast } = useToast();
   const [state, formAction, isPending] = useActionState<FormState, FormData>(getWorkoutPlan, {
@@ -86,16 +132,16 @@ export default function AiWorkoutPlannerPage() {
               
               <div className="space-y-2">
                 <Label htmlFor="goal">Your Goal</Label>
-                <Input id="goal" name="goal" placeholder="e.g., Build muscle, lose fat" />
+                <Input id="goal" name="goal" placeholder="e.g., Build muscle, lose fat" defaultValue="General Fitness" required/>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="skillLevel">Fitness Level</Label>
-                <Select name="level" required>
+                <Select name="level" required defaultValue="intermediate">
                   <SelectTrigger id="skillLevel"><SelectValue placeholder="Select your skill level" /></SelectTrigger>
                   <SelectContent>
                     {SKILL_LEVELS.map((level) => (
-                      <SelectItem key={level} value={level}>{level}</SelectItem>
+                      <SelectItem key={level} value={level.toLowerCase()}>{level}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -134,7 +180,7 @@ export default function AiWorkoutPlannerPage() {
         {isPending ? (
             <LoadingSkeleton />
         ) : state.isSuccess && state.workoutPlan ? (
-          <WorkoutDisplay workout={state.workoutPlan} />
+          <AIWorkoutDisplay plan={state.workoutPlan} />
         ) : (
           <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">
             <Sparkles className="h-16 w-16 text-muted-foreground mb-4" />
@@ -146,4 +192,3 @@ export default function AiWorkoutPlannerPage() {
     </div>
   );
 }
-
