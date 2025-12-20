@@ -100,6 +100,12 @@ JSON FORMAT (DO NOT CHANGE KEYS):
     });
 
     const data = await response.json();
+
+    if (!response.ok || !data.choices || data.choices.length === 0) {
+      console.error('Invalid response from AI:', data);
+      throw new Error(data.error?.message || 'The AI failed to generate a response.');
+    }
+    
     const aiText = data.choices[0].message.content;
 
     if (!aiText) {
