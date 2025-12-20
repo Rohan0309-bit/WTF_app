@@ -1,4 +1,3 @@
-
 "use server";
 
 import { z } from 'zod';
@@ -20,14 +19,15 @@ export type FormState = {
 };
 
 const SYSTEM_PROMPT = `
-You are a professional fitness trainer and AI workout coach.
+You are a professional fitness trainer and AI workout coach for the WTF (Well Trained Freak) app.
+
 Task:
 - Generate a 7-day workout plan for a user.
-- The user can provide:
+- The user will provide:
   - gender: "male" or "female"
   - location: "home" or "gym"
   - level: "beginner", "intermediate", "advanced"
-  - goal: string (e.g., "muscle gain", "fat loss", "general fitness")
+  - goal (optional): a string describing their fitness goal
 
 Output Requirements:
 - Return ONLY a valid JSON object with a single key "workoutPlan".
@@ -48,8 +48,8 @@ Output Requirements:
       "day": "Monday",
       "title": "Full Body Strength",
       "exercises": [
-        { "name": "Push Ups", "sets": 3, "reps": 12, "rest": "60s" },
-        { "name": "Squats", "sets": 3, "reps": 15, "rest": "90s" }
+        { "name": "Push Ups", "sets": 3, "reps": "12", "rest": "60s" },
+        { "name": "Squats", "sets": 3, "reps": "15", "rest": "90s" }
       ]
     }
   ]
@@ -79,60 +79,61 @@ export async function getWorkoutPlan(
     };
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === "YOUR_GEMINI_API_KEY") {
       return {
-          message: 'The OpenAI API key is not configured. Please add it to your environment variables.',
+          message: 'The Gemini API key is not configured. Please add it to your .env file.',
           isSuccess: false
       }
   }
   
   try {
     const { gender, location, level, goal } = validatedFields.data;
+    
     const userPrompt = `
       Generate a 7-day workout plan based on the following user info:
       - gender: ${gender}
       - location: ${location}
       - fitnessLevel: ${level}
-      - goal: ${goal}
+      - goal: ${goal || 'General Fitness'}
     `;
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-            { role: "system", content: SYSTEM_PROMPT },
-            { role: "user", content: userPrompt },
-        ],
-        temperature: 0.7,
-        max_tokens: 2000,
-        response_format: { type: "json_object" }
-      }),
-    });
+    const fullPrompt = `${SYSTEM_PROMPT}\n${userPrompt}`;
 
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            contents: [{ parts: [{ text: fullPrompt }] }],
+            generationConfig: {
+              temperature: 0.7,
+              maxOutputTokens: 2048,
+              responseMimeType: "application/json",
+            }
+        })
+    });
+    
     if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Invalid response from AI model.' }));
-        console.error('AI API Error:', errorData);
+        const errorData = await response.json();
+        console.error('Gemini API request failed:', errorData);
         throw new Error(errorData.error?.message || 'The AI failed to generate a response.');
     }
-    
-    const result = await response.json();
-    const text = result.choices?.[0]?.message?.content;
 
-    if (!text) {
-        throw new Error("AI returned an empty response.");
+    const data = await response.json();
+    const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!aiText) {
+        console.error("AI response was empty or in an unexpected format:", data);
+        throw new Error("AI returned an empty or invalid response.");
     }
     
     let workoutPlanData;
     try {
-      workoutPlanData = JSON.parse(text); 
+      workoutPlanData = JSON.parse(aiText);
     } catch (error){
-      console.error("Failed to parse AI response as JSON:", text);
-      throw new Error(`AI returned invalid JSON. Raw response: ${text}`);
+      console.error("Failed to parse AI response as JSON:", aiText);
+      throw new Error(`AI returned invalid JSON. Raw response: ${aiText}`);
     }
 
     if (!workoutPlanData || !workoutPlanData.workoutPlan || !Array.isArray(workoutPlanData.workoutPlan)) {

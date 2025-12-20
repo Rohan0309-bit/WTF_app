@@ -1,7 +1,9 @@
-
 'use server';
 
 import { z } from 'zod';
+import { ai } from '@/ai/genkit';
+import { geminiPro } from 'genkitx-googleai';
+
 
 const formSchema = z.object({
   goal: z.string().min(3, 'Please enter a valid goal.'),
@@ -12,6 +14,54 @@ export type NutritionPlanState = {
   error?: string;
   isSuccess: boolean;
 };
+
+
+const SYSTEM_PROMPT = `
+You are an expert AI nutritionist.
+
+Task:
+- Create a clean, structured full-day meal plan based on the user's goal.
+- The user can provide a goal like "cutting", "bulking", or "lean muscle gain".
+
+Output Requirements:
+- Respond with **ONLY** a valid JSON object. Do not add any conversational text, markdown, or any other text outside of the JSON structure.
+- The JSON object must match this exact schema:
+{
+  "planName": "string",
+  "planDescription": "string",
+  "dailyPlan": {
+    "breakfast": { "name": "string", "description": "string" },
+    "lunch": { "name": "string", "description": "string" },
+    "dinner": { "name": "string", "description": "string" },
+    "snack": { "name": "string", "description": "string" }
+  }
+}
+
+Example for the goal "cutting":
+{
+  "planName": "Full-Day Meal Plan for Cutting",
+  "planDescription": "A sample one-day meal plan designed to help with fat loss, focusing on whole foods and balanced macronutrients.",
+  "dailyPlan": {
+    "breakfast": {
+      "name": "Protein Oatmeal",
+      "description": "Oatmeal with whey protein, berries, and a sprinkle of chia seeds."
+    },
+    "lunch": {
+      "name": "Grilled Chicken Salad",
+      "description": "Mixed greens with grilled chicken breast, vegetables, and a light vinaigrette."
+    },
+    "dinner": {
+      "name": "Salmon with Quinoa & Asparagus",
+      "description": "Baked salmon served with a side of quinoa and roasted asparagus."
+    },
+    "snack": {
+      "name": "Greek Yogurt with Almonds",
+      "description": "A serving of plain Greek yogurt topped with a handful of almonds."
+    }
+  }
+}
+`;
+
 
 export async function getNutritionPlan(
   prevState: NutritionPlanState,
@@ -27,29 +77,42 @@ export async function getNutritionPlan(
       isSuccess: false,
     };
   }
+
+  if (!process.env.GEMINI_API_KEY) {
+    return {
+      error: 'The Gemini API key is not configured. Please add it to your environment variables.',
+      isSuccess: false,
+    };
+  }
   
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/ai-nutrition`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const { goal } = validatedFields.data;
+
+    const llmResponse = await ai.generate({
+      model: geminiPro,
+      prompt: `${SYSTEM_PROMPT}\nMy goal is: "${goal}"`,
+      config: {
+        temperature: 0.7,
       },
-      body: JSON.stringify({ goal: validatedFields.data.goal }),
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'The AI nutritionist failed to generate a plan.');
+    const text = llmResponse.text();
+    
+    if (!text) {
+        throw new Error("AI returned an empty response.");
+    }
+    
+    let nutritionPlan;
+    try {
+      const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+      nutritionPlan = JSON.parse(cleanedText);
+    } catch (error) {
+      console.error("Failed to parse AI response as JSON:", text);
+      return {error: `AI returned invalid JSON. Raw response: ${text}`, isSuccess: false};
     }
 
-    const result = await response.json();
-    
-    if (!result || !result.plan) {
-      throw new Error("AI returned an empty or invalid nutrition plan.");
-    }
-    
     return {
-      plan: result.plan,
+      plan: nutritionPlan,
       isSuccess: true,
     };
 

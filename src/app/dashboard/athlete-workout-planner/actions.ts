@@ -1,8 +1,9 @@
-
 "use server";
 
 import { z } from 'zod';
 import { DailyWorkout } from '@/lib/workout-parser';
+import { ai } from '@/ai/genkit';
+import { geminiPro } from 'genkitx-googleai';
 
 const formSchema = z.object({
   sport: z.string().optional(),
@@ -70,6 +71,13 @@ export async function getWorkoutPlan(
     };
   }
   
+  if (!process.env.GEMINI_API_KEY) {
+      return {
+          message: 'The Gemini API key is not configured. Please add it to your environment variables.',
+          isSuccess: false
+      }
+  }
+
   try {
     const { sport, gender, skillLevel, workoutPreference, workoutType } = validatedFields.data;
     
@@ -82,32 +90,15 @@ export async function getWorkoutPlan(
       - Location: ${workoutPreference}
     `;
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-            { role: "system", content: SYSTEM_PROMPT },
-            { role: "user", content: userPrompt },
-        ],
+    const llmResponse = await ai.generate({
+      model: geminiPro,
+      prompt: `${SYSTEM_PROMPT}\n${userPrompt}`,
+      config: {
         temperature: 0.7,
-        max_tokens: 1500,
-        response_format: { type: "json_object" }
-      }),
+      },
     });
 
-    if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Invalid response from AI' }));
-        console.error('Invalid response from AI:', errorData);
-        throw new Error(errorData.error?.message || 'The AI failed to generate a response.');
-    }
-    
-    const result = await response.json();
-    const text = result.choices?.[0]?.message?.content;
+    const text = llmResponse.text();
 
     if (!text) {
         throw new Error("AI returned an empty response.");
@@ -115,7 +106,8 @@ export async function getWorkoutPlan(
     
     let workoutData;
     try {
-      workoutData = JSON.parse(text); 
+      const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+      workoutData = JSON.parse(cleanedText); 
     } catch (error){
       console.error("Failed to parse AI response as JSON:", text);
       throw new Error(`AI returned invalid JSON. Raw response: ${text}`);
