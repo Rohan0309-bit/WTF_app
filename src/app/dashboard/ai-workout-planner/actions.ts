@@ -39,8 +39,10 @@ export async function getWorkoutPlan(
   }
   
   try {
-    // Note: In a real app, you'd get the full URL from environment variables
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/ai-workout`, {
+    // URL for the deployed Firebase Function
+    const functionUrl = 'https://us-central1-well-trained-freak-bc3s8.cloudfunctions.net/generateAIWorkout';
+    
+    const response = await fetch(functionUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
