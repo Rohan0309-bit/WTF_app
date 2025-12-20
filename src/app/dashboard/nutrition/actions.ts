@@ -1,23 +1,64 @@
 
-"use server";
+'use server';
 
-// This file is no longer used for the static nutrition plans, 
-// but is kept in case AI generation is re-enabled in the future.
+import { z } from 'zod';
 
-import { generateNutritionPlan, GenerateNutritionPlanOutput } from '@/ai/flows/generate-nutrition-plan';
+const formSchema = z.object({
+  goal: z.string().min(3, 'Please enter a valid goal.'),
+});
 
 export type NutritionPlanState = {
-  plan?: GenerateNutritionPlanOutput;
+  plan?: any;
   error?: string;
-  goal?: string;
+  isSuccess: boolean;
 };
 
-export async function getNutritionPlan(goal: string): Promise<NutritionPlanState> {
+export async function getNutritionPlan(
+  prevState: NutritionPlanState,
+  formData: FormData
+): Promise<NutritionPlanState> {
+  const validatedFields = formSchema.safeParse({
+    goal: formData.get('goal'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      error: 'There was an error with your submission.',
+      isSuccess: false,
+    };
+  }
+  
   try {
-    const plan = await generateNutritionPlan({ goal });
-    return { plan, goal };
+    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/ai-nutrition`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ goal: validatedFields.data.goal }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'The AI nutritionist failed to generate a plan.');
+    }
+
+    const result = await response.json();
+    
+    if (!result || !result.plan) {
+      throw new Error("AI returned an empty or invalid nutrition plan.");
+    }
+    
+    return {
+      plan: result.plan,
+      isSuccess: true,
+    };
+
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
-    return { error: `Failed to generate plan for ${goal}: ${errorMessage}`, goal };
+    console.error("Error in getNutritionPlan:", errorMessage);
+    return {
+      error: `Failed to generate plan: ${errorMessage}`,
+      isSuccess: false,
+    };
   }
 }
