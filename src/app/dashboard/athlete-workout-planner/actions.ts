@@ -1,7 +1,8 @@
+
 "use server";
 
-import { generateAthleteWorkout, GenerateAthleteWorkoutInput } from '@/ai/flows/generate-athlete-workout';
 import { z } from 'zod';
+import { DailyWorkout } from '@/lib/workout-parser';
 
 const formSchema = z.object({
   sport: z.string().optional(),
@@ -13,8 +14,8 @@ const formSchema = z.object({
 
 export type FormState = {
   message: string;
-  workoutPlan?: string;
-  workoutInputs?: GenerateAthleteWorkoutInput;
+  workoutPlan?: DailyWorkout;
+  workoutInputs?: any;
   issues?: string[];
   isSuccess: boolean;
 };
@@ -40,18 +41,54 @@ export async function getWorkoutPlan(
   }
   
   try {
-    const result = await generateAthleteWorkout(validatedFields.data as GenerateAthleteWorkoutInput);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/ai-workout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+          goal: validatedFields.data.sport || validatedFields.data.workoutType || 'General Fitness',
+          gender: validatedFields.data.gender,
+          level: validatedFields.data.skillLevel,
+          location: validatedFields.data.workoutPreference
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'The AI workout generator failed.');
+    }
+
+    const result = await response.json();
+    
+    if (!result || !result.exercises || result.exercises.length === 0) {
+      throw new Error("AI returned an empty or invalid workout plan.");
+    }
+    
+    const workout: DailyWorkout = {
+        day: "Today",
+        title: result.focus || "Generated Workout",
+        exercises: result.exercises.map((ex: any) => ({
+            name: ex.name,
+            sets: String(ex.sets),
+            reps: String(ex.reps),
+            rest: `${ex.rest}s`
+        }))
+    };
+
     return {
       message: 'Workout plan generated successfully!',
-      workoutPlan: result.workoutPlan,
+      workoutPlan: workout,
       workoutInputs: validatedFields.data,
       isSuccess: true,
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+    console.error("Error in getWorkoutPlan:", errorMessage);
     return {
       message: `Failed to generate workout plan: ${errorMessage}`,
       isSuccess: false,
     };
   }
 }
+

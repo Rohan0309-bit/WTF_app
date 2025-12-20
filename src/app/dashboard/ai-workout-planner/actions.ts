@@ -2,7 +2,7 @@
 "use server";
 
 import { z } from 'zod';
-import type { DailyWorkout } from '@/lib/workout-parser';
+import { DailyWorkout } from '@/lib/workout-parser';
 
 const formSchema = z.object({
   goal: z.string().optional(),
@@ -39,7 +39,6 @@ export async function getWorkoutPlan(
   }
   
   try {
-    // Call the local Next.js API route
     const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/ai-workout`, {
       method: "POST",
       headers: {
@@ -55,7 +54,10 @@ export async function getWorkoutPlan(
 
     const result = await response.json();
     
-    // The AI returns a JSON object with a workout plan. We need to parse it for the component.
+    if (!result || !result.exercises || result.exercises.length === 0) {
+      throw new Error("AI returned an empty or invalid workout plan.");
+    }
+    
     const workout: DailyWorkout = {
         day: "Today",
         title: result.focus || "Generated Workout",
@@ -67,10 +69,6 @@ export async function getWorkoutPlan(
         }))
     };
 
-    if (!workout || workout.exercises.length === 0) {
-      throw new Error("AI returned an empty or invalid workout plan.");
-    }
-
     return {
       message: 'Workout plan generated successfully!',
       workoutPlan: workout,
@@ -79,9 +77,11 @@ export async function getWorkoutPlan(
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+    console.error("Error in getWorkoutPlan:", errorMessage);
     return {
       message: `Failed to generate workout plan: ${errorMessage}`,
       isSuccess: false,
     };
   }
 }
+

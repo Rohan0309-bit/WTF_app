@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { useActionState, useEffect, useState } from 'react';
@@ -12,28 +11,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { GENDERS, SKILL_LEVELS, SPORTS, WORKOUT_TYPES, WORKOUT_PREFERENCES } from '@/lib/constants';
 import { getWorkoutPlan, FormState } from './actions';
 import { useToast } from '@/hooks/use-toast';
-import { WorkoutCard } from '@/components/workout-card';
-import { Loader2, Sparkles, Trash2, ListRestart } from 'lucide-react';
+import { WorkoutDisplay } from '@/components/workout-display';
+import { Loader2, Sparkles } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useLocalStorage } from '@/hooks/use-local-storage';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <Button type="submit" className="w-full" disabled={pending}>
       {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      {pending ? 'Generating...' : 'Generate Weekly Workout'}
+      {pending ? 'Generating...' : 'Generate Workout'}
     </Button>
   );
 }
@@ -67,61 +54,12 @@ function LoadingSkeleton() {
     )
 }
 
-function SavedWorkouts({ workouts, onDelete }: { workouts: any[], onDelete: (id: string) => void }) {
-    if (workouts.length === 0) return null;
-
-    return (
-        <div className="lg:col-span-3 mt-8">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">Saved Workouts</CardTitle>
-                    <CardDescription>Your saved AI-generated workout plans.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    {workouts.map(workout => (
-                        <div key={workout.id} className="border p-4 rounded-lg">
-                            <h4 className="font-bold mb-2">{workout.name}</h4>
-                            <WorkoutCard plan={workout.plan} />
-                             <AlertDialog>
-                                <AlertDialogTrigger asChild>
-                                    <Button variant="destructive" className="mt-4">
-                                        <Trash2 className="mr-2 h-4 w-4" />
-                                        Delete Saved Workout
-                                    </Button>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent>
-                                    <AlertDialogHeader>
-                                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                        This will permanently delete this saved workout. This action cannot be undone.
-                                    </AlertDialogDescription>
-                                    </AlertDialogHeader>
-                                    <AlertDialogFooter>
-                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction onClick={() => onDelete(workout.id)}>Delete</AlertDialogAction>
-                                    </AlertDialogFooter>
-                                </AlertDialogContent>
-                            </AlertDialog>
-                        </div>
-                    ))}
-                </CardContent>
-            </Card>
-        </div>
-    );
-}
-
 export default function AthleteWorkoutPlannerPage() {
   const { toast } = useToast();
   const [state, formAction, isPending] = useActionState<FormState, FormData>(getWorkoutPlan, {
     message: '',
     isSuccess: false,
   });
-  const [savedWorkouts, setSavedWorkouts] = useLocalStorage<any[]>('saved-ai-workouts', []);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   useEffect(() => {
     if (state.message && !state.isSuccess && !isPending) {
@@ -133,67 +71,14 @@ export default function AthleteWorkoutPlannerPage() {
     }
   }, [state, toast, isPending]);
 
-  const handleDeleteSavedWorkout = (id: string) => {
-    setSavedWorkouts(savedWorkouts.filter(w => w.id !== id));
-    toast({
-      variant: 'destructive',
-      title: 'Workout Deleted',
-      description: 'The saved workout has been removed from your device.',
-    });
-  };
-
-  const clearGeneratedWorkout = () => {
-     window.location.reload();
-  }
-
-  const handleSaveWorkout = () => {
-    if (!state.isSuccess || !state.workoutPlan || !state.workoutInputs) return;
-
-    const { sport, workoutType, skillLevel, gender, workoutPreference } = state.workoutInputs;
-    
-    const nameParts = [
-        sport,
-        workoutType,
-        skillLevel,
-        gender,
-        workoutPreference
-    ].filter(Boolean).map(s => s!.charAt(0).toUpperCase() + s!.slice(1));
-
-    let workoutName = nameParts.join(' - ');
-    if (!workoutName) {
-        workoutName = `Custom Workout - ${new Date().toLocaleDateString()}`
-    }
-
-
-    const isAlreadySaved = savedWorkouts.some(workout => workout.plan === state.workoutPlan);
-    if(isAlreadySaved) {
-         toast({
-            variant: 'destructive',
-            title: 'Already Saved',
-            description: 'This workout plan is already in your saved list.',
-        });
-        return;
-    }
-
-    const newWorkout = {
-      id: new Date().toISOString(),
-      name: workoutName,
-      plan: state.workoutPlan,
-    };
-    setSavedWorkouts([...savedWorkouts, newWorkout]);
-    toast({
-      title: 'Workout Saved!',
-      description: 'Your custom workout plan has been saved to your device.',
-    });
-  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="lg:col-span-1">
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline">Create Your Weekly Plan</CardTitle>
-            <CardDescription>Tell us about yourself and we'll generate a custom 7-day workout plan for you.</CardDescription>
+            <CardTitle className="font-headline">Athlete AI Planner</CardTitle>
+            <CardDescription>Generate a custom workout plan for your specific athletic needs.</CardDescription>
           </CardHeader>
           <CardContent>
             <form action={formAction} className="space-y-6">
@@ -261,23 +146,15 @@ export default function AthleteWorkoutPlannerPage() {
         {isPending ? (
             <LoadingSkeleton />
         ) : state.isSuccess && state.workoutPlan ? (
-          <WorkoutCard 
-            plan={state.workoutPlan} 
-            showActions={true} 
-            onDelete={clearGeneratedWorkout}
-            onSave={handleSaveWorkout}
-          />
+           <WorkoutDisplay workout={state.workoutPlan} />
         ) : (
           <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">
             <Sparkles className="h-16 w-16 text-muted-foreground mb-4" />
-            <h3 className="text-xl font-bold font-headline">Your weekly workout plan will appear here</h3>
-            <p className="text-muted-foreground">Fill out the form to generate your personalized 7-day plan.</p>
+            <h3 className="text-xl font-bold font-headline">Your workout plan will appear here</h3>
+            <p className="text-muted-foreground">Fill out the form to generate your personalized plan.</p>
           </Card>
         )}
       </div>
-
-      {isClient && <SavedWorkouts workouts={savedWorkouts} onDelete={handleDeleteSavedWorkout} />}
-
     </div>
   );
 }

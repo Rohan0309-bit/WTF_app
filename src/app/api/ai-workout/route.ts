@@ -1,8 +1,6 @@
-'use server';
 
 import {NextRequest, NextResponse} from 'next/server';
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit/zod';
+import { z } from 'zod';
 
 const workoutInputSchema = z.object({
   gender: z.string(),
@@ -28,12 +26,18 @@ const workoutOutputSchema = z.object({
   exercises: z.array(exerciseSchema),
 });
 
-const prompt = ai.definePrompt(
-  {
-    name: 'aiWorkoutPrompt',
-    input: {schema: workoutInputSchema},
-    output: {schema: workoutOutputSchema},
-    prompt: `
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+
+  const validatedFields = workoutInputSchema.safeParse(body);
+
+  if (!validatedFields.success) {
+    return NextResponse.json({error: 'Invalid input'}, {status: 400});
+  }
+
+  const {gender, level, goal, location} = validatedFields.data;
+
+  const prompt = `
 You are a professional certified fitness coach working inside the WTF (Well Trained Freak) fitness app.
 
 You MUST generate workouts in structured JSON only.
@@ -47,7 +51,7 @@ STRICT RULES:
 - Use clear, commonly known exercise names only.
 - Always include: sets, reps, rest (in seconds).
 - Workouts must be realistic, balanced, and achievable.
-- Respect user gender: {{{gender}}}, fitness level: {{{level}}}, goal: {{{goal}}}, and workout location: {{{location}}}.
+- Respect user gender: ${gender}, fitness level: ${level}, goal: ${goal}, and workout location: ${location}.
 - If unsure, always choose safer beginner-friendly exercises.
 - Avoid injury-prone movements (no extreme plyometrics, no dangerous lifts).
 - Do NOT include medical advice.
@@ -59,32 +63,63 @@ WORKOUT STRUCTURE RULES:
 - Reps must be realistic for the user’s level.
 - Sets must be between 2–5.
 
-Now, generate the workout based on the user's input.
-`,
-  },
-);
+JSON FORMAT (DO NOT CHANGE KEYS):
 
-export async function POST(req: NextRequest) {
+{
+  "category": "AI Workout Generator",
+  "focus": "...",
+  "level": "${level}",
+  "location": "${location}",
+  "goal": "${goal}",
+  "gender": "${gender}",
+  "exercises": [
+    {
+      "name": "...",
+      "sets": 0,
+      "reps": "...",
+      "rest": 0
+    }
+  ]
+}
+`;
+
   try {
-    const body = await req.json();
-    const validatedInput = workoutInputSchema.parse(body);
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0.7,
+        max_tokens: 1200,
+        response_format: { type: "json_object" }
+      }),
+    });
 
-    const {output} = await prompt(validatedInput);
+    const data = await response.json();
+    const aiText = data.choices[0].message.content;
 
-    if (!output) {
-      throw new Error('AI returned an empty response.');
+    if (!aiText) {
+        throw new Error("AI returned an empty response.");
     }
     
-    return NextResponse.json(output);
+    const workoutJson = JSON.parse(aiText);
 
-  } catch (err) {
-    console.error('AI generation failed:', err);
-    let errorMessage = 'AI generation failed. Please try again later.';
-    if (err instanceof Error) {
-      errorMessage = err.message;
-    } else if (typeof err === 'string') {
-      errorMessage = err;
+    // Validate the output from the AI
+    const parsedOutput = workoutOutputSchema.safeParse(workoutJson);
+    if (!parsedOutput.success) {
+      console.error('AI returned malformed JSON object:', parsedOutput.error);
+      throw new Error('AI returned a workout with an invalid structure.');
     }
+
+    return NextResponse.json(parsedOutput.data);
+  } catch (error) {
+    console.error('AI handler error:', error);
+    const errorMessage =
+      error instanceof Error ? error.message : 'An unknown error occurred';
     return NextResponse.json({error: errorMessage}, {status: 500});
   }
 }

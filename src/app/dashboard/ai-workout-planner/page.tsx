@@ -15,6 +15,7 @@ import { WorkoutDisplay } from '@/components/workout-display';
 import { Loader2, Sparkles } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
+import { WorkoutCard } from '@/components/workout-card';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -145,3 +146,4 @@ export default function AiWorkoutPlannerPage() {
     </div>
   );
 }
+

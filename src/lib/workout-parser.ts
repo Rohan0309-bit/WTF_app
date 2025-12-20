@@ -42,6 +42,10 @@ function parseSingleExercise(line: string): Exercise | null {
 }
 
 export function parseWeeklyWorkoutPlan(plan: string): DailyWorkout[] {
+  if (typeof plan !== 'string') {
+    console.error("Invalid input to parseWeeklyWorkoutPlan: expected a string.");
+    return [];
+  }
   const weeklyPlan: DailyWorkout[] = [];
   const lines = plan.split('\n');
   let currentDay: DailyWorkout | null = null;
