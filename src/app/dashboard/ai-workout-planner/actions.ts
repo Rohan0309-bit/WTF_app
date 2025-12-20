@@ -19,6 +19,44 @@ export type FormState = {
   isSuccess: boolean;
 };
 
+const SYSTEM_PROMPT = `
+You are a professional fitness trainer and AI workout coach.
+Task:
+- Generate a 7-day workout plan for a user.
+- The user can provide:
+  - gender: "male" or "female"
+  - location: "home" or "gym"
+  - level: "beginner", "intermediate", "advanced"
+  - goal: string (e.g., "muscle gain", "fat loss", "general fitness")
+Output Requirements:
+- Return ONLY a JSON object with a single key "workoutPlan".
+- The value of "workoutPlan" should be an array of 7 day objects.
+- Each day object must have:
+  - day: string (e.g., "Monday")
+  - title: string (e.g., "Full Body Strength", "Upper Body Power")
+  - exercises: array of objects with:
+      - name: string
+      - sets: number or string
+      - reps: number or string (e.g., "8-12", "30 sec")
+      - rest: string (e.g., "60s", "90s")
+- Example JSON format:
+{
+  "workoutPlan": [
+    {
+      "day": "Monday",
+      "title": "Full Body Strength",
+      "exercises": [
+        { "name": "Push Ups", "sets": 3, "reps": 12, "rest": "60s" },
+        { "name": "Squats", "sets": 3, "reps": 15, "rest": "90s" }
+      ]
+    }
+  ]
+}
+Important:
+- Do not include any text outside the main JSON object.
+- Make sure the entire output is valid and parsable JSON.
+`;
+
 export async function getWorkoutPlan(
   prevState: FormState,
   formData: FormData
@@ -39,28 +77,61 @@ export async function getWorkoutPlan(
   }
   
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/ai-workout`, {
+    const { gender, location, level, goal } = validatedFields.data;
+    const userPrompt = `
+      Generate a 7-day workout plan based on the following user info:
+      - gender: ${gender}
+      - location: ${location}
+      - fitnessLevel: ${level}
+      - goal: ${goal}
+    `;
+
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
       },
-      body: JSON.stringify(validatedFields.data),
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: userPrompt },
+        ],
+        temperature: 0.7,
+        max_tokens: 2000,
+        response_format: { type: "json_object" }
+      }),
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'The AI workout generator failed.');
+        const errorData = await response.json();
+        console.error('Invalid response from AI:', errorData);
+        throw new Error(errorData.error?.message || 'The AI failed to generate a response.');
+    }
+    
+    const result = await response.json();
+    const text = result.choices?.[0]?.message?.content;
+
+    if (!text) {
+        throw new Error("AI returned an empty response.");
+    }
+    
+    let workoutPlanData;
+    try {
+      workoutPlanData = JSON.parse(text); 
+    } catch (error){
+      console.error("Failed to parse AI response as JSON:", text);
+      throw new Error(`AI returned invalid JSON. Raw response: ${text}`);
     }
 
-    const result = await response.json();
-    
-    if (!result || !result.workoutPlan || result.workoutPlan.length === 0) {
+    if (!workoutPlanData || !workoutPlanData.workoutPlan || workoutPlanData.workoutPlan.length === 0) {
       throw new Error("AI returned an empty or invalid workout plan.");
     }
     
     return {
       message: 'Workout plan generated successfully!',
-      workoutPlan: result.workoutPlan,
+      workoutPlan: workoutPlanData.workoutPlan,
       workoutInputs: validatedFields.data,
       isSuccess: true,
     };
