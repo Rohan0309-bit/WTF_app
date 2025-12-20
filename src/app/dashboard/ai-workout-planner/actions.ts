@@ -2,7 +2,7 @@
 "use server";
 
 import { z } from 'zod';
-import { parseWorkoutPlan, DailyWorkout, Exercise } from '@/lib/workout-parser';
+import type { DailyWorkout } from '@/lib/workout-parser';
 
 const formSchema = z.object({
   goal: z.string().optional(),
@@ -39,9 +39,8 @@ export async function getWorkoutPlan(
   }
   
   try {
-    const functionUrl = "https://generateaiworkout-bc3s8-uc.a.run.app";
-
-    const response = await fetch(functionUrl, {
+    // Call the local Next.js API route
+    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/ai-workout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,13 +50,12 @@ export async function getWorkoutPlan(
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to fetch from AI function.');
+      throw new Error(errorData.error || 'The AI workout generator failed.');
     }
 
     const result = await response.json();
     
-    // The AI returns a JSON object with a workout plan. We need to parse it.
-    // The AI's response is a single object, not a weekly plan.
+    // The AI returns a JSON object with a workout plan. We need to parse it for the component.
     const workout: DailyWorkout = {
         day: "Today",
         title: result.focus || "Generated Workout",
