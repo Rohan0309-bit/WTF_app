@@ -1,12 +1,12 @@
-'use server';
 
+import { NextRequest, NextResponse } from 'next/server';
 import { ai } from "@/ai/genkit";
 import { z } from "zod";
 
 const GenerateAiWorkoutInputSchema = z.object({
   gender: z.enum(['male', 'female']).default('male'),
   level: z.string().default('Beginner'),
-  goal: z.string().default('General Fitness'),
+  goal: z.string().optional().default('General Fitness'),
   location: z.enum(['home', 'gym']).default('home'),
 });
 
@@ -82,8 +82,21 @@ const generateAiWorkoutFlow = ai.defineFlow(
 );
 
 
-export async function generateAiWorkout(
-  input: GenerateAiWorkoutInput
-): Promise<GenerateAiWorkoutOutput> {
-    return generateAiWorkoutFlow(input);
+export async function POST(req: NextRequest) {
+    try {
+        const body = await req.json();
+        const validatedInput = GenerateAiWorkoutInputSchema.safeParse(body);
+
+        if (!validatedInput.success) {
+            return NextResponse.json({ error: 'Invalid input', issues: validatedInput.error.flatten() }, { status: 400 });
+        }
+
+        const workoutPlan = await generateAiWorkoutFlow(validatedInput.data);
+        return NextResponse.json(workoutPlan);
+
+    } catch (error) {
+        console.error("AI workout generation failed:", error);
+        const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+        return NextResponse.json({ error: `Failed to generate workout plan: ${errorMessage}` }, { status: 500 });
+    }
 }
