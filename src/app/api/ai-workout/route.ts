@@ -90,14 +90,16 @@ Generate a 7-day workout plan based on the following user info:
         throw new Error("AI returned an empty response.");
     }
     
-    let workoutPlan;
+    let workoutPlanData;
     try {
-      workoutPlan = JSON.parse(text); 
-    } catch {
+      workoutPlanData = JSON.parse(text); 
+    } catch (error){
+      console.error("Failed to parse AI response as JSON:", text);
       return NextResponse.json({ error: "AI returned invalid JSON", raw: text }, { status: 500 });
     }
 
-    return NextResponse.json(workoutPlan);
+    // This is the critical fix: ensuring the response matches the expected structure.
+    return NextResponse.json(workoutPlanData);
 
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
