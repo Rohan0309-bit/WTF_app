@@ -2,7 +2,6 @@
 "use server";
 
 import { z } from 'zod';
-import { generateAthleteWorkout, GenerateAthleteWorkoutInput } from '@/ai/flows/generate-athlete-workout';
 
 const formSchema = z.object({
   goal: z.string().optional(),
@@ -39,15 +38,27 @@ export async function getWorkoutPlan(
   }
   
   try {
-    const result = await generateAthleteWorkout({
-        ...validatedFields.data,
-        skillLevel: validatedFields.data.level,
-        workoutPreference: validatedFields.data.location
-    } as GenerateAthleteWorkoutInput);
+    // URL for the Firebase Function
+    const functionUrl = "https://generateaiworkout-bc3s8-uc.a.run.app";
+
+    const response = await fetch(functionUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(validatedFields.data),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to fetch from AI function.');
+    }
+
+    const result = await response.json();
 
     return {
       message: 'Workout plan generated successfully!',
-      workoutPlan: result.workoutPlan,
+      workoutPlan: JSON.stringify(result, null, 2), // Stringify the JSON for display
       workoutInputs: validatedFields.data,
       isSuccess: true,
     };
