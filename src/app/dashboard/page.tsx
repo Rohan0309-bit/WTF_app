@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -9,11 +8,17 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Dumbbell, Calculator, UtensilsCrossed, PersonStanding, TrendingUp, BookOpen, ListPlus } from 'lucide-react';
+import { Dumbbell, Calculator, UtensilsCrossed, PersonStanding, TrendingUp, BookOpen, ListPlus, BrainCircuit } from 'lucide-react';
 import Image from 'next/image';
 import { useUser } from '@/firebase';
 
 const features = [
+   {
+    title: 'AI Workout Planner',
+    description: 'Generate a custom workout plan with our AI trainer.',
+    href: '/dashboard/ai-workout-planner',
+    image: 'https://i.ibb.co/bFq1pQ1/Whats-App-Image-2025-12-11-at-22-18-41-1.jpg',
+  },
   {
     title: 'General Workouts',
     description: 'Browse our library of pre-defined workout plans.',

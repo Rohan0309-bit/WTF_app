@@ -19,6 +19,7 @@ import {
   MoreVertical,
   Menu,
   BrainCircuit,
+  Sparkles,
 } from 'lucide-react';
 import { Icons } from '@/components/icons';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
@@ -142,7 +143,8 @@ function SidebarNav() {
 
 const menu = [
   { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { name: 'Workouts', icon: Dumbbell, path: '/dashboard/general-workouts' },
+  { name: 'AI Workout Planner', icon: Sparkles, path: '/dashboard/ai-workout-planner'},
+  { name: 'General Workouts', icon: Dumbbell, path: '/dashboard/general-workouts' },
   { name: 'My Customized Plans', icon: ListPlus, path: '/dashboard/my-plans'},
   { name: 'Exercise Library', icon: BookOpen, path: '/dashboard/exercise-library' },
   { name: 'Mind & Focus', icon: BrainCircuit, path: '/dashboard/mind-focus-training' },

@@ -3,3 +3,4 @@ config();
 
 import '@/ai/flows/generate-athlete-workout.ts';
 import '@/ai/flows/generate-nutrition-plan.ts';
+import '@/ai/flows/generate-ai-workout.ts';
