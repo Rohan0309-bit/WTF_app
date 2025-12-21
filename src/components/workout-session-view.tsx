@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,19 +9,19 @@ type Exercise = {
   name: string;
   sets: number;
   reps: string;
-  rest_seconds: number;
-  pro_tip: string;
+  restSeconds: number; // Changed from rest_seconds
+  proTip: string; // Changed from pro_tip
 };
 
 type WarmupCooldown = {
   name: string;
-  duration_sec: number;
+  durationSec: number; // Changed from duration_sec
 };
 
 type WorkoutPlan = {
-  plan_name: string;
+  planName: string; // Changed from plan_name
   difficulty: string;
-  estimated_duration_mins: number;
+  estimatedDurationMins: number; // Changed from estimated_duration_mins
   warmup: WarmupCooldown[];
   exercises: Exercise[];
   cooldown: WarmupCooldown[];
@@ -45,9 +46,9 @@ export function WorkoutSessionView({ plan }: WorkoutSessionViewProps) {
   return (
     <Card className="shadow-lg">
       <CardHeader>
-        <CardTitle className="font-headline text-2xl">{plan.plan_name}</CardTitle>
+        <CardTitle className="font-headline text-2xl">{plan.planName}</CardTitle>
         <CardDescription>
-          A {plan.difficulty} plan estimated to take {plan.estimated_duration_mins} minutes.
+          A {plan.difficulty} plan estimated to take {plan.estimatedDurationMins} minutes.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -63,7 +64,7 @@ export function WorkoutSessionView({ plan }: WorkoutSessionViewProps) {
               <ul className="list-disc pl-6 space-y-2 pt-2">
                 {plan.warmup.map((item, index) => (
                   <li key={index} className="text-muted-foreground">
-                    {item.name} ({item.duration_sec} sec)
+                    {item.name} ({item.durationSec} sec)
                   </li>
                 ))}
               </ul>
@@ -88,13 +89,13 @@ export function WorkoutSessionView({ plan }: WorkoutSessionViewProps) {
                     </div>
                     <div className="flex items-center gap-1.5">
                       <Timer className="h-4 w-4" />
-                      <span>{exercise.rest_seconds}s rest</span>
+                      <span>{exercise.restSeconds}s rest</span>
                     </div>
                   </div>
-                  {exercise.pro_tip && (
+                  {exercise.proTip && (
                      <div className="flex items-start gap-2 text-xs text-amber-600 dark:text-amber-400 pt-1">
                         <BrainCircuit className="h-4 w-4 flex-shrink-0 mt-0.5" />
-                        <p>{exercise.pro_tip}</p>
+                        <p>{exercise.proTip}</p>
                      </div>
                   )}
                 </div>
@@ -113,7 +114,7 @@ export function WorkoutSessionView({ plan }: WorkoutSessionViewProps) {
               <ul className="list-disc pl-6 space-y-2 pt-2">
                 {plan.cooldown.map((item, index) => (
                   <li key={index} className="text-muted-foreground">
-                    {item.name} ({item.duration_sec} sec)
+                    {item.name} ({item.durationSec} sec)
                   </li>
                 ))}
               </ul>

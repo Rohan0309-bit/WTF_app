@@ -1,29 +1,18 @@
+
 'use client';
 
-import { useActionState, useEffect } from 'react';
-import { useFormStatus } from 'react-dom';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { GENDERS, SKILL_LEVELS, WORKOUT_PREFERENCES } from '@/lib/constants';
-import { getWorkoutPlan, FormState } from './actions';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Sparkles, Dumbbell, Repeat, Timer, BrainCircuit, Flame, Wind } from 'lucide-react';
+import { Loader2, Sparkles } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
 import { WorkoutSessionView } from '@/components/workout-session-view';
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" className="w-full" disabled={pending}>
-      {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      {pending ? 'Generating...' : 'Generate Workout'}
-    </Button>
-  );
-}
 
 function LoadingSkeleton() {
     return (
@@ -56,20 +45,42 @@ function LoadingSkeleton() {
 
 export default function AiWorkoutPlannerPage() {
   const { toast } = useToast();
-  const [state, formAction, isPending] = useActionState<FormState, FormData>(getWorkoutPlan, {
-    message: '',
-    isSuccess: false,
-  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [workoutPlan, setWorkoutPlan] = useState(null);
 
-  useEffect(() => {
-    if (state.message && !state.isSuccess && !isPending) {
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: state.message,
-      });
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setWorkoutPlan(null);
+
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch('/api/ai-workout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to generate workout plan.');
+        }
+
+        const result = await response.json();
+        setWorkoutPlan(result.plan);
+
+    } catch (error) {
+        toast({
+            variant: 'destructive',
+            title: 'Error',
+            description: error instanceof Error ? error.message : 'An unknown error occurred.',
+        });
+    } finally {
+        setIsLoading(false);
     }
-  }, [state, toast, isPending]);
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -80,7 +91,7 @@ export default function AiWorkoutPlannerPage() {
             <CardDescription>Tell us about yourself and we'll generate a custom workout plan for you.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form action={formAction} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               
               <div className="space-y-2">
                 <Label htmlFor="goal">Your Goal</Label>
@@ -123,16 +134,19 @@ export default function AiWorkoutPlannerPage() {
                 </RadioGroup>
               </div>
 
-              <SubmitButton />
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {isLoading ? 'Generating...' : 'Generate Workout'}
+              </Button>
             </form>
           </CardContent>
         </Card>
       </div>
       <div className="lg:col-span-2">
-        {isPending ? (
+        {isLoading ? (
             <LoadingSkeleton />
-        ) : state.isSuccess && state.workoutPlan ? (
-          <WorkoutSessionView plan={state.workoutPlan} />
+        ) : workoutPlan ? (
+          <WorkoutSessionView plan={workoutPlan} />
         ) : (
           <Card className="flex flex-col items-center justify-center h-full min-h-[400px] text-center p-8 border-dashed">
             <Sparkles className="h-16 w-16 text-muted-foreground mb-4" />
