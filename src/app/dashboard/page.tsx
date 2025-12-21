@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -8,9 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Dumbbell, Calculator, UtensilsCrossed, PersonStanding, TrendingUp, BookOpen, ListPlus, BrainCircuit } from 'lucide-react';
+import { Dumbbell, Calculator, UtensilsCrossed, PersonStanding, TrendingUp, BookOpen, ListPlus, BrainCircuit, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import { useUser } from '@/firebase';
+import { cn } from '@/lib/utils';
 
 const features = [
    {
@@ -18,6 +20,7 @@ const features = [
     description: 'Generate a custom workout plan with our AI trainer.',
     href: '/dashboard/ai-workout-planner',
     image: 'https://i.ibb.co/bFq1pQ1/Whats-App-Image-2025-12-11-at-22-18-41-1.jpg',
+    comingSoon: true,
   },
   {
     title: 'General Workouts',
@@ -95,7 +98,7 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 * i }}
           >
-            <Link href={feature.href} >
+            <Link href={feature.href} className={cn(feature.comingSoon && "pointer-events-none")}>
                 <motion.div
                 whileHover={{ scale: 1.05, rotateY: 3 }}
                 transition={{ type: "spring", stiffness: 300 }}
@@ -111,7 +114,10 @@ export default function DashboardPage() {
                           objectFit="cover"
                           className="transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 flex flex-col justify-end">
+                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 flex flex-col justify-between">
+                         <div>
+                            {feature.comingSoon && <div className="text-xs bg-black/50 text-white/90 px-2 py-1 rounded-full backdrop-blur-sm w-fit">Coming Soon</div>}
+                         </div>
                          <CardTitle className="font-headline text-white text-lg">{feature.title}</CardTitle>
                       </div>
                     </CardHeader>
