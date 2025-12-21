@@ -7,13 +7,28 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { NUTRITION_PLANS, type DailyNutritionPlan } from '@/lib/nutrition';
 import { Flame, Utensils, Zap } from 'lucide-react';
-
-const sports = Object.keys(NUTRITION_PLANS);
-const goals = Object.keys(NUTRITION_PLANS[sports[0]]);
+import { NUTRITION_GOALS, NUTRITION_SPORTS } from '@/lib/constants';
 
 export default function NutritionPage() {
-  const [selectedSport, setSelectedSport] = useState(sports[0]);
-  const [selectedGoal, setSelectedGoal] = useState(goals[0]);
+  const [selectedSport, setSelectedSport] = useState(NUTRITION_SPORTS[0]);
+  
+  const availableGoals = Object.keys(NUTRITION_PLANS[selectedSport] || {});
+  const [selectedGoal, setSelectedGoal] = useState(availableGoals[0]);
+
+  // Handle case where the selected sport/goal combo doesn't exist
+  if (!NUTRITION_PLANS[selectedSport] || !NUTRITION_PLANS[selectedSport][selectedGoal]) {
+      const sport = NUTRITION_SPORTS[0];
+      const goal = Object.keys(NUTRITION_PLANS[sport])[0];
+      setSelectedSport(sport);
+      setSelectedGoal(goal);
+  }
+
+  const handleSportChange = (sport: string) => {
+    setSelectedSport(sport);
+    // When sport changes, update the available goals and set to the first one
+    const newGoals = Object.keys(NUTRITION_PLANS[sport]);
+    setSelectedGoal(newGoals[0]);
+  }
 
   const plan: DailyNutritionPlan = NUTRITION_PLANS[selectedSport][selectedGoal];
 
@@ -36,10 +51,10 @@ export default function NutritionPage() {
 
       <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
         <div className="w-full sm:w-64">
-          <Select value={selectedSport} onValueChange={setSelectedSport}>
+          <Select value={selectedSport} onValueChange={handleSportChange}>
             <SelectTrigger><SelectValue placeholder="Select a sport" /></SelectTrigger>
             <SelectContent>
-              {sports.map(sport => <SelectItem key={sport} value={sport}>{sport}</SelectItem>)}
+              {NUTRITION_SPORTS.map(sport => <SelectItem key={sport} value={sport}>{sport}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
@@ -47,7 +62,7 @@ export default function NutritionPage() {
           <Select value={selectedGoal} onValueChange={setSelectedGoal}>
             <SelectTrigger><SelectValue placeholder="Select your goal" /></SelectTrigger>
             <SelectContent>
-              {goals.map(goal => <SelectItem key={goal} value={goal}>{goal}</SelectItem>)}
+              {availableGoals.map(goal => <SelectItem key={goal} value={goal}>{goal}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>

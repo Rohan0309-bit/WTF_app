@@ -57,12 +57,14 @@ export const NUTRITION_SPORTS = [
     "Volleyball",
     "Badminton",
     "Table Tennis",
+    "Sexual Wellness"
 ];
 
 export const NUTRITION_GOALS = [
     "Cutting",
     "Bulking",
     "Lean Muscle Gain",
+    "Libido & Stamina"
 ]
 
 export const NON_ATHLETE_WORKOUTS = [

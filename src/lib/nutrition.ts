@@ -241,5 +241,17 @@ export const NUTRITION_PLANS: Record<string, Record<string, DailyNutritionPlan>>
         { name: "Dinner", time: "7:00 PM", ingredients: ["Chicken and vegetable stir-fry with a light soy-ginger sauce"], calories: 600, protein: 50, carbs: 45, fat: 25 },
       ]
     },
+  },
+  "Sexual Wellness": {
+    "Libido & Stamina": {
+      goal: "Libido & Stamina",
+      description: "A plan rich in nutrients that support hormone balance, blood flow, and energy levels for enhanced sexual wellness.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Oatmeal with walnuts, flaxseeds, and banana", "Green tea"], calories: 450, protein: 15, carbs: 60, fat: 20 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Grilled salmon, quinoa, and a large spinach salad with olive oil dressing"], calories: 600, protein: 40, carbs: 50, fat: 28 },
+        { name: "Snack", time: "4:00 PM", ingredients: ["A handful of almonds and a few squares of dark chocolate (70% or higher)"], calories: 300, protein: 8, carbs: 20, fat: 22 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Lean steak or chicken with roasted asparagus and sweet potato"], calories: 650, protein: 50, carbs: 45, fat: 30 },
+      ]
+    }
   }
 };
