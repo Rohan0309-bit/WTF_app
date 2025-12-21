@@ -24,7 +24,7 @@ const socialLinks = [
     label: 'GitHub',
   },
   {
-    href: 'https://www.instagram.com/rohananand_/',
+    href: 'https://www.instagram.com/_rohan._.rajput_03?igsh=OWJtazBqMzcwYXBm',
     icon: Instagram,
     label: 'Instagram',
   },
