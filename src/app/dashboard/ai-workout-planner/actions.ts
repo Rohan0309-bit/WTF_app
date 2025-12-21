@@ -1,8 +1,7 @@
 "use server";
 
 import { z } from 'zod';
-import { getGenerativeModel } from 'firebase/ai';
-import { ai } from '@/lib/firebase';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const formSchema = z.object({
   goal: z.string().optional(),
@@ -13,7 +12,7 @@ const formSchema = z.object({
 
 export type FormState = {
   message: string;
-  workoutPlan?: any; // The structure is complex, so 'any' is used for simplicity here
+  workoutPlan?: any;
   workoutInputs?: any;
   issues?: string[];
   isSuccess: boolean;
@@ -73,7 +72,7 @@ export async function getWorkoutPlan(
     };
   }
   
-  if (!process.env.GEMINI_API_KEY) {
+  if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY') {
       return {
           message: 'The Gemini API key is not configured. Please add it to your .env file.',
           isSuccess: false
@@ -82,19 +81,18 @@ export async function getWorkoutPlan(
   
   try {
     const { gender, location, level, goal } = validatedFields.data;
-    
-    const model = getGenerativeModel(ai, { 
-      model: "gemini-1.5-flash-latest",
-      generationConfig: {
-        responseMimeType: "application/json",
-      },
-      systemInstruction: SYSTEM_PROMPT,
+
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+    const model = genAI.getGenerativeModel({ 
+        model: "gemini-1.5-flash-latest",
+        systemInstruction: SYSTEM_PROMPT,
     });
     
     const prompt = `Generate a workout for: ${JSON.stringify({ gender, workoutType: location, fitnessLevel: level, goal })}`;
 
     const result = await model.generateContent(prompt);
-    const responseText = result.response.text();
+    const response = result.response;
+    const responseText = response.text();
     
     let workoutPlanData;
     try {
