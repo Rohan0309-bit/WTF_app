@@ -1,3 +1,4 @@
+
 "use server";
 
 import { z } from 'zod';
@@ -90,7 +91,7 @@ export async function getWorkoutPlan(
 
     const fullPrompt = `${SYSTEM_PROMPT}\n${userPrompt}`;
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0-pro:generateContent?key=${process.env.GEMINI_API_KEY}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -100,7 +101,6 @@ export async function getWorkoutPlan(
             generationConfig: {
               temperature: 0.7,
               maxOutputTokens: 2048,
-              responseMimeType: "application/json",
             }
         })
     });
@@ -121,7 +121,9 @@ export async function getWorkoutPlan(
     
     let workoutData;
     try {
-      workoutData = JSON.parse(aiText);
+      // Sometimes the model returns the JSON wrapped in ```json ... ```, so we clean it.
+      const cleanedText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
+      workoutData = JSON.parse(cleanedText);
     } catch (error){
       console.error("Failed to parse AI response as JSON:", aiText);
       throw new Error(`AI returned invalid JSON. Raw response: ${aiText}`);

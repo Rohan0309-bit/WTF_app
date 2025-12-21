@@ -1,3 +1,4 @@
+
 'use server';
 
 import { z } from 'zod';
@@ -88,6 +89,7 @@ export async function getNutritionPlan(
     const { goal } = validatedFields.data;
 
     const llmResponse = await ai.generate({
+      model: 'gemini-1.0-pro',
       prompt: `${SYSTEM_PROMPT}\nMy goal is: "${goal}"`,
       config: {
         temperature: 0.7,
