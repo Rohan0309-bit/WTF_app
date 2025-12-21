@@ -1,129 +1,34 @@
 
 "use server";
 
-import { z } from 'zod';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const formSchema = z.object({
-  goal: z.string().optional(),
-  gender: z.enum(['male', 'female']),
-  level: z.string().min(1, 'Fitness level is required.'),
-  location: z.enum(['home', 'gym']),
-});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
-export type FormState = {
-  message: string;
-  workoutPlan?: any;
-  workoutInputs?: any;
-  issues?: string[];
-  isSuccess: boolean;
-};
-
-const SYSTEM_PROMPT = `
-Role: You are a professional, CSCS-certified Fitness Coach and Exercise Scientist.
-
-Task: Generate a highly personalized workout plan based on user inputs (Goal, Equipment, Available Time, Fitness Level).
-
-Constraints:
-
-Safety First: Always include a specific 5-minute dynamic warm-up.
-
-Precision: Use specific exercise names (e.g., "Bulgarian Split Squat" instead of just "Legs").
-
-Format: You MUST respond strictly in JSON format. Do not include any conversational text, markdown headers, or explanations outside of the JSON.
-
-Expertise: Adjust volume (sets/reps) based on the user's level (Beginner/Intermediate/Advanced).
-
-Required JSON Structure:
-{
-  "plan_name": "String",
-  "difficulty": "String",
-  "estimated_duration_mins": Number,
-  "warmup": [{ "name": "String", "duration_sec": Number }],
-  "exercises": [
-    {
-      "name": "String",
-      "sets": Number,
-      "reps": "String",
-      "rest_seconds": Number,
-      "pro_tip": "String"
-    }
-  ],
-  "cooldown": [{ "name": "String", "duration_sec": Number }]
-}
-`;
-
-
-export async function getWorkoutPlan(
-  prevState: FormState,
-  formData: FormData
-): Promise<FormState> {
-  const validatedFields = formSchema.safeParse({
-    goal: formData.get('goal'),
-    gender: formData.get('gender'),
-    level: formData.get('level'),
-    location: formData.get('location'),
+export async function generateWorkoutPlan({ gender, workoutType }: { gender: string, workoutType: string }) {
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash",
   });
 
-  if (!validatedFields.success) {
-    return {
-      message: 'There was an error with your submission. Please check the form fields.',
-      issues: validatedFields.error.flatten().fieldErrors.root,
-      isSuccess: false,
-    };
-  }
-  
-  if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY') {
-      return {
-          message: 'The Gemini API key is not configured. Please add it to your .env file.',
-          isSuccess: false
-      }
-  }
-  
-  try {
-    const { gender, location, level, goal } = validatedFields.data;
+  const prompt = `
+You are a professional fitness coach for the WTF app.
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-    const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash-latest",
-        systemInstruction: SYSTEM_PROMPT,
-    });
-    
-    const prompt = `Generate a workout for: ${JSON.stringify({ gender, workoutType: location, fitnessLevel: level, goal })}`;
+Generate a 7-day ${gender} ${workoutType} workout plan.
 
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const responseText = response.text();
-    
-    let workoutPlanData;
-    try {
-      // Clean the response to handle potential markdown fences
-      const cleanedText = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
-      workoutPlanData = JSON.parse(cleanedText);
-    } catch (error){
-      console.error("Failed to parse AI response as JSON:", responseText);
-      return { message: `AI returned invalid JSON. Please try generating again.`, isSuccess: false };
-    }
-    
-    return {
-      message: 'Workout plan generated successfully!',
-      workoutPlan: workoutPlanData,
-      workoutInputs: validatedFields.data,
-      isSuccess: true,
-    };
-
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
-    console.error("Error in getWorkoutPlan:", errorMessage);
-    if (errorMessage.includes('API key not valid')) {
-        return {
-            message: 'Your Gemini API key is invalid. Please check your .env file.',
-            isSuccess: false,
-        };
-    }
-    return {
-      message: `An unexpected error occurred: ${errorMessage}`,
-      isSuccess: false,
-    };
+Return ONLY valid JSON in this format:
+[
+  {
+    "day": "Monday",
+    "focus": "Full Body",
+    "exercises": [
+      { "name": "Push Ups", "sets": 3, "reps": 12 }
+    ]
   }
+]
+`;
+
+  const result = await model.generateContent(prompt);
+  const text = result.response.text();
+
+  return JSON.parse(text);
 }
