@@ -123,8 +123,8 @@ export default function LoginPage() {
             >
               <Icons.logo className="h-20 w-20 text-primary" />
             </motion.div>
-            <CardTitle className="text-3xl font-bold text-foreground">Welcome</CardTitle>
-            <CardDescription className="text-muted-foreground">Sign in to your account</CardDescription>
+            <CardTitle className="text-3xl font-bold text-foreground">Get Started</CardTitle>
+            <CardDescription className="text-muted-foreground">Sign in or create your account</CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
@@ -185,11 +185,19 @@ export default function LoginPage() {
                   disabled={loading}
                 >
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Sign In
+                  Sign In / Quick Create
                 </Button>
               </div>
             </form>
           </CardContent>
+           <CardFooter className="justify-center text-sm">
+            <p className="text-muted-foreground">
+              Need more options?{' '}
+              <Link href="/signup" className="font-semibold text-primary hover:underline">
+                Go to full signup
+              </Link>
+            </p>
+          </CardFooter>
         </Card>
       </motion.div>
     </div>
