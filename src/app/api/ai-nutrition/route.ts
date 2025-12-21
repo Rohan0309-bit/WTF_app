@@ -61,6 +61,11 @@ export async function POST(req: NextRequest) {
     if (!validatedFields.success) {
       return NextResponse.json({error: 'Invalid input'}, {status: 400});
     }
+
+    if (!process.env.OPENAI_API_KEY) {
+        return NextResponse.json({ error: "OpenAI API key is not configured." }, { status: 500 });
+    }
+
     const {goal} = validatedFields.data;
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -80,19 +85,21 @@ export async function POST(req: NextRequest) {
       }),
     });
 
+    if (!response.ok) {
+        const errorData = await response.json();
+        console.error('OpenAI API request failed:', errorData);
+        throw new Error(errorData.error?.message || 'The AI failed to generate a response.');
+    }
+    
     const data = await response.json();
     
-    if (!response.ok) {
-        console.error('Invalid response from AI:', data);
-        throw new Error(data.error?.message || 'The AI failed to generate a response.');
+    if (!data.choices || data.choices.length === 0 || !data.choices[0].message?.content) {
+        console.error("AI response was empty or in an unexpected format:", data);
+        throw new Error("AI returned an empty or invalid response.");
     }
     
-    const aiText = data.choices?.[0]?.message?.content;
+    const aiText = data.choices[0].message.content;
 
-    if (!aiText) {
-        throw new Error("AI returned an empty response.");
-    }
-    
     let nutritionPlan;
     try {
       nutritionPlan = JSON.parse(aiText);

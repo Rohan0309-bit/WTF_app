@@ -2,8 +2,6 @@
 
 import { z } from 'zod';
 import { DailyWorkout } from '@/lib/workout-parser';
-import { ai } from '@/ai/genkit';
-import { geminiPro } from 'genkitx-googleai';
 
 const formSchema = z.object({
   sport: z.string().optional(),
@@ -71,9 +69,9 @@ export async function getWorkoutPlan(
     };
   }
   
-  if (!process.env.GEMINI_API_KEY) {
+  if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === "YOUR_GEMINI_API_KEY") {
       return {
-          message: 'The Gemini API key is not configured. Please add it to your environment variables.',
+          message: 'The Gemini API key is not configured. Please add it to your .env file.',
           isSuccess: false
       }
   }
@@ -90,27 +88,43 @@ export async function getWorkoutPlan(
       - Location: ${workoutPreference}
     `;
 
-    const llmResponse = await ai.generate({
-      model: geminiPro,
-      prompt: `${SYSTEM_PROMPT}\n${userPrompt}`,
-      config: {
-        temperature: 0.7,
-      },
+    const fullPrompt = `${SYSTEM_PROMPT}\n${userPrompt}`;
+
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            contents: [{ parts: [{ text: fullPrompt }] }],
+            generationConfig: {
+              temperature: 0.7,
+              maxOutputTokens: 2048,
+              responseMimeType: "application/json",
+            }
+        })
     });
 
-    const text = llmResponse.text();
+    if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Gemini API request failed:', errorData);
+        throw new Error(errorData.error?.message || 'The AI failed to generate a response.');
+    }
+    
+    const data = await response.json();
+    const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
-    if (!text) {
-        throw new Error("AI returned an empty response.");
+    if (!aiText) {
+        console.error("AI response was empty or in an unexpected format:", data);
+        throw new Error("AI returned an empty or invalid response.");
     }
     
     let workoutData;
     try {
-      const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-      workoutData = JSON.parse(cleanedText); 
+      workoutData = JSON.parse(aiText);
     } catch (error){
-      console.error("Failed to parse AI response as JSON:", text);
-      throw new Error(`AI returned invalid JSON. Raw response: ${text}`);
+      console.error("Failed to parse AI response as JSON:", aiText);
+      throw new Error(`AI returned invalid JSON. Raw response: ${aiText}`);
     }
 
     if (!workoutData || !workoutData.focus || !workoutData.exercises || !Array.isArray(workoutData.exercises)) {
