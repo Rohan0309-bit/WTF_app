@@ -23,7 +23,7 @@ export function ThemeToggle() {
 
   return (
     <div className="flex items-center gap-2">
-      <Sun className="h-5 w-5" />
+      <Moon className="h-5 w-5" />
       <Switch
         id="dark-mode"
         checked={theme === 'dark'}
@@ -31,7 +31,7 @@ export function ThemeToggle() {
           setTheme(checked ? 'dark' : 'light')
         }}
       />
-      <Moon className="h-5 w-5" />
+      <Sun className="h-5 w-5" />
     </div>
   )
 }
