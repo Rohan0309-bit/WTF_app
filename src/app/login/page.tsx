@@ -26,7 +26,7 @@ export default function LoginPage() {
   
   const [openResetModal, setOpenResetModal] = useState(false);
 
-  const supportEmail = 'support.wtfapp@gmail.com';
+  const supportEmail = 'wtfapp369@gmail.com';
   const supportSubject = 'Password Reset Help – WTF App';
   const supportBody = `Registered Email:\nIssue:`;
   const mailtoHref = `mailto:${supportEmail}?subject=${encodeURIComponent(supportSubject)}&body=${encodeURIComponent(supportBody)}`;
