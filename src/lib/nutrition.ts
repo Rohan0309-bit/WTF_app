@@ -1,3 +1,4 @@
+
 export interface Meal {
   name: string;
   time: string;
@@ -112,4 +113,133 @@ export const NUTRITION_PLANS: Record<string, Record<string, DailyNutritionPlan>>
       ]
     },
   },
+  "Basketball": {
+    "Cutting": {
+      goal: "Cutting (In-Season Maintenance)",
+      description: "Focuses on maintaining energy for high-intensity games while promoting a lean physique.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Greek yogurt with granola and fruit", "A hard-boiled egg"], calories: 500, protein: 30, carbs: 55, fat: 18 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Turkey and avocado wrap on whole wheat tortilla", "Side salad"], calories: 550, protein: 40, carbs: 40, fat: 25 },
+        { name: "Pre-Game/Training", time: "4:00 PM", ingredients: ["A banana and a small sports drink"], calories: 200, protein: 2, carbs: 50, fat: 1 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Grilled chicken breast, roasted sweet potatoes, and steamed broccoli"], calories: 600, protein: 50, carbs: 60, fat: 18 },
+      ]
+    },
+    "Bulking": {
+      goal: "Bulking (Off-Season Strength)",
+      description: "High-calorie plan to support intense strength training and muscle mass gain.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["4-egg omelette with cheese and veggies", "2 slices of whole wheat toast with peanut butter", "Glass of whole milk"], calories: 800, protein: 50, carbs: 70, fat: 38 },
+        { name: "Snack 1", time: "11:00 AM", ingredients: ["Weight gainer shake"], calories: 500, protein: 40, carbs: 60, fat: 10 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Large portion of lasagna or spaghetti with meat sauce", "Garlic bread"], calories: 900, protein: 55, carbs: 110, fat: 30 },
+        { name: "Snack 2", time: "4:00 PM", ingredients: ["Cottage cheese with fruit and nuts"], calories: 400, protein: 30, carbs: 30, fat: 19 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Large steak, baked potato with sour cream, and a large serving of corn"], calories: 1000, protein: 65, carbs: 80, fat: 45 },
+      ]
+    },
+    "Lean Muscle Gain": {
+      goal: "Lean Muscle & Agility",
+      description: "Balanced macronutrients to build explosive power and lean muscle for on-court performance.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Scrambled eggs with smoked salmon and a whole-wheat bagel"], calories: 600, protein: 40, carbs: 50, fat: 27 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Chicken and quinoa bowl with black beans, corn, and avocado"], calories: 700, protein: 50, carbs: 75, fat: 22 },
+        { name: "Snack", time: "4:00 PM", ingredients: ["Protein shake and a handful of mixed nuts"], calories: 450, protein: 35, carbs: 25, fat: 23 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Pork chops with apple sauce, wild rice, and roasted Brussels sprouts"], calories: 750, protein: 55, carbs: 65, fat: 30 },
+      ]
+    },
+  },
+  "Volleyball": {
+    "Cutting": {
+      goal: "Cutting (Competition Readiness)",
+      description: "A plan to help players become leaner and quicker without sacrificing power for jumps.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Oatmeal with protein powder and sliced almonds"], calories: 450, protein: 35, carbs: 50, fat: 13 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Grilled fish tacos on corn tortillas with slaw and avocado"], calories: 500, protein: 40, carbs: 40, fat: 20 },
+        { name: "Snack", time: "4:00 PM", ingredients: ["Hard-boiled egg and an orange"], calories: 200, protein: 10, carbs: 15, fat: 10 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Lean turkey meatballs with zucchini noodles and marinara sauce"], calories: 550, protein: 45, carbs: 35, fat: 25 },
+      ]
+    },
+    "Bulking": {
+      goal: "Bulking (Power Building)",
+      description: "Focused on building explosive leg and shoulder power for hitting and blocking.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Protein pancakes with maple syrup and a side of bacon"], calories: 750, protein: 45, carbs: 80, fat: 29 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Beef and broccoli stir-fry with a large portion of white rice"], calories: 800, protein: 50, carbs: 95, fat: 24 },
+        { name: "Snack", time: "4:00 PM", ingredients: ["A large smoothie with fruit, yogurt, milk, and protein powder"], calories: 500, protein: 35, carbs: 70, fat: 8 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Roasted chicken (half), mashed potatoes, and gravy with green beans"], calories: 950, protein: 60, carbs: 80, fat: 40 },
+      ]
+    },
+    "Lean Muscle Gain": {
+      goal: "Lean Muscle & Vertical Jump",
+      description: "Optimal protein and timed carbs to fuel explosive movements and aid recovery.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Scrambled eggs, chicken sausage, and a bowl of oatmeal"], calories: 650, protein: 45, carbs: 60, fat: 25 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Large chicken salad sandwich on sourdough bread", "Side of grapes"], calories: 600, protein: 40, carbs: 65, fat: 19 },
+        { name: "Post-Workout", time: "4:00 PM", ingredients: ["Protein shake with a banana"], calories: 400, protein: 30, carbs: 55, fat: 5 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Salmon with asparagus and a side of quinoa"], calories: 700, protein: 50, carbs: 60, fat: 29 },
+      ]
+    },
+  },
+  "Badminton": {
+    "Cutting": {
+      goal: "Cutting (Agility & Speed)",
+      description: "A lightweight plan to maximize agility and speed on the court without feeling weighed down.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Egg white scramble with spinach and one slice of rye toast"], calories: 350, protein: 25, carbs: 30, fat: 14 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Vietnamese summer rolls with shrimp and a light peanut sauce"], calories: 450, protein: 30, carbs: 50, fat: 12 },
+        { name: "Snack", time: "4:00 PM", ingredients: ["A pear and a small handful of cashews"], calories: 250, protein: 6, carbs: 25, fat: 15 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Steamed cod with a side of bok choy and a small bowl of brown rice"], calories: 500, protein: 40, carbs: 45, fat: 18 },
+      ]
+    },
+    "Bulking": {
+      goal: "Bulking (Endurance & Power)",
+      description: "Adds lean mass for powerful smashes and court coverage, without unnecessary weight.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Oatmeal cooked with milk, topped with banana, walnuts, and honey"], calories: 650, protein: 25, carbs: 90, fat: 22 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Chicken fried rice with extra chicken and vegetables"], calories: 750, protein: 45, carbs: 100, fat: 19 },
+        { name: "Snack", time: "4:00 PM", ingredients: ["Two hard-boiled eggs and a protein bar"], calories: 400, protein: 28, carbs: 30, fat: 19 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Pasta with a lean ground beef bolognese sauce and a side of garlic bread"], calories: 850, protein: 50, carbs: 95, fat: 30 },
+      ]
+    },
+    "Lean Muscle Gain": {
+      goal: "Lean Muscle & Reflex Speed",
+      description: "Designed for quick energy, fast reflexes, and strong muscular endurance for long rallies.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["3-egg omelette with bell peppers", "Small sweet potato"], calories: 500, protein: 30, carbs: 40, fat: 24 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Grilled chicken breast with a quinoa salad (cucumber, tomato, lemon dressing)"], calories: 600, protein: 45, carbs: 55, fat: 20 },
+        { name: "Pre-Match", time: "4:00 PM", ingredients: ["An apple and an electrolyte drink"], calories: 150, protein: 1, carbs: 40, fat: 0 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Stir-fried tofu with mixed vegetables and noodles"], calories: 650, protein: 35, carbs: 70, fat: 25 },
+      ]
+    },
+  },
+  "Table Tennis": {
+    "Cutting": {
+      goal: "Cutting (Reaction & Focus)",
+      description: "A plan to stay sharp and light on your feet, focusing on nutrients for cognitive function.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Scrambled egg whites, a handful of blueberries"], calories: 300, protein: 20, carbs: 25, fat: 13 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Tuna salad (made with Greek yogurt) in a lettuce wrap", "Cherry tomatoes"], calories: 400, protein: 35, carbs: 15, fat: 20 },
+        { name: "Snack", time: "4:00 PM", ingredients: ["A small protein shake (water-based)"], calories: 150, protein: 25, carbs: 5, fat: 3 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Baked chicken thigh with a side of steamed cauliflower and a small salad"], calories: 500, protein: 40, carbs: 20, fat: 29 },
+      ]
+    },
+    "Bulking": {
+      goal: "Bulking (Core Strength & Stability)",
+      description: "Focuses on building a strong, stable core and leg base for powerful shots.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Oatmeal with nuts, seeds, and a scoop of protein"], calories: 600, protein: 35, carbs: 70, fat: 20 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Beef and vegetable skewers with a side of couscous"], calories: 700, protein: 45, carbs: 80, fat: 22 },
+        { name: "Snack", time: "4:00 PM", ingredients: ["Greek yogurt with a drizzle of honey"], calories: 300, protein: 20, carbs: 35, fat: 9 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Pork loin with roasted root vegetables (carrots, parsnips, potatoes)"], calories: 800, protein: 50, carbs: 75, fat: 33 },
+      ]
+    },
+    "Lean Muscle Gain": {
+      goal: "Lean Muscle & Quick Energy",
+      description: "Provides sustained energy for long matches and training sessions, focusing on lean protein and complex carbs.",
+      meals: [
+        { name: "Breakfast", time: "8:00 AM", ingredients: ["Two poached eggs on a slice of avocado toast"], calories: 450, protein: 25, carbs: 30, fat: 25 },
+        { name: "Lunch", time: "1:00 PM", ingredients: ["Salmon fillet with a side of brown rice and sautéed spinach"], calories: 650, protein: 45, carbs: 50, fat: 29 },
+        { name: "Pre-Match", time: "4:00 PM", ingredients: ["A banana and a small black coffee"], calories: 120, protein: 1, carbs: 30, fat: 1 },
+        { name: "Dinner", time: "7:00 PM", ingredients: ["Chicken and vegetable stir-fry with a light soy-ginger sauce"], calories: 600, protein: 50, carbs: 45, fat: 25 },
+      ]
+    },
+  }
 };

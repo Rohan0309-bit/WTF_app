@@ -1,3 +1,4 @@
+
 import { Dumbbell, Target, Activity, Shield, Stethoscope, Utensils, Footprints, Zap, Hand, Dribbble } from 'lucide-react';
 import type { Drill } from './drills';
 
@@ -53,6 +54,9 @@ export const NUTRITION_SPORTS = [
     "Cricket",
     "Football",
     "Basketball",
+    "Volleyball",
+    "Badminton",
+    "Table Tennis",
 ];
 
 export const NUTRITION_GOALS = [
