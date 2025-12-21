@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { auth, db } from '@/lib/firebase';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight, Check, Smile } from 'lucide-react';
+import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight, Check, Smile, Headset } from 'lucide-react';
 import type { User } from 'firebase/auth';
 import { updateProfile } from 'firebase/auth';
 import Link from 'next/link';
@@ -27,9 +27,14 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { CreatorProfile } from '@/components/creator-profile';
 
 
+const supportEmail = 'wtfapp369@gmail.com';
+const supportSubject = 'WTF App Support';
+const mailtoHref = `mailto:${supportEmail}?subject=${encodeURIComponent(supportSubject)}`;
+
 const supportItems = [
     { id: 'rate', icon: Star, title: 'Rate Us', href: '#' },
-    { id: 'feedback', icon: MessageSquare, title: 'Feedback', href: '#' },
+    { id: 'feedback', icon: MessageSquare, title: 'Feedback', href: mailtoHref },
+    { id: 'contact', icon: Headset, title: 'Contact Support', href: mailtoHref },
     { id: 'privacy', icon: Shield, title: 'Privacy Policy', href: '#' },
     { id: 'more', icon: AppWindow, title: 'More Apps', href: '#' },
 ];
@@ -342,7 +347,7 @@ export default function SettingsPage() {
                         <Link 
                             href={item.href} 
                             key={item.id} 
-                            target={item.href === '#' ? '_self' : '_blank'} 
+                            target={item.href.startsWith('mailto') ? '_self' : '_blank'} 
                             rel="noopener noreferrer"
                             className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer"
                         >
