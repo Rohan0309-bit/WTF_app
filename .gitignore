@@ -1,36 +1,37 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
-/.pnp
-.pnp.js
 
-# testing
-/coverage
+# Local Environment Variables
+.env
+.env.local
+.env.production
 
-# next.js
+# Firebase
+.firebase
+
+# Next.js
 /.next/
 /out/
 
-# production
+# Build output
 /build
 
-# misc
+# VSCode
+.vscode/
+
+# Mac
 .DS_Store
 *.pem
 
-# debug
+# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# local env files
-.env*.local
-.env
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Lockfiles
+/package-lock.json
+/yarn.lock
+/pnpm-lock.yaml
