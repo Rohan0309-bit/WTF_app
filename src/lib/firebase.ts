@@ -1,3 +1,4 @@
+
 // This file is deprecated and its contents have been moved to src/firebase/index.ts
 // It is kept to prevent breaking imports in files that have not been updated yet.
 // Please update imports to point to '@/firebase' instead of '@/lib/firebase'.
@@ -5,7 +6,6 @@
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signOut, type User } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator, doc, setDoc, serverTimestamp, enableIndexedDbPersistence } from "firebase/firestore";
-import { getAI } from "firebase/ai";
 import { firebaseConfig } from "@/firebase/config";
 
 // Initialize Firebase
@@ -19,7 +19,6 @@ if (!getApps().length) {
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
-export const ai = getAI(app);
 
 // Enable offline persistence
 if (typeof window !== 'undefined') {
