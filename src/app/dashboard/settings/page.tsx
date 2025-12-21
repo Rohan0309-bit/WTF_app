@@ -60,7 +60,7 @@ export default function SettingsPage() {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [saveSuccess, setSaveSuccess] = useState(false);
-    const [selectedSection, setSelectedSection] = useState<'profile' | null>(null);
+    const [selectedSection, setSelectedSection] = useState<'profile' | 'creator' | null>(null);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -318,21 +318,25 @@ export default function SettingsPage() {
                     <CardDescription>Give feedback, read our policies, and explore more.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-1 p-0">
-                    <Sheet>
-                        <SheetTrigger asChild>
-                            <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer">
-                                <Smile className="h-5 w-5 text-muted-foreground mr-4"/>
-                                <span className="flex-1 font-medium">Meet the Creator</span>
-                                <ChevronRight className="h-5 w-5 text-muted-foreground"/>
+                    <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer" onClick={() => setSelectedSection(selectedSection === 'creator' ? null : 'creator')}>
+                        <Smile className="h-5 w-5 text-muted-foreground mr-4"/>
+                        <div className="flex-1">
+                            <span className="font-medium">Meet the Creator</span>
+                        </div>
+                        <ChevronRight className={cn("h-5 w-5 text-muted-foreground transition-transform", selectedSection === 'creator' && 'rotate-90')}/>
+                    </div>
+
+                    {selectedSection === 'creator' && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            className="overflow-hidden"
+                        >
+                            <div className="p-4 pt-0 border-t">
+                                <CreatorProfile />
                             </div>
-                        </SheetTrigger>
-                        <SheetContent>
-                            <SheetHeader>
-                                <SheetTitle>About the Creator</SheetTitle>
-                            </SheetHeader>
-                            <CreatorProfile />
-                        </SheetContent>
-                    </Sheet>
+                        </motion.div>
+                    )}
 
                     {supportItems.map(item => (
                         <Link 
