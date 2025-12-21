@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -6,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
 import { auth, login, signUp } from '@/lib/firebase';
-import { onAuthStateChanged, fetchSignInMethodsForEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';

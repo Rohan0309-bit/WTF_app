@@ -5,7 +5,10 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { Header } from '@/components/header';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useUser } from '@/firebase';
+import { useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
 
 export default function DashboardLayout({
   children,
@@ -13,6 +16,23 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
     const pathname = usePathname();
+    const { user, isUserLoading } = useUser();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!isUserLoading && !user) {
+            router.push('/login');
+        }
+    }, [isUserLoading, user, router]);
+
+    if (isUserLoading || !user) {
+        return (
+            <div className="flex items-center justify-center h-screen w-screen bg-background">
+                <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            </div>
+        );
+    }
+
   return (
     <SidebarProvider>
       <div 

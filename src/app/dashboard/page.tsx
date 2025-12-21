@@ -69,6 +69,7 @@ const features = [
     description: 'Monitor your gains and stay motivated.',
     href: '/dashboard/progress',
     image: 'https://i.ibb.co/ksPLhW16/Whats-App-Image-2025-12-11-at-22-18-42.jpg',
+    comingSoon: true,
   },
 ];
 
