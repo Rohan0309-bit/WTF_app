@@ -2,7 +2,6 @@
 
 import { z } from 'zod';
 import { ai } from '@/ai/genkit';
-import { geminiPro } from 'genkitx-googleai';
 
 
 const formSchema = z.object({
@@ -89,7 +88,6 @@ export async function getNutritionPlan(
     const { goal } = validatedFields.data;
 
     const llmResponse = await ai.generate({
-      model: geminiPro,
       prompt: `${SYSTEM_PROMPT}\nMy goal is: "${goal}"`,
       config: {
         temperature: 0.7,
