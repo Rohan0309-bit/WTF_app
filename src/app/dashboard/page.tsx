@@ -19,8 +19,7 @@ const features = [
     title: 'AI Workout Planner',
     description: 'Generate a custom workout plan with our AI trainer.',
     href: '/dashboard/ai-workout-planner',
-    image: 'https://i.ibb.co/bFq1pQ1/Whats-App-Image-2025-12-11-at-22-18-41-1.jpg',
-    comingSoon: true,
+    image: 'https://i.ibb.co/JWmC8kBm/Whats-App-Image-2025-12-21-at-23-50-25.jpg',
   },
   {
     title: 'General Workouts',
