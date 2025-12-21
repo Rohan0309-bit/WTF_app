@@ -23,12 +23,11 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError, type SecurityRuleContext } from '@/firebase/errors';
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { CreatorProfile } from '@/components/creator-profile';
 
 
 const supportItems = [
-    { id: 'creator', icon: Smile, title: 'Meet the Creator', href: '/dashboard/creator-profile' },
     { id: 'rate', icon: Star, title: 'Rate Us', href: '#' },
     { id: 'feedback', icon: MessageSquare, title: 'Feedback', href: '#' },
     { id: 'privacy', icon: Shield, title: 'Privacy Policy', href: '#' },
@@ -319,12 +318,28 @@ export default function SettingsPage() {
                     <CardDescription>Give feedback, read our policies, and explore more.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-1 p-0">
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer">
+                                <Smile className="h-5 w-5 text-muted-foreground mr-4"/>
+                                <span className="flex-1 font-medium">Meet the Creator</span>
+                                <ChevronRight className="h-5 w-5 text-muted-foreground"/>
+                            </div>
+                        </SheetTrigger>
+                        <SheetContent>
+                            <SheetHeader>
+                                <SheetTitle>About the Creator</SheetTitle>
+                            </SheetHeader>
+                            <CreatorProfile />
+                        </SheetContent>
+                    </Sheet>
+
                     {supportItems.map(item => (
                         <Link 
                             href={item.href} 
                             key={item.id} 
                             target={item.href === '#' ? '_self' : '_blank'} 
-                            rel="noopener noreferrer" 
+                            rel="noopener noreferrer"
                             className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer"
                         >
                             <item.icon className="h-5 w-5 text-muted-foreground mr-4"/>

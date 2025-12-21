@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -32,7 +33,7 @@ const socialLinks = [
 
 export function CreatorProfile() {
   return (
-    <div className="flex flex-col items-center text-center p-4 space-y-6">
+    <div className="flex flex-col items-center text-center p-4 space-y-6 pt-8">
       <div className="relative">
         <Avatar className="w-32 h-32 border-4 border-primary shadow-lg">
           <AvatarImage src="https://picsum.photos/seed/rohan/200/200" alt="Rohan Anand" />
