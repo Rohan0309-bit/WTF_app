@@ -13,7 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
-import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, Loader2, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LoginPage() {
@@ -24,9 +24,12 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   
-  const [resetEmail, setResetEmail] = useState("");
-  const [resetLoading, setResetLoading] = useState(false);
   const [openResetModal, setOpenResetModal] = useState(false);
+
+  const supportEmail = 'support.wtfapp@gmail.com';
+  const supportSubject = 'Password Reset Help – WTF App';
+  const supportBody = `Registered Email:\nIssue:`;
+  const mailtoHref = `mailto:${supportEmail}?subject=${encodeURIComponent(supportSubject)}&body=${encodeURIComponent(supportBody)}`;
 
   // Auto-redirect if already signed in
   useEffect(() => {
@@ -37,46 +40,6 @@ export default function LoginPage() {
     });
     return () => unsub();
   }, [router]);
-
-  const handleForgotPassword = async () => {
-    if (!resetEmail) {
-      toast({
-        variant: "destructive",
-        title: "Missing Email",
-        description: "Please enter your registered email.",
-      });
-      return;
-    }
-  
-    setResetLoading(true);
-    try {
-      await sendPasswordResetEmail(auth, resetEmail.trim());
-  
-      toast({
-        title: "Reset Link Sent",
-        description: "Check your inbox for a password reset email.",
-      });
-      setOpenResetModal(false);
-      setResetEmail("");
-    } catch (error: any) {
-      const errorMap: Record<string, string> = {
-        "auth/user-not-found":
-          "No account exists with this email.",
-        "auth/invalid-email":
-          "Enter a valid email address.",
-        "auth/missing-email":
-          "Please enter your email first.",
-      };
-  
-      toast({
-        variant: "destructive",
-        title: "Reset Failed",
-        description: errorMap[error.code] || "Could not send reset link.",
-      });
-    } finally {
-        setResetLoading(false);
-    }
-  };
 
   const handleGoogleLogin = async () => {
     setLoading(true);
@@ -320,42 +283,30 @@ export default function LoginPage() {
       </motion.div>
     </div>
     <Dialog open={openResetModal} onOpenChange={setOpenResetModal}>
-        <DialogContent className="bg-card/80 backdrop-blur-xl border-border text-foreground rounded-2xl">
-            <DialogHeader>
-            <DialogTitle className="text-xl font-bold">Reset Password</DialogTitle>
-            <DialogDescription className="text-muted-foreground text-sm">
-                Enter your email and we’ll send you a reset link instantly.
-            </DialogDescription>
-            </DialogHeader>
-
-            <div className="space-y-3 mt-3">
-            <Label>Email</Label>
-            <Input
-                value={resetEmail}
-                onChange={(e) => setResetEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="bg-secondary border-border text-foreground"
-            />
-            </div>
-
-            <DialogFooter className="mt-6">
-            <Button
-                variant="ghost"
-                onClick={() => setOpenResetModal(false)}
-                className="text-muted-foreground hover:text-foreground"
-            >
-                Cancel
+      <DialogContent className="bg-card/80 backdrop-blur-xl border-border text-foreground rounded-2xl">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-bold">🔧 Password Reset Temporarily Unavailable</DialogTitle>
+          <DialogDescription className="text-muted-foreground text-sm pt-2">
+            We’re currently facing a small technical issue with password reset.
+            Don’t worry — our support team will help you reset your password quickly.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter className="mt-6">
+          <Button
+            variant="ghost"
+            onClick={() => setOpenResetModal(false)}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            Cancel
+          </Button>
+          <a href={mailtoHref}>
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Mail className="mr-2 h-4 w-4" />
+              Email Support
             </Button>
-
-            <Button
-                onClick={handleForgotPassword}
-                disabled={resetLoading}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground"
-            >
-                {resetLoading ? "Sending..." : "Send Reset Link"}
-            </Button>
-            </DialogFooter>
-        </DialogContent>
+          </a>
+        </DialogFooter>
+      </DialogContent>
     </Dialog>
     </>
   );
