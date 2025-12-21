@@ -10,6 +10,67 @@ export type FormState = {
   isSuccess: boolean;
 };
 
+// This function is the new implementation based on user request.
+async function generateWorkoutPlan({
+  gender,
+  goal,
+  level,
+  location
+}: {
+  gender: string;
+  goal: string;
+  level: string;
+  location: string;
+}) {
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash", // As requested by user
+  });
+
+  const prompt = `
+You are a professional, CSCS-certified Fitness Coach and Exercise Scientist.
+Task: Generate a highly personalized workout plan based on user inputs.
+User Inputs:
+- Goal: ${goal}
+- Equipment: ${location}
+- Fitness Level: ${level}
+- Gender: ${gender}
+
+Constraints:
+- Safety First: Always include a specific 5-minute dynamic warm-up.
+- Precision: Use specific exercise names (e.g., "Bulgarian Split Squat" instead of just "Legs").
+- Format: You MUST respond strictly in JSON format. Do not include any conversational text, markdown headers, or explanations outside of the JSON.
+- Expertise: Adjust volume (sets/reps) based on the user's level.
+
+Required JSON Structure:
+{
+  "plan_name": "String",
+  "difficulty": "String",
+  "estimated_duration_mins": Number,
+  "warmup": [{ "name": "String", "duration_sec": Number }],
+  "exercises": [
+    {
+      "name": "String",
+      "sets": Number,
+      "reps": "String",
+      "rest_seconds": Number,
+      "pro_tip": "String"
+    }
+  ],
+  "cooldown": [{ "name": "String", "duration_sec": Number }]
+}
+`;
+
+  const result = await model.generateContent(prompt);
+  const text = result.response.text();
+  
+  // Add cleaning logic to handle potential markdown
+  const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+  return JSON.parse(cleanedText);
+}
+
+
+// This wrapper makes the new function compatible with useActionState
 const formSchema = z.object({
   gender: z.string(),
   goal: z.string(),
@@ -44,55 +105,7 @@ export async function getWorkoutPlan(
   }
 
   try {
-    const { gender, goal, level, location } = validatedFields.data;
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
-
-    const prompt = `
-      You are a professional, CSCS-certified Fitness Coach and Exercise Scientist.
-      Task: Generate a highly personalized workout plan based on user inputs.
-      User Inputs:
-      - Goal: ${goal}
-      - Equipment: ${location}
-      - Fitness Level: ${level}
-      - Gender: ${gender}
-
-      Constraints:
-      - Safety First: Always include a specific 5-minute dynamic warm-up.
-      - Precision: Use specific exercise names (e.g., "Bulgarian Split Squat" instead of just "Legs").
-      - Format: You MUST respond strictly in JSON format. Do not include any conversational text, markdown headers, or explanations outside of the JSON.
-      - Expertise: Adjust volume (sets/reps) based on the user's level.
-
-      Required JSON Structure:
-      {
-        "plan_name": "String",
-        "difficulty": "String",
-        "estimated_duration_mins": Number,
-        "warmup": [{ "name": "String", "duration_sec": Number }],
-        "exercises": [
-          {
-            "name": "String",
-            "sets": Number,
-            "reps": "String",
-            "rest_seconds": Number,
-            "pro_tip": "String"
-          }
-        ],
-        "cooldown": [{ "name": "String", "duration_sec": Number }]
-      }
-    `;
-
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
-    
-    let workoutPlan;
-    try {
-        const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-        workoutPlan = JSON.parse(cleanedText);
-    } catch (e) {
-        console.error("Failed to parse AI response JSON:", text);
-        return { message: `AI returned invalid JSON. Raw response: ${text}`, isSuccess: false };
-    }
+    const workoutPlan = await generateWorkoutPlan(validatedFields.data);
 
     return {
       message: 'Plan generated!',
@@ -109,3 +122,4 @@ export async function getWorkoutPlan(
     };
   }
 }
+
