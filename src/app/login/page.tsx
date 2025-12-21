@@ -31,7 +31,6 @@ export default function LoginPage() {
   const supportBody = `Registered Email:\nIssue:`;
   const mailtoHref = `mailto:${supportEmail}?subject=${encodeURIComponent(supportSubject)}&body=${encodeURIComponent(supportBody)}`;
 
-  // Auto-redirect if already signed in
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -41,68 +40,86 @@ export default function LoginPage() {
     return () => unsub();
   }, [router]);
 
-  const handleLoginOrSignup = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const validateFields = () => {
     if (!email || !password) {
       toast({
         variant: 'destructive',
         title: 'Login Failed',
         description: 'Please enter both email and password.',
       });
-      return;
+      return false;
     }
+    return true;
+  }
+
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateFields()) return;
     setLoading(true);
-    
     try {
-      const methods = await fetchSignInMethodsForEmail(auth, email.trim());
-      
-      if (methods.length > 0) {
-        // Email exists, so sign in
-        try {
-          await signInWithEmailAndPassword(auth, email.trim(), password);
-          router.push('/dashboard');
-        } catch (error: any) {
-          toast({
+      await signInWithEmailAndPassword(auth, email.trim(), password);
+      router.push('/dashboard');
+    } catch (error: any) {
+      if (error.code === 'auth/user-not-found') {
+        toast({
+            variant: 'destructive',
+            title: 'Login Failed',
+            description: "No account found with this email. Please create an account.",
+        });
+      } else if (error.code === 'auth/wrong-password') {
+         toast({
             variant: 'destructive',
             title: 'Login Failed',
             description: "Incorrect password. Please try again.",
           });
-        }
       } else {
-        // Email does not exist, so create account
-        try {
-            await createUserWithEmailAndPassword(auth, email.trim(), password);
-            router.push('/profile-setup');
-        } catch (error: any) {
-            if (error.code === 'auth/weak-password') {
-                toast({
-                    variant: 'destructive',
-                    title: 'Signup Failed',
-                    description: 'Password should be at least 6 characters.',
-                });
-            } else {
-                 toast({
-                    variant: 'destructive',
-                    title: 'Signup Failed',
-                    description: 'Could not create an account. Please try again.',
-                });
-            }
-        }
+         toast({
+            variant: 'destructive',
+            title: 'Login Failed',
+            description: "An unexpected error occurred. Please try again.",
+          });
       }
-    } catch (error: any) {
-      let message = "Something went wrong. Please try again.";
-      if (error.code === "auth/invalid-email") {
-        message = "Please enter a valid email address.";
-      }
-      toast({
-        variant: 'destructive',
-        title: 'Authentication Failed',
-        description: message,
-      });
     } finally {
       setLoading(false);
     }
-  };
+  }
+
+  const handleQuickCreate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateFields()) return;
+    setLoading(true);
+    try {
+        const methods = await fetchSignInMethodsForEmail(auth, email.trim());
+        if (methods.length > 0) {
+            toast({
+                variant: 'destructive',
+                title: 'Account Exists',
+                description: "An account with this email already exists. Please sign in.",
+            });
+            return;
+        }
+
+        await createUserWithEmailAndPassword(auth, email.trim(), password);
+        router.push('/profile-setup');
+
+    } catch (error: any) {
+        if (error.code === 'auth/weak-password') {
+            toast({
+                variant: 'destructive',
+                title: 'Signup Failed',
+                description: 'Password should be at least 6 characters.',
+            });
+        } else {
+             toast({
+                variant: 'destructive',
+                title: 'Signup Failed',
+                description: 'Could not create an account. Please try again.',
+            });
+        }
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -124,11 +141,11 @@ export default function LoginPage() {
               <Icons.logo className="h-20 w-20 text-primary" />
             </motion.div>
             <CardTitle className="text-3xl font-bold text-foreground">Get Started</CardTitle>
-            <CardDescription className="text-muted-foreground">Sign in or create your account</CardDescription>
+            <CardDescription className="text-muted-foreground">Sign in or create an account</CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
-            <form onSubmit={handleLoginOrSignup} className="space-y-4">
+            <form className="space-y-4">
               <div>
                 <Label htmlFor="email" className="text-foreground">Email</Label>
                 <Input
@@ -178,14 +195,24 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Button
-                  type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                  onClick={handleSignIn}
+                  variant="destructive"
+                  className="w-full font-semibold"
                   disabled={loading}
                 >
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Sign In / Quick Create
+                  Sign In
+                </Button>
+                <Button
+                  onClick={handleQuickCreate}
+                  variant="success"
+                  className="w-full font-semibold"
+                  disabled={loading}
+                >
+                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Quick Create
                 </Button>
               </div>
             </form>
