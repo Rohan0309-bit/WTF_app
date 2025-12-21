@@ -46,7 +46,7 @@ export async function getWorkoutPlan(
   try {
     const { gender, goal, level, location } = validatedFields.data;
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
 
     const prompt = `
       You are a professional, CSCS-certified Fitness Coach and Exercise Scientist.
