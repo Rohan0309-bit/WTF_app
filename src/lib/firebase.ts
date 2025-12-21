@@ -4,9 +4,10 @@
 // Please update imports to point to '@/firebase' instead of '@/lib/firebase'.
 
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signOut, type User } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, connectAuthEmulator, signInWithEmailAndPassword, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signOut, type User, sendPasswordResetEmail } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator, doc, setDoc, serverTimestamp, enableIndexedDbPersistence } from "firebase/firestore";
 import { firebaseConfig } from "@/firebase/config";
+import { getAuthErrorMessage } from "./authErrorHandler";
 
 // Initialize Firebase
 let app: FirebaseApp;
@@ -42,16 +43,54 @@ if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' |
     }
 }
 
+export async function signUp(email: string, password: string) {
+  try {
+    const userCredential =
+      await createUserWithEmailAndPassword(auth, email, password);
+
+    return { success: true, user: userCredential.user };
+
+  } catch (error: any) {
+    return {
+      success: false,
+      message: getAuthErrorMessage(error),
+      code: error?.code || null,
+    };
+  }
+}
+
+export async function login(email: string, password: string) {
+  try {
+    const userCredential =
+      await signInWithEmailAndPassword(auth, email, password);
+
+    return { success: true, user: userCredential.user };
+
+  } catch (error: any) {
+    return {
+      success: false,
+      message: getAuthErrorMessage(error),
+      code: error?.code || null,
+    };
+  }
+}
+
+export async function resetPassword(email: string) {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return { success: true };
+
+  } catch {
+    return {
+      success: false,
+      message:
+        "Password reset is temporarily unavailable. Please contact support.",
+    };
+  }
+}
+
 export const signInWithGoogle = async () => {
   return signInWithPopup(auth, provider);
-};
-
-export const loginWithEmailPassword = (email: string, password: string) => {
-  return signInWithEmailAndPassword(auth, email, password);
-};
-
-export const registerWithEmailPassword = (email: string, password: string) => {
-  return createUserWithEmailAndPassword(auth, email, password);
 };
 
 export const getSignInMethods = (email: string) => {

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -7,14 +6,12 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { auth, createUserProfile, db } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { createUserProfile, signUp } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { fetchSignInMethodsForEmail, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -48,48 +45,31 @@ export default function SignupPage() {
 
     setLoading(true);
 
-     try {
-        const methods = await fetchSignInMethodsForEmail(auth, email.trim());
+    const result = await signUp(email, password);
 
-        if (methods.length > 0) {
-            toast({
-                title: 'Email Already Registered',
-                description: `This email is already in use. Please log in instead.`,
-                action: <Button variant="secondary" onClick={() => router.push('/login')}>Login</Button>
-            });
-            setLoading(false);
-            return;
+    if (result.success && result.user) {
+        const profileData = {
+            name,
+            age: Number(age),
+            height: Number(height),
+            gender
         }
-
-      const result = await createUserWithEmailAndPassword(auth, email, password);
-      
-      const profileData = {
-          name,
-          age: Number(age),
-          height: Number(height),
-          gender
-      }
-      await createUserProfile(result.user, profileData);
-      
-      toast({ title: 'Profile Created!', description: 'Welcome to the club!' });
-      router.push('/dashboard');
-
-    } catch (error: any) {
-        const errorMap: Record<string, string> = {
-            "auth/weak-password": "The password is too weak. Please choose a stronger password.",
-            "auth/invalid-email": "Invalid email address format.",
-        };
-        const description = errorMap[error.code] || 'An unexpected error occurred. Please try again.';
-       
+        await createUserProfile(result.user, profileData);
+        
+        toast({ title: 'Profile Created!', description: 'Welcome to the club!' });
+        router.push('/dashboard');
+    } else {
         toast({
             variant: 'destructive',
             title: 'Signup Failed',
-            description,
+            description: result.message,
+            action: result.code === 'auth/email-already-in-use' ? (
+                <Button variant="secondary" onClick={() => router.push('/login')}>Login</Button>
+            ) : undefined,
         });
-        console.error("Email signup failed", error);
-    } finally {
-        setLoading(false);
     }
+
+    setLoading(false);
   };
 
   return (
