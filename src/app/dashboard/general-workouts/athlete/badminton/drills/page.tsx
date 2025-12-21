@@ -55,15 +55,6 @@ function DrillsLibrary({ drills, categoryName }: { drills: BadmintonDrill[], cat
             </DialogHeader>
             <div className="grid md:grid-cols-2 gap-8 mt-4">
                 <div className="space-y-4">
-                    <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                        <Image
-                            src={selectedDrill.image}
-                            alt={selectedDrill.name}
-                            layout="fill"
-                            objectFit="cover"
-                            className="rounded-lg"
-                        />
-                    </div>
                      <Link href={selectedDrill.youtubeUrl} target="_blank" rel="noopener noreferrer">
                         <Button className="w-full">
                             <Youtube className="mr-2 h-5 w-5" />
