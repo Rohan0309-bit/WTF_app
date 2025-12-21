@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { fetchSignInMethodsForEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { fetchSignInMethodsForEmail, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -53,7 +53,6 @@ export default function SignupPage() {
 
         if (methods.length > 0) {
             toast({
-                variant: 'destructive',
                 title: 'Email Already Registered',
                 description: `This email is already in use. Please log in instead.`,
                 action: <Button variant="secondary" onClick={() => router.push('/login')}>Login</Button>
