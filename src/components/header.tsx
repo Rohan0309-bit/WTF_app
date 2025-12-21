@@ -22,7 +22,7 @@ import { useSidebar } from './ui/sidebar';
 
 const pathToTitle: { [key: string]: string } = {
   '/dashboard': 'Dashboard',
-  '/dashboard/athlete-workout-planner': 'AI Workout Planner',
+  '/dashboard/ai-workout-planner': 'AI Workout Planner',
   '/dashboard/my-plans': 'My Plans',
   '/dashboard/my-plans/create': 'Create Custom Plan',
   '/dashboard/general-workouts': 'General Workouts',
@@ -99,6 +99,11 @@ export function Header() {
         {title}
       </h1>
       <div className="ml-auto flex items-center gap-2">
+        <Link href="/dashboard/settings" passHref>
+          <Button variant="ghost" size="icon">
+            <Settings className="h-5 w-5" />
+          </Button>
+        </Link>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-10 w-10 rounded-full">

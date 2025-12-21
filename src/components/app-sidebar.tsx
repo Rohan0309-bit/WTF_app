@@ -152,6 +152,7 @@ const menu = [
   { name: 'Nutrition', icon: UtensilsCrossed, path: '/dashboard/nutrition' },
   { name: 'Calculators', icon: Calculator, path: '/dashboard/calculators' },
   { name: 'Progress', icon: TrendingUp, path: '/dashboard/progress' },
+  { name: 'Settings', icon: Settings, path: '/dashboard/settings'},
 ];
 
 export function AppSidebar() {
