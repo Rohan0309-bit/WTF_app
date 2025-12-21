@@ -7,15 +7,14 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { auth, createUserProfile } from '@/lib/firebase';
-import { db } from '@/lib/firebase';
+import { auth, createUserProfile, db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { fetchSignInMethodsForEmail, createUserWithEmailAndPassword } from 'firebase/auth';
+import { fetchSignInMethodsForEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -31,18 +30,6 @@ export default function SignupPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const checkUserProfile = async (user: any) => {
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (!userDoc.exists()) {
-        router.push("/profile-setup");
-      } else {
-        toast({
-          title: 'Account Exists',
-          description: 'You already have an account. Logging you in.',
-        });
-        router.push("/dashboard");
-      }
-  }
 
   const handleEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,7 +79,6 @@ export default function SignupPage() {
         const errorMap: Record<string, string> = {
             "auth/weak-password": "The password is too weak. Please choose a stronger password.",
             "auth/invalid-email": "Invalid email address format.",
-            "auth/email-already-in-use": "This email is already registered. Please log in instead.",
         };
         const description = errorMap[error.code] || 'An unexpected error occurred. Please try again.';
        

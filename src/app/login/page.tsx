@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { loginWithEmailPassword, auth } from '@/lib/firebase';
-import { onAuthStateChanged, fetchSignInMethodsForEmail, createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged, fetchSignInMethodsForEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
@@ -41,7 +41,7 @@ export default function LoginPage() {
     return () => unsub();
   }, [router]);
 
-  const handleEmailLogin = async (e: React.FormEvent) => {
+  const handleLoginOrSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
       toast({
@@ -52,77 +52,53 @@ export default function LoginPage() {
       return;
     }
     setLoading(true);
-    try {
-      await loginWithEmailPassword(email.trim(), password);
-      router.push('/dashboard');
-    } catch (error: any) {
-      let message = "Something went wrong. Please try again.";
-
-      if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
-        message = "Incorrect email or password.";
-      } else if (error.code === "auth/too-many-requests") {
-        message = "Too many attempts. Please wait a moment and try again.";
-      }
-      
-      toast({
-        variant: 'destructive',
-        title: 'Login Failed',
-        description: message,
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleQuickSignup = async () => {
-    if (!email || !password) {
-      toast({
-        variant: 'destructive',
-        title: 'Signup Failed',
-        description: 'Please enter both email and password.',
-      });
-      return;
-    }
-
-    setLoading(true);
-
+    
     try {
       const methods = await fetchSignInMethodsForEmail(auth, email.trim());
+      
       if (methods.length > 0) {
-        toast({
-          variant: 'destructive',
-          title: 'Email Already Registered',
-          description: "This email is already in use. Please sign in instead.",
-        });
-        setLoading(false);
-        return;
+        // Email exists, so sign in
+        try {
+          await signInWithEmailAndPassword(auth, email.trim(), password);
+          router.push('/dashboard');
+        } catch (error: any) {
+          toast({
+            variant: 'destructive',
+            title: 'Login Failed',
+            description: "Incorrect password. Please try again.",
+          });
+        }
+      } else {
+        // Email does not exist, so create account
+        try {
+            await createUserWithEmailAndPassword(auth, email.trim(), password);
+            router.push('/profile-setup');
+        } catch (error: any) {
+            if (error.code === 'auth/weak-password') {
+                toast({
+                    variant: 'destructive',
+                    title: 'Signup Failed',
+                    description: 'Password should be at least 6 characters.',
+                });
+            } else {
+                 toast({
+                    variant: 'destructive',
+                    title: 'Signup Failed',
+                    description: 'Could not create an account. Please try again.',
+                });
+            }
+        }
       }
-
-      await createUserWithEmailAndPassword(auth, email.trim(), password);
-      router.push('/dashboard');
-
     } catch (error: any) {
-      if (error.code === "auth/email-already-in-use") {
-         toast({
-          variant: 'destructive',
-          title: 'Email Already Registered',
-          description: "This email is already in use. Please sign in instead.",
-        });
-        setLoading(false); // Make sure to stop loading here
-        return;
+      let message = "Something went wrong. Please try again.";
+      if (error.code === "auth/invalid-email") {
+        message = "Please enter a valid email address.";
       }
-
-      const errorMap: Record<string, string> = {
-        "auth/weak-password": "Password should be at least 6 characters.",
-        "auth/invalid-email": "Invalid email address.",
-      };
-
       toast({
         variant: 'destructive',
-        title: 'Signup Failed',
-        description: errorMap[error.code] || 'Something went wrong. Please try again.',
+        title: 'Authentication Failed',
+        description: message,
       });
-      console.error("Quick signup failed:", error);
     } finally {
       setLoading(false);
     }
@@ -152,7 +128,7 @@ export default function LoginPage() {
           </CardHeader>
 
           <CardContent className="space-y-4">
-            <form onSubmit={handleEmailLogin} className="space-y-4">
+            <form onSubmit={handleLoginOrSignup} className="space-y-4">
               <div>
                 <Label htmlFor="email" className="text-foreground">Email</Label>
                 <Input
@@ -209,16 +185,7 @@ export default function LoginPage() {
                   disabled={loading}
                 >
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Sign In
-                </Button>
-                <Button
-                  type="button"
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold"
-                  disabled={loading}
-                  onClick={handleQuickSignup}
-                >
-                  {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  Quick Create
+                  Sign In / Sign Up
                 </Button>
               </div>
             </form>
@@ -227,7 +194,7 @@ export default function LoginPage() {
           <CardFooter className="justify-center text-sm text-muted-foreground">
             Don’t have an account?{' '}
             <Link href="/signup" className="ml-1 font-semibold text-primary hover:underline">
-              Sign up
+              Go to full signup
             </Link>
           </CardFooter>
         </Card>
