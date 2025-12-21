@@ -6,15 +6,15 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, loginWithEmailPassword, auth, createUserProfile } from '@/lib/firebase';
-import { createUserWithEmailAndPassword, onAuthStateChanged, fetchSignInMethodsForEmail, sendPasswordResetEmail } from 'firebase/auth';
+import { loginWithEmailPassword, auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Eye, EyeOff, Loader2, Mail } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -40,23 +40,6 @@ export default function LoginPage() {
     });
     return () => unsub();
   }, [router]);
-
-  const handleGoogleLogin = async () => {
-    setLoading(true);
-    try {
-      await signInWithGoogle();
-      router.push('/dashboard');
-    } catch (err) {
-      console.error('Google login failed', err);
-      toast({
-        variant: 'destructive',
-        title: 'Login Failed',
-        description: 'Error signing in with Google. Try again.',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,7 +87,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const methods = await fetchSignInMethodsForEmail(auth, email.trim());
+      const methods = await auth.fetchSignInMethodsForEmail(email.trim());
       if (methods.length > 0) {
         toast({
           variant: 'destructive',
@@ -115,7 +98,7 @@ export default function LoginPage() {
         return;
       }
 
-      await createUserWithEmailAndPassword(auth, email.trim(), password);
+      await auth.createUserWithEmailAndPassword(email.trim(), password);
       router.push('/dashboard');
 
     } catch (error: any) {
@@ -239,38 +222,6 @@ export default function LoginPage() {
                 </Button>
               </div>
             </form>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-border" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
-              </div>
-            </div>
-
-            <Button
-              variant="outline"
-              className="w-full bg-secondary hover:bg-muted text-foreground border-border"
-              onClick={handleGoogleLogin}
-              disabled={loading}
-            >
-              {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> :
-                <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false"
-                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
-                  <path fill="currentColor"
-                    d="M488 261.8C488 403.3 391.1 504 248 504C110.8 504 0 393.2 0 256S110.8 8 248 8
-                    c66.8 0 126 21.5 173.5 58.1l-65.2 64.2C335.5 97 295.6 80 248 80
-                    c-82.6 0-150.2 67.5-150.2 150.2S165.4 406.2 248 406.2
-                    c46.4 0 87.5-21.2 115.8-54.8l65.2 64.2
-                    c-55.5 51.5-128.5 82.8-211 82.8
-                    c-144.3 0-261.8-117.5-261.8-261.8
-                    S103.7-5.8 248-5.8
-                    c79.4 0 149.8 30.9 201.8 82.2l-3.2 3.2
-                    C485.4 121.3 488 187.3 488 261.8z" />
-                </svg>}
-              Sign in with Google
-            </Button>
           </CardContent>
 
           <CardFooter className="justify-center text-sm text-muted-foreground">

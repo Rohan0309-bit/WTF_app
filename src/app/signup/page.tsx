@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
-import { signInWithGoogle, registerWithEmailPassword, auth, createUserProfile, signOut } from '@/lib/firebase';
+import { registerWithEmailPassword, auth, createUserProfile } from '@/lib/firebase';
 import { db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
@@ -43,24 +43,6 @@ export default function SignupPage() {
         router.push("/dashboard");
       }
   }
-
-  const handleGoogleSignup = async () => {
-    setLoading(true);
-    try {
-      await signOut(auth); // Force signout to prevent conflicts
-      const result = await signInWithGoogle();
-      await checkUserProfile(result.user);
-    } catch (err) {
-      console.error("Google signup failed", err);
-       toast({
-        variant: 'destructive',
-        title: 'Signup Failed',
-        description: 'There was an error signing up with Google. Please try again.',
-      });
-    } finally {
-        setLoading(false);
-    }
-  };
 
   const handleEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -189,20 +171,6 @@ export default function SignupPage() {
                  Create Account
               </Button>
             </form>
-
-            <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
-                </div>
-            </div>
-
-          <Button variant="outline" className="w-full" onClick={handleGoogleSignup} disabled={loading}>
-            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 126 21.5 173.5 58.1l-65.2 64.2C335.5 97 295.6 80 248 80c-82.6 0-150.2 67.5-150.2 150.2S165.4 406.2 248 406.2c46.4 0 87.5-21.2 115.8-54.8l65.2 64.2c-55.5 51.5-128.5 82.8-211 82.8-144.3 0-261.8-117.5-261.8-261.8S103.7-5.8 248-5.8c79.4 0 149.8 30.9 201.8 82.2l-3.2 3.2C485.4 121.3 488 187.3 488 261.8z"></path></svg>}
-            Sign up with Google
-          </Button>
         </CardContent>
         <CardFooter className="justify-center text-sm">
           <p className="text-muted-foreground">
@@ -216,4 +184,3 @@ export default function SignupPage() {
     </div>
   );
 }
-
