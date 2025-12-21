@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/icons';
 import { loginWithEmailPassword, auth } from '@/lib/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, fetchSignInMethodsForEmail, createUserWithEmailAndPassword } from 'firebase/auth';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
@@ -87,7 +87,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const methods = await auth.fetchSignInMethodsForEmail(email.trim());
+      const methods = await fetchSignInMethodsForEmail(auth, email.trim());
       if (methods.length > 0) {
         toast({
           variant: 'destructive',
@@ -98,7 +98,7 @@ export default function LoginPage() {
         return;
       }
 
-      await auth.createUserWithEmailAndPassword(email.trim(), password);
+      await createUserWithEmailAndPassword(auth, email.trim(), password);
       router.push('/dashboard');
 
     } catch (error: any) {
