@@ -3,7 +3,6 @@
 
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Github, Instagram, Mail } from 'lucide-react';
 import Link from 'next/link';
@@ -34,11 +33,14 @@ const socialLinks = [
 export function CreatorProfile() {
   return (
     <div className="flex flex-col items-center text-center p-4 space-y-6 pt-8">
-      <div className="relative">
-        <Avatar className="w-32 h-32 border-4 border-primary shadow-lg">
-          <AvatarImage src="https://picsum.photos/seed/rohan/200/200" alt="Rohan Anand" />
-          <AvatarFallback>RA</AvatarFallback>
-        </Avatar>
+      <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl shadow-lg border-4 border-primary overflow-hidden">
+        <Image 
+          src="https://i.ibb.co/HDS3XnGm/Whats-App-Image-2025-12-21-at-19-30-53.jpg" 
+          alt="Rohan Anand" 
+          layout="fill"
+          objectFit="cover"
+          className="transition-transform duration-300 hover:scale-105"
+        />
       </div>
 
       <div className="space-y-1">
