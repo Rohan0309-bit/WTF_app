@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { auth, db } from '@/lib/firebase';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight, Check } from 'lucide-react';
+import { Loader2, User as UserIcon, Palette, Languages, Star, MessageSquare, Shield, AppWindow, ChevronRight, Check, Smile } from 'lucide-react';
 import type { User } from 'firebase/auth';
 import { updateProfile } from 'firebase/auth';
 import Link from 'next/link';
@@ -22,9 +22,12 @@ import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError, type SecurityRuleContext } from '@/firebase/errors';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { CreatorProfile } from '@/components/creator-profile';
 
 
 const supportItems = [
+    { id: 'creator', icon: Smile, title: 'Meet the Creator', href: '#' },
     { id: 'rate', icon: Star, title: 'Rate Us', href: '#' },
     { id: 'feedback', icon: MessageSquare, title: 'Feedback', href: '#' },
     { id: 'privacy', icon: Shield, title: 'Privacy Policy', href: '#' },
@@ -315,15 +318,39 @@ export default function SettingsPage() {
                     <CardDescription>Give feedback, read our policies, and explore more.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-1 p-0">
-                    {supportItems.map(item => (
-                        <Link href={item.href} key={item.id} target="_blank" rel="noopener noreferrer">
-                            <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg">
-                                <item.icon className="h-5 w-5 text-muted-foreground mr-4"/>
-                                <span className="flex-1 font-medium">{item.title}</span>
-                                <ChevronRight className="h-5 w-5 text-muted-foreground"/>
-                            </div>
-                        </Link>
-                    ))}
+                    <Sheet>
+                        {supportItems.map(item => {
+                            if (item.id === 'creator') {
+                                return (
+                                     <SheetTrigger asChild key={item.id}>
+                                        <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer">
+                                            <item.icon className="h-5 w-5 text-muted-foreground mr-4"/>
+                                            <span className="flex-1 font-medium">{item.title}</span>
+                                            <ChevronRight className="h-5 w-5 text-muted-foreground"/>
+                                        </div>
+                                    </SheetTrigger>
+                                )
+                            }
+                            return (
+                                <Link href={item.href} key={item.id} target="_blank" rel="noopener noreferrer">
+                                    <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg">
+                                        <item.icon className="h-5 w-5 text-muted-foreground mr-4"/>
+                                        <span className="flex-1 font-medium">{item.title}</span>
+                                        <ChevronRight className="h-5 w-5 text-muted-foreground"/>
+                                    </div>
+                                </Link>
+                            )
+                        })}
+                         <SheetContent>
+                            <SheetHeader>
+                                <SheetTitle>Meet the Creator</SheetTitle>
+                                <SheetDescription>
+                                    The person behind Well Trained Freak.
+                                </SheetDescription>
+                            </SheetHeader>
+                            <CreatorProfile />
+                        </SheetContent>
+                    </Sheet>
                 </CardContent>
             </Card>
         </div>
