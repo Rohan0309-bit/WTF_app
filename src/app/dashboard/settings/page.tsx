@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -27,7 +28,7 @@ import { CreatorProfile } from '@/components/creator-profile';
 
 
 const supportItems = [
-    { id: 'creator', icon: Smile, title: 'Meet the Creator', href: '#' },
+    { id: 'creator', icon: Smile, title: 'Meet the Creator', href: '/dashboard/creator-profile' },
     { id: 'rate', icon: Star, title: 'Rate Us', href: '#' },
     { id: 'feedback', icon: MessageSquare, title: 'Feedback', href: '#' },
     { id: 'privacy', icon: Shield, title: 'Privacy Policy', href: '#' },
@@ -318,39 +319,15 @@ export default function SettingsPage() {
                     <CardDescription>Give feedback, read our policies, and explore more.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-1 p-0">
-                    <Sheet>
-                        {supportItems.map(item => {
-                            if (item.id === 'creator') {
-                                return (
-                                     <SheetTrigger asChild key={item.id}>
-                                        <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer">
-                                            <item.icon className="h-5 w-5 text-muted-foreground mr-4"/>
-                                            <span className="flex-1 font-medium">{item.title}</span>
-                                            <ChevronRight className="h-5 w-5 text-muted-foreground"/>
-                                        </div>
-                                    </SheetTrigger>
-                                )
-                            }
-                            return (
-                                <Link href={item.href} key={item.id} target="_blank" rel="noopener noreferrer">
-                                    <div className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg">
-                                        <item.icon className="h-5 w-5 text-muted-foreground mr-4"/>
-                                        <span className="flex-1 font-medium">{item.title}</span>
-                                        <ChevronRight className="h-5 w-5 text-muted-foreground"/>
-                                    </div>
-                                </Link>
-                            )
-                        })}
-                         <SheetContent>
-                            <SheetHeader>
-                                <SheetTitle>Meet the Creator</SheetTitle>
-                                <SheetDescription>
-                                    The person behind Well Trained Freak.
-                                </SheetDescription>
-                            </SheetHeader>
-                            <CreatorProfile />
-                        </SheetContent>
-                    </Sheet>
+                    {supportItems.map(item => (
+                        <Link href={item.href} key={item.id} passHref>
+                            <a target={item.href === '#' ? '_self' : '_blank'} rel="noopener noreferrer" className="flex items-center p-4 hover:bg-secondary transition-colors rounded-lg cursor-pointer">
+                                <item.icon className="h-5 w-5 text-muted-foreground mr-4"/>
+                                <span className="flex-1 font-medium">{item.title}</span>
+                                <ChevronRight className="h-5 w-5 text-muted-foreground"/>
+                            </a>
+                        </Link>
+                    ))}
                 </CardContent>
             </Card>
         </div>

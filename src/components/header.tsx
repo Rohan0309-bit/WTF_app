@@ -32,6 +32,7 @@ const pathToTitle: { [key: string]: string } = {
   '/dashboard/posing-tutorials': 'Posing Tutorials',
   '/dashboard/progress': 'Progress Tracker',
   '/dashboard/settings': 'Settings',
+  '/dashboard/creator-profile': 'Meet the Creator',
 };
 
 export function Header() {
