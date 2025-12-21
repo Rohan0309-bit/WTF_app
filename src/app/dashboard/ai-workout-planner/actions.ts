@@ -1,3 +1,4 @@
+
 "use server";
 
 import { z } from 'zod';
@@ -96,7 +97,9 @@ export async function getWorkoutPlan(
     
     let workoutPlanData;
     try {
-      workoutPlanData = JSON.parse(responseText);
+      // Clean the response to handle potential markdown fences
+      const cleanedText = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
+      workoutPlanData = JSON.parse(cleanedText);
     } catch (error){
       console.error("Failed to parse AI response as JSON:", responseText);
       return { message: `AI returned invalid JSON. Please try generating again.`, isSuccess: false };
