@@ -48,6 +48,19 @@ export const GOALS = [
     { value: 'bulk', label: 'Bulk (Weight Gain)' },
 ];
 
+export const NUTRITION_SPORTS = [
+    "General Fitness",
+    "Cricket",
+    "Football",
+    "Basketball",
+];
+
+export const NUTRITION_GOALS = [
+    "Cutting",
+    "Bulking",
+    "Lean Muscle Gain",
+]
+
 export const NON_ATHLETE_WORKOUTS = [
   { name: 'Full Body', href: '/dashboard/general-workouts/non-athlete/full-body', description: 'A comprehensive workout targeting all major muscle groups.', image: "https://i.ibb.co/G3JtX79Z/Whats-App-Image-2025-06-30-at-23-20-36.jpg" },
   { name: 'Chest', href: '/dashboard/general-workouts/non-athlete/chest', description: 'Focus on building a powerful and defined chest.', image: "https://i.ibb.co/xtN2StD7/Whats-App-Image-2025-06-30-at-23-59-47.jpg" },
