@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -30,11 +29,36 @@ import { auth } from '@/lib/firebase';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useUser } from '@/firebase';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+
+const menu = [
+  { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
+  { name: 'AI Workout Planner', icon: Sparkles, path: '/dashboard/ai-workout-planner'},
+  { name: 'General Workouts', icon: Dumbbell, path: '/dashboard/general-workouts' },
+  { name: 'My Customized Plans', icon: ListPlus, path: '/dashboard/my-plans'},
+  { name: 'Exercise Library', icon: BookOpen, path: '/dashboard/exercise-library' },
+  { name: 'Mind & Focus', icon: BrainCircuit, path: '/dashboard/mind-focus-training' },
+  { name: 'Posing', icon: PersonStanding, path: '/dashboard/posing-tutorials' },
+  { name: 'Nutrition', icon: UtensilsCrossed, path: '/dashboard/nutrition' },
+  { name: 'Calculators', icon: Calculator, path: '/dashboard/calculators' },
+  { name: 'Progress', icon: TrendingUp, path: '/dashboard/progress' },
+  { name: 'Settings', icon: Settings, path: '/dashboard/settings'},
+];
 
 function SidebarNav() {
     const pathname = usePathname();
     const router = useRouter();
-    const { user, isUserLoading } = useUser();
+    const { user } = useUser();
 
     const handleLogout = async () => {
       await auth.signOut();
@@ -132,28 +156,32 @@ function SidebarNav() {
                     <Button variant="ghost" size="icon" asChild>
                         <Link href="/dashboard/settings"><Settings className="w-5 h-5 text-muted-foreground" /></Link>
                     </Button>
-                     <Button variant="ghost" size="icon" onClick={handleLogout}>
-                        <LogOut className="w-5 h-5 text-muted-foreground" />
-                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                          <LogOut className="w-5 h-5 text-muted-foreground" />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you sure you want to log out?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            You will need to sign in again to access your workout plans and data.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction onClick={handleLogout} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                            Log Out
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                 </div>
             </div>
         </div>
     )
 }
-
-const menu = [
-  { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { name: 'AI Workout Planner', icon: Sparkles, path: '/dashboard/ai-workout-planner'},
-  { name: 'General Workouts', icon: Dumbbell, path: '/dashboard/general-workouts' },
-  { name: 'My Customized Plans', icon: ListPlus, path: '/dashboard/my-plans'},
-  { name: 'Exercise Library', icon: BookOpen, path: '/dashboard/exercise-library' },
-  { name: 'Mind & Focus', icon: BrainCircuit, path: '/dashboard/mind-focus-training' },
-  { name: 'Posing', icon: PersonStanding, path: '/dashboard/posing-tutorials' },
-  { name: 'Nutrition', icon: UtensilsCrossed, path: '/dashboard/nutrition' },
-  { name: 'Calculators', icon: Calculator, path: '/dashboard/calculators' },
-  { name: 'Progress', icon: TrendingUp, path: '/dashboard/progress' },
-  { name: 'Settings', icon: Settings, path: '/dashboard/settings'},
-];
 
 export function AppSidebar() {
   const { isMobile, openMobile, setOpenMobile } = useSidebar();
