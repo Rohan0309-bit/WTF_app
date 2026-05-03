@@ -1,10 +1,8 @@
-
 'use client';
 
 import { useState, useMemo, Suspense } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { badmintonSubCategories, type BadmintonDrill } from '@/lib/badminton-drills';
-import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { CheckCircle, XCircle, Youtube, Shield, ChevronLeft } from 'lucide-react';
@@ -81,7 +79,7 @@ function DrillsLibrary({ drills, categoryName }: { drills: BadmintonDrill[], cat
                     )}
                     {selectedDrill.injuryPrevention && (
                      <div>
-                        <h3 className="font-headline text-xl mb-3 flex items-center gap-2 text-green-500"><Shield /> Injury Prevention</h3>
+                        <h3 className="font-headline text-xl mb-3 flex items-center gap-2 text-primary"><Shield /> Injury Prevention</h3>
                         <ul className="space-y-2 list-inside list-decimal text-muted-foreground">
                             {selectedDrill.injuryPrevention.map((tip, i) => <li key={i}>{tip}</li>)}
                         </ul>
@@ -146,5 +144,3 @@ export default function BadmintonDrillsPage() {
         </Suspense>
     )
 }
-
-    

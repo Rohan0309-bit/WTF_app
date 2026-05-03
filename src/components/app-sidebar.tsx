@@ -15,16 +15,14 @@ import {
   Settings,
   LogOut,
   ListPlus,
-  MoreVertical,
-  Menu,
-  BrainCircuit,
   Sparkles,
+  BrainCircuit,
 } from 'lucide-react';
 import { Icons } from '@/components/icons';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
 import Link from 'next/link';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
-import { Sidebar, useSidebar, SidebarTrigger } from './ui/sidebar';
+import { Sidebar, useSidebar } from './ui/sidebar';
 import { auth } from '@/lib/firebase';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -67,18 +65,18 @@ function SidebarNav() {
 
     return (
         <div className="flex flex-col h-full p-4">
-            <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
+            <div className="flex items-center gap-3 px-2 mb-8 flex-shrink-0">
                 <Link href="/dashboard" className="flex items-center gap-3">
-                    <Icons.logo className="h-16 w-16" />
+                    <Icons.logo className="h-14 w-14 drop-shadow-glow" />
                     <div className="flex flex-col -space-y-1">
-                        <div className="text-white font-extrabold text-lg">Well</div>
-                        <div className="text-primary font-bold text-lg">Trained</div>
-                        <div className="text-muted-foreground font-bold text-lg">Freak</div>
+                        <div className="text-white font-extrabold text-lg leading-none tracking-tighter">WELL</div>
+                        <div className="text-primary font-bold text-lg leading-none tracking-tighter">TRAINED</div>
+                        <div className="text-muted-foreground/60 font-bold text-xs tracking-[0.2em] pt-1">FREAK</div>
                     </div>
                 </Link>
             </div>
 
-            <nav className="flex-1 space-y-2 overflow-y-auto">
+            <nav className="flex-1 space-y-1 overflow-y-auto custom-scrollbar pr-1">
             {menu.map((item) => {
                 const isActive = pathname.startsWith(item.path) && (item.path === '/dashboard' ? pathname === item.path : true);
                 const Icon = item.icon;
@@ -88,90 +86,78 @@ function SidebarNav() {
                     <motion.button
                         onClick={() => router.push(item.path)}
                         initial={false}
-                        whileHover={{ scale: 1.03 }}
+                        whileHover={{ x: 4 }}
                         whileTap={{ scale: 0.98 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
                         className={cn(
-                        "relative w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 overflow-hidden",
-                        "bg-transparent hover:bg-secondary",
-                        isActive ? "text-foreground" : "text-muted-foreground"
+                        "relative w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group",
+                        isActive ? "bg-primary/10 text-foreground" : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
                         )}
                     >
                         <span
                         className={cn(
-                            "absolute left-0 top-0 bottom-0 w-1 rounded-r-full transition-all duration-500",
-                            isActive ? "bg-gradient-to-b from-primary via-accent to-yellow-300" : "opacity-0"
+                            "absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-primary transition-all duration-300",
+                            isActive ? "opacity-100" : "opacity-0"
                         )}
-                        aria-hidden
                         />
-                         <motion.span
-                            className={cn(
-                                "absolute inset-0 rounded-lg pointer-events-none",
-                                isActive ? "shadow-glow-active" : ""
-                            )}
-                            initial={{boxShadow: 'none'}}
-                            animate={{boxShadow: isActive ? '0 0 12px hsl(var(--primary-glow))' : 'none'}}
-                            transition={{duration: 0.3}}
-                            aria-hidden
-                        />
-                        <span
+                        <div
                         className={cn(
-                            "relative z-10 flex items-center justify-center w-8 h-8 rounded-md transition-transform duration-300",
-                            isActive ? "bg-gradient-to-br from-primary to-accent shadow-glow" : "bg-card"
+                            "flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-300 group-hover:shadow-glow",
+                            isActive ? "bg-primary text-primary-foreground shadow-glow" : "bg-secondary text-muted-foreground"
                         )}
                         >
-                        <Icon
-                            className={cn(
-                            "w-5 h-5 transition-transform duration-300",
-                            isActive ? "text-primary-foreground" : "text-foreground"
-                            )}
-                        />
-                        </span>
-                        <span className="relative z-10 text-left text-sm font-medium">
+                        <Icon className="w-5 h-5" />
+                        </div>
+                        <span className={cn(
+                          "text-sm font-semibold tracking-tight transition-colors",
+                          isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                        )}>
                         {item.name}
                         </span>
                     </motion.button>
                     </TooltipTrigger>
-                    <TooltipContent side="right" align="center">
+                    <TooltipContent side="right">
                     {item.name}
                     </TooltipContent>
                 </Tooltip>
                 );
             })}
             </nav>
-             <div className="mt-6 px-2 space-y-2 flex-shrink-0 border-t border-border pt-4">
-                <Link href="/dashboard/settings">
-                    <div className="flex items-center gap-3">
-                         <Avatar className="h-10 w-10">
-                            <AvatarImage src={user?.photoURL || undefined} />
-                            <AvatarFallback>{user?.displayName?.[0]}</AvatarFallback>
-                        </Avatar>
+             <div className="mt-6 px-2 space-y-4 flex-shrink-0 border-t border-border/40 pt-6">
+                <Link href="/dashboard/settings" className="group">
+                    <div className="flex items-center gap-3 p-2 rounded-xl transition-colors hover:bg-secondary/50">
+                         <div className="relative">
+                            <Avatar className="h-10 w-10 border-2 border-transparent group-hover:border-primary transition-all">
+                                <AvatarImage src={user?.photoURL || undefined} />
+                                <AvatarFallback className="bg-primary text-primary-foreground">{user?.displayName?.[0]}</AvatarFallback>
+                            </Avatar>
+                            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-primary border-2 border-card rounded-full" />
+                         </div>
                         <div className="text-sm">
-                            <p className="font-semibold">{user?.displayName || 'User'}</p>
-                            <p className="text-xs text-muted-foreground">{user?.email}</p>
+                            <p className="font-bold truncate max-w-[120px]">{user?.displayName || 'Freak'}</p>
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Athlete</p>
                         </div>
                     </div>
                 </Link>
-                <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon" asChild>
-                        <Link href="/dashboard/settings"><Settings className="w-5 h-5 text-muted-foreground" /></Link>
+                <div className="flex items-center justify-around gap-2 px-2">
+                    <Button variant="ghost" size="icon" asChild className="hover:text-primary transition-colors">
+                        <Link href="/dashboard/settings"><Settings className="w-5 h-5" /></Link>
                     </Button>
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <LogOut className="w-5 h-5 text-muted-foreground" />
+                        <Button variant="ghost" size="icon" className="hover:text-destructive transition-colors">
+                          <LogOut className="w-5 h-5" />
                         </Button>
                       </AlertDialogTrigger>
-                      <AlertDialogContent>
+                      <AlertDialogContent className="bg-card/90 backdrop-blur-xl border-border/40">
                         <AlertDialogHeader>
-                          <AlertDialogTitle>Are you sure you want to log out?</AlertDialogTitle>
+                          <AlertDialogTitle className="font-headline text-2xl">Confirm Exit</AlertDialogTitle>
                           <AlertDialogDescription>
-                            You will need to sign in again to access your workout plans and data.
+                            Are you sure you want to log out of your session? Your workout data is safe.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={handleLogout} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                          <AlertDialogCancel className="bg-secondary">Stay Training</AlertDialogCancel>
+                          <AlertDialogAction onClick={handleLogout} className="bg-primary text-white hover:bg-primary/90">
                             Log Out
                           </AlertDialogAction>
                         </AlertDialogFooter>
@@ -191,20 +177,12 @@ export function AppSidebar() {
     setIsClient(true);
   }, []);
 
-  if (!isClient) {
-    return (
-        <aside className="w-72 h-screen bg-card border-r border-border/60 hidden md:flex flex-col p-4">
-             <div className="flex items-center gap-3 px-2 mb-6 flex-shrink-0">
-                <Icons.logo className="h-16 w-16" />
-            </div>
-        </aside>
-    );
-  }
+  if (!isClient) return null;
   
   if (isMobile) {
     return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-            <SheetContent side="left" className="w-72 bg-card p-0 flex flex-col">
+            <SheetContent side="left" className="w-72 bg-card/95 backdrop-blur-xl p-0 flex flex-col border-r-primary/10">
                 <SidebarNav />
             </SheetContent>
         </Sheet>
@@ -212,10 +190,8 @@ export function AppSidebar() {
   }
 
   return (
-    <TooltipProvider>
-      <Sidebar>
-        <SidebarNav />
-      </Sidebar>
-    </TooltipProvider>
+    <Sidebar className="bg-card/40 border-r-border/20">
+      <SidebarNav />
+    </Sidebar>
   );
 }

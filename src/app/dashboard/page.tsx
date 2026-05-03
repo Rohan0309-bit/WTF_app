@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -69,9 +68,24 @@ const features = [
     description: 'Monitor your gains and stay motivated.',
     href: '/dashboard/progress',
     image: 'https://i.ibb.co/ksPLhW16/Whats-App-Image-2025-12-11-at-22-18-42.jpg',
-    comingSoon: true,
+    comingSoon: false,
   },
 ];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
 
 export default function DashboardPage() {
   const { user } = useUser();
@@ -79,58 +93,61 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div>
-        <motion.h1 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl font-bold font-headline">Welcome, {displayName}!</motion.h1>
-        <motion.p 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-muted-foreground">Ready to crush your goals today?</motion.p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {features.map((feature, i) => (
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl font-bold font-headline tracking-tight">Welcome, <span className="text-primary">{displayName}</span>!</h1>
+        <p className="text-muted-foreground mt-1">Ready to crush your goals today?</p>
+      </motion.div>
+
+      <motion.div 
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        {features.map((feature) => (
           <motion.div
             key={feature.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 * i }}
+            variants={item}
           >
-            <Link href={feature.href} className={cn(feature.comingSoon && "pointer-events-none")}>
+            <Link href={feature.href} className={cn(feature.comingSoon && "pointer-events-none opacity-80")}>
                 <motion.div
-                whileHover={{ scale: 1.05, rotateY: 3 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ scale: 1.02, y: -5 }}
+                whileTap={{ scale: 0.98 }}
                 className="h-full"
                 >
-                <Card className="h-full hover:border-primary transition-all duration-300 hover:shadow-lg group overflow-hidden bg-card/70 dark:bg-card/50 backdrop-blur-lg">
-                    <CardHeader className="p-0 relative h-40">
+                <Card className="h-full border-border/40 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_-5px_rgba(0,163,108,0.3)] group overflow-hidden bg-card/40 dark:bg-card/20 backdrop-blur-xl">
+                    <CardHeader className="p-0 relative h-44">
                       <Image 
                           src={feature.image}
                           data-ai-hint="fitness workout"
                           alt={feature.title}
-                          layout="fill"
-                          objectFit="cover"
-                          className="transition-transform duration-300 group-hover:scale-105"
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 flex flex-col justify-between">
+                       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent p-4 flex flex-col justify-between">
                          <div>
-                            {feature.comingSoon && <div className="text-xs bg-black/50 text-white/90 px-2 py-1 rounded-full backdrop-blur-sm w-fit">Coming Soon</div>}
+                            {feature.comingSoon && (
+                              <div className="text-[10px] uppercase tracking-widest font-bold bg-primary text-primary-foreground px-2 py-1 rounded-full w-fit shadow-lg">
+                                Coming Soon
+                              </div>
+                            )}
                          </div>
-                         <CardTitle className="font-headline text-white text-lg">{feature.title}</CardTitle>
+                         <CardTitle className="font-headline text-white text-xl drop-shadow-md">{feature.title}</CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="p-4">
-                      <p className="text-muted-foreground text-sm">{feature.description}</p>
+                    <CardContent className="p-5">
+                      <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
                     </CardContent>
                 </Card>
                 </motion.div>
             </Link>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
