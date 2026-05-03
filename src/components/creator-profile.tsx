@@ -1,8 +1,7 @@
-
 'use client';
 
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Github, Instagram, Mail } from 'lucide-react';
 import Link from 'next/link';
@@ -14,7 +13,7 @@ const socialLinks = [
     label: 'Email',
   },
   {
-    href: 'https://www.linkedin.com/in/rohan-anand-/',
+    href: 'https://www.linkedin.com/in/rohananand09/',
     icon: Linkedin,
     label: 'LinkedIn',
   },
@@ -24,7 +23,7 @@ const socialLinks = [
     label: 'GitHub',
   },
   {
-    href: 'https://www.instagram.com/_rohan._.rajput_03?igsh=OWJtazBqMzcwYXBm',
+    href: 'https://www.instagram.com/rohann.rajput_3?igsh=OWJtazBqMzcwYXBm',
     icon: Instagram,
     label: 'Instagram',
   },
